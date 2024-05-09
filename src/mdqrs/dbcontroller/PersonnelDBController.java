@@ -1,0 +1,177 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mdqrs.dbcontroller;
+
+import dbcontroller.Driver;
+import java.sql.*;
+import java.util.*;
+import classes.Personnel;
+/**
+ *
+ * @author Vienji
+ */
+public class PersonnelDBController {
+    private String query = "";
+    
+    public void add(String name, String type, Double ratePerDay){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            query = "INSERT INTO personnel (name, type, rate_per_day) VALUES (?, ?, ?)";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, type);
+            preparedStatement.setDouble(3, ratePerDay);
+            
+            preparedStatement.executeUpdate();   
+            
+            query = "UPDATE personnel SET pid = CONCAT('P', YEAR(CURDATE()), "
+                    + "MONTH(CURDATE()), LPAD(LAST_INSERT_ID(), 3, '0')) WHERE id = LAST_INSERT_ID()";
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
+    public ArrayList<Personnel> getList(){
+        ArrayList<Personnel> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM personnel";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                Personnel personnel = new Personnel();
+                
+                personnel.setId(result.getString(2));
+                personnel.setName(result.getString(3));
+                personnel.setType(result.getString(4));
+                personnel.setRatePerDay(result.getDouble(5));
+                
+                list.add(personnel);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
+    public Personnel getPersonnel(String id){
+        Personnel personnel = new Personnel();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM personnel WHERE pid = '" + id + "'";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                             
+                personnel.setId(result.getString(2));
+                personnel.setName(result.getString(3));
+                personnel.setType(result.getString(4));
+                personnel.setRatePerDay(result.getDouble(5));
+                
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return personnel;
+    }
+    
+    public void edit(String pid, String newName, String newType, Double newRatePerDay){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE personnel SET name = '" + newName + "', type = '"+ newType +"', rate_per_day = "+ newRatePerDay +" WHERE pid = '" + pid + "'";
+            
+            statement.execute(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
+    public boolean isPresent(String name, String type){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        boolean present = false;
+        
+        try{
+            query = "SELECT * FROM personnel WHERE name = '" + name + "' AND type = '" + type + "'";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            result = preparedStatement.executeQuery();
+            present = result.next();
+        } catch (SQLException e){
+        
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return present;
+    }
+}
