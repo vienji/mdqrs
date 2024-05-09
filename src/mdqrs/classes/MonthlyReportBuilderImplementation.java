@@ -4,6 +4,7 @@
  */
 package mdqrs.classes;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,12 @@ public class MonthlyReportBuilderImplementation implements MonthlyReportBuilder 
     
     public MonthlyReportBuilderImplementation(){
         this.report = new MonthlyReport();
+    }
+    
+    @Override
+    public MonthlyReportBuilder setFilePath(String filePath, File file){
+        report.setFilePath(filePath, file);
+        return this;
     }
     
     @Override

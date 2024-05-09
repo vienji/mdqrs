@@ -8,6 +8,7 @@ import classes.Activity;
 import classes.RegularActivity;
 import classes.SubActivity;
 import classes.OtherActivity;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
 import mdqrs.dbcontroller.GeneralDBController;
 import mdqrs.dbcontroller.OtherExpensesDBController;
+import mdqrs.dbcontroller.ProgramDBController;
 import mdqrs.dbcontroller.SubActivityDBController;
 import org.apache.poi.hssf.usermodel.HSSFHeader;
 import org.apache.poi.ss.usermodel.*;
@@ -29,10 +31,19 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Vienji
  */
 public class MonthlyReport implements Report {
+    private static final String xlsx = "xlsx";
+    private File file;
     private String headerTitle;
     private String timeFrame;
+    private String filePath;
     private int year;
     private ArrayList<String> organizationHeads;
+    
+    @Override
+    public void setFilePath(String filePath, File file){
+        this.filePath = filePath;
+        this.file = file;
+    }
     
     @Override
     public void setHeaderTitle(String headerTitle) {
@@ -71,10 +82,18 @@ public class MonthlyReport implements Report {
         CellStyle activityTitleStyle = createActivityTitleStyle(workbook);
         CellStyle numberStyle = createNumberStyle(workbook);
         CellStyle currencyStyle = createCurrencyStyle(workbook);
+        CellStyle currencySubTotalStyle = createSubTotalCurrencyStyle(workbook);
+        CellStyle currencyTotalStyle = createTotalCurrencyStyle(workbook);
+        CellStyle centerSubTotal = createCenteredSubTotalStyle(workbook);
+        CellStyle centerTotal = createCenteredTotalStyle(workbook);
         CellStyle center = createCenteredStyle(workbook);
         CellStyle left = createLeftStyle(workbook);
+        CellStyle left10 = createLeft10Style(workbook);
         CellStyle subTotalStyle = createSubTotalStyle(workbook);
-        CellStyle sidelessCurrencyStyle = createSidelessCurrencyStyle(workbook);
+        CellStyle totalStyle = createTotalStyle(workbook);
+        CellStyle centeredCurrencyStyle = createCenteredCurrencyStyle(workbook);
+        CellStyle sidelessSubTotalCurrencyStyle = createSidelessSubTotalCurrencyStyle(workbook);
+        CellStyle sidelessTotalCurrencyStyle = createSidelessTotalCurrencyStyle(workbook);
         
         //Print Setup
         PrintSetup printSetup =  sheet.getPrintSetup();
@@ -201,9 +220,9 @@ public class MonthlyReport implements Report {
                 
                 //Sub Total
                 addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                center, currencyStyle, currencyStyle, center}, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                     totalLaborCrewExpenses, totalLaborEquipmentExpenses, 
                     totalEquipmentFuelExpenses, totalLubricantExpenses, grandSubTotal);
                 
@@ -266,9 +285,9 @@ public class MonthlyReport implements Report {
                 
                 //Sub Total
                 addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                center, currencyStyle, currencyStyle, center}, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                     totalLaborCrewExpenses, totalLaborEquipmentExpenses, 
                     totalEquipmentFuelExpenses, totalLubricantExpenses, grandSubTotal);
                 
@@ -321,9 +340,9 @@ public class MonthlyReport implements Report {
 
                 //Sub Total
                 addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-                center, currencyStyle, currencyStyle, center}, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                     grandSubTotal, 0.0, 
                     0.0, 0.0, grandSubTotal);
                 
@@ -372,15 +391,15 @@ public class MonthlyReport implements Report {
         
         //Sub Total
         addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            center, currencyStyle, currencyStyle, center}, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                 0.0, totalDFELaborEquipmentExpenses, 
                 totalDFEEquipmentFuelExpenses, totalDFELubricantExpenses, grandDFESubTotal);
         
         //Other Expenses
         OtherExpenses otherExpensesData = new OtherExpensesDBController().getOtherExpenses(timeFrame);
-        Double totalOELaborEquipmentExpenses = otherExpensesData.getLaborCrewCost(), totalOELaborCrewExpenses = otherExpensesData.getLaborEquipmentCost(), 
+        Double totalOELaborCrewExpenses = otherExpensesData.getLaborCrewCost(), totalOELaborEquipmentExpenses = otherExpensesData.getLaborEquipmentCost(), 
                 grandOESubTotal = 0.00, grandOEEquipmentsSubTotal = otherExpensesData.getLightEquipments() + otherExpensesData.getHeavyEquipments();
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 3));
         Row otherExpensesRow = sheet.createRow(startingRow++);
@@ -406,9 +425,9 @@ public class MonthlyReport implements Report {
         
         //Sub Total
         addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            center, currencyStyle, currencyStyle, center}, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                 totalOELaborCrewExpenses, totalOELaborEquipmentExpenses, 
                 0.0, 0.0, grandOESubTotal);
         
@@ -433,9 +452,9 @@ public class MonthlyReport implements Report {
         
         //Sub Total
         addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            center, currencyStyle, currencyStyle, center}, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+            centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
                 0.0, 0.0, 
                 0.0, 0.0, grandOEEquipmentsSubTotal);
         
@@ -447,16 +466,43 @@ public class MonthlyReport implements Report {
         
         grandTotal = grandRASubTotal + grand504SubTotal + grandDFESubTotal + grandOESubTotal + totalOALaborCrewExpenses + grandOEEquipmentsSubTotal;
         
-        addGrandTotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, sidelessCurrencyStyle, 
-            center, currencyStyle, currencyStyle, center}, 
+        addGrandTotalRow(startingRow++, sheet, new CellStyle[]{totalStyle, totalStyle, totalStyle, 
+            sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, 
+            sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, sidelessTotalCurrencyStyle, 
+            centerTotal, currencyTotalStyle, currencyTotalStyle, centerTotal}, 
                 laborCrewCostGrandTotal, laborEquipmentCostGrandTotal, 
                 equipmentFuelCostGrandTotal, lubricantCostGrandTotal, 
                 grandTotal);
         
+        //Program
+        
+        addBlankRow(startingRow++, sheet);
+        addProgramTitle(startingRow++, sheet, workbook);
+        
+        Double totalProgramExpenses = 0.00;
+        ArrayList<Program> programList = new ProgramDBController().getList(timeFrame, year);
+        
+        for(Program program : programList){
+            addSourceOfFundName(startingRow++, sheet, left10, program.getSourceOfFund());
+            
+            ArrayList<Project> projectList = new ProgramDBController().getProjectList(program.getId());
+            
+            for(int i = 0; i < projectList.size(); i++){
+                Project project = projectList.get(i);
+                addProjectName(i+1, startingRow++, sheet, new CellStyle[]{numberStyle, left, centeredCurrencyStyle, center}, 
+                        project.getDescription(), project.getImplementationMode(), project.getProjectCost());
+                
+                totalProgramExpenses += project.getProjectCost();
+            }
+        }
+        
+        addProgramGrandTotal(startingRow++, sheet, workbook, totalProgramExpenses);
+        
         //Output
-        try(FileOutputStream outputStream = new FileOutputStream("C:\\Users\\userpc\\Desktop\\sampleReport.xlsx")){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        
+        try(FileOutputStream outputStream = new FileOutputStream(fileDirectory + fileName)){
             workbook.write(outputStream);
             outputStream.close();
         } catch (Exception e){
@@ -464,8 +510,171 @@ public class MonthlyReport implements Report {
         }
     }  
     
-    private static void addHeaderRow(int startingRow, XSSFSheet sheet, CellStyle style,String workTitle){
+    private static void addBlankRow(int startingRow, XSSFSheet sheet){
+        Row row = sheet.createRow(startingRow);
+
+        for(int i = 1; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+        }
         
+    }
+    
+    private static void addProjectName(int number, int startingRow, XSSFSheet sheet, CellStyle[] style, String projectName, String implementationMode,Double projectCost){
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 2, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 14));
+        Row row = sheet.createRow(startingRow++);
+        
+        
+        Cell numberCell = row.createCell(1);
+        numberCell.setCellValue(number);
+        numberCell.setCellStyle(style[0]);
+        
+        Cell nameCell = row.createCell(2);
+        nameCell.setCellValue(projectName);
+        nameCell.setCellStyle(style[1]);
+        
+        for(int i = 3; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            
+            cell.setCellValue("");
+            cell.setCellStyle(style[1]);  
+        }   
+        
+        Cell projectCostCell = row.createCell(11);
+        projectCostCell.setCellValue(projectCost);
+        projectCostCell.setCellStyle(style[2]);
+        
+        for(int i = 12; i <= 14; i++){
+            Cell cell = row.createCell(i);
+            
+            cell.setCellValue("");
+            cell.setCellStyle(style[2]);  
+        }   
+        
+        Cell implementationModeCell = row.createCell(15);
+        implementationModeCell.setCellValue( "By " + implementationMode);
+        implementationModeCell.setCellStyle(style[3]);
+    }
+   
+    private static void addSourceOfFundName(int startingRow, XSSFSheet sheet, CellStyle style, String sourceOfFund){
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 14));
+        Row row = sheet.createRow(startingRow++);
+        row.setHeight((short) 600);
+        Cell name = row.createCell(1);
+        name.setCellValue("            Source of Fund:  " + sourceOfFund);
+        name.setCellStyle(style);
+        
+        for(int i = 2; i <= 15; i++){
+            Cell cell = row.createCell(i);
+            
+            cell.setCellValue("");
+            cell.setCellStyle(style);  
+        }   
+    }
+    
+    private static void addProgramGrandTotal(int startingRow, XSSFSheet sheet, Workbook workbook, Double grandTotal){
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 14));
+        Row row = sheet.createRow(startingRow);
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 10);
+        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        CellStyle currencyStyle = workbook.createCellStyle();
+        Font currencyFont = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        currencyStyle.setDataFormat(format.getFormat("#,##0.00"));
+        
+        currencyFont.setBold(true);
+        currencyFont.setFontHeightInPoints((short) 10);
+        currencyStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        currencyStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        currencyStyle.setFont(currencyFont);
+        currencyStyle.setWrapText(true);
+        currencyStyle.setBorderLeft(BorderStyle.THIN);
+        currencyStyle.setBorderTop(BorderStyle.THIN);
+        currencyStyle.setBorderRight(BorderStyle.THIN);
+        currencyStyle.setBorderBottom(BorderStyle.THIN);
+        currencyStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        currencyStyle.setAlignment(HorizontalAlignment.CENTER);
+        
+        
+        Cell programTitleCell = row.createCell(1);
+        programTitleCell.setCellValue("Total");
+        programTitleCell.setCellStyle(style);
+
+        for(int i = 2; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style);
+        }
+        
+        Cell projectCostCell = row.createCell(11);
+        projectCostCell.setCellValue(grandTotal);
+        projectCostCell.setCellStyle(currencyStyle);
+
+        for(int i = 12; i <= 15; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(currencyStyle);
+        }
+    }
+    private static void addProgramTitle(int startingRow, XSSFSheet sheet, Workbook workbook){
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 14));
+        Row row = sheet.createRow(startingRow);
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 11);
+        style.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        Cell programTitleCell = row.createCell(1);
+        programTitleCell.setCellValue("PROJECTS/PROGRAM OF WORKS");
+        programTitleCell.setCellStyle(style);
+
+        for(int i = 2; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style);
+        }
+        
+        Cell projectCostCell = row.createCell(11);
+        projectCostCell.setCellValue("PROJECT COST");
+        projectCostCell.setCellStyle(style);
+
+        for(int i = 12; i <= 15; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style);
+        }
+    }
+    
+    private static void addHeaderRow(int startingRow, XSSFSheet sheet, CellStyle style,String workTitle){     
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 3));
         Row otherExpensesRow = sheet.createRow(startingRow++);
         
@@ -625,7 +834,7 @@ public class MonthlyReport implements Report {
         
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 3));
         Row subTotalRow = sheet.createRow(startingRow);
-
+        
         Cell subTotalTitle = subTotalRow.createCell(1);
         subTotalTitle.setCellValue("Sub-Total");
         subTotalTitle.setCellStyle(styles[0]);
@@ -687,12 +896,34 @@ public class MonthlyReport implements Report {
         implementationMode1.setCellStyle(styles[14]);
     }
     
+    public static CellStyle createTotalStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        return style;
+    }
+    
     public static CellStyle createSubTotalStyle(Workbook workbook){
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
         
         font.setBold(true);
         font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         style.setFont(font);
         style.setWrapText(true);
         style.setBorderLeft(BorderStyle.THIN);
@@ -805,6 +1036,49 @@ public class MonthlyReport implements Report {
         return style;
     }
     
+    public static CellStyle createSidelessTotalCurrencyStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        style.setDataFormat(format.getFormat("#,##0.00"));
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.NONE);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.NONE);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        return style;
+    }
+    
+    public static CellStyle createSidelessSubTotalCurrencyStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        style.setDataFormat(format.getFormat("#,##0.00"));
+        
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.NONE);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.NONE);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        return style;
+    }
+    
     public static CellStyle createSidelessCurrencyStyle(Workbook workbook){
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
@@ -817,6 +1091,49 @@ public class MonthlyReport implements Report {
         style.setBorderLeft(BorderStyle.NONE);
         style.setBorderTop(BorderStyle.THIN);
         style.setBorderRight(BorderStyle.NONE);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        return style;
+    }
+    
+    public static CellStyle createTotalCurrencyStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        style.setDataFormat(format.getFormat("#,##0.00"));
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.RIGHT);
+        
+        return style;
+    }
+    
+    public static CellStyle createSubTotalCurrencyStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        style.setDataFormat(format.getFormat("#,##0.00"));
+        
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
         style.setBorderBottom(BorderStyle.THIN);
         style.setVerticalAlignment(VerticalAlignment.CENTER);
         style.setAlignment(HorizontalAlignment.RIGHT);
@@ -843,6 +1160,63 @@ public class MonthlyReport implements Report {
         return style;
     }
     
+    public static CellStyle createCenteredCurrencyStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        style.setDataFormat(format.getFormat("#,##0.00"));
+        
+        font.setFontHeightInPoints((short) 8);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        return style;
+    }
+    
+    public static CellStyle createCenteredTotalStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        return style;
+    }
+    
+    public static CellStyle createCenteredSubTotalStyle(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setFontHeightInPoints((short) 8);
+        style.setFillForegroundColor(IndexedColors.SKY_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        return style;
+    }
+    
     public static CellStyle createCenteredStyle(Workbook workbook){
         CellStyle style = workbook.createCellStyle();
         Font font = workbook.createFont();
@@ -856,6 +1230,24 @@ public class MonthlyReport implements Report {
         style.setBorderBottom(BorderStyle.THIN);
         style.setVerticalAlignment(VerticalAlignment.CENTER);
         style.setAlignment(HorizontalAlignment.CENTER);
+        
+        return style;
+    }
+    
+    public static CellStyle createLeft10Style(Workbook workbook){
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 10);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.LEFT);
         
         return style;
     }
@@ -894,5 +1286,32 @@ public class MonthlyReport implements Report {
         style.setAlignment(HorizontalAlignment.RIGHT);
         
         return style;
+    }
+    
+    public static String validateFilePath(String filePath) {
+        if (filePath == null || filePath.isEmpty()) {
+            return filePath;
+        }
+
+        StringBuilder validatedFilePath = new StringBuilder();
+        for (int i = 0; i < filePath.length(); i++) {
+            char currentChar = filePath.charAt(i);
+            validatedFilePath.append(currentChar);
+            if (currentChar == '\\') {
+                validatedFilePath.append(currentChar);
+            }
+        }
+
+        return validatedFilePath.toString();
+    }
+    
+    public static String getExtension(String s) {
+        String ext = s;
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
     }
 }

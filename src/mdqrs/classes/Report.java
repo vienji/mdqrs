@@ -4,6 +4,7 @@
  */
 package mdqrs.classes;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -14,5 +15,6 @@ public interface Report {
     void setHeaderTitle(String headerTitle);
     void setTimeFrameDetail(Object timeFrame, int year);
     void setOrganizationHeads(ArrayList<String> organizationHeads);
+    void setFilePath(String filePath, File file);
     void generateReport();
 }

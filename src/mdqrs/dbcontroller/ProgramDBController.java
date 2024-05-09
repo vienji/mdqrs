@@ -186,6 +186,49 @@ public class ProgramDBController {
         return list;
     }
     
+    public ArrayList<Program> getList(String month, int year){
+        ArrayList<Program> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM program WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                Program program = new Program();
+                
+                program.setId(result.getString(2));
+                program.setSourceOfFund(result.getString(3));
+                program.setMonth(result.getString(4));
+                program.setYear(result.getInt(5));
+                program.setTotalProjectCost(getTotalProjectCost(program.getId()));
+                
+                list.add(program);              
+            }           
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
     public ArrayList<Project> getProjectList(String programID){
         ArrayList<Project> list = new ArrayList();
         Connection connection = null;

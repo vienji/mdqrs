@@ -23,10 +23,12 @@ import classes.SubActivity;
 import classes.WorkCategory;
 import dbcontroller.Driver;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,14 +41,18 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import mdqrs.classes.Cryptographer;
 import mdqrs.classes.DriversForEngineers;
 import mdqrs.classes.ImageManipulator;
+import mdqrs.classes.MonthlyReport;
+import mdqrs.classes.MonthlyReportBuilder;
 import mdqrs.classes.OtherExpenses;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
+import mdqrs.classes.ReportFactory;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
@@ -87,7 +93,7 @@ import mdqrs.view.workcategory.EditWorkCategory;
  * @author Vienji
  */
 public class Main extends javax.swing.JFrame implements MainListener {
-
+    private JFileChooser fileChooser = new JFileChooser();
     private int currentSection = 0;
     private ArrayList<Activity> activityList;
     private ArrayList<SubActivity> subActivityList;
@@ -747,6 +753,30 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel52 = new javax.swing.JLabel();
         reportPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel217 = new javax.swing.JLabel();
+        jLabel218 = new javax.swing.JLabel();
+        monthlyHeaderTitle = new javax.swing.JTextField();
+        monthlyYear = new javax.swing.JComboBox<>();
+        monthlyMonth = new javax.swing.JComboBox<>();
+        exportMonthlyReport = new javax.swing.JButton();
+        jLabel220 = new javax.swing.JLabel();
+        jLabel223 = new javax.swing.JLabel();
+        jLabel224 = new javax.swing.JLabel();
+        jLabel225 = new javax.swing.JLabel();
+        monthlyHeaderTitle1 = new javax.swing.JTextField();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel226 = new javax.swing.JLabel();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jLabel227 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel228 = new javax.swing.JLabel();
+        jLabel229 = new javax.swing.JLabel();
+        monthlyHeaderTitle2 = new javax.swing.JTextField();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jLabel231 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         settingsPanel = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -7393,21 +7423,169 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Report");
 
+        jLabel217.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel217.setText("Monthly Report");
+
+        jLabel218.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel218.setText("Header Title");
+
+        monthlyMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+
+        exportMonthlyReport.setText("Export Monthly Report");
+        exportMonthlyReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportMonthlyReportActionPerformed(evt);
+            }
+        });
+
+        jLabel220.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel220.setText("Year");
+
+        jLabel223.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel223.setText("Month");
+
+        jLabel224.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel224.setText("Quarterly Report");
+
+        jLabel225.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel225.setText("Header Title");
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+
+        jLabel226.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel226.setText("Quarter");
+
+        jLabel227.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel227.setText("Year");
+
+        jButton2.setText("Export Quarterly Report");
+
+        jLabel228.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel228.setText("Annually Report");
+
+        jLabel229.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel229.setText("Header Title");
+
+        jLabel231.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel231.setText("Year");
+
+        jButton3.setText("Export Annual Report");
+
+        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
+
+        jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
+
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
         reportPanelLayout.setHorizontalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jLabel5)
-                .addContainerGap(1054, Short.MAX_VALUE))
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel224)
+                            .addComponent(jLabel228))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(reportPanelLayout.createSequentialGroup()
+                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(monthlyHeaderTitle)
+                                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabel218)
+                                                    .addComponent(jLabel217)
+                                                    .addComponent(jLabel5)
+                                                    .addComponent(jLabel225)
+                                                    .addComponent(jLabel229))
+                                                .addGap(0, 555, Short.MAX_VALUE))
+                                            .addComponent(monthlyHeaderTitle1))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(monthlyMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel223)
+                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel226)))
+                                    .addComponent(monthlyHeaderTitle2))
+                                .addGap(18, 18, 18)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel220)
+                                    .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(exportMonthlyReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(monthlyYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                        .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                                    .addComponent(jLabel227)
+                                    .addComponent(jLabel231))))
+                        .addGap(56, 56, 56))))
         );
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reportPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel5)
-                .addContainerGap(745, Short.MAX_VALUE))
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel220)
+                            .addComponent(jLabel223))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(monthlyMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(monthlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel217)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel218)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monthlyHeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(exportMonthlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel224)
+                .addGap(34, 34, 34)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel227)
+                            .addComponent(jLabel226))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel225)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monthlyHeaderTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel228)
+                .addGap(34, 34, 34)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel231)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel229)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(monthlyHeaderTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         mainPanel.add(reportPanel, "card2");
@@ -9052,6 +9230,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             driversForEngineersContainer.repaint();
             driversForEngineersContainer.revalidate();
             resetDriversForEngineersForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveNewOtherExpenses1MouseClicked
 
@@ -9064,7 +9243,36 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherExpenses2MouseClicked
 
     private void saveNewOtherExpenses2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpenses2MouseClicked
-        // TODO add your handling code here:
+        if(driversForEngineersFormEditLaborEquipmentCost.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
+        } else if(driversForEngineersFormEditEquipmentFuelCost.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
+        } else if(driversForEngineersFormEditLubricantCost.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
+        } else if(driversForEngineersFormEditImplementationMode.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the implementation mode!");
+        } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
+        } else {
+            
+            driversForEngineersForEdit.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormEditLaborEquipmentCost.getText()));
+            driversForEngineersForEdit.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEditEquipmentFuelCost.getText()));
+            driversForEngineersForEdit.setLubricantCost(Double.parseDouble(driversForEngineersFormEditLubricantCost.getText()));
+            driversForEngineersForEdit.setImplementationMode(driversForEngineersFormEditImplementationMode.getText());
+            driversForEngineersForEdit.setNumberOfCD(Integer.parseInt(driversForEngineersFormEditDaysOfOperation.getText()));
+            driversForEngineersForEdit.setMonth(String.valueOf(driversForEngineersFormEditMonth.getSelectedItem()));
+            driversForEngineersForEdit.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormEditYear.getSelectedItem())));
+            
+            new DriversForEngineersDBController().edit(driversForEngineersForEdit);
+            JOptionPane.showMessageDialog(rootPane, "Successfully Edited!");
+            driversForEngineersList = new DriversForEngineersDBController().getList();
+            populateDriversForEngineersTable(driversForEngineersList);
+            driversForEngineersContainer.removeAll();
+            driversForEngineersContainer.add(mainDriversForEngineersPanel);
+            driversForEngineersContainer.repaint();
+            driversForEngineersContainer.revalidate();
+            resetDriversForEngineersEditForm();
+        }
     }//GEN-LAST:event_saveNewOtherExpenses2MouseClicked
 
     private void editProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProjectsMouseClicked
@@ -9232,6 +9440,32 @@ public class Main extends javax.swing.JFrame implements MainListener {
         projectsOfWorksTab.repaint();
         projectsOfWorksTab.revalidate(); 
     }//GEN-LAST:event_backViewProgramMouseClicked
+
+    private void exportMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMonthlyReportActionPerformed
+        if(!monthlyHeaderTitle.getText().isBlank()){
+            if(evt.getSource() == exportMonthlyReport){
+                ArrayList<String> list = new ArrayList();
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
+
+                    MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
+                    MonthlyReport report = builder
+                                                .setOrganizationHeads(list)
+                                                .setHeaderTitle(monthlyHeaderTitle.getText())
+                                                .setTimeFrameDetail(monthlyMonth.getSelectedItem(), Integer.parseInt(String.valueOf(monthlyYear.getSelectedItem())))
+                                                .setFilePath(file.getAbsolutePath() + "\\", fileName)
+                                                .build();
+
+                    report.generateReport();
+                    JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                }
+            }  
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please write a header title for the report!");
+        }
+    }//GEN-LAST:event_exportMonthlyReportActionPerformed
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -10128,7 +10362,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         return decimalFormat.format(amount);
     }
-
+    
     private void unselectSectionBefore(int currentSection, int section) {
         if (currentSection != section) {
             switch (currentSection) {
@@ -10353,6 +10587,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         projectsFormMonth.setSelectedIndex(new Date().getMonth());
         projectsFormYear.setSelectedIndex(new Date().getYear() - 75);
+        
+        getYears().forEach((y) -> {
+            monthlyYear.addItem(String.valueOf(y));
+        });
+
+        monthlyMonth.setSelectedIndex(new Date().getMonth());
+        monthlyYear.setSelectedIndex(new Date().getYear() - 75);
 
         //Edit
         getYears().forEach((y) -> {
@@ -10936,6 +11177,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editWorkCategory;
     private javax.swing.JLabel equipmentFuelCost;
     private javax.swing.JPanel equipmentPanel;
+    private javax.swing.JButton exportMonthlyReport;
     private javax.swing.JLabel iconActivityList;
     private javax.swing.JLabel iconEquipment;
     private javax.swing.JLabel iconPersonnel;
@@ -10950,8 +11192,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JCheckBox isMaintenanceCrewTableSelected;
     private javax.swing.JCheckBox isMaterialsTableSelected;
     private javax.swing.JCheckBox isOperationEquipmentTableSelected;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
@@ -11085,11 +11332,22 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel214;
     private javax.swing.JLabel jLabel215;
     private javax.swing.JLabel jLabel216;
+    private javax.swing.JLabel jLabel217;
+    private javax.swing.JLabel jLabel218;
     private javax.swing.JLabel jLabel219;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel220;
     private javax.swing.JLabel jLabel221;
     private javax.swing.JLabel jLabel222;
+    private javax.swing.JLabel jLabel223;
+    private javax.swing.JLabel jLabel224;
+    private javax.swing.JLabel jLabel225;
+    private javax.swing.JLabel jLabel226;
+    private javax.swing.JLabel jLabel227;
+    private javax.swing.JLabel jLabel228;
+    private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel231;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel252;
@@ -11251,6 +11509,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
@@ -11271,6 +11531,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel mainWorkCategoryPanel2;
     private javax.swing.JPanel mainWorkCategoryPanel3;
     private javax.swing.JLabel menuLogo;
+    private javax.swing.JTextField monthlyHeaderTitle;
+    private javax.swing.JTextField monthlyHeaderTitle1;
+    private javax.swing.JTextField monthlyHeaderTitle2;
+    private javax.swing.JComboBox<String> monthlyMonth;
+    private javax.swing.JComboBox<String> monthlyYear;
     private javax.swing.JPanel navActivityList;
     private javax.swing.JPanel navEquipment;
     private javax.swing.JLabel navLabelActivityList;

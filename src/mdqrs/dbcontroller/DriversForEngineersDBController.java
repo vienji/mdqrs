@@ -148,6 +148,7 @@ public class DriversForEngineersDBController {
         PreparedStatement preparedStatement = null;
         
         try{
+            connection = Driver.getConnection();
             query = "UPDATE drivers_for_engineers SET labor_equipment_cost = ?, "
                     + "equipment_fuel_cost = ?, "
                     + "lubricant_cost = ?, "
@@ -165,7 +166,7 @@ public class DriversForEngineersDBController {
             preparedStatement.setString(5, driversForEngineers.getImplementationMode());
             preparedStatement.setString(6, driversForEngineers.getMonth());
             preparedStatement.setInt(7, driversForEngineers.getYear());
-            preparedStatement.setString(6, driversForEngineers.getId());
+            preparedStatement.setString(8, driversForEngineers.getId());
             
             preparedStatement.executeUpdate();
         } catch (SQLException e){
