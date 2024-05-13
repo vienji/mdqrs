@@ -890,7 +890,8 @@ public class ActivityListDBController {
         ResultSet result = null;
         
         try {
-            query = "SELECT * FROM regular_activity";
+            query = "SELECT * FROM regular_activity "
+                    + "ORDER BY ralid DESC";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
         

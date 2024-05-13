@@ -60,7 +60,8 @@ public class OtherExpensesDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM other_expenses";
+            query = "SELECT * FROM other_expenses "
+                    + "ORDER BY oexid DESC";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             

@@ -86,6 +86,14 @@ public class OtherExpenses {
         return month + " " + year;
     }
     
+    public OtherExpenses(){
+        this.laborCrewCost = 0.0;
+        this.laborEquipmentCost = 0.0;
+        this.numberOfCD = 0;
+        this.lightEquipments = 0.0;
+        this.heavyEquipments = 0.0;
+    }
+    
     private String id;
     private Double laborCrewCost;
     private Double laborEquipmentCost;

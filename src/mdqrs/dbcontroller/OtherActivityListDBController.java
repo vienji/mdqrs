@@ -99,7 +99,8 @@ public class OtherActivityListDBController {
         ResultSet result = null;
         
         try {
-            query = "SELECT * FROM other_activity";
+            query = "SELECT * FROM other_activity "
+                    + "ORDER BY oalid DESC";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
         

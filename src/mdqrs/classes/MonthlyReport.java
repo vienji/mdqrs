@@ -9,9 +9,13 @@ import classes.RegularActivity;
 import classes.SubActivity;
 import classes.OtherActivity;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
 import mdqrs.dbcontroller.GeneralDBController;
@@ -353,49 +357,53 @@ public class MonthlyReport implements Report {
         //Drivers for Engineers 
         ArrayList<DriversForEngineers> driversForEngineersList = new DriversForEngineersDBController().getList(timeFrame, year);
         Double totalDFELaborEquipmentExpenses = 0.00, totalDFEEquipmentFuelExpenses = 0.00, totalDFELubricantExpenses = 0.00, grandDFESubTotal = 0.00;
-        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 3));
-        Row driversForEngineers = sheet.createRow(startingRow++);
         
-        Cell driversForEngineersCell = driversForEngineers.createCell(1);
-        driversForEngineersCell.setCellValue("Activity #504 - Other Work or Expenses");
-        driversForEngineersCell.setCellStyle(activityHeaderStyle);
+        if(!driversForEngineersList.isEmpty()){             
+            sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 3));
+            Row driversForEngineers = sheet.createRow(startingRow++);
 
-        for(int i = 2; i <= headerTitle.length; i++){
-            Cell cell = driversForEngineers.createCell(i);
-            cell.setCellValue("");
-            cell.setCellStyle(activityHeaderStyle);
+            Cell driversForEngineersCell = driversForEngineers.createCell(1);
+            driversForEngineersCell.setCellValue("Activity #504 - Other Work or Expenses");
+            driversForEngineersCell.setCellStyle(activityHeaderStyle);
+
+            for(int i = 2; i <= headerTitle.length; i++){
+                Cell cell = driversForEngineers.createCell(i);
+                cell.setCellValue("");
+                cell.setCellStyle(activityHeaderStyle);
+            }
+
+            for(int i = 0; i < driversForEngineersList.size() ; i++){
+                DriversForEngineers driversForEngineerData = driversForEngineersList.get(i);
+
+                Double laborEquipmentExpense = driversForEngineerData.getLaborEquipmentCost(),
+                       equipmentFuelExpense = driversForEngineerData.getEquipmentFuelCost(),
+                       lubricantExpense = driversForEngineerData.getLubricantCost(),
+                       total = 0.0;
+
+                total = laborEquipmentExpense + equipmentFuelExpense + lubricantExpense;
+
+                totalDFELaborEquipmentExpenses += laborEquipmentExpense;
+                totalDFEEquipmentFuelExpenses += equipmentFuelExpense;
+                totalDFELubricantExpenses += lubricantExpense;
+                grandDFESubTotal += total;
+
+                addItemRow(i + 1, startingRow++, sheet, new CellStyle[]{numberStyle, activityTitleStyle, activityTitleStyle, 
+                numberStyle, currencyStyle, currencyStyle, currencyStyle, 
+                currencyStyle, currencyStyle, currencyStyle, currencyStyle, 
+                center, currencyStyle, currencyStyle, center}, "Drivers For Engineer Sample", driversForEngineerData.getImplementationMode(),
+                0.0, laborEquipmentExpense, equipmentFuelExpense, lubricantExpense, 
+                total);
+            }
+
+            //Sub Total
+            addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
+                centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
+                    0.0, totalDFELaborEquipmentExpenses, 
+                    totalDFEEquipmentFuelExpenses, totalDFELubricantExpenses, grandDFESubTotal);
+
         }
-        
-        for(int i = 0; i < driversForEngineersList.size() ; i++){
-            DriversForEngineers driversForEngineerData = driversForEngineersList.get(i);
-
-            Double laborEquipmentExpense = driversForEngineerData.getLaborEquipmentCost(),
-                   equipmentFuelExpense = driversForEngineerData.getEquipmentFuelCost(),
-                   lubricantExpense = driversForEngineerData.getLubricantCost(),
-                   total = 0.0;
-            
-            total = laborEquipmentExpense + equipmentFuelExpense + lubricantExpense;
-            
-            totalDFELaborEquipmentExpenses += laborEquipmentExpense;
-            totalDFEEquipmentFuelExpenses += equipmentFuelExpense;
-            totalDFELubricantExpenses += lubricantExpense;
-            grandDFESubTotal += total;
-
-            addItemRow(i + 1, startingRow++, sheet, new CellStyle[]{numberStyle, activityTitleStyle, activityTitleStyle, 
-            numberStyle, currencyStyle, currencyStyle, currencyStyle, 
-            currencyStyle, currencyStyle, currencyStyle, currencyStyle, 
-            center, currencyStyle, currencyStyle, center}, "Drivers For Engineer Sample", driversForEngineerData.getImplementationMode(),
-            0.0, laborEquipmentExpense, equipmentFuelExpense, lubricantExpense, 
-            total);
-        }
-        
-        //Sub Total
-        addSubtotalRow(startingRow++, sheet, new CellStyle[]{subTotalStyle, subTotalStyle, subTotalStyle, 
-            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
-            sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, sidelessSubTotalCurrencyStyle, 
-            centerSubTotal, currencySubTotalStyle, currencySubTotalStyle, centerSubTotal}, 
-                0.0, totalDFELaborEquipmentExpenses, 
-                totalDFEEquipmentFuelExpenses, totalDFELubricantExpenses, grandDFESubTotal);
         
         //Other Expenses
         OtherExpenses otherExpensesData = new OtherExpensesDBController().getOtherExpenses(timeFrame);
@@ -475,7 +483,6 @@ public class MonthlyReport implements Report {
                 grandTotal);
         
         //Program
-        
         addBlankRow(startingRow++, sheet);
         addProgramTitle(startingRow++, sheet, workbook);
         
@@ -497,6 +504,213 @@ public class MonthlyReport implements Report {
         }
         
         addProgramGrandTotal(startingRow++, sheet, workbook, totalProgramExpenses);
+        addBlankRow(startingRow++, sheet);
+        addReportTotal(startingRow++, sheet, workbook, totalProgramExpenses + grandTotal);
+        
+        Double prevGrandTotal = 0.0;
+        int placeOfMonth = 0;
+        
+        switch(checkQuarter(timeFrame)){
+            case "1st Quarter":
+                String[] firstQuarterMonths = {"January", "February", "March"};
+              
+                outerloop:
+                for(int i = 0; i < 3; i++){
+                    if(timeFrame.equalsIgnoreCase(firstQuarterMonths[i])){
+                        placeOfMonth = i;
+                        break outerloop;
+                    }
+                }
+                break;
+            case "2nd Quarter":
+                String[] secondQuarterMonths = {"April", "May", "June"};
+              
+                outerloop:
+                for(int i = 0; i < 3; i++){
+                    if(timeFrame.equalsIgnoreCase(secondQuarterMonths[i])){
+                        placeOfMonth = i;
+                        break outerloop;
+                    }
+                }
+                break;
+            case "3rd Quarter":
+                String[] thirdQuarterMonths = {"July", "August", "Septempber"};
+              
+                outerloop:
+                for(int i = 0; i < 3; i++){
+                    if(timeFrame.equalsIgnoreCase(thirdQuarterMonths[i])){
+                        placeOfMonth = i;
+                        break outerloop;
+                    }
+                }
+                break;
+            case "4th Quarter":
+                String[] fourthQuarterMonths = {"October", "November", "December"};
+              
+                outerloop:
+                for(int i = 0; i < 3; i++){
+                    if(timeFrame.equalsIgnoreCase(fourthQuarterMonths[i])){
+                        placeOfMonth = i;
+                        break outerloop;
+                    }
+                }
+                break;
+        }
+        
+        if(placeOfMonth != 0){
+            ArrayList<RegularActivity> raList;
+            ArrayList<OtherActivity> oaList;
+            ArrayList<DriversForEngineers> dfeList;
+            ArrayList<OtherExpenses> oeList;
+
+            switch(checkQuarter(timeFrame)){
+                case "1st Quarter":
+                    Double laborCrew = 0.0, laborEquipment = 0.0, equipmentFuel = 0.0, lubricant = 0.0;
+                    String[] firstQuarterMonths = {"January", "February", "March"};
+                    
+                    for(int i = 0; i < placeOfMonth; i++){
+                        raList = gdbc.getMonthlyRegularActivityList(firstQuarterMonths[i]);
+                        oaList = gdbc.getMonthlyOtherActivityList(firstQuarterMonths[i]);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(firstQuarterMonths[i]);
+                        oeList = gdbc.getMonthlyOtherExpensesList(firstQuarterMonths[i]);
+
+                        laborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        laborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        equipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        lubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(firstQuarterMonths[i]);
+                        
+                        Double totalPE = 0.00;
+                        
+                        ArrayList<Program> pList = new ProgramDBController().getList(firstQuarterMonths[i], year);
+
+                        for(Program program : pList){
+                            ArrayList<Project> projectList = new ProgramDBController().getProjectList(program.getId());
+
+                            for(int j = 0; j < projectList.size(); j++){
+                                Project project = projectList.get(j);
+                                totalPE += project.getProjectCost();
+                            }
+                        }
+                        
+                        prevGrandTotal += laborCrew + laborEquipment + equipmentFuel + lubricant + oeData.getLightEquipments() + oeData.getHeavyEquipments() + totalPE;
+                    }
+
+                    break;
+                    
+                case "2nd Quarter":
+                    Double secondlaborCrew = 0.0, secondlaborEquipment = 0.0, secondequipmentFuel = 0.0, secondlubricant = 0.0;
+                    String[] secondQuarterMonths = {"April", "May", "June"};
+
+                    for(int i = 0; i < placeOfMonth; i++){
+                        raList = gdbc.getMonthlyRegularActivityList(secondQuarterMonths[i]);
+                        oaList = gdbc.getMonthlyOtherActivityList(secondQuarterMonths[i]);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(secondQuarterMonths[i]);
+                        oeList = gdbc.getMonthlyOtherExpensesList(secondQuarterMonths[i]);
+
+                        secondlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        secondlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        secondequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        secondlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(secondQuarterMonths[i]);
+                        
+                        Double totalPE = 0.00;
+                        
+                        ArrayList<Program> pList = new ProgramDBController().getList(secondQuarterMonths[i], year);
+
+                        for(Program program : pList){
+                            ArrayList<Project> projectList = new ProgramDBController().getProjectList(program.getId());
+
+                            for(int j = 0; j < projectList.size(); j++){
+                                Project project = projectList.get(j);
+                                totalPE += project.getProjectCost();
+                            }
+                        }
+                        
+                        prevGrandTotal += secondlaborCrew + secondlaborEquipment + secondequipmentFuel + secondlubricant + oeData.getLightEquipments() + oeData.getHeavyEquipments() + totalPE;
+                    }
+
+                    break;
+                    
+                case "3rd Quarter":
+                    Double thirdlaborCrew = 0.0, thirdlaborEquipment = 0.0, thirdequipmentFuel = 0.0, thirdlubricant = 0.0;
+                    String[] thirdQuarterMonths = {"July", "August", "Septempber"};
+                    
+                    for(int i = 0; i < placeOfMonth; i++){
+                        raList = gdbc.getMonthlyRegularActivityList(thirdQuarterMonths[i]);
+                        oaList = gdbc.getMonthlyOtherActivityList(thirdQuarterMonths[i]);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(thirdQuarterMonths[i]);
+                        oeList = gdbc.getMonthlyOtherExpensesList(thirdQuarterMonths[i]);
+
+                        thirdlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        thirdlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        thirdequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        thirdlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(thirdQuarterMonths[i]);
+                        
+                        Double totalPE = 0.00;
+                        
+                        ArrayList<Program> pList = new ProgramDBController().getList(thirdQuarterMonths[i], year);
+
+                        for(Program program : pList){
+                            ArrayList<Project> projectList = new ProgramDBController().getProjectList(program.getId());
+
+                            for(int j = 0; j < projectList.size(); j++){
+                                Project project = projectList.get(j);
+                                totalPE += project.getProjectCost();
+                            }
+                        }
+                        
+                        prevGrandTotal += thirdlaborCrew + thirdlaborEquipment + thirdequipmentFuel + thirdlubricant + oeData.getLightEquipments() + oeData.getHeavyEquipments() + totalPE;
+                    }
+
+                    break;
+                    
+                case "4th Quarter":
+                    Double fourthlaborCrew = 0.0, fourthlaborEquipment = 0.0, fourthequipmentFuel = 0.0, fourthlubricant = 0.0;
+                    String[] fourthQuarterMonths = {"July", "August", "Septempber"};
+
+                    for(int i = 0; i < placeOfMonth; i++){
+                        raList = gdbc.getMonthlyRegularActivityList(fourthQuarterMonths[i]);
+                        oaList = gdbc.getMonthlyOtherActivityList(fourthQuarterMonths[i]);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(fourthQuarterMonths[i]);
+                        oeList = gdbc.getMonthlyOtherExpensesList(fourthQuarterMonths[i]);
+
+                        fourthlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        fourthlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        fourthequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        fourthlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(fourthQuarterMonths[i]);
+                        
+                        Double totalPE = 0.00;
+                        
+                        ArrayList<Program> pList = new ProgramDBController().getList(fourthQuarterMonths[i], year);
+
+                        for(Program program : pList){
+                            ArrayList<Project> projectList = new ProgramDBController().getProjectList(program.getId());
+
+                            for(int j = 0; j < projectList.size(); j++){
+                                Project project = projectList.get(j);
+                                totalPE += project.getProjectCost();
+                            }
+                        }
+                        
+                        prevGrandTotal += fourthlaborCrew + fourthlaborEquipment + fourthequipmentFuel + fourthlubricant + oeData.getLightEquipments() + oeData.getHeavyEquipments() + totalPE;
+                    }
+
+                    break;
+            }
+        }
+        
+        addReportGrandTotal(startingRow++, sheet, workbook, prevGrandTotal + totalProgramExpenses + grandTotal, timeFrame);
+        
+        
+        addBlankRow(startingRow++, sheet);
+        addNotes(startingRow++, sheet, workbook);
         
         //Output
         String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
@@ -509,6 +723,347 @@ public class MonthlyReport implements Report {
             e.printStackTrace();
         }
     }  
+    
+    private static String checkQuarter(String month){
+        String quarter = "";
+        
+        switch(month){
+            case "January":
+                quarter = "1st Quarter";
+                break;
+            case "February":
+                quarter = "1st Quarter";
+                break;
+            case "March":
+                quarter = "1st Quarter";
+                break;
+            case "April":
+                quarter = "2nd Quarter";
+                break;
+            case "May":
+                quarter = "2nd Quarter";
+                break;
+            case "June":
+                quarter = "2nd Quarter";
+                break;
+            case "July":
+                quarter = "3rd Quarter";
+                break;
+            case "August":
+                quarter = "3rd Quarter";
+                break;
+            case "September":
+                quarter = "3rd Quarter";
+                break;
+            case "October":
+                quarter = "4th Quarter";
+                break;
+            case "November":
+                quarter = "4th Quarter";
+                break;
+            case "December":
+                quarter = "4th Quarter";
+                break;
+            default:
+                quarter = "Error";
+                break;
+        }
+        
+        return quarter;
+    }
+    
+    private static void addNotes(int startingRow, XSSFSheet sheet, Workbook workbook){
+        String preparedBy1Name = "", preparedBy1Position = "", preparedBy2Name = "", preparedBy2Position = "", 
+                submittedByName = "", submittedByPosition = "", approvedByName = "", approvedByPosition = "";
+        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            Properties report = new Properties();
+            report.load(input);
+
+            preparedBy1Name = report.getProperty("prepared_by_1_name");
+            preparedBy1Position = report.getProperty("prepared_by_1_position");
+            preparedBy2Name = report.getProperty("prepared_by_2_name");
+            preparedBy2Position = report.getProperty("prepared_by_2_position");
+            submittedByName = report.getProperty("submitted_by_name");
+            submittedByPosition = report.getProperty("submitted_by_position");
+            approvedByName = report.getProperty("approved_by_name");
+            approvedByPosition = report.getProperty("approved_by_position");
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+        
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 6));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 7, 11));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 12, 15));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 1, 3));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 4, 6));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 7, 11));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 12, 15));
+        
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 1, 3));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 4, 6));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 7, 11));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 12, 15));
+        
+        Row row1 = sheet.createRow(startingRow);
+        CellStyle style1 = workbook.createCellStyle();
+        Font font1 = workbook.createFont();
+        
+        font1.setFontHeightInPoints((short) 10);
+        style1.setFont(font1);
+        style1.setVerticalAlignment(VerticalAlignment.CENTER);
+        style1.setAlignment(HorizontalAlignment.LEFT);
+        
+        Cell tag = row1.createCell(1);
+        tag.setCellValue("Prepared By: ");
+        tag.setCellStyle(style1);
+        
+        for(int i = 2; i <= 6; i++){
+            Cell cell = row1.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style1);
+        }
+        
+        tag = row1.createCell(7);
+        tag.setCellValue("Submitted By:");
+        tag.setCellStyle(style1);
+        
+        for(int i = 8; i <= 11; i++){
+            Cell cell = row1.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style1);
+        }
+        
+        tag = row1.createCell(12);
+        tag.setCellValue("Approved By:");
+        tag.setCellStyle(style1);
+        
+        for(int i = 13; i <= 15; i++){
+            Cell cell = row1.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style1);
+        }
+        
+        Row row2 = sheet.createRow(startingRow + 1);
+        CellStyle style2 = workbook.createCellStyle();
+        Font font2 = workbook.createFont();
+        
+        font2.setBold(true);
+        font2.setFontHeightInPoints((short) 12);
+        font2.setUnderline(Font.U_SINGLE);
+        style2.setFont(font2);
+        style2.setVerticalAlignment(VerticalAlignment.CENTER);
+        style2.setAlignment(HorizontalAlignment.CENTER);
+        
+        Cell name = row2.createCell(1);
+        name.setCellValue(preparedBy1Name);
+        name.setCellStyle(style2);
+        
+        for(int i = 2; i <= 3; i++){
+            Cell cell = row2.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style2);
+        }
+        
+        name = row2.createCell(4);
+        name.setCellValue(preparedBy2Name);
+        name.setCellStyle(style2);
+        
+        for(int i = 5; i <= 6; i++){
+            Cell cell = row2.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style2);
+        }
+        
+        name = row2.createCell(7);
+        name.setCellValue(submittedByName);
+        name.setCellStyle(style2);
+        
+        for(int i = 8; i <= 11; i++){
+            Cell cell = row2.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style2);
+        }
+        
+        name = row2.createCell(12);
+        name.setCellValue(approvedByName);
+        name.setCellStyle(style2);
+        
+        for(int i = 13; i <= 15; i++){
+            Cell cell = row2.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style2);
+        }
+        
+        Row row3 = sheet.createRow(startingRow + 2);
+        CellStyle style3 = workbook.createCellStyle();
+        Font font3 = workbook.createFont();
+        
+        font3.setFontHeightInPoints((short) 9);
+        style3.setFont(font3);
+        style3.setVerticalAlignment(VerticalAlignment.CENTER);
+        style3.setAlignment(HorizontalAlignment.CENTER);
+        
+        Cell position = row3.createCell(1);
+        position.setCellValue(preparedBy1Position);
+        position.setCellStyle(style3);
+        
+        for(int i = 2; i <= 3; i++){
+            Cell cell = row3.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style3);
+        }
+        
+        position = row3.createCell(4);
+        position.setCellValue(preparedBy2Position);
+        position.setCellStyle(style3);
+        
+        for(int i = 5; i <= 6; i++){
+            Cell cell = row3.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style3);
+        }
+        
+        position = row3.createCell(7);
+        position.setCellValue(submittedByPosition);
+        position.setCellStyle(style3);
+        
+        for(int i = 8; i <= 11; i++){
+            Cell cell = row3.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style3);
+        }
+        
+        position = row3.createCell(12);
+        position.setCellValue(approvedByPosition);
+        position.setCellStyle(style3);
+        
+        for(int i = 13; i <= 15; i++){
+            Cell cell = row3.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style3);
+        }
+    }
+    
+    private static void addReportGrandTotal(int startingRow, XSSFSheet sheet, Workbook workbook, Double grandTotal, String month){
+        String quarter =  checkQuarter(month);       
+        
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 15));
+        Row row = sheet.createRow(startingRow);
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 11);
+        style.setFillForegroundColor(IndexedColors.PALE_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        CellStyle totalStyle = workbook.createCellStyle();
+        Font totalFont = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        totalStyle.setDataFormat(format.getFormat("#,##0.00"));
+        
+        totalFont.setBold(true);
+        totalFont.setFontHeightInPoints((short) 11);
+        totalStyle.setFillForegroundColor(IndexedColors.PALE_BLUE.getIndex());
+        totalStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        totalStyle.setFont(totalFont);
+        totalStyle.setWrapText(true);
+        totalStyle.setBorderLeft(BorderStyle.THIN);
+        totalStyle.setBorderTop(BorderStyle.THIN);
+        totalStyle.setBorderRight(BorderStyle.THIN);
+        totalStyle.setBorderBottom(BorderStyle.THIN);
+        totalStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        totalStyle.setAlignment(HorizontalAlignment.RIGHT);
+        
+        Cell programTitleCell = row.createCell(1);
+        programTitleCell.setCellValue("GRAND TOTAL (" + quarter + ")");
+        programTitleCell.setCellStyle(style);
+
+        for(int i = 2; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style);
+        }
+        
+        Cell projectCostCell = row.createCell(11);
+        projectCostCell.setCellValue(grandTotal);
+        projectCostCell.setCellStyle(totalStyle);
+
+        for(int i = 12; i <= 15; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(totalStyle);
+        }
+    }
+    
+    private static void addReportTotal(int startingRow, XSSFSheet sheet, Workbook workbook, Double grandTotal){
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 15));
+        Row row = sheet.createRow(startingRow);
+        CellStyle style = workbook.createCellStyle();
+        Font font = workbook.createFont();
+        
+        font.setBold(true);
+        font.setFontHeightInPoints((short) 11);
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFont(font);
+        style.setWrapText(true);
+        style.setBorderLeft(BorderStyle.THIN);
+        style.setBorderTop(BorderStyle.THIN);
+        style.setBorderRight(BorderStyle.THIN);
+        style.setBorderBottom(BorderStyle.THIN);
+        style.setVerticalAlignment(VerticalAlignment.CENTER);
+        style.setAlignment(HorizontalAlignment.CENTER);
+        
+        CellStyle totalStyle = workbook.createCellStyle();
+        Font totalFont = workbook.createFont();
+        DataFormat format = workbook.createDataFormat();
+        totalStyle.setDataFormat(format.getFormat("#,##0.00"));
+        
+        totalFont.setBold(true);
+        totalFont.setFontHeightInPoints((short) 11);
+        totalStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        totalStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        totalStyle.setFont(totalFont);
+        totalStyle.setWrapText(true);
+        totalStyle.setBorderLeft(BorderStyle.THIN);
+        totalStyle.setBorderTop(BorderStyle.THIN);
+        totalStyle.setBorderRight(BorderStyle.THIN);
+        totalStyle.setBorderBottom(BorderStyle.THIN);
+        totalStyle.setVerticalAlignment(VerticalAlignment.CENTER);
+        totalStyle.setAlignment(HorizontalAlignment.RIGHT);
+        
+        Cell programTitleCell = row.createCell(1);
+        programTitleCell.setCellValue("TOTAL");
+        programTitleCell.setCellStyle(style);
+
+        for(int i = 2; i <= 10; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(style);
+        }
+        
+        Cell projectCostCell = row.createCell(11);
+        projectCostCell.setCellValue(grandTotal);
+        projectCostCell.setCellStyle(totalStyle);
+
+        for(int i = 12; i <= 15; i++){
+            Cell cell = row.createCell(i);
+            cell.setCellValue("");
+            cell.setCellStyle(totalStyle);
+        }
+    }
     
     private static void addBlankRow(int startingRow, XSSFSheet sheet){
         Row row = sheet.createRow(startingRow);
@@ -633,6 +1188,7 @@ public class MonthlyReport implements Report {
             cell.setCellStyle(currencyStyle);
         }
     }
+    
     private static void addProgramTitle(int startingRow, XSSFSheet sheet, Workbook workbook){
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 10));
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 11, 14));

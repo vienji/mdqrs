@@ -193,7 +193,8 @@ public class ProgramDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM program WHERE month = ? AND year = ?";
+            query = "SELECT * FROM program WHERE month = ? AND year = ? "
+                    + "ORDER BY prid DESC";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             

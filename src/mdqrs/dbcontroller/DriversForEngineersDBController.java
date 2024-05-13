@@ -59,7 +59,8 @@ public class DriversForEngineersDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM drivers_for_engineers";
+            query = "SELECT * FROM drivers_for_engineers "
+                    + "ORDER BY deid DESC";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             

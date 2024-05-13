@@ -139,6 +139,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         initNetworkSettings();
+        initReportSettings();
         initDate();
         addWindowListener(new CloseWindow());
     }
@@ -795,6 +796,31 @@ public class Main extends javax.swing.JFrame implements MainListener {
         saveNetwork = new javax.swing.JButton();
         editNetwork = new javax.swing.JButton();
         networkPassword = new javax.swing.JPasswordField();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel230 = new javax.swing.JLabel();
+        jLabel232 = new javax.swing.JLabel();
+        jLabel233 = new javax.swing.JLabel();
+        jLabel234 = new javax.swing.JLabel();
+        preparedBy1Name = new javax.swing.JTextField();
+        preparedBy1Position = new javax.swing.JTextField();
+        jLabel235 = new javax.swing.JLabel();
+        jLabel236 = new javax.swing.JLabel();
+        preparedBy2Name = new javax.swing.JTextField();
+        jLabel237 = new javax.swing.JLabel();
+        preparedBy2Position = new javax.swing.JTextField();
+        jLabel238 = new javax.swing.JLabel();
+        jLabel239 = new javax.swing.JLabel();
+        jLabel240 = new javax.swing.JLabel();
+        submittedByPosition = new javax.swing.JTextField();
+        submittedByName = new javax.swing.JTextField();
+        jLabel241 = new javax.swing.JLabel();
+        approvedByPosition = new javax.swing.JTextField();
+        approvedByName = new javax.swing.JTextField();
+        jLabel242 = new javax.swing.JLabel();
+        jLabel243 = new javax.swing.JLabel();
+        editReport = new javax.swing.JButton();
+        saveReport = new javax.swing.JButton();
+        cancelReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Maintenance Division Quarterly Report System");
@@ -7590,6 +7616,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         mainPanel.add(reportPanel, "card2");
 
+        settingsPanel.setPreferredSize(new java.awt.Dimension(1133, 813));
+
         jScrollPane13.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -7597,7 +7625,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel54.setText("Settings");
 
         jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel55.setText("Network Settings");
+        jLabel55.setText("Network ");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Username");
@@ -7639,32 +7667,139 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         });
 
+        jLabel230.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel230.setText("Report");
+
+        jLabel232.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel232.setText("Prepared by 1");
+
+        jLabel233.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel233.setText("Name");
+
+        jLabel234.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel234.setText("Position");
+
+        jLabel235.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel235.setText("Prepared by 2");
+
+        jLabel236.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel236.setText("Name");
+
+        jLabel237.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel237.setText("Position");
+
+        jLabel238.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel238.setText("Submitted by");
+
+        jLabel239.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel239.setText("Name");
+
+        jLabel240.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel240.setText("Position");
+
+        jLabel241.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel241.setText("Position");
+
+        jLabel242.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel242.setText("Name");
+
+        jLabel243.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel243.setText("Approved by");
+
+        editReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        editReport.setText("Edit");
+        editReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                editReportMouseClicked(evt);
+            }
+        });
+
+        saveReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        saveReport.setText("Save");
+        saveReport.setEnabled(false);
+        saveReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveReportMouseClicked(evt);
+            }
+        });
+
+        cancelReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cancelReport.setText("Cancel");
+        cancelReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelReportMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel232)
+                    .addComponent(jLabel230)
+                    .addComponent(jLabel55)
+                    .addComponent(jLabel54)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(networkUsername)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel55, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel54, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel59, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel60, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(networkServer, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(networkPort, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(jLabel61, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel62, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(networkDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(networkPassword))
-                .addContainerGap(806, Short.MAX_VALUE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel59)
+                            .addComponent(jLabel60)
+                            .addComponent(jLabel61)
+                            .addComponent(jLabel62))
+                        .addGap(52, 52, 52)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(networkPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(networkUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(networkServer, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(networkPort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel235)
+                            .addComponent(jLabel238)
+                            .addComponent(jLabel243)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                    .addComponent(editReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(cancelReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel236)
+                                        .addComponent(jLabel237)
+                                        .addComponent(jLabel239)
+                                        .addComponent(jLabel240)
+                                        .addComponent(jLabel241)
+                                        .addComponent(jLabel242))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(preparedBy2Name, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                        .addComponent(preparedBy2Position)
+                                        .addComponent(submittedByPosition)
+                                        .addComponent(submittedByName, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                        .addComponent(approvedByPosition)
+                                        .addComponent(approvedByName, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)))))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel233)
+                                .addComponent(jLabel234))
+                            .addGap(33, 33, 33)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(preparedBy1Name, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                .addComponent(preparedBy1Position)))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7673,32 +7808,81 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(jLabel54)
                 .addGap(41, 41, 41)
                 .addComponent(jLabel55)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(networkUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(networkUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel59)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(networkPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(networkPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel59))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel60)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(networkServer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(networkServer, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel60))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel61)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(networkPort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(networkPort, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel61))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel62)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel62))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(263, Short.MAX_VALUE))
+                    .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel230)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel232)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel233)
+                    .addComponent(preparedBy1Name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel234)
+                    .addComponent(preparedBy1Position, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel235)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel236)
+                    .addComponent(preparedBy2Name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel237)
+                    .addComponent(preparedBy2Position, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel238)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel239)
+                    .addComponent(submittedByName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel240)
+                    .addComponent(submittedByPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addComponent(jLabel243)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel242)
+                    .addComponent(approvedByName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel241)
+                    .addComponent(approvedByPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(editReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cancelReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel3);
@@ -8067,6 +8251,30 @@ public class Main extends javax.swing.JFrame implements MainListener {
         networkServer.enableInputMethods(false);
         networkPort.enableInputMethods(false);
         networkDatabase.enableInputMethods(false);
+        
+        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
+            Properties network = new Properties();
+            network.load(input);
+
+            Cryptographer cryptographer = new Cryptographer();
+
+            String decryptedPassword = "";
+
+            try {
+                decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(rootPane, e.getMessage());
+                e.printStackTrace();
+            }
+
+            networkUsername.setText(network.getProperty("username"));
+            networkPassword.setText(decryptedPassword);
+            networkServer.setText(network.getProperty("server"));
+            networkPort.setText(network.getProperty("port"));
+            networkDatabase.setText(network.getProperty("database"));
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
     }//GEN-LAST:event_cancelNetworkMouseClicked
 
     private void isOperationEquipmentTableSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isOperationEquipmentTableSelectedActionPerformed
@@ -8270,6 +8478,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 regularActivityList = new ActivityListDBController().getList();
                 populateMainRegularActivity(regularActivityList);
                 resetRegularActivityForm();
+                timeframeDetailActionPerformed(null);
             } else {
                 activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
                         roadSectionList.get(regularActivityFormRoadSection.getSelectedIndex()), false, String.valueOf(regularActivityFormMonth.getSelectedItem()),
@@ -8284,6 +8493,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 regularActivityList = new ActivityListDBController().getList();
                 populateMainRegularActivity(regularActivityList);
                 resetRegularActivityForm();
+                timeframeDetailActionPerformed(null);
             }
         }
     }//GEN-LAST:event_saveNewRegularActivityMouseClicked
@@ -8397,7 +8607,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityList = new ActivityListDBController().getList();
             populateMainRegularActivity(regularActivityList);
             resetRegularActivityEditForm();
-
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveEditRegularActivityMouseClicked
 
@@ -8692,6 +8902,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivityList = new OtherActivityListDBController().getList();
             populateMainOtherActivity(otherActivityList);
             resetOtherActivityForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveNewOtherActivityMouseClicked
 
@@ -8776,6 +8987,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivityList = new OtherActivityListDBController().getList();
             populateMainOtherActivity(otherActivityList);
             resetOtherActivityEditForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveEditedOtherActivityMouseClicked
 
@@ -8895,6 +9107,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesList = new OtherExpensesDBController().getList();
             populateMainOtherExpenses(otherExpensesList);
             resetOtherExpensesForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveNewOtherExpensesMouseClicked
 
@@ -9184,6 +9397,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesList = new OtherExpensesDBController().getList();
             populateMainOtherExpenses(otherExpensesList);
             resetOtherExpensesEditForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveEditOtherExpensesMouseClicked
 
@@ -9272,6 +9486,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             driversForEngineersContainer.repaint();
             driversForEngineersContainer.revalidate();
             resetDriversForEngineersEditForm();
+            timeframeDetailActionPerformed(null);
         }
     }//GEN-LAST:event_saveNewOtherExpenses2MouseClicked
 
@@ -9466,6 +9681,74 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write a header title for the report!");
         }
     }//GEN-LAST:event_exportMonthlyReportActionPerformed
+
+    private void editReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editReportMouseClicked
+        saveReport.setEnabled(true);
+    }//GEN-LAST:event_editReportMouseClicked
+
+    private void saveReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveReportMouseClicked
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
+
+        if (n == 0) {
+            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+                Properties report = new Properties();
+
+                report.setProperty("prepared_by_1_name", preparedBy1Name.getText());
+                report.setProperty("prepared_by_1_position", preparedBy1Position.getText());
+                report.setProperty("prepared_by_2_name", preparedBy2Name.getText());
+                report.setProperty("prepared_by_2_position", preparedBy2Position.getText());
+                report.setProperty("submitted_by_name", submittedByName.getText());
+                report.setProperty("submitted_by_position", submittedByPosition.getText());
+                report.setProperty("approved_by_name", approvedByName.getText());
+                report.setProperty("approved_by_position", approvedByPosition.getText());
+                
+                report.store(output, null);
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+
+            saveReport.setEnabled(false);
+        } else {
+            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+                Properties report = new Properties();
+                report.load(input);
+                
+                preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
+                preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
+                preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
+                preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
+                submittedByName.setText(report.getProperty("submitted_by_name"));
+                submittedByPosition.setText(report.getProperty("submitted_by_position"));
+                approvedByName.setText(report.getProperty("approved_by_name"));
+                approvedByPosition.setText(report.getProperty("approved_by_position"));
+                
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+
+            saveReport.setEnabled(false);
+        }
+    }//GEN-LAST:event_saveReportMouseClicked
+
+    private void cancelReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelReportMouseClicked
+        saveReport.setEnabled(false);
+        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            Properties report = new Properties();
+            report.load(input);
+
+            preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
+            preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
+            preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
+            preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
+            submittedByName.setText(report.getProperty("submitted_by_name"));
+            submittedByPosition.setText(report.getProperty("submitted_by_position"));
+            approvedByName.setText(report.getProperty("approved_by_name"));
+            approvedByPosition.setText(report.getProperty("approved_by_position"));
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }//GEN-LAST:event_cancelReportMouseClicked
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -10843,6 +11126,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
         networkPort.enableInputMethods(false);
         networkDatabase.enableInputMethods(false);
     }
+    
+    public void initReportSettings() {
+        saveReport.setEnabled(false);
+        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            Properties report = new Properties();
+            report.load(input);
+
+            preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
+            preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
+            preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
+            preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
+            submittedByName.setText(report.getProperty("submitted_by_name"));
+            submittedByPosition.setText(report.getProperty("submitted_by_position"));
+            approvedByName.setText(report.getProperty("approved_by_name"));
+            approvedByPosition.setText(report.getProperty("approved_by_position"));
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+    }
 
     //Listeners
     @Override
@@ -11106,6 +11409,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel addOtherMaintenanceCrewEdit;
     private javax.swing.JPanel addProjectsItem;
     private javax.swing.JPanel addProjectsItemEdit;
+    private javax.swing.JTextField approvedByName;
+    private javax.swing.JTextField approvedByPosition;
     private javax.swing.JPanel backViewOtherExpenses;
     private javax.swing.JPanel backViewProgram;
     private javax.swing.JPanel backViewRegularActivity;
@@ -11121,6 +11426,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel cancelNewOtherExpenses1;
     private javax.swing.JPanel cancelNewOtherExpenses2;
     private javax.swing.JPanel cancelNewRegularActivity;
+    private javax.swing.JButton cancelReport;
     private javax.swing.JPanel deleteActivity;
     private javax.swing.JPanel deleteDriversForEngineers1;
     private javax.swing.JPanel deleteEquipment;
@@ -11173,6 +11479,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editProjectsPanel;
     private javax.swing.JPanel editRegularActivity;
     private javax.swing.JPanel editRegularActivityPanel;
+    private javax.swing.JButton editReport;
     private javax.swing.JPanel editSubActivity;
     private javax.swing.JPanel editWorkCategory;
     private javax.swing.JLabel equipmentFuelCost;
@@ -11347,8 +11654,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel228;
     private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel230;
     private javax.swing.JLabel jLabel231;
+    private javax.swing.JLabel jLabel232;
+    private javax.swing.JLabel jLabel233;
+    private javax.swing.JLabel jLabel234;
+    private javax.swing.JLabel jLabel235;
+    private javax.swing.JLabel jLabel236;
+    private javax.swing.JLabel jLabel237;
+    private javax.swing.JLabel jLabel238;
+    private javax.swing.JLabel jLabel239;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel240;
+    private javax.swing.JLabel jLabel241;
+    private javax.swing.JLabel jLabel242;
+    private javax.swing.JLabel jLabel243;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel252;
     private javax.swing.JLabel jLabel253;
@@ -11511,6 +11831,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
@@ -11601,6 +11922,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel otherExpensesViewLaborEquipmentCost;
     private javax.swing.JLabel otherExpensesViewLightEquipments;
     private javax.swing.JPanel personnelPanel;
+    private javax.swing.JTextField preparedBy1Name;
+    private javax.swing.JTextField preparedBy1Position;
+    private javax.swing.JTextField preparedBy2Name;
+    private javax.swing.JTextField preparedBy2Position;
     private javax.swing.JComboBox<String> projectsFormEditMonth;
     private javax.swing.JTextField projectsFormEditSourceOfFund;
     private javax.swing.JComboBox<String> projectsFormEditYear;
@@ -11669,12 +11994,15 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel saveNewOtherExpenses1;
     private javax.swing.JPanel saveNewOtherExpenses2;
     private javax.swing.JPanel saveNewRegularActivity;
+    private javax.swing.JButton saveReport;
     private javax.swing.JLabel searchActivity;
     private javax.swing.JLabel searchEquipment;
     private javax.swing.JLabel searchPersonnel;
     private javax.swing.JLabel searchWorkCategory;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JPanel subActivityTab;
+    private javax.swing.JTextField submittedByName;
+    private javax.swing.JTextField submittedByPosition;
     private javax.swing.JTable tableActivity;
     private javax.swing.JTable tableEditProjects;
     private javax.swing.JTable tableEquipment;
