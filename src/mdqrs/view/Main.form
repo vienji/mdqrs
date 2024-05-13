@@ -11431,7 +11431,7 @@
                                   <EmptySpace min="-2" pref="517" max="-2" attributes="0"/>
                                   <Component id="jLabel73" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jComboBox9" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="sortEquipment" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -11455,7 +11455,7 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox9" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="sortEquipment" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel73" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
@@ -11516,12 +11516,18 @@
                 <Property name="text" type="java.lang.String" value="Sort"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox9">
+            <Component class="javax.swing.JComboBox" name="sortEquipment">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="equipment no."/>
+                    <StringItem index="1" value="type"/>
+                  </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sortEquipmentActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -11753,7 +11759,7 @@
                                       <EmptySpace min="-2" pref="517" max="-2" attributes="0"/>
                                       <Component id="jLabel75" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jComboBox10" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <Component id="sortPersonnel" min="-2" pref="120" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -11771,7 +11777,7 @@
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jComboBox10" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="sortPersonnel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel75" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
@@ -11861,12 +11867,19 @@
             </Container>
             <Component class="javax.swing.JLabel" name="searchPersonnel">
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox10">
+            <Component class="javax.swing.JComboBox" name="sortPersonnel">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="id"/>
+                    <StringItem index="1" value="name"/>
+                    <StringItem index="2" value="type"/>
+                  </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="sortPersonnelActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

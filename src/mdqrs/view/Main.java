@@ -37,6 +37,8 @@ import java.io.OutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Properties;
@@ -726,7 +728,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jTextField3 = new javax.swing.JTextField();
         searchEquipment = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        sortEquipment = new javax.swing.JComboBox<>();
         workCategoryTab1 = new javax.swing.JPanel();
         mainWorkCategoryPanel2 = new javax.swing.JPanel();
         deleteEquipment = new javax.swing.JPanel();
@@ -744,7 +746,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jScrollPane12 = new javax.swing.JScrollPane();
         tablePersonnel = new javax.swing.JTable();
         searchPersonnel = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        sortPersonnel = new javax.swing.JComboBox<>();
         jLabel75 = new javax.swing.JLabel();
         deletePersonnel = new javax.swing.JPanel();
         jLabel50 = new javax.swing.JLabel();
@@ -7093,6 +7095,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel73.setText("Sort");
 
+        sortEquipment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "equipment no.", "type" }));
+        sortEquipment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortEquipmentActionPerformed(evt);
+            }
+        });
+
         workCategoryTab1.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout mainWorkCategoryPanel2Layout = new javax.swing.GroupLayout(mainWorkCategoryPanel2);
@@ -7236,7 +7245,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             .addGap(517, 517, 517)
                             .addComponent(jLabel73)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(sortEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel3)))
                 .addContainerGap(73, Short.MAX_VALUE))
             .addGroup(equipmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7253,7 +7262,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(41, 41, 41)
                 .addGroup(equipmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(equipmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel73))
                     .addGroup(equipmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7307,6 +7316,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             tablePersonnel.getColumnModel().getColumn(0).setPreferredWidth(20);
             tablePersonnel.getColumnModel().getColumn(1).setPreferredWidth(500);
         }
+
+        sortPersonnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "name", "type" }));
+        sortPersonnel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortPersonnelActionPerformed(evt);
+            }
+        });
 
         jLabel75.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel75.setText("Sort");
@@ -7415,7 +7431,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 .addGap(517, 517, 517)
                                 .addComponent(jLabel75)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(sortPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jLabel4))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
@@ -7427,7 +7443,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(41, 41, 41)
                 .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel75))
                     .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -9750,6 +9766,41 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_cancelReportMouseClicked
 
+    private void sortPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortPersonnelActionPerformed
+        String sort = String.valueOf(sortPersonnel.getSelectedItem());
+        
+        switch(sort){
+            case "id":
+                Collections.sort(personnelList, Comparator.comparing(Personnel::getId));
+                populatePersonnelTable(personnelList);
+                break;
+            
+            case "name":
+                Collections.sort(personnelList, Comparator.comparing(Personnel::getName));
+                populatePersonnelTable(personnelList);
+                break;
+                
+            case "type":
+                Collections.sort(personnelList, Comparator.comparing(Personnel::getType));
+                populatePersonnelTable(personnelList);
+        }
+    }//GEN-LAST:event_sortPersonnelActionPerformed
+
+    private void sortEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortEquipmentActionPerformed
+        String sort = String.valueOf(sortEquipment.getSelectedItem());
+        
+        switch(sort){
+            case "equipment no.":
+                Collections.sort(equipmentList, Comparator.comparing(Equipment::getEquipmentNumber));
+                populateEquipmentTable(equipmentList);
+                break;
+                
+            case "type":                
+                Collections.sort(equipmentList, Comparator.comparing(Equipment::getType));
+                populateEquipmentTable(equipmentList);
+        }
+    }//GEN-LAST:event_sortEquipmentActionPerformed
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -11502,12 +11553,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -12000,6 +12049,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel searchPersonnel;
     private javax.swing.JLabel searchWorkCategory;
     private javax.swing.JPanel settingsPanel;
+    private javax.swing.JComboBox<String> sortEquipment;
+    private javax.swing.JComboBox<String> sortPersonnel;
     private javax.swing.JPanel subActivityTab;
     private javax.swing.JTextField submittedByName;
     private javax.swing.JTextField submittedByPosition;
