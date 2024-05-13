@@ -686,7 +686,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel269 = new javax.swing.JLabel();
         workCategoryPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
+        workCategoryTabbedPane = new javax.swing.JTabbedPane();
         workCategoryTab = new javax.swing.JPanel();
         mainWorkCategoryPanel = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
@@ -721,7 +721,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jTextField2 = new javax.swing.JTextField();
         searchWorkCategory = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
+        sortWorkCategory = new javax.swing.JComboBox<>();
         equipmentPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel72 = new javax.swing.JLabel();
@@ -6630,6 +6630,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel2.setForeground(new java.awt.Color(153, 153, 153));
         jLabel2.setText("Work Category");
 
+        workCategoryTabbedPane.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                workCategoryTabbedPaneMouseClicked(evt);
+            }
+        });
+
         workCategoryTab.setLayout(new java.awt.CardLayout());
 
         tableWorkCategory.setModel(new javax.swing.table.DefaultTableModel(
@@ -6764,7 +6770,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         workCategoryTab.add(mainWorkCategoryPanel, "card2");
 
-        jTabbedPane2.addTab("Work Category", workCategoryTab);
+        workCategoryTabbedPane.addTab("Work Category", workCategoryTab);
 
         activityTab.setLayout(new java.awt.CardLayout());
 
@@ -6900,7 +6906,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         activityTab.add(mainWorkCategoryPanel1, "card2");
 
-        jTabbedPane2.addTab("Activity", activityTab);
+        workCategoryTabbedPane.addTab("Activity", activityTab);
 
         subActivityTab.setLayout(new java.awt.CardLayout());
 
@@ -7034,13 +7040,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         subActivityTab.add(mainWorkCategoryPanel3, "card2");
 
-        jTabbedPane2.addTab("Sub Activity", subActivityTab);
+        workCategoryTabbedPane.addTab("Sub Activity", subActivityTab);
 
         jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel70.setText("Search");
 
         jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel71.setText("Sort");
+
+        sortWorkCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "category no.", "description" }));
+        sortWorkCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortWorkCategoryActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout workCategoryPanelLayout = new javax.swing.GroupLayout(workCategoryPanel);
         workCategoryPanel.setLayout(workCategoryPanelLayout);
@@ -7050,7 +7063,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(52, 52, 52)
                 .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTabbedPane2)
+                        .addComponent(workCategoryTabbedPane)
                         .addGroup(workCategoryPanelLayout.createSequentialGroup()
                             .addComponent(jLabel70)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -7060,7 +7073,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             .addGap(528, 528, 528)
                             .addComponent(jLabel71)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(sortWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
@@ -7072,14 +7085,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(41, 41, 41)
                 .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel71))
                     .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel70))
                     .addComponent(searchWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(workCategoryTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -9801,6 +9814,92 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_sortEquipmentActionPerformed
 
+    private void workCategoryTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_workCategoryTabbedPaneMouseClicked
+        int selectedTab = workCategoryTabbedPane.getSelectedIndex();
+        
+        switch(selectedTab){
+            case 0:
+                String[] items = {"category no.", "description"};
+                sortWorkCategory.removeAllItems();
+                for(String item : items){
+                    sortWorkCategory.addItem(item);
+                }
+                break;
+            case 1:
+                String[] items1 = {"item no.", "description", "work category"};
+                sortWorkCategory.removeAllItems();
+                for(String item : items1){
+                    sortWorkCategory.addItem(item);
+                }
+                break;
+            case 2:
+                String[] items2 = {"description", "activity"};
+                sortWorkCategory.removeAllItems();
+                for(String item : items2){
+                    sortWorkCategory.addItem(item);
+                }
+                break;
+            default:
+                String[] items3 = {"category no.", "description"};
+                sortWorkCategory.removeAllItems();
+                for(String item : items3){
+                    sortWorkCategory.addItem(item);
+                }
+                break;    
+        }
+    }//GEN-LAST:event_workCategoryTabbedPaneMouseClicked
+
+    private void sortWorkCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortWorkCategoryActionPerformed
+        int selectedTab = workCategoryTabbedPane.getSelectedIndex();
+        String sort = String.valueOf(sortWorkCategory.getSelectedItem());
+        
+        switch(selectedTab){
+            case 0:
+                switch(sort){
+                    case "category no.":
+                        Collections.sort(workCategoryList, Comparator.comparingInt(WorkCategory::getWorkCategoryNumber));
+                        populateWorkCategoryTable(workCategoryList);
+                        break;
+                    case "description":
+                        Collections.sort(workCategoryList, Comparator.comparing(WorkCategory::getDescription));
+                        populateWorkCategoryTable(workCategoryList);
+                        break;
+                }
+                break;
+                
+            case 1:
+                switch(sort){
+                    case "item no.":
+                        Collections.sort(activityList, Comparator.comparing(Activity::getItemNumber));
+                        populateActivityTable(activityList);
+                        break;
+                    case "description":
+                        Collections.sort(activityList, Comparator.comparing(Activity::getDescription));
+                        populateActivityTable(activityList);
+                        break;
+                    case "work category":
+                        Collections.sort(activityList, new ActivityComparator());
+                        populateActivityTable(activityList);
+                        break;
+                }
+                break;
+                
+            case 2:
+                switch(sort){
+                    case "description":
+                        Collections.sort(subActivityList, Comparator.comparing(SubActivity::getDescription));
+                        populateSubActivityTable(subActivityList);
+                        break;
+                    case "activity":
+                        Collections.sort(subActivityList, new SubActivityComparator());
+                        populateSubActivityTable(subActivityList);
+                        break;
+                }
+                break;
+
+        }
+    }//GEN-LAST:event_sortWorkCategoryActionPerformed
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -11394,6 +11493,28 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
 
+    public class ActivityComparator implements Comparator<Activity> {
+        @Override
+        public int compare(Activity activity1, Activity activity2) {
+            
+            String description1 = activity1.getWorkCategory().getDescription();
+            String description2 = activity2.getWorkCategory().getDescription();
+
+            return description1.compareTo(description2);
+        }
+    }
+    
+    public class SubActivityComparator implements Comparator<SubActivity> {
+        @Override
+        public int compare(SubActivity subActivity1, SubActivity subActivity2) {
+            
+            String itemNumber1 = subActivity1.getActivity().getItemNumber();
+            String itemNumber2 = subActivity2.getActivity().getItemNumber();
+
+            return itemNumber1.compareTo(itemNumber2);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -11556,7 +11677,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
-    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -11882,7 +12002,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -12051,6 +12170,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JComboBox<String> sortEquipment;
     private javax.swing.JComboBox<String> sortPersonnel;
+    private javax.swing.JComboBox<String> sortWorkCategory;
     private javax.swing.JPanel subActivityTab;
     private javax.swing.JTextField submittedByName;
     private javax.swing.JTextField submittedByPosition;
@@ -12098,5 +12218,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel workCategoryPanel;
     private javax.swing.JPanel workCategoryTab;
     private javax.swing.JPanel workCategoryTab1;
+    private javax.swing.JTabbedPane workCategoryTabbedPane;
     // End of variables declaration//GEN-END:variables
 }
