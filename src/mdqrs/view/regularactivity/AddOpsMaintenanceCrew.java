@@ -10,6 +10,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mdqrs.classes.DataValidation;
 import mdqrs.listeners.MainListener;
 
 /**
@@ -17,6 +18,7 @@ import mdqrs.listeners.MainListener;
  * @author Vienji
  */
 public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
+    private DataValidation dataValidation = new DataValidation();
     private static AddOpsMaintenanceCrew instance;
     private static MainListener mainListener;
     private static ArrayList<Personnel> personnelList = new ArrayList();
@@ -159,6 +161,8 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         if(personnel.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+        } else if (!dataValidation.validateInteger(numberOfCD.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else {
             CrewPersonnel crewPersonnel = new CrewPersonnel();
             

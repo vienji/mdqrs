@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mdqrs.classes.DataValidation;
 import mdqrs.listeners.MainListener;
 
 /**
@@ -20,6 +21,7 @@ import mdqrs.listeners.MainListener;
  * @author Vienji
  */
 public class EditOpsCrewEquipment extends javax.swing.JFrame {
+    private DataValidation dataValidation = new DataValidation();
     private static EditOpsCrewEquipment instance;
     private static MainListener mainListener;
     private static ArrayList<Equipment> equipmentList;
@@ -229,6 +231,14 @@ public class EditOpsCrewEquipment extends javax.swing.JFrame {
       
         if (equipment.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
+        }  else if (!dataValidation.validateInteger(numberOfCD.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
+        } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel consumption!");
+        } else if (!dataValidation.validateCurrency(fuelCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel cost!");
+        } else if (!dataValidation.validateCurrency(lubricant.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid lubricant cost!");
         } else {         
             Equipment opsEquipment = equipmentList.get(equipment.getSelectedIndex() - 1);
             double opsRatePerDay = !ratePerDay.getText().isBlank() ? Double.parseDouble(ratePerDay.getText()) : 0.00;

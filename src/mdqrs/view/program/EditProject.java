@@ -7,6 +7,7 @@ package mdqrs.view.program;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+import mdqrs.classes.DataValidation;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
 import mdqrs.listeners.MainListener;
@@ -16,6 +17,7 @@ import mdqrs.listeners.MainListener;
  * @author Vienji
  */
 public class EditProject extends javax.swing.JFrame {
+    private DataValidation dataValidation = new DataValidation();
     private static EditProject instance;
     private static MainListener listener;
     private static Project project;
@@ -171,6 +173,8 @@ public class EditProject extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please enter the project cost!");
         } else if (implementationMode.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
+        } else if (!dataValidation.validateCurrency(projectCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid project cost!");
         } else {
             project.setDescription(description.getText());
             project.setProjectCost(Double.parseDouble(projectCost.getText()));

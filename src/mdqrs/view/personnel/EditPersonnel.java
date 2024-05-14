@@ -9,6 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mdqrs.classes.DataValidation;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.PersonnelDBController;
 import mdqrs.listeners.MainListener;
@@ -17,6 +18,7 @@ import mdqrs.listeners.MainListener;
  * @author Vienji
  */
 public class EditPersonnel extends javax.swing.JFrame {
+    private DataValidation dataValidation = new DataValidation();
     private static MainListener mainListener;
     private static EditPersonnel instance;
     private static Personnel personnel;
@@ -70,7 +72,7 @@ public class EditPersonnel extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
         save = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        ratePerDay = new javax.swing.JTextField();
+        ratePerDay = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Personnel");
@@ -103,6 +105,8 @@ public class EditPersonnel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Rate Per Day");
 
+        ratePerDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,11 +125,10 @@ public class EditPersonnel extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel1))
                             .addGap(31, 31, 31)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(name)
-                                    .addComponent(type, 0, 250, Short.MAX_VALUE))
-                                .addComponent(ratePerDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(name)
+                                .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -143,7 +146,7 @@ public class EditPersonnel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save)
                     .addComponent(cancel))
@@ -164,10 +167,12 @@ public class EditPersonnel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please put a name!");
         } else if (type.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Please select a type!");
+        } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
         } else if (ratePerDay.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
-            new PersonnelDBController().edit(personnel.getId(), name.getText(), String.valueOf(type.getSelectedItem()), Double.parseDouble(ratePerDay.getText()));
+            new PersonnelDBController().edit(personnel.getId(), name.getText(), String.valueOf(type.getSelectedItem()), dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");
             instance = null;
@@ -225,7 +230,7 @@ public class EditPersonnel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public static javax.swing.JTextField name;
-    public javax.swing.JTextField ratePerDay;
+    private javax.swing.JFormattedTextField ratePerDay;
     private javax.swing.JButton save;
     public static javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables

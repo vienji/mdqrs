@@ -8,6 +8,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import mdqrs.classes.DataValidation;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.PersonnelDBController;
 import mdqrs.listeners.MainListener;
@@ -16,6 +17,7 @@ import mdqrs.listeners.MainListener;
  * @author Vienji
  */
 public class AddPersonnel extends javax.swing.JFrame {
+    private DataValidation dataValidation = new DataValidation();
     private static MainListener mainListener;
     private static AddPersonnel instance;
     
@@ -63,7 +65,7 @@ public class AddPersonnel extends javax.swing.JFrame {
         cancel = new javax.swing.JButton();
         add = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        ratePerDay = new javax.swing.JTextField();
+        ratePerDay = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add New Personnel");
@@ -96,6 +98,8 @@ public class AddPersonnel extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Rate Per Day");
 
+        ratePerDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -107,19 +111,16 @@ public class AddPersonnel extends javax.swing.JFrame {
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                            .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(name)
-                                .addComponent(type, 0, 250, Short.MAX_VALUE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -137,7 +138,7 @@ public class AddPersonnel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
                     .addComponent(cancel))
@@ -161,10 +162,12 @@ public class AddPersonnel extends javax.swing.JFrame {
                 String.format("Personnel %s type %s was already added!", name.getText(), String.valueOf(type.getSelectedItem())));
         } else if (type.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Please select a type!");
+        } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
         } else if (ratePerDay.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
-            new PersonnelDBController().add(name.getText(), String.valueOf(type.getSelectedItem()), Double.parseDouble(ratePerDay.getText()));
+            new PersonnelDBController().add(name.getText(), String.valueOf(type.getSelectedItem()), dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             JOptionPane.showMessageDialog(rootPane, "New Personnel was successfully added!");
             instance = null;
@@ -222,7 +225,7 @@ public class AddPersonnel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField name;
-    private javax.swing.JTextField ratePerDay;
+    private javax.swing.JFormattedTextField ratePerDay;
     private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }

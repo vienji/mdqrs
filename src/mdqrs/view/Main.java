@@ -55,6 +55,7 @@ import mdqrs.classes.OtherExpenses;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
 import mdqrs.classes.ReportFactory;
+import mdqrs.classes.DataValidation;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
@@ -95,6 +96,7 @@ import mdqrs.view.workcategory.EditWorkCategory;
  * @author Vienji
  */
 public class Main extends javax.swing.JFrame implements MainListener {
+    private DataValidation dataValidation = new DataValidation();
     private JFileChooser fileChooser = new JFileChooser();
     private int currentSection = 0;
     private ArrayList<Activity> activityList;
@@ -1180,7 +1182,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Activity");
 
-        sortActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "activity", "road section", "location", "date", "implementation mode" }));
+        sortActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "activity", "date", "implementation mode" }));
         sortActivity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sortActivityActionPerformed(evt);
@@ -6597,8 +6599,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(activityListPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(activityTabbedPane)
+                .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(activityTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addGroup(activityListPanelLayout.createSequentialGroup()
                         .addComponent(jLabel11)
@@ -6606,10 +6608,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(535, 535, 535)
+                        .addGap(501, 501, 501)
                         .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         activityListPanelLayout.setVerticalGroup(
@@ -8474,6 +8476,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
         } else if (regularActivityFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
+        } else if (!dataValidation.validateInteger(regularActivityFormDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (isOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
         } else if (isMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
@@ -8606,6 +8610,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
         } else if (regularActivityEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
+        } else if (!dataValidation.validateInteger(regularActivityEditDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (isEditOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
         } else if (isEditMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
@@ -8918,6 +8924,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherActivityFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+        } else if (!dataValidation.validateInteger(otherActivityFormDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else {
             OtherActivity otherActivity = new OtherActivity();
 
@@ -9004,6 +9012,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherActivityEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+        } else if (!dataValidation.validateInteger(otherActivityEditDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else {
 
             otherActivityForEdit.setSubActivity(subActivityOtherList.get(otherActivityEditSubActivitySelectionBox.getSelectedIndex() - 1));
@@ -9113,14 +9123,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
         } else if (otherExpensesFormLaborEquipmentCost.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor Crew cost!");
         } else if (otherExpensesFormImplementationMode.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherExpensesFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+        } else if (!dataValidation.validateInteger(otherExpensesFormDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (otherExpensesFormLightEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
         } else if (otherExpensesFormHeavyEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormLightEquipments.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormHeavyEquipments.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
         } else {
             OtherExpenses otherExpenses = new OtherExpenses();
 
@@ -9177,7 +9197,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
             
-            String[] sortingItems = {"id", "activity", "road section", "location", "date", "implementation mode"};
+            String[] sortingItems = {"id", "activity", "date", "implementation mode"};
             
             sortActivity.removeAllItems();
             for(String item : sortingItems){
@@ -9441,14 +9461,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
         } else if (otherExpensesFormEditLaborEquipmentCost.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
+        }  else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor crew cost!");
         } else if (otherExpensesFormEditImplementationMode.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherExpensesFormEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+        } else if (!dataValidation.validateInteger(otherExpensesFormEditDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid days of operation!");
         } else if (otherExpensesFormEditLightEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
         } else if (otherExpensesFormEditHeavyEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormEditLightEquipments.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
+        } else if (!dataValidation.validateCurrency(otherExpensesFormEditHeavyEquipments.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
         } else {
             otherExpensesForEdit.setLaborCrewCost(Double.parseDouble(otherExpensesFormEditLaborCrewCost.getText()));
             otherExpensesForEdit.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormEditLaborEquipmentCost.getText()));
@@ -9496,6 +9526,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the implementation mode!");
         } else if(driversForEngineersFormDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormLaborEquipmentCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormEquipmentFuelCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormLubricantCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
         } else {
             DriversForEngineers driversForEngineers = new DriversForEngineers();
             
@@ -9539,6 +9577,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the implementation mode!");
         } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
+        }   else if(!dataValidation.validateInteger(driversForEngineersFormEditDaysOfOperation.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormEditLaborEquipmentCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormEditEquipmentFuelCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
+        } else if(!dataValidation.validateInteger(driversForEngineersFormEditLubricantCost.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
         } else {
             
             driversForEngineersForEdit.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormEditLaborEquipmentCost.getText()));
@@ -9956,16 +10002,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
                     case "activity":
                         Collections.sort(regularActivityList, new RegularActivityComparator());
-                        populateMainRegularActivity(regularActivityList);
-                        break;
-
-                    case "roadSection":
-                        Collections.sort(regularActivityList, new RARoadSectionComparator());
-                        populateMainRegularActivity(regularActivityList);
-                        break;
-
-                    case "location":
-                        Collections.sort(regularActivityList, new RALocationComparator());
                         populateMainRegularActivity(regularActivityList);
                         break;
 
