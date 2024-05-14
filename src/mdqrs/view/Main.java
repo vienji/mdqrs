@@ -186,7 +186,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel1 = new javax.swing.JLabel();
         searchActivity = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        sortActivity = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         activityTabbedPane = new javax.swing.JTabbedPane();
@@ -1179,6 +1179,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Activity");
+
+        sortActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "activity", "road section", "location", "date", "implementation mode" }));
+        sortActivity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sortActivityActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setText("Sort");
@@ -3932,7 +3939,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel135)
                     .addComponent(otherActivityViewPersonnelTotalExpenses))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
 
         jScrollPane25.setViewportView(jPanel7);
@@ -5320,7 +5327,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(jLabel202)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(driversForEngineersFormDaysOfOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jScrollPane34.setViewportView(jPanel10);
@@ -5505,7 +5512,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(jLabel211)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(driversForEngineersFormEditDaysOfOperation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jScrollPane36.setViewportView(jPanel13);
@@ -6137,7 +6144,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(editProjectsItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(removeProjectsItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jScrollPane41.setViewportView(jPanel17);
@@ -6279,7 +6286,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel222)
                     .addComponent(projectsViewProjectTotal))
-                .addContainerGap(194, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         jScrollPane38.setViewportView(jPanel14);
@@ -6552,7 +6559,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(editProjectsItemEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(removeProjectsItemEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jScrollPane43.setViewportView(jPanel18);
@@ -6602,7 +6609,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addGap(535, 535, 535)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         activityListPanelLayout.setVerticalGroup(
@@ -6614,7 +6621,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(searchActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
                     .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -9169,6 +9176,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            
+            String[] sortingItems = {"id", "activity", "road section", "location", "date", "implementation mode"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            }          
         } else if (activityTabbedPane.getSelectedIndex() == 1) {
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
@@ -9193,6 +9207,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            
+            String[] sortingItems = {"id", "sub activity", "description", "date", "implementation mode"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            }
         } else if (activityTabbedPane.getSelectedIndex() == 2) {
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
@@ -9217,6 +9238,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            
+            String[] sortingItems = {"id", "date"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            }          
         } else if (activityTabbedPane.getSelectedIndex() == 3) {
             regularActivityTab.removeAll();
             regularActivityTab.add(mainRegularActivityPanel);
@@ -9241,6 +9269,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            
+            String[] sortingItems = {"id", "date"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            }
+            
         } else if (activityTabbedPane.getSelectedIndex() == 4){
             regularActivityTab.removeAll();
             regularActivityTab.add(mainRegularActivityPanel);
@@ -9266,6 +9302,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             driversForEngineersContainer.revalidate();
             resetDriversForEngineersForm();
             resetDriversForEngineersEditForm();
+            
+            String[] sortingItems = {"id", "source of fund","date"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            }
         }
     }//GEN-LAST:event_activityTabbedPaneMouseClicked
 
@@ -9896,9 +9939,125 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         break;
                 }
                 break;
-
         }
     }//GEN-LAST:event_sortWorkCategoryActionPerformed
+
+    private void sortActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortActivityActionPerformed
+        int selectedTab = activityTabbedPane.getSelectedIndex();
+        String sort = String.valueOf(sortActivity.getSelectedItem());
+        
+        switch(selectedTab){
+            case 0:
+                switch(sort){
+                    case "id":
+                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getId));
+                        populateMainRegularActivity(regularActivityList);
+                        break;
+
+                    case "activity":
+                        Collections.sort(regularActivityList, new RegularActivityComparator());
+                        populateMainRegularActivity(regularActivityList);
+                        break;
+
+                    case "roadSection":
+                        Collections.sort(regularActivityList, new RARoadSectionComparator());
+                        populateMainRegularActivity(regularActivityList);
+                        break;
+
+                    case "location":
+                        Collections.sort(regularActivityList, new RALocationComparator());
+                        populateMainRegularActivity(regularActivityList);
+                        break;
+
+                    case "date":
+                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getDate));
+                        populateMainRegularActivity(regularActivityList);
+                        break;
+
+                    case "implementation mode":
+                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getImplementationMode));
+                        populateMainRegularActivity(regularActivityList);
+                        break;                       
+                }
+                break;
+                
+            case 1:      
+                switch(sort){
+                    case "id":
+                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getId));
+                        populateMainOtherActivity(otherActivityList);
+                        break;
+
+                    case "sub activity":
+                        Collections.sort(otherActivityList, new OASubActivityComparator());
+                        populateMainOtherActivity(otherActivityList);
+                        break;
+
+                    case "description":
+                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getDescription));
+                        populateMainOtherActivity(otherActivityList);
+                        break;
+
+                    case "date":
+                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getDate));
+                        populateMainOtherActivity(otherActivityList);
+                        break;
+
+                    case "implementation mode":
+                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getImplementationMode));
+                        populateMainOtherActivity(otherActivityList);
+                        break;
+                }
+                break;
+                
+            case 2:
+                switch(sort){
+                    case "id":
+                        Collections.sort(otherExpensesList, Comparator.comparing(OtherExpenses::getId));
+                        populateMainOtherExpenses(otherExpensesList);
+                        break;
+
+                    case "date":
+                        Collections.sort(otherExpensesList, Comparator.comparing(OtherExpenses::getDate));
+                        populateMainOtherExpenses(otherExpensesList);
+                        break;
+                }
+                break;
+            
+            case 3:
+                switch(sort){
+                    case "id":
+                        Collections.sort(driversForEngineersList, Comparator.comparing(DriversForEngineers::getId));
+                        populateDriversForEngineersTable(driversForEngineersList);
+                        break;
+
+                    case "date":
+                        Collections.sort(driversForEngineersList, Comparator.comparing(DriversForEngineers::getDate));
+                        populateDriversForEngineersTable(driversForEngineersList);
+                        break;
+                }
+                break;
+                
+            case 4:
+                switch(sort){
+                    case "id":
+                        Collections.sort(programList, Comparator.comparing(Program::getId));
+                        populateMainProgram(programList);
+                        break;
+
+                    case "source of fund":
+                        Collections.sort(programList, Comparator.comparing(Program::getSourceOfFund));
+                        populateMainProgram(programList);
+                        break;
+                        
+                    case "date":
+                        Collections.sort(programList, Comparator.comparing(Program::getDate));
+                        populateMainProgram(programList);
+                        break;
+                }
+                break;       
+        }
+    }//GEN-LAST:event_sortActivityActionPerformed
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -9947,7 +10106,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void populateMainProgram(ArrayList<Program> programCollection){
-        tableMainPrograms.setModel(new DefaultTableModel(null, new String[]{"ID", "Souroce of Fund", "Total Project Cost", "Date"}));
+        tableMainPrograms.setModel(new DefaultTableModel(null, new String[]{"ID", "Source of Fund", "Total Project Cost", "Date"}));
         DefaultTableModel programsTableModel = (DefaultTableModel) tableMainPrograms.getModel();
         
         Iterator i = (Iterator) programCollection.iterator();
@@ -11504,6 +11663,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
     
+    public class RegularActivityComparator implements Comparator<RegularActivity>{
+        @Override
+        public int compare(RegularActivity regularActivity1, RegularActivity regularActivity2){
+            
+            String description1 = regularActivity1.getActivity().getDescription();
+            String description2 = regularActivity2.getActivity().getDescription();
+
+            return description1.compareTo(description2);
+        }
+    }
+    
     public class SubActivityComparator implements Comparator<SubActivity> {
         @Override
         public int compare(SubActivity subActivity1, SubActivity subActivity2) {
@@ -11512,6 +11682,39 @@ public class Main extends javax.swing.JFrame implements MainListener {
             String itemNumber2 = subActivity2.getActivity().getItemNumber();
 
             return itemNumber1.compareTo(itemNumber2);
+        }
+    }
+    
+    public class RARoadSectionComparator implements Comparator<RegularActivity> {
+        @Override
+        public int compare(RegularActivity roadSection1, RegularActivity roadSection2) {
+            
+            String itemNumber1 = roadSection1.getRoadSection().getName();
+            String itemNumber2 = roadSection2.getRoadSection().getName();
+
+            return itemNumber1.compareTo(itemNumber2);
+        }
+    }
+    
+    public class RALocationComparator implements Comparator<RegularActivity>{
+        @Override
+        public int compare(RegularActivity location1, RegularActivity location2){
+            
+            String locationName1 = location1.getRoadSection().getName();
+            String locationName2 = location2.getRoadSection().getName();
+            
+            return locationName1.compareToIgnoreCase(locationName2);
+        }
+    }
+    
+    public class OASubActivityComparator implements Comparator<OtherActivity>{
+        @Override
+        public int compare(OtherActivity otherActivity1, OtherActivity otherActivity2){
+            
+            String description1 = otherActivity1.getSubActivity().getDescription();
+            String description2 = otherActivity2.getSubActivity().getDescription();
+            
+            return description1.compareToIgnoreCase(description2);
         }
     }
     
@@ -11673,7 +11876,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JCheckBox isOperationEquipmentTableSelected;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
@@ -12168,6 +12370,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel searchPersonnel;
     private javax.swing.JLabel searchWorkCategory;
     private javax.swing.JPanel settingsPanel;
+    private javax.swing.JComboBox<String> sortActivity;
     private javax.swing.JComboBox<String> sortEquipment;
     private javax.swing.JComboBox<String> sortPersonnel;
     private javax.swing.JComboBox<String> sortWorkCategory;
