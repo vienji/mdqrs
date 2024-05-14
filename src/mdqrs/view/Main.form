@@ -563,9 +563,9 @@
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jTextField1" min="-2" pref="270" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="searchActivity" min="-2" pref="30" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="501" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="494" max="-2" attributes="0"/>
                               <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="sortActivity" min="-2" pref="147" max="-2" attributes="0"/>
@@ -10653,7 +10653,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField2" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <Component id="workCategorySearchValue" min="-2" pref="270" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="searchWorkCategory" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="528" max="-2" attributes="0"/>
@@ -10680,7 +10680,7 @@
                               <Component id="jLabel71" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jTextField2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="workCategorySearchValue" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel70" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="searchWorkCategory" min="-2" pref="30" max="-2" attributes="0"/>
@@ -11387,9 +11387,12 @@
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="workCategorySearchValue">
             </Component>
             <Component class="javax.swing.JLabel" name="searchWorkCategory">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchWorkCategoryMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel71">
               <Properties>
@@ -11442,7 +11445,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel72" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="270" max="-2" attributes="0"/>
+                                  <Component id="equipmentSearchValue" min="-2" pref="270" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="searchEquipment" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="517" max="-2" attributes="0"/>
@@ -11476,7 +11479,7 @@
                               <Component id="jLabel73" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jTextField3" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="equipmentSearchValue" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel72" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="searchEquipment" min="-2" pref="30" max="-2" attributes="0"/>
@@ -11521,9 +11524,12 @@
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="equipmentSearchValue">
             </Component>
             <Component class="javax.swing.JLabel" name="searchEquipment">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchEquipmentMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel73">
               <Properties>
@@ -11770,7 +11776,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jTextField4" min="-2" pref="270" max="-2" attributes="0"/>
+                                      <Component id="searchPersonnelValue" min="-2" pref="270" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="searchPersonnel" min="-2" pref="30" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="517" max="-2" attributes="0"/>
@@ -11798,7 +11804,7 @@
                               <Component id="jLabel75" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="jTextField4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="searchPersonnelValue" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="jLabel74" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="searchPersonnel" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
@@ -11836,7 +11842,7 @@
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField4">
+            <Component class="javax.swing.JTextField" name="searchPersonnelValue">
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane12">
               <AuxValues>
@@ -11883,6 +11889,9 @@
               </SubComponents>
             </Container>
             <Component class="javax.swing.JLabel" name="searchPersonnel">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchPersonnelMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="sortPersonnel">
               <Properties>

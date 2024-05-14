@@ -41,10 +41,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import mdqrs.classes.Cryptographer;
 import mdqrs.classes.DriversForEngineers;
@@ -144,6 +148,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         initNetworkSettings();
         initReportSettings();
+        initSearchFieldListener();
         initDate();
         addWindowListener(new CloseWindow());
     }
@@ -720,14 +725,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
         addNewSubActivity = new javax.swing.JPanel();
         jLabel82 = new javax.swing.JLabel();
         jLabel70 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        workCategorySearchValue = new javax.swing.JTextField();
         searchWorkCategory = new javax.swing.JLabel();
         jLabel71 = new javax.swing.JLabel();
         sortWorkCategory = new javax.swing.JComboBox<>();
         equipmentPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel72 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        equipmentSearchValue = new javax.swing.JTextField();
         searchEquipment = new javax.swing.JLabel();
         jLabel73 = new javax.swing.JLabel();
         sortEquipment = new javax.swing.JComboBox<>();
@@ -744,7 +749,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         personnelPanel = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel74 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        searchPersonnelValue = new javax.swing.JTextField();
         jScrollPane12 = new javax.swing.JScrollPane();
         tablePersonnel = new javax.swing.JTable();
         searchPersonnel = new javax.swing.JLabel();
@@ -6606,9 +6611,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(501, 501, 501)
+                        .addGap(494, 494, 494)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -7054,6 +7059,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel70.setText("Search");
 
+        searchWorkCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchWorkCategoryMouseClicked(evt);
+            }
+        });
+
         jLabel71.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel71.setText("Sort");
 
@@ -7076,7 +7087,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addGroup(workCategoryPanelLayout.createSequentialGroup()
                             .addComponent(jLabel70)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(workCategorySearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(searchWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(528, 528, 528)
@@ -7097,7 +7108,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(sortWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel71))
                     .addGroup(workCategoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(workCategorySearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel70))
                     .addComponent(searchWorkCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -7113,6 +7124,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel72.setText("Search");
+
+        searchEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchEquipmentMouseClicked(evt);
+            }
+        });
 
         jLabel73.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel73.setText("Sort");
@@ -7261,7 +7278,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addGroup(equipmentPanelLayout.createSequentialGroup()
                             .addComponent(jLabel72)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(equipmentSearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(searchEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(517, 517, 517)
@@ -7287,7 +7304,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(sortEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel73))
                     .addGroup(equipmentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(equipmentSearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel72))
                     .addComponent(searchEquipment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
@@ -7338,6 +7355,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
             tablePersonnel.getColumnModel().getColumn(0).setPreferredWidth(20);
             tablePersonnel.getColumnModel().getColumn(1).setPreferredWidth(500);
         }
+
+        searchPersonnel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchPersonnelMouseClicked(evt);
+            }
+        });
 
         sortPersonnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "name", "type" }));
         sortPersonnel.addActionListener(new java.awt.event.ActionListener() {
@@ -7447,7 +7470,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             .addGroup(personnelPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel74)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(searchPersonnelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(517, 517, 517)
@@ -7468,7 +7491,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(sortPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel75))
                     .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchPersonnelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel74))
                     .addComponent(searchPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -9997,6 +10020,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "id":
                         Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getId));
+                        Collections.reverse(regularActivityList);
                         populateMainRegularActivity(regularActivityList);
                         break;
 
@@ -10021,6 +10045,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "id":
                         Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getId));
+                        Collections.reverse(otherActivityList);
                         populateMainOtherActivity(otherActivityList);
                         break;
 
@@ -10050,6 +10075,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "id":
                         Collections.sort(otherExpensesList, Comparator.comparing(OtherExpenses::getId));
+                        Collections.reverse(otherExpensesList);
                         populateMainOtherExpenses(otherExpensesList);
                         break;
 
@@ -10064,6 +10090,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "id":
                         Collections.sort(driversForEngineersList, Comparator.comparing(DriversForEngineers::getId));
+                        Collections.reverse(driversForEngineersList);
                         populateDriversForEngineersTable(driversForEngineersList);
                         break;
 
@@ -10078,6 +10105,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "id":
                         Collections.sort(programList, Comparator.comparing(Program::getId));
+                        Collections.reverse(programList);
                         populateMainProgram(programList);
                         break;
 
@@ -10094,6 +10122,86 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;       
         }
     }//GEN-LAST:event_sortActivityActionPerformed
+
+    private void searchPersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchPersonnelMouseClicked
+        ArrayList<Personnel> searchedPersonnel = personnelList
+                                                    .stream()
+                                                    .filter(personnel -> personnel.getName()
+                                                                                  .toLowerCase()
+                                                                                  .contains(searchPersonnelValue.getText().toLowerCase()) 
+                                                            || personnel.getId().equals(searchPersonnelValue.getText()) 
+                                                            || personnel.getType()
+                                                                        .toLowerCase()
+                                                                        .contains(searchPersonnelValue.getText().toLowerCase()))
+                                                    .collect(Collectors.toCollection(ArrayList::new));
+                
+        if(!searchPersonnelValue.getText().isBlank()){
+            populatePersonnelTable(searchedPersonnel);
+        } else {
+            populatePersonnelTable(personnelList);
+        }   
+    }//GEN-LAST:event_searchPersonnelMouseClicked
+
+    private void searchEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchEquipmentMouseClicked
+        ArrayList<Equipment> searchedEquipment = equipmentList
+                                                        .stream()
+                                                        .filter(equipment -> equipment.getEquipmentNumber().equals(equipmentSearchValue.getText()) 
+                                                                || equipment.getType().toLowerCase().contains(equipmentSearchValue.getText().toLowerCase()))
+                                                        .collect(Collectors.toCollection(ArrayList::new));
+        
+        if(!equipmentSearchValue.getText().isBlank()){
+            populateEquipmentTable(searchedEquipment);
+        } else {
+            populateEquipmentTable(equipmentList);
+        } 
+    }//GEN-LAST:event_searchEquipmentMouseClicked
+
+    private void searchWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchWorkCategoryMouseClicked
+        int selectedTab = workCategoryTabbedPane.getSelectedIndex();
+        
+        switch(selectedTab){
+            case 0:
+                ArrayList<WorkCategory> searchedWorkCategory = workCategoryList
+                                                                        .stream()
+                                                                        .filter(workCategory -> String.valueOf(workCategory.getWorkCategoryNumber()).equals(workCategorySearchValue.getText())
+                                                                                || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                if(!workCategorySearchValue.getText().isBlank()){
+                    populateWorkCategoryTable(searchedWorkCategory);
+                } else {
+                    populateWorkCategoryTable(workCategoryList);
+                }
+                break;
+            
+            case 1:
+                ArrayList<Activity> searchedActivity = activityList
+                                                                        .stream()
+                                                                        .filter(activity -> activity.getItemNumber().equals(workCategorySearchValue.getText())
+                                                                                || activity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                || activity.getWorkCategory().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                if(!workCategorySearchValue.getText().isBlank()){
+                    populateActivityTable(searchedActivity);
+                } else {
+                    populateActivityTable(activityList);
+                }
+                break; 
+                
+            case 2:
+                ArrayList<SubActivity> searchedSubActivity = subActivityList
+                                                                        .stream()
+                                                                        .filter(subActivity -> subActivity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                || subActivity.getActivity().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                || subActivity.getActivity().getItemNumber().equals(workCategorySearchValue.getText()))
+                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                if(!workCategorySearchValue.getText().isBlank()){
+                    populateSubActivityTable(searchedSubActivity);
+                } else {
+                    populateSubActivityTable(subActivityList);
+                }
+                break;  
+        }
+    }//GEN-LAST:event_searchWorkCategoryMouseClicked
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -11754,6 +11862,149 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
     
+    private void initSearchFieldListener(){
+        personnelSearchFieldListener();
+        equipmentSearchFieldListener();
+        workCategorySearchFieldListener();
+    }
+    
+    private void workCategorySearchFieldListener(){
+        workCategorySearchValue.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateWorkCategory();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateWorkCategory();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateWorkCategory();
+            }
+            
+            private void updateWorkCategory(){
+                int selectedTab = workCategoryTabbedPane.getSelectedIndex();
+
+                switch(selectedTab){
+                    case 0:
+                        ArrayList<WorkCategory> searchedWorkCategory = workCategoryList
+                                                                                .stream()
+                                                                                .filter(workCategory -> String.valueOf(workCategory.getWorkCategoryNumber()).equals(workCategorySearchValue.getText())
+                                                                                        || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                        if(!workCategorySearchValue.getText().isBlank()){
+                            populateWorkCategoryTable(searchedWorkCategory);
+                        } else {
+                            populateWorkCategoryTable(workCategoryList);
+                        }
+                        break;
+
+                    case 1:
+                        ArrayList<Activity> searchedActivity = activityList
+                                                                                .stream()
+                                                                                .filter(activity -> activity.getItemNumber().equals(workCategorySearchValue.getText())
+                                                                                        || activity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                        || activity.getWorkCategory().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                        if(!workCategorySearchValue.getText().isBlank()){
+                            populateActivityTable(searchedActivity);
+                        } else {
+                            populateActivityTable(activityList);
+                        }
+                        break; 
+
+                    case 2:
+                        ArrayList<SubActivity> searchedSubActivity = subActivityList
+                                                                                .stream()
+                                                                                .filter(subActivity -> subActivity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                        || subActivity.getActivity().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                        || subActivity.getActivity().getItemNumber().equals(workCategorySearchValue.getText()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                        if(!workCategorySearchValue.getText().isBlank()){
+                            populateSubActivityTable(searchedSubActivity);
+                        } else {
+                            populateSubActivityTable(subActivityList);
+                        }
+                        break;  
+                }
+            }
+        });
+    }
+    
+    private void equipmentSearchFieldListener(){
+        equipmentSearchValue.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateEquipment();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {             
+                updateEquipment();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateEquipment();
+            }
+            
+            private void updateEquipment(){
+                ArrayList<Equipment> searchedEquipment = equipmentList
+                                                        .stream()
+                                                        .filter(equipment -> equipment.getEquipmentNumber().equals(equipmentSearchValue.getText()) 
+                                                                || equipment.getType().toLowerCase().contains(equipmentSearchValue.getText().toLowerCase()))
+                                                        .collect(Collectors.toCollection(ArrayList::new));
+        
+                if(!equipmentSearchValue.getText().isBlank()){
+                    populateEquipmentTable(searchedEquipment);
+                } else {
+                    populateEquipmentTable(equipmentList);
+                } 
+            }
+        });
+    }
+    
+    private void personnelSearchFieldListener(){
+        searchPersonnelValue.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updatePersonnel();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updatePersonnel();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updatePersonnel();
+            }
+            
+            private void updatePersonnel(){
+                ArrayList<Personnel> searchedPersonnel = personnelList
+                                                    .stream()
+                                                    .filter(personnel -> personnel.getName()
+                                                                                  .toLowerCase()
+                                                                                  .contains(searchPersonnelValue.getText().toLowerCase()) 
+                                                            || personnel.getId().equals(searchPersonnelValue.getText()) 
+                                                            || personnel.getType()
+                                                                        .toLowerCase()
+                                                                        .contains(searchPersonnelValue.getText().toLowerCase()))
+                                                    .collect(Collectors.toCollection(ArrayList::new));
+                
+                if(!searchPersonnelValue.getText().isBlank()){
+                    populatePersonnelTable(searchedPersonnel);
+                } else {
+                    populatePersonnelTable(personnelList);
+                } 
+            }
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -11895,6 +12146,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editWorkCategory;
     private javax.swing.JLabel equipmentFuelCost;
     private javax.swing.JPanel equipmentPanel;
+    private javax.swing.JTextField equipmentSearchValue;
     private javax.swing.JButton exportMonthlyReport;
     private javax.swing.JLabel iconActivityList;
     private javax.swing.JLabel iconEquipment;
@@ -12241,9 +12493,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JLabel laborCrewCost;
     private javax.swing.JLabel laborEquipmentCost;
     private javax.swing.JLabel lubricantCost;
@@ -12404,6 +12653,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel searchActivity;
     private javax.swing.JLabel searchEquipment;
     private javax.swing.JLabel searchPersonnel;
+    private javax.swing.JTextField searchPersonnelValue;
     private javax.swing.JLabel searchWorkCategory;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JComboBox<String> sortActivity;
@@ -12455,6 +12705,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel welcomeLogo;
     private javax.swing.JPanel welcomePanel;
     private javax.swing.JPanel workCategoryPanel;
+    private javax.swing.JTextField workCategorySearchValue;
     private javax.swing.JPanel workCategoryTab;
     private javax.swing.JPanel workCategoryTab1;
     private javax.swing.JTabbedPane workCategoryTabbedPane;

@@ -87,6 +87,49 @@ public class PersonnelDBController {
         return list;
     }
     
+    public ArrayList<Personnel> getList(String value){
+        ArrayList<Personnel> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM personnel WHERE pid = ? OR name LIKE ? OR type LIKE ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, value);
+            preparedStatement.setString(2, "%" + value + "%");
+            preparedStatement.setString(3, "%" + value + "%");
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                Personnel personnel = new Personnel();
+                
+                personnel.setId(result.getString(2));
+                personnel.setName(result.getString(3));
+                personnel.setType(result.getString(4));
+                personnel.setRatePerDay(result.getDouble(5));
+                
+                list.add(personnel);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
     public Personnel getPersonnel(String id){
         Personnel personnel = new Personnel();
         Connection connection = null;
