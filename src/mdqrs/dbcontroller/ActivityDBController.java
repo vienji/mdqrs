@@ -49,7 +49,7 @@ public class ActivityDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM activity";
+            query = "SELECT * FROM activity WHERE is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -137,6 +137,27 @@ public class ActivityDBController {
         }
     }
     
+    public void delete(String itemNumber){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE activity SET is_deleted = 'yes' WHERE item_number = '" + itemNumber + "'";
+            
+            statement.execute(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
     public boolean isPresent(String itemNumber){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -144,7 +165,7 @@ public class ActivityDBController {
         boolean present = false;
         
         try{
-            query = "SELECT * FROM activity WHERE item_number = '" + itemNumber + "'";
+            query = "SELECT * FROM activity WHERE item_number = '" + itemNumber + "' AND is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             

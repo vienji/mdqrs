@@ -48,7 +48,7 @@ public class SubActivityDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM sub_activity WHERE activity_number = '" + id + "'";
+            query = "SELECT * FROM sub_activity WHERE activity_number = '" + id + "' AND is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -86,7 +86,7 @@ public class SubActivityDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM sub_activity";
+            query = "SELECT * FROM sub_activity WHERE is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -161,6 +161,27 @@ public class SubActivityDBController {
                     subActivity.getDescription() + 
                     "', activity_number = '" + subActivity.getActivity().getItemNumber() + 
                     "' WHERE id = " + subActivity.getId();
+            
+            statement.execute(query);
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }  
+    }
+    
+    public void delete(SubActivity subActivity){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE sub_activity SET is_deleted = 'yes' WHERE id = " + subActivity.getId();
             
             statement.execute(query);
         } catch (SQLException e){

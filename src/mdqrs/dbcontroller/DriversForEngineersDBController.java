@@ -181,4 +181,28 @@ public class DriversForEngineersDBController {
             }
         }
     }
+    
+    public void delete(DriversForEngineers driversForEngineers){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            connection = Driver.getConnection();
+            query = "DELETE FROM drivers_for_engineers WHERE deid = ?";
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, driversForEngineers.getId());
+            
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
 }

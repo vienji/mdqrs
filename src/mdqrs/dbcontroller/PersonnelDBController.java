@@ -55,7 +55,7 @@ public class PersonnelDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM personnel";
+            query = "SELECT * FROM personnel WHERE is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -94,7 +94,7 @@ public class PersonnelDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM personnel WHERE pid = ? OR name LIKE ? OR type LIKE ?";
+            query = "SELECT * FROM personnel WHERE pid = ? OR name LIKE ? OR type LIKE ? AND is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -174,6 +174,27 @@ public class PersonnelDBController {
             connection = Driver.getConnection();
             statement = connection.createStatement();
             query = "UPDATE personnel SET name = '" + newName + "', type = '"+ newType +"', rate_per_day = "+ newRatePerDay +" WHERE pid = '" + pid + "'";
+            
+            statement.execute(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
+    public void delete(String pid){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE personnel SET is_deleted = 'yes' WHERE pid = '" + pid + "'";
             
             statement.execute(query);
         } catch(SQLException e){

@@ -1240,6 +1240,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteRegularActivity.setBackground(new java.awt.Color(255, 51, 51));
+        deleteRegularActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteRegularActivityMouseClicked(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
@@ -3347,6 +3352,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteOtherActivity.setBackground(new java.awt.Color(255, 51, 51));
+        deleteOtherActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteOtherActivityMouseClicked(evt);
+            }
+        });
 
         jLabel108.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel108.setForeground(new java.awt.Color(255, 255, 255));
@@ -4325,6 +4335,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteOtherExpenses.setBackground(new java.awt.Color(255, 51, 51));
+        deleteOtherExpenses.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteOtherExpensesMouseClicked(evt);
+            }
+        });
 
         jLabel142.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel142.setForeground(new java.awt.Color(255, 255, 255));
@@ -5115,6 +5130,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         driversForEngineersContainer.setLayout(new java.awt.CardLayout());
 
         deleteDriversForEngineers1.setBackground(new java.awt.Color(255, 51, 51));
+        deleteDriversForEngineers1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteDriversForEngineers1MouseClicked(evt);
+            }
+        });
 
         jLabel165.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel165.setForeground(new java.awt.Color(255, 255, 255));
@@ -5773,6 +5793,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteProjects.setBackground(new java.awt.Color(255, 51, 51));
+        deleteProjects.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteProjectsMouseClicked(evt);
+            }
+        });
 
         jLabel154.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel154.setForeground(new java.awt.Color(255, 255, 255));
@@ -6684,6 +6709,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteWorkCategory.setBackground(new java.awt.Color(255, 51, 51));
+        deleteWorkCategory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteWorkCategoryMouseClicked(evt);
+            }
+        });
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel41.setForeground(new java.awt.Color(255, 255, 255));
@@ -6820,6 +6850,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteActivity.setBackground(new java.awt.Color(255, 51, 51));
+        deleteActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteActivityMouseClicked(evt);
+            }
+        });
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel43.setForeground(new java.awt.Color(255, 255, 255));
@@ -6954,6 +6989,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
 
         deleteSubActivity.setBackground(new java.awt.Color(255, 51, 51));
+        deleteSubActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteSubActivityMouseClicked(evt);
+            }
+        });
 
         jLabel80.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel80.setForeground(new java.awt.Color(255, 255, 255));
@@ -7163,6 +7203,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         workCategoryTab1.add(mainWorkCategoryPanel2, "card2");
 
         deleteEquipment.setBackground(new java.awt.Color(255, 51, 51));
+        deleteEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deleteEquipmentMouseClicked(evt);
+            }
+        });
 
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel47.setForeground(new java.awt.Color(255, 255, 255));
@@ -7379,6 +7424,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel75.setText("Sort");
 
         deletePersonnel.setBackground(new java.awt.Color(255, 51, 51));
+        deletePersonnel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                deletePersonnelMouseClicked(evt);
+            }
+        });
 
         jLabel50.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel50.setForeground(new java.awt.Color(255, 255, 255));
@@ -10290,6 +10340,166 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_searchActivityMouseClicked
 
+    private void deleteRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRegularActivityMouseClicked
+        int selectedRow = tableMainRegularActivity.getSelectedRow();
+
+        if (selectedRow > -1) {
+            RegularActivity regularActivity = regularActivityList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new ActivityListDBController().delete(regularActivity);
+                regularActivityList = new ActivityListDBController().getList();
+                populateMainRegularActivity(regularActivityList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteRegularActivityMouseClicked
+
+    private void deleteOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteOtherActivityMouseClicked
+        int selectedRow = tableMainOtherActivity.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            OtherActivity otherActivity = otherActivityList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new OtherActivityListDBController().delete(otherActivity);
+                otherActivityList = new OtherActivityListDBController().getList();
+                populateMainOtherActivity(otherActivityList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteOtherActivityMouseClicked
+
+    private void deleteOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteOtherExpensesMouseClicked
+        int selectedRow = tableMainOtherExpenses.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            OtherExpenses otherExpenses = otherExpensesList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new OtherExpensesDBController().delete(otherExpenses);
+                otherExpensesList = new OtherExpensesDBController().getList();
+                populateMainOtherExpenses(otherExpensesList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteOtherExpensesMouseClicked
+
+    private void deleteDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteDriversForEngineers1MouseClicked
+        int selectedRow = tableMainDriversForEngineers.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            DriversForEngineers driversForEngineers = driversForEngineersList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new DriversForEngineersDBController().delete(driversForEngineers);
+                driversForEngineersList = new DriversForEngineersDBController().getList();
+                populateDriversForEngineersTable(driversForEngineersList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteDriversForEngineers1MouseClicked
+
+    private void deleteProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteProjectsMouseClicked
+        int selectedRow = tableMainPrograms.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            Program program = programList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new ProgramDBController().delete(program);
+                programList = new ProgramDBController().getList();
+                populateMainProgram(programList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteProjectsMouseClicked
+
+    private void deletePersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletePersonnelMouseClicked
+        int selectedRow = tablePersonnel.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            Personnel personnel = personnelList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new PersonnelDBController().delete(personnel.getId());
+                personnelList = new PersonnelDBController().getList();
+                populatePersonnelTable(personnelList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deletePersonnelMouseClicked
+
+    private void deleteEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteEquipmentMouseClicked
+        int selectedRow = tableEquipment.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            Equipment equipment = equipmentList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new EquipmentDBController().delete(equipment.getEquipmentNumber());
+                equipmentList = new EquipmentDBController().getList();
+                populateEquipmentTable(equipmentList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteEquipmentMouseClicked
+
+    private void deleteWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteWorkCategoryMouseClicked
+        int selectedRow = tableWorkCategory.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            WorkCategory workCategory = workCategoryList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new WorkCategoryDBController().delete(workCategory.getWorkCategoryNumber());
+                workCategoryList = new WorkCategoryDBController().getList();
+                populateWorkCategoryTable(workCategoryList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteWorkCategoryMouseClicked
+
+    private void deleteActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteActivityMouseClicked
+        int selectedRow = tableActivity.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            Activity activity = activityList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new ActivityDBController().delete(activity.getItemNumber());
+                activityList = new ActivityDBController().getList();
+                populateActivityTable(activityList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteActivityMouseClicked
+
+    private void deleteSubActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteSubActivityMouseClicked
+        int selectedRow = tableSubActivity.getSelectedRow();
+        
+        if (selectedRow > -1) {
+            SubActivity subActivity = subActivityList.get(selectedRow);
+            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+            if(n == 0){
+                new SubActivityDBController().delete(subActivity);
+                subActivityList = new SubActivityDBController().getList();
+                populateSubActivityTable(subActivityList);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+        }
+    }//GEN-LAST:event_deleteSubActivityMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -12012,8 +12222,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                     || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                             .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
+                            regularActivityList = searchedRegularActivity;
                             populateMainRegularActivity(searchedRegularActivity);
                         } else {
+                            regularActivityList = new ActivityListDBController().getList();
                             populateMainRegularActivity(regularActivityList);
                         }
                         break;
@@ -12028,8 +12240,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                 || otherActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
+                            otherActivityList = searchedOtherActivity;
                             populateMainOtherActivity(searchedOtherActivity);
                         } else {
+                            otherActivityList = new OtherActivityListDBController().getList();
                             populateMainOtherActivity(otherActivityList);
                         }
                         break;
@@ -12042,8 +12256,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                 || otherExpenses.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
+                            otherExpensesList = searchedOtherExpenses;
                             populateMainOtherExpenses(searchedOtherExpenses);
                         } else {
+                            otherExpensesList = new OtherExpensesDBController().getList();
                             populateMainOtherExpenses(otherExpensesList);
                         }
                         break;
@@ -12056,8 +12272,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                 || dfe.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
+                            driversForEngineersList = searchedDFE;
                             populateDriversForEngineersTable(searchedDFE);
                         } else {
+                            driversForEngineersList = new DriversForEngineersDBController().getList();
                             populateDriversForEngineersTable(driversForEngineersList);
                         }
                         break;
@@ -12070,8 +12288,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                             || program.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                     .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
+                            programList = searchedProgram;
                             populateMainProgram(searchedProgram);
                         } else {
+                            programList = new ProgramDBController().getList();
                             populateMainProgram(programList);
                         }
                         break;
@@ -12108,8 +12328,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                         || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
+                            workCategoryList = searchedWorkCategory;
                             populateWorkCategoryTable(searchedWorkCategory);
                         } else {
+                            workCategoryList = new WorkCategoryDBController().getList();
                             populateWorkCategoryTable(workCategoryList);
                         }
                         break;
@@ -12122,8 +12344,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                         || activity.getWorkCategory().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
+                            activityList = searchedActivity;
                             populateActivityTable(searchedActivity);
                         } else {
+                            activityList = new ActivityDBController().getList();
                             populateActivityTable(activityList);
                         }
                         break; 
@@ -12136,8 +12360,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                         || subActivity.getActivity().getItemNumber().equals(workCategorySearchValue.getText()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
+                            subActivityList = searchedSubActivity;
                             populateSubActivityTable(searchedSubActivity);
                         } else {
+                            subActivityList = new SubActivityDBController().getList();
                             populateSubActivityTable(subActivityList);
                         }
                         break;  
@@ -12171,8 +12397,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                         .collect(Collectors.toCollection(ArrayList::new));
         
                 if(!equipmentSearchValue.getText().isBlank()){
+                    equipmentList = searchedEquipment;
                     populateEquipmentTable(searchedEquipment);
                 } else {
+                    equipmentList = new EquipmentDBController().getList();
                     populateEquipmentTable(equipmentList);
                 } 
             }
@@ -12209,8 +12437,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                     .collect(Collectors.toCollection(ArrayList::new));
                 
                 if(!searchPersonnelValue.getText().isBlank()){
+                    personnelList = searchedPersonnel;
                     populatePersonnelTable(searchedPersonnel);
                 } else {
+                    personnelList = new PersonnelDBController().getList();
                     populatePersonnelTable(personnelList);
                 } 
             }

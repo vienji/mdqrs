@@ -368,6 +368,37 @@ public class ProgramDBController {
         } 
     }
     
+    public void delete(Program program){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            ArrayList<Project> projectCollection = getProjectList(program.getId());
+            
+            for(int i = 0; i < projectCollection.size(); i++){
+                Project project = projectCollection.get(i);
+                deleteProject(project.getId());
+            }
+            
+            query = "DELETE FROM program WHERE prid = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, program.getId());
+            
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
     public boolean contains(ArrayList<Project> projectList, Project project){
         for(Project projectData : projectList){
             if(project.getId() == projectData.getId()){

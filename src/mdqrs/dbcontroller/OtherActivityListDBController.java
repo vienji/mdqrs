@@ -352,4 +352,36 @@ public class OtherActivityListDBController {
             }
         }
     }
+    
+    public void delete(OtherActivity otherActivity){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            connection = Driver.getConnection();
+            
+            CrewPersonnelList operationCrewPersonnelList = getOtherActivityOpsCrewPersonnelList(otherActivity.getId());
+            
+            for(int i = 0; i < operationCrewPersonnelList.toList().size(); i++){
+                CrewPersonnel crewPersonnel = operationCrewPersonnelList.get(i);
+                deleteOperationCrewPersonnel(crewPersonnel.getId());
+            }
+            
+            query = "DELETE FROM other_activity WHERE oalid = ?";
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, otherActivity.getId());
+            
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
 }

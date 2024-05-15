@@ -48,7 +48,7 @@ public class EquipmentDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM equipment";
+            query = "SELECT * FROM equipment WHERE is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -120,6 +120,27 @@ public class EquipmentDBController {
             connection = Driver.getConnection();
             statement = connection.createStatement();
             query = "UPDATE equipment SET type = '" + newType + "' WHERE equipment_number = '" + equipmentNumber + "'";
+            
+            statement.execute(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
+    public void delete(String equipmentNumber){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE equipment SET is_deleted = 'yes' WHERE equipment_number = '" + equipmentNumber + "'";
             
             statement.execute(query);
         } catch(SQLException e){

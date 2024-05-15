@@ -4,6 +4,8 @@
  */
 package mdqrs.dbcontroller;
 
+import classes.CrewPersonnel;
+import classes.CrewPersonnelList;
 import mdqrs.classes.OtherExpenses;
 import java.util.*;
 import java.sql.*;
@@ -178,6 +180,30 @@ public class OtherExpensesDBController {
         } finally {
             if(connection != null){
                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
+    public void delete(OtherExpenses otherExpenses){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            query = "DELETE FROM other_expenses WHERE oexid = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, otherExpenses.getId());
+            
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
             }
             if(preparedStatement != null){
                 try{preparedStatement.close();}catch(SQLException e){}

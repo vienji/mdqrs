@@ -1654,6 +1654,106 @@ public class ActivityListDBController {
             preparedStatement.executeUpdate();     
         } catch (SQLException e){
             e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
         }
     }   
+    
+    public void delete(RegularActivity regularActivity){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try {
+            //Operation Equipment
+            OpsEquipmentList operationEquipmentList = getRegularActivityOpsEquipmentList(regularActivity.getOpsEquipmentListID());
+            
+            for(int i = 0; i < operationEquipmentList.size(); i++){
+                OpsEquipment opsEquipment = operationEquipmentList.get(i);
+                deleteOperationEquipment(opsEquipment.getId());
+            }
+            
+            //Crew Personnel
+            CrewPersonnelList operationCrewPersonnelList = getRegularActivityOpsCrewPersonnelList(regularActivity.getOpsMaintenanceCrewID());
+            
+            for(int i = 0; i < operationCrewPersonnelList.toList().size(); i++){
+                CrewPersonnel crewPersonnel = operationCrewPersonnelList.get(i);
+                deleteOperationCrewPersonnel(crewPersonnel.getId());
+            }
+            
+            //Crew Materials
+            CrewMaterialsList operationCrewMaterialsList = getRegularActivityOpsCrewMaterialsList(regularActivity.getOpsMaintenanceCrewID());
+            
+            for(int i = 0; i < operationCrewMaterialsList.toList().size(); i++){
+                CrewMaterials crewMaterials = operationCrewMaterialsList.get(i);
+                deleteOperationCrewMaterials(crewMaterials.getId());
+            }
+            
+            //Crew Equipment
+            CrewEquipmentList operationCrewEquipmentList = getRegularActivityOpsCrewEquipmentList(regularActivity.getOpsMaintenanceCrewID());
+            
+            for(int i = 0; i < operationCrewEquipmentList.toList().size(); i++){
+                CrewEquipment crewEquipment = operationCrewEquipmentList.get(i);
+                deleteOperationCrewEquipment(crewEquipment.getId());
+            }
+            
+            String[] opsMaintenanceCrewIDs = getOpsMaintenanceCrewID(regularActivity.getOpsMaintenanceCrewID());
+            
+            if(opsMaintenanceCrewIDs[0] != null){
+                query = "DELETE FROM crew_personnel_list WHERE cplid = ?";
+                connection = Driver.getConnection();
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1, opsMaintenanceCrewIDs[0]);
+                preparedStatement.executeUpdate();
+            }
+            
+            if(opsMaintenanceCrewIDs[1] != null){
+                query = "DELETE FROM crew_materials_list WHERE cmlid = ?";
+                connection = Driver.getConnection();
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1, opsMaintenanceCrewIDs[1]);
+                preparedStatement.executeUpdate();
+            }
+            
+            if(opsMaintenanceCrewIDs[2] != null){
+                query = "DELETE FROM crew_equipment_list WHERE celid = ?";
+                connection = Driver.getConnection();
+                preparedStatement = connection.prepareStatement(query);
+
+                preparedStatement.setString(1, opsMaintenanceCrewIDs[2]);
+                preparedStatement.executeUpdate();
+            }
+            
+            query = "DELETE FROM ops_maintenance_crew WHERE omid = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, regularActivity.getOpsMaintenanceCrewID());
+            preparedStatement.executeUpdate();
+            
+            query = "DELETE FROM regular_activity WHERE ralid = ?";
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, regularActivity.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
 }

@@ -48,7 +48,7 @@ public class WorkCategoryDBController {
         ResultSet result = null;
         
         try{
-            query = "SELECT * FROM work_category";
+            query = "SELECT * FROM work_category WHERE is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
@@ -132,6 +132,27 @@ public class WorkCategoryDBController {
         }
     }
     
+    public void delete(int categoryNumber){
+        Connection connection = null;
+        Statement statement = null;
+        try{
+            connection = Driver.getConnection();
+            statement = connection.createStatement();
+            query = "UPDATE work_category SET is_deleted = 'yes' WHERE category_number = " + categoryNumber;
+            
+            statement.execute(query);
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(statement != null){
+                try{statement.close();}catch(SQLException e){}
+            }
+        }
+    }
+    
     public boolean isPresent(int categoryNumber){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -139,7 +160,7 @@ public class WorkCategoryDBController {
         boolean present = false;
         
         try{
-            query = "SELECT * FROM work_category WHERE category_number = " + categoryNumber;
+            query = "SELECT * FROM work_category WHERE category_number = " + categoryNumber + " AND is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
