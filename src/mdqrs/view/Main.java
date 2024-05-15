@@ -192,7 +192,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         activityListPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         searchActivity = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        activitySearchValue = new javax.swing.JTextField();
         sortActivity = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -1186,6 +1186,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 153, 153));
         jLabel1.setText("Activity");
+
+        searchActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                searchActivityMouseClicked(evt);
+            }
+        });
 
         sortActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "id", "activity", "date", "implementation mode" }));
         sortActivity.addActionListener(new java.awt.event.ActionListener() {
@@ -6610,7 +6616,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addGroup(activityListPanelLayout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(activitySearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(494, 494, 494)
@@ -6631,7 +6637,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(sortActivity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
                     .addGroup(activityListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(activitySearchValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
                 .addGap(18, 18, 18)
                 .addComponent(activityTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -10203,6 +10209,87 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_searchWorkCategoryMouseClicked
 
+    private void searchActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchActivityMouseClicked
+        int selectedTab = activityTabbedPane.getSelectedIndex();
+        
+        switch(selectedTab){
+            case 0:
+                ArrayList<RegularActivity> searchedRegularActivity = regularActivityList
+                                                                                    .stream()
+                                                                                    .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                            || regularActivity.getActivity().getItemNumber().equals(activitySearchValue.getText())
+                                                                                            || regularActivity.getActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || regularActivity.getLocation().getLocation().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || regularActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                    .collect(Collectors.toCollection(ArrayList::new));
+                if(!activitySearchValue.getText().isBlank()){
+                    populateMainRegularActivity(searchedRegularActivity);
+                } else {
+                    populateMainRegularActivity(regularActivityList);
+                }
+                break;
+            
+            case 1:
+                ArrayList<OtherActivity> searchedOtherActivity = otherActivityList
+                                                                                .stream()
+                                                                                .filter(otherActivity -> otherActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                        || otherActivity.getSubActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                        || otherActivity.getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                        || otherActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                        || otherActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                if(!activitySearchValue.getText().isBlank()){
+                    populateMainOtherActivity(searchedOtherActivity);
+                } else {
+                    populateMainOtherActivity(otherActivityList);
+                }
+                break;
+                
+            case 2:
+                ArrayList<OtherExpenses> searchedOtherExpenses = otherExpensesList
+                                                                                .stream()
+                                                                                .filter(otherExpenses -> otherExpenses.getId().equals(activitySearchValue.getText()) 
+                                                                                        || otherExpenses.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                        || otherExpenses.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                if(!activitySearchValue.getText().isBlank()){
+                    populateMainOtherExpenses(searchedOtherExpenses);
+                } else {
+                    populateMainOtherExpenses(otherExpensesList);
+                }
+                break;
+            
+            case 3:
+                ArrayList<DriversForEngineers> searchedDFE = driversForEngineersList
+                                                                                .stream()
+                                                                                .filter(dfe -> dfe.getId().equals(activitySearchValue.getText()) 
+                                                                                        || dfe.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                        || dfe.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                .collect(Collectors.toCollection(ArrayList::new));
+                if(!activitySearchValue.getText().isBlank()){
+                    populateDriversForEngineersTable(searchedDFE);
+                } else {
+                    populateDriversForEngineersTable(driversForEngineersList);
+                }
+                break;
+            
+            case 4:
+                ArrayList<Program> searchedProgram = programList
+                                                            .stream()
+                                                            .filter(program -> program.getId().equals(activitySearchValue.getText()) 
+                                                                    || program.getSourceOfFund().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                    || program.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                            .collect(Collectors.toCollection(ArrayList::new));
+                if(!activitySearchValue.getText().isBlank()){
+                    populateMainProgram(searchedProgram);
+                } else {
+                    populateMainProgram(programList);
+                }
+                break;
+        }
+    }//GEN-LAST:event_searchActivityMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -10253,15 +10340,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
         tableMainPrograms.setModel(new DefaultTableModel(null, new String[]{"ID", "Source of Fund", "Total Project Cost", "Date"}));
         DefaultTableModel programsTableModel = (DefaultTableModel) tableMainPrograms.getModel();
         
-        Iterator i = (Iterator) programCollection.iterator();
-        
-        while(i.hasNext()){
-            Program program = (Program) i.next();
-            
-            String[] programData = {program.getId(), program.getSourceOfFund(), 
-                "₱ " + setDecimalFormat(program.getTotalProjectCost()), program.getDate()};
-            
+        if(programCollection.isEmpty()){
+            String[] programData = {"No Data", "No Data", "No Data", "No Data"};
             programsTableModel.addRow(programData);
+        } else {
+        
+            Iterator i = (Iterator) programCollection.iterator();
+
+            while(i.hasNext()){
+                Program program = (Program) i.next();
+
+                String[] programData = {program.getId(), program.getSourceOfFund(), 
+                    "₱ " + setDecimalFormat(program.getTotalProjectCost()), program.getDate()};
+
+                programsTableModel.addRow(programData);
+            }
         }
     }
     
@@ -10275,18 +10368,22 @@ public class Main extends javax.swing.JFrame implements MainListener {
             "Implementation Mode"}));
         DefaultTableModel otherExpensesTableModel = (DefaultTableModel) tableMainOtherExpenses.getModel();
 
-        Iterator i = (Iterator) otherExpensesCollection.iterator();
-
-        while (i.hasNext()) {
-            OtherExpenses otherExpenses = (OtherExpenses) i.next();
-
-            String[] otherExpensesData = {otherExpenses.getId(), otherExpenses.DESCRIPTION, "₱ " + setDecimalFormat(otherExpenses.getLaborCrewCost()),
-                "₱ " + setDecimalFormat(otherExpenses.getLaborEquipmentCost()), String.valueOf(otherExpenses.getNumberOfCD()), otherExpenses.getDate(),
-                otherExpenses.getImplementationMode()};
-
+        if(otherExpensesCollection.isEmpty()){
+            String[] otherExpensesData = {"No Data", "No Data", "No Data", "No Data", "No Data", "No Data", "No Data"};
             otherExpensesTableModel.addRow(otherExpensesData);
-        }
+        } else {
+            Iterator i = (Iterator) otherExpensesCollection.iterator();
 
+            while (i.hasNext()) {
+                OtherExpenses otherExpenses = (OtherExpenses) i.next();
+
+                String[] otherExpensesData = {otherExpenses.getId(), otherExpenses.DESCRIPTION, "₱ " + setDecimalFormat(otherExpenses.getLaborCrewCost()),
+                    "₱ " + setDecimalFormat(otherExpenses.getLaborEquipmentCost()), String.valueOf(otherExpenses.getNumberOfCD()), otherExpenses.getDate(),
+                    otherExpenses.getImplementationMode()};
+
+                otherExpensesTableModel.addRow(otherExpensesData);
+            }
+        }
     }
 
     private void populateWorkCategoryTable(ArrayList<WorkCategory> workCategoryCollection) {
@@ -10531,19 +10628,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
         tableMainRegularActivity.getColumnModel().getColumn(5).setPreferredWidth(20);
         tableMainRegularActivity.getColumnModel().getColumn(5).setPreferredWidth(50);
 
-        Iterator i = (Iterator) regularActivityCollection.iterator();
-
-        while (i.hasNext()) {
-            RegularActivity regularActivity = (RegularActivity) i.next();
-
-            String roadSection = regularActivity.isIsOtherRoadSection() ? regularActivity.getOtherRoadSection() : regularActivity.getRoadSection().getName();
-
-            String[] regularActivityData = {regularActivity.getId(), regularActivity.getActivity().getItemNumber() + " - " + regularActivity.getActivity().getDescription(),
-                roadSection, regularActivity.getLocation().getLocation(),
-                String.valueOf(regularActivity.getNumberOfCD()),
-                regularActivity.getDate(), regularActivity.getImplementationMode()};
-
+        if(regularActivityCollection.isEmpty()){
+            String[] regularActivityData = {"No Data", "No Data", "No Data", "No Data", "No Data", "No Data", "No Data"};
             regularActivityTableModel.addRow(regularActivityData);
+        } else {
+            Iterator i = (Iterator) regularActivityCollection.iterator();
+
+            while (i.hasNext()) {
+                RegularActivity regularActivity = (RegularActivity) i.next();
+
+                String roadSection = regularActivity.isIsOtherRoadSection() ? regularActivity.getOtherRoadSection() : regularActivity.getRoadSection().getName();
+
+                String[] regularActivityData = {regularActivity.getId(), regularActivity.getActivity().getItemNumber() + " - " + regularActivity.getActivity().getDescription(),
+                    roadSection, regularActivity.getLocation().getLocation(),
+                    String.valueOf(regularActivity.getNumberOfCD()),
+                    regularActivity.getDate(), regularActivity.getImplementationMode()};
+
+                regularActivityTableModel.addRow(regularActivityData);
+            }
         }
     }
 
@@ -10556,15 +10658,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
             "Implementation Mode"}));
         DefaultTableModel otherActivityTableModel = (DefaultTableModel) tableMainOtherActivity.getModel();
 
-        Iterator i = (Iterator) otherActivityCollection.iterator();
-
-        while (i.hasNext()) {
-            OtherActivity otherActivity = (OtherActivity) i.next();
-
-            String[] otherActivityData = {otherActivity.getId(), otherActivity.getSubActivity().getDescription(), otherActivity.getDescription(),
-                String.valueOf(otherActivity.getNumberOfCD()), otherActivity.getDate(), otherActivity.getImplementationMode()};
-
+        if(otherActivityCollection.isEmpty()){
+            String[] otherActivityData = {"No Data", "No Data", "No Data", "No Data", "No Data", "No Data"};
             otherActivityTableModel.addRow(otherActivityData);
+        } else {
+            Iterator i = (Iterator) otherActivityCollection.iterator();
+
+            while (i.hasNext()) {
+                OtherActivity otherActivity = (OtherActivity) i.next();
+
+                String[] otherActivityData = {otherActivity.getId(), otherActivity.getSubActivity().getDescription(), otherActivity.getDescription(),
+                    String.valueOf(otherActivity.getNumberOfCD()), otherActivity.getDate(), otherActivity.getImplementationMode()};
+
+                otherActivityTableModel.addRow(otherActivityData);
+            }
         }
     }
 
@@ -10572,16 +10679,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
         tableMainDriversForEngineers.setModel(new DefaultTableModel(null, new String[]{"ID", "Date", "Labor Equipment", "Equipment Fuel", "Lubricant", "No. of CD", "Implementation Mode"}));
         DefaultTableModel driversForEngineersTableModel = (DefaultTableModel) tableMainDriversForEngineers.getModel();
         
-        Iterator i = (Iterator) driversForEngineersCollection.iterator();
-        
-        while(i.hasNext()){
-            DriversForEngineers driversForEngineers = (DriversForEngineers) i.next();
-            
-            String[] driversForEngineersData = {driversForEngineers.getId(), driversForEngineers.getDate(), "₱ " + setDecimalFormat(driversForEngineers.getLaborEquipmentCost()),
-                                                "₱ " + setDecimalFormat(driversForEngineers.getEquipmentFuelCost()), "₱ " + setDecimalFormat(driversForEngineers.getLubricantCost()),
-                                                String.valueOf(driversForEngineers.getNumberOfCD()), driversForEngineers.getImplementationMode()};
+        if(driversForEngineersCollection.isEmpty()){
+            String[] driversForEngineersData = {"No Data", "No Data", "No Data", "No Data", "No Data", "No Data", "No Data"};
             driversForEngineersTableModel.addRow(driversForEngineersData);
-            
+        } else {       
+            Iterator i = (Iterator) driversForEngineersCollection.iterator();
+
+            while(i.hasNext()){
+                DriversForEngineers driversForEngineers = (DriversForEngineers) i.next();
+
+                String[] driversForEngineersData = {driversForEngineers.getId(), driversForEngineers.getDate(), "₱ " + setDecimalFormat(driversForEngineers.getLaborEquipmentCost()),
+                                                    "₱ " + setDecimalFormat(driversForEngineers.getEquipmentFuelCost()), "₱ " + setDecimalFormat(driversForEngineers.getLubricantCost()),
+                                                    String.valueOf(driversForEngineers.getNumberOfCD()), driversForEngineers.getImplementationMode()};
+                driversForEngineersTableModel.addRow(driversForEngineersData);
+            }
         }
     }
     
@@ -11866,6 +11977,107 @@ public class Main extends javax.swing.JFrame implements MainListener {
         personnelSearchFieldListener();
         equipmentSearchFieldListener();
         workCategorySearchFieldListener();
+        activitySearchFieldListener();
+    }
+    
+    private void activitySearchFieldListener(){
+        activitySearchValue.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                updateActivity();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                updateActivity();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                updateActivity();
+            }
+        
+            private void updateActivity(){
+                int selectedTab = activityTabbedPane.getSelectedIndex();
+        
+                switch(selectedTab){
+                    case 0:
+                        ArrayList<RegularActivity> searchedRegularActivity = regularActivityList
+                                                                                            .stream()
+                                                                                            .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                                    || regularActivity.getActivity().getItemNumber().equals(activitySearchValue.getText())
+                                                                                                    || regularActivity.getActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                    || regularActivity.getLocation().getLocation().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                    || regularActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                    || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                            .collect(Collectors.toCollection(ArrayList::new));
+                        if(!activitySearchValue.getText().isBlank()){
+                            populateMainRegularActivity(searchedRegularActivity);
+                        } else {
+                            populateMainRegularActivity(regularActivityList);
+                        }
+                        break;
+
+                    case 1:
+                        ArrayList<OtherActivity> searchedOtherActivity = otherActivityList
+                                                                                        .stream()
+                                                                                        .filter(otherActivity -> otherActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                                || otherActivity.getSubActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || otherActivity.getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || otherActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || otherActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                        if(!activitySearchValue.getText().isBlank()){
+                            populateMainOtherActivity(searchedOtherActivity);
+                        } else {
+                            populateMainOtherActivity(otherActivityList);
+                        }
+                        break;
+
+                    case 2:
+                        ArrayList<OtherExpenses> searchedOtherExpenses = otherExpensesList
+                                                                                        .stream()
+                                                                                        .filter(otherExpenses -> otherExpenses.getId().equals(activitySearchValue.getText()) 
+                                                                                                || otherExpenses.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || otherExpenses.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                        if(!activitySearchValue.getText().isBlank()){
+                            populateMainOtherExpenses(searchedOtherExpenses);
+                        } else {
+                            populateMainOtherExpenses(otherExpensesList);
+                        }
+                        break;
+
+                    case 3:
+                        ArrayList<DriversForEngineers> searchedDFE = driversForEngineersList
+                                                                                        .stream()
+                                                                                        .filter(dfe -> dfe.getId().equals(activitySearchValue.getText()) 
+                                                                                                || dfe.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || dfe.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                        if(!activitySearchValue.getText().isBlank()){
+                            populateDriversForEngineersTable(searchedDFE);
+                        } else {
+                            populateDriversForEngineersTable(driversForEngineersList);
+                        }
+                        break;
+
+                    case 4:
+                        ArrayList<Program> searchedProgram = programList
+                                                                    .stream()
+                                                                    .filter(program -> program.getId().equals(activitySearchValue.getText()) 
+                                                                            || program.getSourceOfFund().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                            || program.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                    .collect(Collectors.toCollection(ArrayList::new));
+                        if(!activitySearchValue.getText().isBlank()){
+                            populateMainProgram(searchedProgram);
+                        } else {
+                            populateMainProgram(programList);
+                        }
+                        break;
+                }
+            }
+        });
     }
     
     private void workCategorySearchFieldListener(){
@@ -12042,6 +12254,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel activityListPanel;
+    private javax.swing.JTextField activitySearchValue;
     private javax.swing.JPanel activityTab;
     private javax.swing.JTabbedPane activityTabbedPane;
     private javax.swing.JPanel addCrewEquipment;
@@ -12492,7 +12705,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel laborCrewCost;
     private javax.swing.JLabel laborEquipmentCost;
     private javax.swing.JLabel lubricantCost;
