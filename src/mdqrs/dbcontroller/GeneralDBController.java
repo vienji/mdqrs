@@ -159,6 +159,69 @@ public class GeneralDBController {
         return list;
     }
     
+    public ArrayList<RegularActivity> getSpecifiedMonthlyRegularActivityList(String month, String activityID, int year){
+        ArrayList<RegularActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT * FROM regular_activity WHERE activity_number = ? AND month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, activityID);
+            preparedStatement.setString(2, month);
+            preparedStatement.setInt(3, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                RegularActivity regularActivity = new RegularActivity();
+                
+                boolean isOtherRoadSection = Boolean.valueOf(result.getString(5));
+                
+                regularActivity.setId(result.getString(2));
+                regularActivity.setActivity(new ActivityDBController().getActivity(result.getString(3)));
+                
+                if(isOtherRoadSection){
+                    regularActivity.setOtherRoadSection(result.getString(4));
+                } else {
+                    regularActivity.setRoadSection(new RoadSectionDBController().getRoadSection(result.getString(4)));
+                }
+                
+                regularActivity.setIsOtherRoadSection(isOtherRoadSection);
+                regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
+                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setMonth(result.getString(8));
+                regularActivity.setYear(result.getInt(9));
+                regularActivity.setOpsEquipmentListID(result.getString(10));
+                regularActivity.setOpsMaintenanceCrewID(result.getString(11));
+                regularActivity.setImplementationMode(result.getString(12));
+                
+                SubActivity subActivity = result.getInt(13) != 0 ? 
+                        new SubActivityDBController().getSubActivity(result.getInt(13)) : new SubActivity();
+                regularActivity.setSubActivity(subActivity);
+                
+                list.add(regularActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+    }
+    
      public ArrayList<RegularActivity> getMonthlyRegularActivityList(String month){
         ArrayList<RegularActivity> list = new ArrayList();
         Connection connection = null;
@@ -171,6 +234,47 @@ public class GeneralDBController {
             preparedStatement = connection.prepareStatement(query);
         
             preparedStatement.setString(1, month);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                RegularActivity regularActivity = new RegularActivity();
+                
+                regularActivity.setOpsEquipmentListID(result.getString(10));
+                regularActivity.setOpsMaintenanceCrewID(result.getString(11));
+                
+                list.add(regularActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+    }
+     
+     public ArrayList<RegularActivity> getMonthlyRegularActivityList(String month, int year){
+        ArrayList<RegularActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT * FROM regular_activity WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
             
             result = preparedStatement.executeQuery();
             while(result.next()){
@@ -245,6 +349,53 @@ public class GeneralDBController {
         return list;
     }
      
+     public ArrayList<OtherActivity> getSpecifiedMonthlyOtherActivityList(String month, int id, int year){
+        ArrayList<OtherActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT * FROM other_activity WHERE month = ? AND sub_activity_id = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, id);
+            preparedStatement.setInt(3, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                OtherActivity otherActivity = new OtherActivity();
+                
+                otherActivity.setId(result.getString(2));
+                otherActivity.setDescription(result.getString(3));
+                otherActivity.setSubActivity(new SubActivityDBController().getSubActivity(result.getInt(4)));
+                otherActivity.setMonth(result.getString(5));
+                otherActivity.setYear(result.getInt(6));
+                otherActivity.setImplementationMode(result.getString(7));
+                otherActivity.setNumberOfCD(result.getInt(8));
+                
+                list.add(otherActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+    }
+     
      public ArrayList<OtherActivity> getMonthlyOtherActivityList(String month){
         ArrayList<OtherActivity> list = new ArrayList();
         Connection connection = null;
@@ -257,6 +408,46 @@ public class GeneralDBController {
             preparedStatement = connection.prepareStatement(query);
         
             preparedStatement.setString(1, month);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                OtherActivity otherActivity = new OtherActivity();
+                
+                otherActivity.setId(result.getString(1));
+                
+                list.add(otherActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+    }
+     
+     public ArrayList<OtherActivity> getMonthlyOtherActivityList(String month, int year){
+        ArrayList<OtherActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT oalid FROM other_activity WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
             
             result = preparedStatement.executeQuery();
             while(result.next()){
@@ -327,6 +518,50 @@ public class GeneralDBController {
         return list;
      }
      
+     public ArrayList<OtherExpenses> getMonthlyOtherExpensesList(String month, int year){
+        ArrayList<OtherExpenses> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT oexid, labor_crew_cost, labor_equipment_cost, light_equipments, heavy_equipments FROM other_expenses WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                OtherExpenses otherExpenses = new OtherExpenses();
+                
+                otherExpenses.setId(result.getString(1));
+                otherExpenses.setLaborCrewCost(result.getDouble(2));
+                otherExpenses.setLaborEquipmentCost(result.getDouble(3));
+                otherExpenses.setLightEquipments(result.getDouble(4));
+                otherExpenses.setHeavyEquipments(result.getDouble(5));
+                
+                list.add(otherExpenses);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+     }
+     
      public ArrayList<DriversForEngineers> getMonthlyDriversForEngineersList(String month){
         ArrayList<DriversForEngineers> list = new ArrayList();
         Connection connection = null;
@@ -339,6 +574,49 @@ public class GeneralDBController {
             preparedStatement = connection.prepareStatement(query);
         
             preparedStatement.setString(1, month);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                DriversForEngineers driversForEngineers = new DriversForEngineers();
+                
+                driversForEngineers.setId(result.getString(1));
+                driversForEngineers.setLaborEquipmentCost(result.getDouble(2));
+                driversForEngineers.setEquipmentFuelCost(result.getDouble(3));
+                driversForEngineers.setLubricantCost(result.getDouble(4));
+                
+                list.add(driversForEngineers);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+     }
+     
+     public ArrayList<DriversForEngineers> getMonthlyDriversForEngineersList(String month, int year){
+        ArrayList<DriversForEngineers> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT deid, labor_equipment_cost, equipment_fuel_cost, lubricant_cost FROM drivers_for_engineers WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
             
             result = preparedStatement.executeQuery();
             while(result.next()){

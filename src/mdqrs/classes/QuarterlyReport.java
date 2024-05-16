@@ -105,10 +105,10 @@ public class QuarterlyReport implements Report {
         
         //Column Width
         sheet.setColumnWidth(0, 2000);
-        sheet.setColumnWidth(1, 5200);
+        sheet.setColumnWidth(1, 5000);
         sheet.setColumnWidth(2, 4800);
         sheet.setColumnWidth(3, 4800);
-        sheet.setColumnWidth(4, 1000);
+        sheet.setColumnWidth(4, 1400);
         sheet.setColumnWidth(5, 2500);
         sheet.setColumnWidth(6, 3400);
         sheet.setColumnWidth(7, 1800);
@@ -186,17 +186,17 @@ public class QuarterlyReport implements Report {
                     String[] firstQuarterMonths = {"January", "February", "March"};
                     
                     for(int i = 0; i < 3; i++){
-                        raList = gdbc.getMonthlyRegularActivityList(firstQuarterMonths[i]);
-                        oaList = gdbc.getMonthlyOtherActivityList(firstQuarterMonths[i]);
-                        dfeList = gdbc.getMonthlyDriversForEngineersList(firstQuarterMonths[i]);
-                        oeList = gdbc.getMonthlyOtherExpensesList(firstQuarterMonths[i]);
+                        raList = gdbc.getMonthlyRegularActivityList(firstQuarterMonths[i], year);
+                        oaList = gdbc.getMonthlyOtherActivityList(firstQuarterMonths[i], year);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(firstQuarterMonths[i], year);
+                        oeList = gdbc.getMonthlyOtherExpensesList(firstQuarterMonths[i], year);
 
                         laborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
                         laborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
                         equipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
                         lubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
-                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(firstQuarterMonths[i]);
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(firstQuarterMonths[i], year);
                         
                         Double totalPE = 0.00;
                         
@@ -221,17 +221,17 @@ public class QuarterlyReport implements Report {
                     String[] secondQuarterMonths = {"April", "May", "June"};
 
                     for(int i = 0; i < 3; i++){
-                        raList = gdbc.getMonthlyRegularActivityList(secondQuarterMonths[i]);
-                        oaList = gdbc.getMonthlyOtherActivityList(secondQuarterMonths[i]);
-                        dfeList = gdbc.getMonthlyDriversForEngineersList(secondQuarterMonths[i]);
-                        oeList = gdbc.getMonthlyOtherExpensesList(secondQuarterMonths[i]);
+                        raList = gdbc.getMonthlyRegularActivityList(secondQuarterMonths[i], year);
+                        oaList = gdbc.getMonthlyOtherActivityList(secondQuarterMonths[i], year);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(secondQuarterMonths[i],year);
+                        oeList = gdbc.getMonthlyOtherExpensesList(secondQuarterMonths[i],year);
 
                         secondlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
                         secondlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
                         secondequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
                         secondlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
-                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(secondQuarterMonths[i]);
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(secondQuarterMonths[i], year);
                         
                         Double totalPE = 0.00;
                         
@@ -256,17 +256,17 @@ public class QuarterlyReport implements Report {
                     String[] thirdQuarterMonths = {"July", "August", "Septempber"};
                     
                     for(int i = 0; i < 3; i++){
-                        raList = gdbc.getMonthlyRegularActivityList(thirdQuarterMonths[i]);
-                        oaList = gdbc.getMonthlyOtherActivityList(thirdQuarterMonths[i]);
-                        dfeList = gdbc.getMonthlyDriversForEngineersList(thirdQuarterMonths[i]);
-                        oeList = gdbc.getMonthlyOtherExpensesList(thirdQuarterMonths[i]);
+                        raList = gdbc.getMonthlyRegularActivityList(thirdQuarterMonths[i], year);
+                        oaList = gdbc.getMonthlyOtherActivityList(thirdQuarterMonths[i], year);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(thirdQuarterMonths[i], year);
+                        oeList = gdbc.getMonthlyOtherExpensesList(thirdQuarterMonths[i], year);
 
                         thirdlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
                         thirdlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
                         thirdequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
                         thirdlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
-                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(thirdQuarterMonths[i]);
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(thirdQuarterMonths[i], year);
                         
                         Double totalPE = 0.00;
                         
@@ -291,17 +291,17 @@ public class QuarterlyReport implements Report {
                     String[] fourthQuarterMonths = {"July", "August", "Septempber"};
 
                     for(int i = 0; i < 3; i++){
-                        raList = gdbc.getMonthlyRegularActivityList(fourthQuarterMonths[i]);
-                        oaList = gdbc.getMonthlyOtherActivityList(fourthQuarterMonths[i]);
-                        dfeList = gdbc.getMonthlyDriversForEngineersList(fourthQuarterMonths[i]);
-                        oeList = gdbc.getMonthlyOtherExpensesList(fourthQuarterMonths[i]);
+                        raList = gdbc.getMonthlyRegularActivityList(fourthQuarterMonths[i], year);
+                        oaList = gdbc.getMonthlyOtherActivityList(fourthQuarterMonths[i], year);
+                        dfeList = gdbc.getMonthlyDriversForEngineersList(fourthQuarterMonths[i], year);
+                        oeList = gdbc.getMonthlyOtherExpensesList(fourthQuarterMonths[i], year);
 
                         fourthlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
                         fourthlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
                         fourthequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
                         fourthlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
-                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(fourthQuarterMonths[i]);
+                        OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(fourthQuarterMonths[i], year);
                         
                         Double totalPE = 0.00;
                         

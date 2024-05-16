@@ -196,19 +196,20 @@ public class SubActivityDBController {
         }  
     }
     
-    public boolean hasWorkActivities(int itemNumber, String month){
+    public boolean hasWorkActivities(int itemNumber, String month, int year){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         boolean present = false;
         
         try{
-            query = "SELECT oalid FROM other_activity WHERE sub_activity_id = ? AND month = ?";
+            query = "SELECT oalid FROM other_activity WHERE sub_activity_id = ? AND month = ? AND year = ?";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setInt(1, itemNumber);
             preparedStatement.setString(2, month);
+            preparedStatement.setInt(3, year);
             
             result = preparedStatement.executeQuery();
             present = result.next();

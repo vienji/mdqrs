@@ -47,6 +47,8 @@ import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
@@ -9870,8 +9872,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                 .setFilePath(file.getAbsolutePath() + "\\", fileName)
                                                 .build();
 
-                    report.generateReport();
-                    JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
+                    
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            report.generateReport();
+                            return null;
+                        }
+
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
+                    
+                    worker.execute();
                 }
             }  
         } else {
@@ -10539,13 +10557,28 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
                 QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
                 QuarterlyReport quarterlyReport = quarterlyBuilder
-                                                                .setTimeFrameDetail("", 2024)
+                                                                .setTimeFrameDetail("", Integer.parseInt(String.valueOf(quarterlyYear.getSelectedItem())))
                                                                 .setFilePath(file.getAbsolutePath() + "\\", fileName)
                                                                 .build();
 
-                quarterlyReport.generateReport();
+                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                exportLoadScreen.setVisible(true);
 
-                JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        quarterlyReport.generateReport();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done(){
+                        exportLoadScreen.dispose();
+                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                    }
+                };
+                    
+                worker.execute();
             }
         }
     }//GEN-LAST:event_exportQuarterlyReportMouseClicked

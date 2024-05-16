@@ -146,6 +146,52 @@ public class OtherExpensesDBController {
         return otherExpenses;
     }
     
+    public OtherExpenses getOtherExpenses(String month, int year){
+        OtherExpenses otherExpenses = new OtherExpenses();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM other_expenses WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                
+                otherExpenses.setId(result.getString(2));
+                otherExpenses.setLaborCrewCost(result.getDouble(3));
+                otherExpenses.setLaborEquipmentCost(result.getDouble(4));
+                otherExpenses.setLightEquipments(result.getDouble(5));
+                otherExpenses.setHeavyEquipments(result.getDouble(6));
+                otherExpenses.setNumberOfCD(result.getInt(7));
+                otherExpenses.setImplementationMode(result.getString(8));
+                otherExpenses.setMonth(result.getString(9));
+                otherExpenses.setYear(result.getInt(10));
+                
+            }
+           
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+               try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return otherExpenses;
+    }
+    
     public void edit(OtherExpenses otherExpenses){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
