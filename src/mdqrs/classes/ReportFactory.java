@@ -12,4 +12,8 @@ public class ReportFactory {
     public MonthlyReportBuilder createMonthlyReportBuilder(){
         return new MonthlyReportBuilderImplementation();
     }
+    
+    public QuarterlyReportBuilder createQuarterlyReportBuilder(){
+        return new QuarterlyReportBuilderImplementation();
+    }
 }

@@ -60,6 +60,8 @@ import mdqrs.classes.Program;
 import mdqrs.classes.Project;
 import mdqrs.classes.ReportFactory;
 import mdqrs.classes.DataValidation;
+import mdqrs.classes.QuarterlyReport;
+import mdqrs.classes.QuarterlyReportBuilder;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
@@ -772,21 +774,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel220 = new javax.swing.JLabel();
         jLabel223 = new javax.swing.JLabel();
         jLabel224 = new javax.swing.JLabel();
-        jLabel225 = new javax.swing.JLabel();
-        monthlyHeaderTitle1 = new javax.swing.JTextField();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel226 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        quarterlyYear = new javax.swing.JComboBox<>();
         jLabel227 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel228 = new javax.swing.JLabel();
-        jLabel229 = new javax.swing.JLabel();
-        monthlyHeaderTitle2 = new javax.swing.JTextField();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jLabel231 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        exportQuarterlyReport = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         settingsPanel = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -830,6 +821,15 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editReport = new javax.swing.JButton();
         saveReport = new javax.swing.JButton();
         cancelReport = new javax.swing.JButton();
+        jLabel244 = new javax.swing.JLabel();
+        jLabel245 = new javax.swing.JLabel();
+        jLabel246 = new javax.swing.JLabel();
+        totalLengthOfProvincialRoads = new javax.swing.JTextField();
+        jLabel247 = new javax.swing.JLabel();
+        totalLengthOfProvincialRoadsInFairToGood = new javax.swing.JTextField();
+        jLabel248 = new javax.swing.JLabel();
+        totalBudget = new javax.swing.JTextField();
+        saveQuarterlyReportDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Maintenance Division Quarterly Report System");
@@ -7590,33 +7590,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel224.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel224.setText("Quarterly Report");
 
-        jLabel225.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel225.setText("Header Title");
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
-
-        jLabel226.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel226.setText("Quarter");
-
         jLabel227.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel227.setText("Year");
 
-        jButton2.setText("Export Quarterly Report");
-
-        jLabel228.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel228.setText("Annually Report");
-
-        jLabel229.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel229.setText("Header Title");
-
-        jLabel231.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel231.setText("Year");
-
-        jButton3.setText("Export Annual Report");
+        exportQuarterlyReport.setText("Export Quarterly Report");
+        exportQuarterlyReport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportQuarterlyReportMouseClicked(evt);
+            }
+        });
 
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
-
-        jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
 
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
@@ -7627,46 +7611,37 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel224)
-                            .addComponent(jLabel228))
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(quarterlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(exportQuarterlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel227))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel224)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(reportPanelLayout.createSequentialGroup()
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(monthlyHeaderTitle)
                                     .addGroup(reportPanelLayout.createSequentialGroup()
                                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(monthlyHeaderTitle)
-                                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel218)
-                                                    .addComponent(jLabel217)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel225)
-                                                    .addComponent(jLabel229))
-                                                .addGap(0, 555, Short.MAX_VALUE))
-                                            .addComponent(monthlyHeaderTitle1))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(monthlyMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel223)
-                                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel226)))
-                                    .addComponent(monthlyHeaderTitle2))
+                                            .addComponent(jLabel218)
+                                            .addComponent(jLabel217)
+                                            .addComponent(jLabel5))
+                                        .addGap(0, 555, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(monthlyMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel223))
                                 .addGap(18, 18, 18)
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel220)
                                     .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(exportMonthlyReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(monthlyYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                        .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                                    .addComponent(jLabel227)
-                                    .addComponent(jLabel231))))
+                                        .addComponent(exportMonthlyReport, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                        .addComponent(monthlyYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(56, 56, 56))))
         );
         reportPanelLayout.setVerticalGroup(
@@ -7696,39 +7671,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel224)
-                .addGap(34, 34, 34)
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel227)
-                            .addComponent(jLabel226))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel225)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthlyHeaderTitle1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel227)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel228)
-                .addGap(34, 34, 34)
-                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel231)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel229)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(monthlyHeaderTitle2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quarterlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exportQuarterlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(370, Short.MAX_VALUE))
         );
 
         mainPanel.add(reportPanel, "card2");
@@ -7848,6 +7797,31 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         });
 
+        jLabel244.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel244.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel244.setText("Name for Notes");
+
+        jLabel245.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel245.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel245.setText("Quarterly Report Details");
+
+        jLabel246.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel246.setText("Total Length of Provincial Roads (Km)");
+
+        jLabel247.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel247.setText("Total Length of Provincial Roads In Fair-to-Good Condition (Km)");
+
+        jLabel248.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel248.setText("Total Budget (Php)");
+
+        saveQuarterlyReportDetails.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        saveQuarterlyReportDetails.setText("Save");
+        saveQuarterlyReportDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                saveQuarterlyReportDetailsMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -7855,6 +7829,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(totalLengthOfProvincialRoads, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel245)
+                    .addComponent(jLabel244)
                     .addComponent(jLabel232)
                     .addComponent(jLabel230)
                     .addComponent(jLabel55)
@@ -7880,6 +7857,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel246)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel235)
@@ -7902,20 +7880,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                         .addComponent(jLabel242))
                                     .addGap(33, 33, 33)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(preparedBy2Name, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                        .addComponent(preparedBy2Name)
                                         .addComponent(preparedBy2Position)
                                         .addComponent(submittedByPosition)
-                                        .addComponent(submittedByName, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                                        .addComponent(submittedByName)
                                         .addComponent(approvedByPosition)
-                                        .addComponent(approvedByName, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)))))
+                                        .addComponent(approvedByName, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel233)
                                 .addComponent(jLabel234))
                             .addGap(33, 33, 33)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(preparedBy1Name, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-                                .addComponent(preparedBy1Position)))))
+                                .addComponent(preparedBy1Name)
+                                .addComponent(preparedBy1Position, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel247)
+                    .addComponent(totalLengthOfProvincialRoadsInFairToGood, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel248)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(saveQuarterlyReportDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -7954,6 +7938,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel230)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel244)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel232)
                 .addGap(18, 18, 18)
@@ -7999,7 +7985,23 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(editReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jLabel245)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel246)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(totalLengthOfProvincialRoads, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel247)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totalLengthOfProvincialRoadsInFairToGood, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel248)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(saveQuarterlyReportDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         jScrollPane13.setViewportView(jPanel3);
@@ -9856,7 +9858,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void exportMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMonthlyReportActionPerformed
         if(!monthlyHeaderTitle.getText().isBlank()){
             if(evt.getSource() == exportMonthlyReport){
-                ArrayList<String> list = new ArrayList();
                 int returnVal = fileChooser.showSaveDialog(Main.this);
                 if(returnVal == JFileChooser.APPROVE_OPTION){
                     File file = fileChooser.getCurrentDirectory();
@@ -9864,7 +9865,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
                     MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
                     MonthlyReport report = builder
-                                                .setOrganizationHeads(list)
                                                 .setHeaderTitle(monthlyHeaderTitle.getText())
                                                 .setTimeFrameDetail(monthlyMonth.getSelectedItem(), Integer.parseInt(String.valueOf(monthlyYear.getSelectedItem())))
                                                 .setFilePath(file.getAbsolutePath() + "\\", fileName)
@@ -10499,6 +10499,56 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
         }
     }//GEN-LAST:event_deleteSubActivityMouseClicked
+
+    private void saveQuarterlyReportDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveQuarterlyReportDetailsMouseClicked
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
+
+        if (n == 0) {
+            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+                Properties report = new Properties();
+
+                report.setProperty("total_provincial_roads", totalLengthOfProvincialRoads.getText());
+                report.setProperty("total_provincial_roads_in_fair_to_good", totalLengthOfProvincialRoadsInFairToGood.getText());
+                report.setProperty("total_budget", totalBudget.getText());
+                
+                report.store(output, null);
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        } else {
+            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+                Properties report = new Properties();
+                report.load(input);
+                
+                totalLengthOfProvincialRoads.setText(report.getProperty("total_provincial_roads"));
+                totalLengthOfProvincialRoadsInFairToGood.setText(report.getProperty("total_provincial_roads_in_fair_to_good"));
+                totalBudget.setText(report.getProperty("total_budget"));
+                
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        }
+    }//GEN-LAST:event_saveQuarterlyReportDetailsMouseClicked
+
+    private void exportQuarterlyReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportQuarterlyReportMouseClicked
+        if(evt.getSource() == exportQuarterlyReport){
+            int returnVal = fileChooser.showSaveDialog(Main.this);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getCurrentDirectory();
+                File fileName = fileChooser.getSelectedFile();
+
+                QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
+                QuarterlyReport quarterlyReport = quarterlyBuilder
+                                                                .setTimeFrameDetail("", 2024)
+                                                                .setFilePath(file.getAbsolutePath() + "\\", fileName)
+                                                                .build();
+
+                quarterlyReport.generateReport();
+
+                JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+            }
+        }
+    }//GEN-LAST:event_exportQuarterlyReportMouseClicked
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -11651,6 +11701,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         monthlyMonth.setSelectedIndex(new Date().getMonth());
         monthlyYear.setSelectedIndex(new Date().getYear() - 75);
+        
+        getYears().forEach((y) -> {
+            quarterlyYear.addItem(String.valueOf(y));
+        });
+        
+        quarterlyYear.setSelectedIndex(new Date().getYear() - 75);
 
         //Edit
         getYears().forEach((y) -> {
@@ -11869,55 +11925,111 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     public void initNetworkSettings() {
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
-            Properties network = new Properties();
-            network.load(input);
+        File file = new File("src\\mdqrs\\path\\to\\config.properties");
+        
+        if(file.exists()){
+            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
+                Properties network = new Properties();
+                network.load(input);
 
-            Cryptographer cryptographer = new Cryptographer();
+                Cryptographer cryptographer = new Cryptographer();
 
-            String decryptedPassword = "";
+                String decryptedPassword = "";
 
-            try {
-                decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e.getMessage());
-                e.printStackTrace();
+                try {
+                    decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                networkUsername.setText(network.getProperty("username"));
+                networkPassword.setText(decryptedPassword);
+                networkServer.setText(network.getProperty("server"));
+                networkPort.setText(network.getProperty("port"));
+                networkDatabase.setText(network.getProperty("database"));
+            } catch (IOException io) {
+                io.printStackTrace();
             }
 
-            networkUsername.setText(network.getProperty("username"));
-            networkPassword.setText(decryptedPassword);
-            networkServer.setText(network.getProperty("server"));
-            networkPort.setText(network.getProperty("port"));
-            networkDatabase.setText(network.getProperty("database"));
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
+            saveNetwork.setEnabled(false);
+            networkUsername.enableInputMethods(false);
+            networkPassword.enableInputMethods(false);
+            networkServer.enableInputMethods(false);
+            networkPort.enableInputMethods(false);
+            networkDatabase.enableInputMethods(false);
+        } else {
+            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\config.properties")) {
+                Properties network = new Properties();
 
-        saveNetwork.setEnabled(false);
-        networkUsername.enableInputMethods(false);
-        networkPassword.enableInputMethods(false);
-        networkServer.enableInputMethods(false);
-        networkPort.enableInputMethods(false);
-        networkDatabase.enableInputMethods(false);
+                Cryptographer cryptographer = new Cryptographer();
+
+                String encryptedPassword = "";
+
+                try {
+                    encryptedPassword = cryptographer.encrypt("");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                network.setProperty("username", "admin");
+                network.setProperty("password", "admin");
+                network.setProperty("server", "localhost");
+                network.setProperty("port", "3306");
+                network.setProperty("database", "mdqrs");
+
+                network.store(output, null);
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+
+            saveNetwork.setEnabled(false);
+            networkUsername.enableInputMethods(false);
+            networkPassword.enableInputMethods(false);
+            networkServer.enableInputMethods(false);
+            networkPort.enableInputMethods(false);
+            networkDatabase.enableInputMethods(false);
+        }    
     }
     
     public void initReportSettings() {
         saveReport.setEnabled(false);
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
-            Properties report = new Properties();
-            report.load(input);
+        File file1 = new File("src\\mdqrs\\path\\to\\report_config.properties");
+        File file2 = new File("src\\mdqrs\\path\\to\\quarterly_report_config.properties");
+        
+        if(file1.exists()){
+            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+                Properties report = new Properties();
+                report.load(input);
 
-            preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
-            preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
-            preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
-            preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
-            submittedByName.setText(report.getProperty("submitted_by_name"));
-            submittedByPosition.setText(report.getProperty("submitted_by_position"));
-            approvedByName.setText(report.getProperty("approved_by_name"));
-            approvedByPosition.setText(report.getProperty("approved_by_position"));
+                preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
+                preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
+                preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
+                preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
+                submittedByName.setText(report.getProperty("submitted_by_name"));
+                submittedByPosition.setText(report.getProperty("submitted_by_position"));
+                approvedByName.setText(report.getProperty("approved_by_name"));
+                approvedByPosition.setText(report.getProperty("approved_by_position"));
 
-        } catch (IOException io) {
-            io.printStackTrace();
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        }
+        
+        if(file2.exists()){
+            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+                Properties report = new Properties();
+                report.load(input);
+
+                totalLengthOfProvincialRoads.setText(report.getProperty("total_provincial_roads"));
+                totalLengthOfProvincialRoadsInFairToGood.setText(report.getProperty("total_provincial_roads_in_fair_to_good"));
+                totalBudget.setText(report.getProperty("total_budget"));
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
         }
     }
 
@@ -12591,6 +12703,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel equipmentPanel;
     private javax.swing.JTextField equipmentSearchValue;
     private javax.swing.JButton exportMonthlyReport;
+    private javax.swing.JButton exportQuarterlyReport;
     private javax.swing.JLabel iconActivityList;
     private javax.swing.JLabel iconEquipment;
     private javax.swing.JLabel iconPersonnel;
@@ -12605,11 +12718,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JCheckBox isMaintenanceCrewTableSelected;
     private javax.swing.JCheckBox isMaterialsTableSelected;
     private javax.swing.JCheckBox isOperationEquipmentTableSelected;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel100;
@@ -12750,14 +12858,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel222;
     private javax.swing.JLabel jLabel223;
     private javax.swing.JLabel jLabel224;
-    private javax.swing.JLabel jLabel225;
-    private javax.swing.JLabel jLabel226;
     private javax.swing.JLabel jLabel227;
-    private javax.swing.JLabel jLabel228;
-    private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel230;
-    private javax.swing.JLabel jLabel231;
     private javax.swing.JLabel jLabel232;
     private javax.swing.JLabel jLabel233;
     private javax.swing.JLabel jLabel234;
@@ -12771,6 +12874,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel241;
     private javax.swing.JLabel jLabel242;
     private javax.swing.JLabel jLabel243;
+    private javax.swing.JLabel jLabel244;
+    private javax.swing.JLabel jLabel245;
+    private javax.swing.JLabel jLabel246;
+    private javax.swing.JLabel jLabel247;
+    private javax.swing.JLabel jLabel248;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel252;
     private javax.swing.JLabel jLabel253;
@@ -12932,7 +13040,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel laborCrewCost;
@@ -12950,8 +13057,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel mainWorkCategoryPanel3;
     private javax.swing.JLabel menuLogo;
     private javax.swing.JTextField monthlyHeaderTitle;
-    private javax.swing.JTextField monthlyHeaderTitle1;
-    private javax.swing.JTextField monthlyHeaderTitle2;
     private javax.swing.JComboBox<String> monthlyMonth;
     private javax.swing.JComboBox<String> monthlyYear;
     private javax.swing.JPanel navActivityList;
@@ -13033,6 +13138,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel projectsViewDate;
     private javax.swing.JLabel projectsViewProjectTotal;
     private javax.swing.JLabel projectsViewSourceOfFund;
+    private javax.swing.JComboBox<String> quarterlyYear;
     private javax.swing.JComboBox<String> regularActivityEditActivity;
     private javax.swing.JTextField regularActivityEditDaysOfOperation;
     private javax.swing.JTextField regularActivityEditImplementationMode;
@@ -13091,6 +13197,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel saveNewOtherExpenses1;
     private javax.swing.JPanel saveNewOtherExpenses2;
     private javax.swing.JPanel saveNewRegularActivity;
+    private javax.swing.JButton saveQuarterlyReportDetails;
     private javax.swing.JButton saveReport;
     private javax.swing.JLabel searchActivity;
     private javax.swing.JLabel searchEquipment;
@@ -13135,7 +13242,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTable tableWorkCategory;
     private javax.swing.JComboBox<String> timeRange;
     private javax.swing.JComboBox<String> timeframeDetail;
+    private javax.swing.JTextField totalBudget;
     private javax.swing.JPanel totalCostBreakdownPanel;
+    private javax.swing.JTextField totalLengthOfProvincialRoads;
+    private javax.swing.JTextField totalLengthOfProvincialRoadsInFairToGood;
     private javax.swing.JPanel viewOtherActivity;
     private javax.swing.JPanel viewOtherActivityPanel;
     private javax.swing.JPanel viewOtherExpenses;

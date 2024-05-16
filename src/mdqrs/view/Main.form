@@ -12097,55 +12097,46 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel224" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel228" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="quarterlyYear" min="-2" pref="180" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="exportQuarterlyReport" min="-2" pref="180" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel227" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel224" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jSeparator3" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
+                                          <Component id="monthlyHeaderTitle" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="monthlyHeaderTitle" max="32767" attributes="0"/>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Group type="103" groupAlignment="0" attributes="0">
-                                                          <Component id="jLabel218" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel217" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel225" min="-2" max="-2" attributes="0"/>
-                                                          <Component id="jLabel229" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <EmptySpace min="0" pref="555" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="monthlyHeaderTitle1" max="32767" attributes="0"/>
+                                                  <Component id="jLabel218" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel217" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="monthlyMonth" min="-2" pref="180" max="-2" attributes="0"/>
-                                                  <Component id="jLabel223" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jComboBox4" min="-2" pref="180" max="-2" attributes="0"/>
-                                                  <Component id="jLabel226" min="-2" max="-2" attributes="0"/>
-                                              </Group>
+                                              <EmptySpace min="0" pref="555" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="monthlyHeaderTitle2" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="monthlyMonth" min="-2" pref="180" max="-2" attributes="0"/>
+                                          <Component id="jLabel223" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel220" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="exportMonthlyReport" max="32767" attributes="0"/>
+                                              <Component id="exportMonthlyReport" pref="180" max="32767" attributes="0"/>
                                               <Component id="monthlyYear" max="32767" attributes="0"/>
-                                              <Component id="jComboBox5" max="32767" attributes="0"/>
-                                              <Component id="jButton2" pref="180" max="32767" attributes="0"/>
-                                              <Component id="jComboBox7" max="32767" attributes="0"/>
-                                              <Component id="jButton3" pref="180" max="32767" attributes="0"/>
                                           </Group>
-                                          <Component id="jLabel227" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel231" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -12187,47 +12178,14 @@
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel224" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel227" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel226" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBox4" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jComboBox5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel225" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="monthlyHeaderTitle1" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton2" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel227" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel228" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel231" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jComboBox7" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel229" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="monthlyHeaderTitle2" min="-2" pref="30" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="quarterlyYear" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="exportQuarterlyReport" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton3" min="-2" pref="30" max="-2" attributes="0"/>
-                      <EmptySpace pref="98" max="32767" attributes="0"/>
+                      <EmptySpace pref="370" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -12327,48 +12285,7 @@
                 <Property name="text" type="java.lang.String" value="Quarterly Report"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel225">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Header Title"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="monthlyHeaderTitle1">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox4">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="12">
-                    <StringItem index="0" value="January"/>
-                    <StringItem index="1" value="February"/>
-                    <StringItem index="2" value="March"/>
-                    <StringItem index="3" value="April"/>
-                    <StringItem index="4" value="May"/>
-                    <StringItem index="5" value="June"/>
-                    <StringItem index="6" value="July"/>
-                    <StringItem index="7" value="August"/>
-                    <StringItem index="8" value="September"/>
-                    <StringItem index="9" value="October"/>
-                    <StringItem index="10" value="November"/>
-                    <StringItem index="11" value="December"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel226">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Quarter"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox5">
+            <Component class="javax.swing.JComboBox" name="quarterlyYear">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
@@ -12386,60 +12303,15 @@
                 <Property name="text" type="java.lang.String" value="Year"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="exportQuarterlyReport">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Export Quarterly Report"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel228">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="1"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Annually Report"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel229">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Header Title"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="monthlyHeaderTitle2">
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBox7">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="0"/>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel231">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Year"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Export Annual Report"/>
-              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exportQuarterlyReportMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="66" green="66" red="66" type="rgb"/>
-                </Property>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JSeparator" name="jSeparator3">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -12488,6 +12360,9 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="52" pref="52" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="totalLengthOfProvincialRoads" alignment="0" min="-2" pref="582" max="-2" attributes="0"/>
+                                  <Component id="jLabel245" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel244" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel232" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel230" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel55" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -12517,13 +12392,14 @@
                                       </Group>
                                   </Group>
                                   <Component id="jSeparator4" alignment="0" min="-2" pref="1050" max="-2" attributes="0"/>
+                                  <Component id="jLabel246" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Component id="jLabel235" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel238" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel243" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                              <Group type="102" attributes="0">
+                                              <Group type="102" alignment="1" attributes="0">
                                                   <Component id="editReport" min="-2" pref="80" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="saveReport" min="-2" pref="80" max="-2" attributes="0"/>
@@ -12541,27 +12417,34 @@
                                                   </Group>
                                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="preparedBy2Name" pref="500" max="32767" attributes="0"/>
+                                                      <Component id="preparedBy2Name" max="32767" attributes="0"/>
                                                       <Component id="preparedBy2Position" max="32767" attributes="0"/>
                                                       <Component id="submittedByPosition" max="32767" attributes="0"/>
-                                                      <Component id="submittedByName" pref="500" max="32767" attributes="0"/>
+                                                      <Component id="submittedByName" max="32767" attributes="0"/>
                                                       <Component id="approvedByPosition" max="32767" attributes="0"/>
-                                                      <Component id="approvedByName" pref="500" max="32767" attributes="0"/>
+                                                      <Component id="approvedByName" min="-2" pref="500" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
                                       </Group>
-                                      <Group type="102" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="jLabel233" alignment="0" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel234" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="preparedBy1Name" pref="500" max="32767" attributes="0"/>
-                                              <Component id="preparedBy1Position" max="32767" attributes="0"/>
+                                              <Component id="preparedBy1Name" max="32767" attributes="0"/>
+                                              <Component id="preparedBy1Position" min="-2" pref="500" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
+                                  </Group>
+                                  <Component id="jLabel247" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="totalLengthOfProvincialRoadsInFairToGood" alignment="0" min="-2" pref="582" max="-2" attributes="0"/>
+                                  <Component id="jLabel248" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="saveQuarterlyReportDetails" min="-2" pref="80" max="-2" attributes="0"/>
+                                      <Component id="totalBudget" min="-2" pref="582" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -12610,6 +12493,8 @@
                               <Component id="jSeparator4" min="-2" pref="14" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel230" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="jLabel244" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel232" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -12664,7 +12549,23 @@
                                   <Component id="saveReport" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="cancelReport" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="141" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Component id="jLabel245" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Component id="jLabel246" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="totalLengthOfProvincialRoads" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel247" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="totalLengthOfProvincialRoadsInFairToGood" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jLabel248" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="totalBudget" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="saveQuarterlyReportDetails" min="-2" pref="30" max="-2" attributes="0"/>
+                              <EmptySpace pref="89" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -12930,6 +12831,69 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cancelReportMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel244">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Name for Notes"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel245">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="66" green="66" red="66" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Quarterly Report Details"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel246">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Total Length of Provincial Roads (Km)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="totalLengthOfProvincialRoads">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel247">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Total Length of Provincial Roads In Fair-to-Good Condition (Km)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="totalLengthOfProvincialRoadsInFairToGood">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel248">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Total Budget (Php)"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="totalBudget">
+                    </Component>
+                    <Component class="javax.swing.JButton" name="saveQuarterlyReportDetails">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Save"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveQuarterlyReportDetailsMouseClicked"/>
                       </Events>
                     </Component>
                   </SubComponents>

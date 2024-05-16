@@ -574,10 +574,10 @@ public class MonthlyReport implements Report {
                         dfeList = gdbc.getMonthlyDriversForEngineersList(firstQuarterMonths[i]);
                         oeList = gdbc.getMonthlyOtherExpensesList(firstQuarterMonths[i]);
 
-                        laborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
-                        laborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
-                        equipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
-                        lubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+                        laborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        laborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        equipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        lubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
                         OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(firstQuarterMonths[i]);
                         
@@ -609,10 +609,10 @@ public class MonthlyReport implements Report {
                         dfeList = gdbc.getMonthlyDriversForEngineersList(secondQuarterMonths[i]);
                         oeList = gdbc.getMonthlyOtherExpensesList(secondQuarterMonths[i]);
 
-                        secondlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
-                        secondlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
-                        secondequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
-                        secondlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+                        secondlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        secondlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        secondequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        secondlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
                         OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(secondQuarterMonths[i]);
                         
@@ -644,10 +644,10 @@ public class MonthlyReport implements Report {
                         dfeList = gdbc.getMonthlyDriversForEngineersList(thirdQuarterMonths[i]);
                         oeList = gdbc.getMonthlyOtherExpensesList(thirdQuarterMonths[i]);
 
-                        thirdlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
-                        thirdlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
-                        thirdequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
-                        thirdlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+                        thirdlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        thirdlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        thirdequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        thirdlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
                         OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(thirdQuarterMonths[i]);
                         
@@ -679,10 +679,10 @@ public class MonthlyReport implements Report {
                         dfeList = gdbc.getMonthlyDriversForEngineersList(fourthQuarterMonths[i]);
                         oeList = gdbc.getMonthlyOtherExpensesList(fourthQuarterMonths[i]);
 
-                        fourthlaborCrew += gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
-                        fourthlaborEquipment += gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
-                        fourthequipmentFuel += gdbc.getTotalEquipmentFuelCost(raList, dfeList);
-                        fourthlubricant += gdbc.getTotalLubricantCost(raList, dfeList);
+                        fourthlaborCrew = gdbc.getTotalLaborCrewCost(raList, oaList, oeList);
+                        fourthlaborEquipment = gdbc.getTotalLaborEquipmentCost(raList, oeList, dfeList);
+                        fourthequipmentFuel = gdbc.getTotalEquipmentFuelCost(raList, dfeList);
+                        fourthlubricant = gdbc.getTotalLubricantCost(raList, dfeList);
 
                         OtherExpenses oeData = new OtherExpensesDBController().getOtherExpenses(fourthQuarterMonths[i]);
                         

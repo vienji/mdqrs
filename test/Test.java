@@ -3,6 +3,8 @@ import java.io.File;
 import java.util.ArrayList;
 import mdqrs.classes.MonthlyReport;
 import mdqrs.classes.MonthlyReportBuilder;
+import mdqrs.classes.QuarterlyReport;
+import mdqrs.classes.QuarterlyReportBuilder;
 import mdqrs.classes.Report;
 import mdqrs.classes.ReportFactory;
 
@@ -17,15 +19,22 @@ import mdqrs.classes.ReportFactory;
  */
 public class Test {
     public static void main(String... args){
-        ArrayList<String> list = new ArrayList();
+//        ArrayList<String> list = new ArrayList();
+//        
+//        MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
+//        MonthlyReport report = builder
+//                                    .setOrganizationHeads(list)
+//                                    .setHeaderTitle("Conditional Matching Grant to Provinces (CMGP)")
+//                                    .setTimeFrameDetail("April", 2024)
+//                                    .build();
+//        
+//        report.generateReport();
+       
+        QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
+        QuarterlyReport quarterlyReport = quarterlyBuilder
+                                                        .setTimeFrameDetail("2nd Quarter", 2024)
+                                                        .build();
         
-        MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
-        MonthlyReport report = builder
-                                    .setOrganizationHeads(list)
-                                    .setHeaderTitle("Conditional Matching Grant to Provinces (CMGP)")
-                                    .setTimeFrameDetail("April", 2024)
-                                    .build();
-        
-        report.generateReport();
+        quarterlyReport.generateReport();
     }
 }

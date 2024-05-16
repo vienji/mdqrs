@@ -42,7 +42,7 @@ public class SubActivityDBController {
     }
     
     public ArrayList<SubActivity> getList(String id){
-        ArrayList<SubActivity> list = new ArrayList();
+        ArrayList<SubActivity> list = new ArrayList();  
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
