@@ -130,6 +130,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
     
     private ArrayList<Project> projectList = new ArrayList();
 
+    //Search List
+    ArrayList<Personnel> searchedPersonnel;
+    ArrayList<Equipment> searchedEquipment;
+    ArrayList<WorkCategory> searchedWorkCategory;
+    ArrayList<Activity> searchedActivity;
+    ArrayList<SubActivity> searchedSubActivity;
+    ArrayList<RegularActivity> searchedRegularActivity;
+    ArrayList<OtherActivity> searchedOtherActivity;
+    ArrayList<OtherExpenses> searchedOtherExpenses;
+    ArrayList<DriversForEngineers> searchedDFE;
+    ArrayList<Program> searchedProgram;
+    
     //Temp
     RegularActivity regularActivityForEdit = new RegularActivity();
     OtherActivity otherActivityForEdit = new OtherActivity();
@@ -8196,10 +8208,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableActivity.getSelectedRow();
         tableActivity.clearSelection();
         if (selectedRow > -1) {
+            Activity activity = searchedActivity.get(selectedRow);
             EditActivity.setListener(this);
-            EditActivity.setData(tableActivity.getValueAt(selectedRow, 0).toString(),
-                    tableActivity.getValueAt(selectedRow, 1).toString(),
-                    tableActivity.getValueAt(selectedRow, 2).toString());
+            EditActivity.setData(activity.getItemNumber(),
+                    activity.getDescription(),
+                    activity.getWorkCategory().getDescription());
             EditActivity.getInstance().showFrame();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
@@ -8210,9 +8223,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableWorkCategory.getSelectedRow();
         tableWorkCategory.clearSelection();
         if (selectedRow > -1) {
+            WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
             EditWorkCategory.setListener(this);
-            EditWorkCategory.setData(tableWorkCategory.getValueAt(selectedRow, 0).toString(),
-                    tableWorkCategory.getValueAt(selectedRow, 1).toString());
+            EditWorkCategory.setData(String.valueOf(workCategory.getWorkCategoryNumber()),
+                    workCategory.getDescription());
             EditWorkCategory.getInstance().showFrame();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
@@ -8223,8 +8237,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableEquipment.getSelectedRow();
         tableEquipment.clearSelection();
         if (selectedRow > -1) {
-            EditEquipment.setData(tableEquipment.getValueAt(selectedRow, 0).toString(),
-                    tableEquipment.getValueAt(selectedRow, 1).toString());
+            Equipment equipment = searchedEquipment.get(selectedRow);
+            EditEquipment.setData(equipment.getEquipmentNumber(),
+                    equipment.getType());
             EditEquipment.setListener(this);
             EditEquipment.getInstance().showFrame();
         } else {
@@ -8237,7 +8252,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         tablePersonnel.clearSelection();
         if (selectedRow > -1) {
             EditPersonnel.setListener(this);
-            EditPersonnel.setData(personnelList.get(selectedRow));
+            EditPersonnel.setData(searchedPersonnel.get(selectedRow));
             EditPersonnel.getInstance().showFrame();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
@@ -8647,7 +8662,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableSubActivity.getSelectedRow();
         tableSubActivity.clearSelection();
         if (selectedRow > -1) {
-            EditSubActivity.setData(subActivityList.get(selectedRow));
+            EditSubActivity.setData(searchedSubActivity.get(selectedRow));
             EditSubActivity.setListener(this);
             EditSubActivity.getInstance().showFrame();
         } else {
@@ -9970,18 +9985,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
         switch(sort){
             case "id":
-                Collections.sort(personnelList, Comparator.comparing(Personnel::getId));
-                populatePersonnelTable(personnelList);
+                Collections.sort(searchedPersonnel, Comparator.comparing(Personnel::getId));
+                populatePersonnelTable(searchedPersonnel);
                 break;
             
             case "name":
-                Collections.sort(personnelList, Comparator.comparing(Personnel::getName));
-                populatePersonnelTable(personnelList);
+                Collections.sort(searchedPersonnel, Comparator.comparing(Personnel::getName));
+                populatePersonnelTable(searchedPersonnel);
                 break;
                 
             case "type":
-                Collections.sort(personnelList, Comparator.comparing(Personnel::getType));
-                populatePersonnelTable(personnelList);
+                Collections.sort(searchedPersonnel, Comparator.comparing(Personnel::getType));
+                populatePersonnelTable(searchedPersonnel);
         }
     }//GEN-LAST:event_sortPersonnelActionPerformed
 
@@ -9990,13 +10005,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
         switch(sort){
             case "equipment no.":
-                Collections.sort(equipmentList, Comparator.comparing(Equipment::getEquipmentNumber));
-                populateEquipmentTable(equipmentList);
+                Collections.sort(searchedEquipment, Comparator.comparing(Equipment::getEquipmentNumber));
+                populateEquipmentTable(searchedEquipment);
                 break;
                 
             case "type":                
-                Collections.sort(equipmentList, Comparator.comparing(Equipment::getType));
-                populateEquipmentTable(equipmentList);
+                Collections.sort(searchedEquipment, Comparator.comparing(Equipment::getType));
+                populateEquipmentTable(searchedEquipment);
         }
     }//GEN-LAST:event_sortEquipmentActionPerformed
 
@@ -10043,12 +10058,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 0:
                 switch(sort){
                     case "category no.":
-                        Collections.sort(workCategoryList, Comparator.comparingInt(WorkCategory::getWorkCategoryNumber));
-                        populateWorkCategoryTable(workCategoryList);
+                        Collections.sort(searchedWorkCategory, Comparator.comparingInt(WorkCategory::getWorkCategoryNumber));
+                        populateWorkCategoryTable(searchedWorkCategory);
                         break;
                     case "description":
-                        Collections.sort(workCategoryList, Comparator.comparing(WorkCategory::getDescription));
-                        populateWorkCategoryTable(workCategoryList);
+                        Collections.sort(searchedWorkCategory, Comparator.comparing(WorkCategory::getDescription));
+                        populateWorkCategoryTable(searchedWorkCategory);
                         break;
                 }
                 break;
@@ -10056,16 +10071,16 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 1:
                 switch(sort){
                     case "item no.":
-                        Collections.sort(activityList, Comparator.comparing(Activity::getItemNumber));
-                        populateActivityTable(activityList);
+                        Collections.sort(searchedActivity, Comparator.comparing(Activity::getItemNumber));
+                        populateActivityTable(searchedActivity);
                         break;
                     case "description":
-                        Collections.sort(activityList, Comparator.comparing(Activity::getDescription));
-                        populateActivityTable(activityList);
+                        Collections.sort(searchedActivity, Comparator.comparing(Activity::getDescription));
+                        populateActivityTable(searchedActivity);
                         break;
                     case "work category":
-                        Collections.sort(activityList, new ActivityComparator());
-                        populateActivityTable(activityList);
+                        Collections.sort(searchedActivity, new ActivityComparator());
+                        populateActivityTable(searchedActivity);
                         break;
                 }
                 break;
@@ -10073,12 +10088,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 2:
                 switch(sort){
                     case "description":
-                        Collections.sort(subActivityList, Comparator.comparing(SubActivity::getDescription));
-                        populateSubActivityTable(subActivityList);
+                        Collections.sort(searchedSubActivity, Comparator.comparing(SubActivity::getDescription));
+                        populateSubActivityTable(searchedSubActivity);
                         break;
                     case "activity":
-                        Collections.sort(subActivityList, new SubActivityComparator());
-                        populateSubActivityTable(subActivityList);
+                        Collections.sort(searchedSubActivity, new SubActivityComparator());
+                        populateSubActivityTable(searchedSubActivity);
                         break;
                 }
                 break;
@@ -10093,24 +10108,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 0:
                 switch(sort){
                     case "id":
-                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getId));
-                        Collections.reverse(regularActivityList);
-                        populateMainRegularActivity(regularActivityList);
+                        Collections.sort(searchedRegularActivity, Comparator.comparing(RegularActivity::getId));
+                        Collections.reverse(searchedRegularActivity);
+                        populateMainRegularActivity(searchedRegularActivity);
                         break;
 
                     case "activity":
-                        Collections.sort(regularActivityList, new RegularActivityComparator());
-                        populateMainRegularActivity(regularActivityList);
+                        Collections.sort(searchedRegularActivity, new RegularActivityComparator());
+                        populateMainRegularActivity(searchedRegularActivity);
                         break;
 
                     case "date":
-                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getDate));
-                        populateMainRegularActivity(regularActivityList);
+                        Collections.sort(searchedRegularActivity, Comparator.comparing(RegularActivity::getDate));
+                        populateMainRegularActivity(searchedRegularActivity);
                         break;
 
                     case "implementation mode":
-                        Collections.sort(regularActivityList, Comparator.comparing(RegularActivity::getImplementationMode));
-                        populateMainRegularActivity(regularActivityList);
+                        Collections.sort(searchedRegularActivity, Comparator.comparing(RegularActivity::getImplementationMode));
+                        populateMainRegularActivity(searchedRegularActivity);
                         break;                       
                 }
                 break;
@@ -10118,29 +10133,29 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 1:      
                 switch(sort){
                     case "id":
-                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getId));
-                        Collections.reverse(otherActivityList);
-                        populateMainOtherActivity(otherActivityList);
+                        Collections.sort(searchedOtherActivity, Comparator.comparing(OtherActivity::getId));
+                        Collections.reverse(searchedOtherActivity);
+                        populateMainOtherActivity(searchedOtherActivity);
                         break;
 
                     case "sub activity":
-                        Collections.sort(otherActivityList, new OASubActivityComparator());
-                        populateMainOtherActivity(otherActivityList);
+                        Collections.sort(searchedOtherActivity, new OASubActivityComparator());
+                        populateMainOtherActivity(searchedOtherActivity);
                         break;
 
                     case "description":
-                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getDescription));
-                        populateMainOtherActivity(otherActivityList);
+                        Collections.sort(searchedOtherActivity, Comparator.comparing(OtherActivity::getDescription));
+                        populateMainOtherActivity(searchedOtherActivity);
                         break;
 
                     case "date":
-                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getDate));
-                        populateMainOtherActivity(otherActivityList);
+                        Collections.sort(searchedOtherActivity, Comparator.comparing(OtherActivity::getDate));
+                        populateMainOtherActivity(searchedOtherActivity);
                         break;
 
                     case "implementation mode":
-                        Collections.sort(otherActivityList, Comparator.comparing(OtherActivity::getImplementationMode));
-                        populateMainOtherActivity(otherActivityList);
+                        Collections.sort(searchedOtherActivity, Comparator.comparing(OtherActivity::getImplementationMode));
+                        populateMainOtherActivity(searchedOtherActivity);
                         break;
                 }
                 break;
@@ -10148,14 +10163,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 2:
                 switch(sort){
                     case "id":
-                        Collections.sort(otherExpensesList, Comparator.comparing(OtherExpenses::getId));
-                        Collections.reverse(otherExpensesList);
-                        populateMainOtherExpenses(otherExpensesList);
+                        Collections.sort(searchedOtherExpenses, Comparator.comparing(OtherExpenses::getId));
+                        Collections.reverse(searchedOtherExpenses);
+                        populateMainOtherExpenses(searchedOtherExpenses);
                         break;
 
                     case "date":
-                        Collections.sort(otherExpensesList, Comparator.comparing(OtherExpenses::getDate));
-                        populateMainOtherExpenses(otherExpensesList);
+                        Collections.sort(searchedOtherExpenses, Comparator.comparing(OtherExpenses::getDate));
+                        populateMainOtherExpenses(searchedOtherExpenses);
                         break;
                 }
                 break;
@@ -10163,14 +10178,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 3:
                 switch(sort){
                     case "id":
-                        Collections.sort(driversForEngineersList, Comparator.comparing(DriversForEngineers::getId));
-                        Collections.reverse(driversForEngineersList);
-                        populateDriversForEngineersTable(driversForEngineersList);
+                        Collections.sort(searchedDFE, Comparator.comparing(DriversForEngineers::getId));
+                        Collections.reverse(searchedDFE);
+                        populateDriversForEngineersTable(searchedDFE);
                         break;
 
                     case "date":
-                        Collections.sort(driversForEngineersList, Comparator.comparing(DriversForEngineers::getDate));
-                        populateDriversForEngineersTable(driversForEngineersList);
+                        Collections.sort(searchedDFE, Comparator.comparing(DriversForEngineers::getDate));
+                        populateDriversForEngineersTable(searchedDFE);
                         break;
                 }
                 break;
@@ -10178,19 +10193,19 @@ public class Main extends javax.swing.JFrame implements MainListener {
             case 4:
                 switch(sort){
                     case "id":
-                        Collections.sort(programList, Comparator.comparing(Program::getId));
-                        Collections.reverse(programList);
-                        populateMainProgram(programList);
+                        Collections.sort(searchedProgram, Comparator.comparing(Program::getId));
+                        Collections.reverse(searchedProgram);
+                        populateMainProgram(searchedProgram);
                         break;
 
                     case "source of fund":
-                        Collections.sort(programList, Comparator.comparing(Program::getSourceOfFund));
-                        populateMainProgram(programList);
+                        Collections.sort(searchedProgram, Comparator.comparing(Program::getSourceOfFund));
+                        populateMainProgram(searchedProgram);
                         break;
                         
                     case "date":
-                        Collections.sort(programList, Comparator.comparing(Program::getDate));
-                        populateMainProgram(programList);
+                        Collections.sort(searchedProgram, Comparator.comparing(Program::getDate));
+                        populateMainProgram(searchedProgram);
                         break;
                 }
                 break;       
@@ -10198,7 +10213,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_sortActivityActionPerformed
 
     private void searchPersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchPersonnelMouseClicked
-        ArrayList<Personnel> searchedPersonnel = personnelList
+        searchedPersonnel = personnelList
                                                     .stream()
                                                     .filter(personnel -> personnel.getName()
                                                                                   .toLowerCase()
@@ -10217,7 +10232,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_searchPersonnelMouseClicked
 
     private void searchEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchEquipmentMouseClicked
-        ArrayList<Equipment> searchedEquipment = equipmentList
+        searchedEquipment = equipmentList
                                                         .stream()
                                                         .filter(equipment -> equipment.getEquipmentNumber().equals(equipmentSearchValue.getText()) 
                                                                 || equipment.getType().toLowerCase().contains(equipmentSearchValue.getText().toLowerCase()))
@@ -10235,7 +10250,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
         switch(selectedTab){
             case 0:
-                ArrayList<WorkCategory> searchedWorkCategory = workCategoryList
+                searchedWorkCategory = workCategoryList
                                                                         .stream()
                                                                         .filter(workCategory -> String.valueOf(workCategory.getWorkCategoryNumber()).equals(workCategorySearchValue.getText())
                                                                                 || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
@@ -10248,7 +10263,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;
             
             case 1:
-                ArrayList<Activity> searchedActivity = activityList
+                searchedActivity = activityList
                                                                         .stream()
                                                                         .filter(activity -> activity.getItemNumber().equals(workCategorySearchValue.getText())
                                                                                 || activity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
@@ -10262,7 +10277,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break; 
                 
             case 2:
-                ArrayList<SubActivity> searchedSubActivity = subActivityList
+                searchedSubActivity = subActivityList
                                                                         .stream()
                                                                         .filter(subActivity -> subActivity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
                                                                                 || subActivity.getActivity().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
@@ -10282,7 +10297,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
         switch(selectedTab){
             case 0:
-                ArrayList<RegularActivity> searchedRegularActivity = regularActivityList
+                searchedRegularActivity = regularActivityList
                                                                                     .stream()
                                                                                     .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
                                                                                             || regularActivity.getActivity().getItemNumber().equals(activitySearchValue.getText())
@@ -10299,7 +10314,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;
             
             case 1:
-                ArrayList<OtherActivity> searchedOtherActivity = otherActivityList
+                searchedOtherActivity = otherActivityList
                                                                                 .stream()
                                                                                 .filter(otherActivity -> otherActivity.getId().equals(activitySearchValue.getText()) 
                                                                                         || otherActivity.getSubActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
@@ -10315,7 +10330,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;
                 
             case 2:
-                ArrayList<OtherExpenses> searchedOtherExpenses = otherExpensesList
+                searchedOtherExpenses = otherExpensesList
                                                                                 .stream()
                                                                                 .filter(otherExpenses -> otherExpenses.getId().equals(activitySearchValue.getText()) 
                                                                                         || otherExpenses.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
@@ -10329,7 +10344,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;
             
             case 3:
-                ArrayList<DriversForEngineers> searchedDFE = driversForEngineersList
+                searchedDFE = driversForEngineersList
                                                                                 .stream()
                                                                                 .filter(dfe -> dfe.getId().equals(activitySearchValue.getText()) 
                                                                                         || dfe.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
@@ -10343,7 +10358,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 break;
             
             case 4:
-                ArrayList<Program> searchedProgram = programList
+                searchedProgram = programList
                                                             .stream()
                                                             .filter(program -> program.getId().equals(activitySearchValue.getText()) 
                                                                     || program.getSourceOfFund().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
@@ -10362,7 +10377,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainRegularActivity.getSelectedRow();
 
         if (selectedRow > -1) {
-            RegularActivity regularActivity = regularActivityList.get(selectedRow);
+            RegularActivity regularActivity = searchedRegularActivity.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new ActivityListDBController().delete(regularActivity);
@@ -10378,7 +10393,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherActivity.getSelectedRow();
         
         if (selectedRow > -1) {
-            OtherActivity otherActivity = otherActivityList.get(selectedRow);
+            OtherActivity otherActivity = searchedOtherActivity.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new OtherActivityListDBController().delete(otherActivity);
@@ -10394,7 +10409,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherExpenses.getSelectedRow();
         
         if (selectedRow > -1) {
-            OtherExpenses otherExpenses = otherExpensesList.get(selectedRow);
+            OtherExpenses otherExpenses = searchedOtherExpenses.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new OtherExpensesDBController().delete(otherExpenses);
@@ -10410,7 +10425,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainDriversForEngineers.getSelectedRow();
         
         if (selectedRow > -1) {
-            DriversForEngineers driversForEngineers = driversForEngineersList.get(selectedRow);
+            DriversForEngineers driversForEngineers = searchedDFE.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new DriversForEngineersDBController().delete(driversForEngineers);
@@ -10426,7 +10441,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainPrograms.getSelectedRow();
         
         if (selectedRow > -1) {
-            Program program = programList.get(selectedRow);
+            Program program = searchedProgram.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new ProgramDBController().delete(program);
@@ -10442,7 +10457,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tablePersonnel.getSelectedRow();
         
         if (selectedRow > -1) {
-            Personnel personnel = personnelList.get(selectedRow);
+            Personnel personnel = searchedPersonnel.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new PersonnelDBController().delete(personnel.getId());
@@ -10458,7 +10473,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableEquipment.getSelectedRow();
         
         if (selectedRow > -1) {
-            Equipment equipment = equipmentList.get(selectedRow);
+            Equipment equipment = searchedEquipment.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new EquipmentDBController().delete(equipment.getEquipmentNumber());
@@ -10474,7 +10489,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableWorkCategory.getSelectedRow();
         
         if (selectedRow > -1) {
-            WorkCategory workCategory = workCategoryList.get(selectedRow);
+            WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new WorkCategoryDBController().delete(workCategory.getWorkCategoryNumber());
@@ -10490,7 +10505,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableActivity.getSelectedRow();
         
         if (selectedRow > -1) {
-            Activity activity = activityList.get(selectedRow);
+            Activity activity = searchedActivity.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new ActivityDBController().delete(activity.getItemNumber());
@@ -10506,7 +10521,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableSubActivity.getSelectedRow();
         
         if (selectedRow > -1) {
-            SubActivity subActivity = subActivityList.get(selectedRow);
+            SubActivity subActivity = searchedSubActivity.get(selectedRow);
             int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
             if(n == 0){
                 new SubActivityDBController().delete(subActivity);
@@ -11246,7 +11261,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     // Custom Methods
     private void setRegularActivityDataEdit(int i) {
-        regularActivityForEdit = regularActivityList.get(i);
+        regularActivityForEdit = searchedRegularActivity.get(i);
 
         String roadSection = regularActivityForEdit.isIsOtherRoadSection() ? regularActivityForEdit.getOtherRoadSection() : regularActivityForEdit.getRoadSection().getName();
 
@@ -11350,7 +11365,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setRegularActivityDataView(int i) {
-        RegularActivity regularActivity = regularActivityList.get(i);
+        RegularActivity regularActivity = searchedRegularActivity.get(i);
 
         String roadSection = regularActivity.isIsOtherRoadSection() ? regularActivity.getOtherRoadSection() : regularActivity.getRoadSection().getName();
         String subActivity = regularActivity.getSubActivity().getId() != 0 ? " ( " + regularActivity.getSubActivity().getDescription() + " ) " : "";
@@ -11404,7 +11419,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setProgramDataView(int i){
-        Program program = programList.get(i);
+        Program program = searchedProgram.get(i);
         ProgramDBController programDBController = new ProgramDBController();
         Double grandTotal = programDBController.getTotalProjectCost(program.getId());
         
@@ -11418,7 +11433,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void setProgramDataEdit(int i){
-        programForEdit = programList.get(i);
+        programForEdit = searchedProgram.get(i);
         
         projectsFormEditSourceOfFund.setText(programForEdit.getSourceOfFund());
         projectsFormEditMonth.setSelectedItem(programForEdit.getMonth());
@@ -11429,7 +11444,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void setOtherActivityDataEdit(int i) {
-        otherActivityForEdit = otherActivityList.get(i);
+        otherActivityForEdit = searchedOtherActivity.get(i);
 
         otherActivityEditSubActivitySelectionBox.setSelectedItem(otherActivityForEdit.getSubActivity().getDescription());
         otherActivityEditDescription.setText(otherActivityForEdit.getDescription());
@@ -11444,7 +11459,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setOtherActivityDataView(int i) {
-        OtherActivity otherActivity = otherActivityList.get(i);
+        OtherActivity otherActivity = searchedOtherActivity.get(i);
 
         otherActivityViewSubActivityName.setText(otherActivity.getSubActivity().getDescription());
         otherActivityViewDescription.setText(otherActivity.getDescription());
@@ -11459,7 +11474,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setOtherExpensesDataView(int i) {
-        OtherExpenses otherExpenses = otherExpensesList.get(i);
+        OtherExpenses otherExpenses = searchedOtherExpenses.get(i);
 
         otherExpensesViewDate.setText(otherExpenses.getDate());
         otherExpensesViewLaborCrewCost.setText("₱ " + setDecimalFormat(otherExpenses.getLaborCrewCost()));
@@ -11471,7 +11486,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setDriversForEngineersDataEdit(int i){
-        driversForEngineersForEdit = driversForEngineersList.get(i);
+        driversForEngineersForEdit = searchedDFE.get(i);
         
         driversForEngineersFormEditMonth.setSelectedItem(driversForEngineersForEdit.getMonth());
         driversForEngineersFormEditYear.setSelectedItem(String.valueOf(driversForEngineersForEdit.getYear()));
@@ -11483,7 +11498,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void setOtherExpensesDataEdit(int i){
-        otherExpensesForEdit = otherExpensesList.get(i);
+        otherExpensesForEdit = searchedOtherExpenses.get(i);
 
         otherExpensesFormEditMonth.setSelectedItem(otherExpensesForEdit.getMonth());
         otherExpensesFormEditYear.setSelectedItem(String.valueOf(otherExpensesForEdit.getYear()));
@@ -11530,15 +11545,25 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void initData() {
         activityList = new ActivityDBController().getList();
-        personnelList = new PersonnelDBController().getList();
-        equipmentList = new EquipmentDBController().getList();
-        regularActivityList = new ActivityListDBController().getList();
-        otherActivityList = new OtherActivityListDBController().getList();
-        otherExpensesList = new OtherExpensesDBController().getList();
+        searchedActivity = activityList;
         subActivityList = new SubActivityDBController().getList();
+        searchedSubActivity = subActivityList;
         workCategoryList = new WorkCategoryDBController().getList();
+        searchedWorkCategory = workCategoryList;
+        personnelList = new PersonnelDBController().getList();
+        searchedPersonnel = personnelList;
+        equipmentList = new EquipmentDBController().getList();
+        searchedEquipment = equipmentList;
+        regularActivityList = new ActivityListDBController().getList();
+        searchedRegularActivity = regularActivityList;
+        otherActivityList = new OtherActivityListDBController().getList();
+        searchedOtherActivity = otherActivityList;
+        otherExpensesList = new OtherExpensesDBController().getList();
+        searchedOtherExpenses = otherExpensesList;
         driversForEngineersList = new DriversForEngineersDBController().getList();
+        searchedDFE = driversForEngineersList;
         programList = new ProgramDBController().getList();
+        searchedProgram = programList;
         
         populateMainProgram(programList);
         populateWorkCategoryTable(workCategoryList);
@@ -12357,7 +12382,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
                 switch(selectedTab){
                     case 0:
-                        ArrayList<RegularActivity> searchedRegularActivity = regularActivityList
+                        searchedRegularActivity = regularActivityList
                                                                                             .stream()
                                                                                             .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
                                                                                                     || regularActivity.getActivity().getItemNumber().equals(activitySearchValue.getText())
@@ -12367,16 +12392,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                     || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                             .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
-                            regularActivityList = searchedRegularActivity;
                             populateMainRegularActivity(searchedRegularActivity);
                         } else {
-                            regularActivityList = new ActivityListDBController().getList();
                             populateMainRegularActivity(regularActivityList);
                         }
                         break;
 
                     case 1:
-                        ArrayList<OtherActivity> searchedOtherActivity = otherActivityList
+                        searchedOtherActivity = otherActivityList
                                                                                         .stream()
                                                                                         .filter(otherActivity -> otherActivity.getId().equals(activitySearchValue.getText()) 
                                                                                                 || otherActivity.getSubActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
@@ -12385,58 +12408,50 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                                 || otherActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
-                            otherActivityList = searchedOtherActivity;
                             populateMainOtherActivity(searchedOtherActivity);
                         } else {
-                            otherActivityList = new OtherActivityListDBController().getList();
                             populateMainOtherActivity(otherActivityList);
                         }
                         break;
 
                     case 2:
-                        ArrayList<OtherExpenses> searchedOtherExpenses = otherExpensesList
+                        searchedOtherExpenses = otherExpensesList
                                                                                         .stream()
                                                                                         .filter(otherExpenses -> otherExpenses.getId().equals(activitySearchValue.getText()) 
                                                                                                 || otherExpenses.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
                                                                                                 || otherExpenses.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
-                            otherExpensesList = searchedOtherExpenses;
                             populateMainOtherExpenses(searchedOtherExpenses);
                         } else {
-                            otherExpensesList = new OtherExpensesDBController().getList();
                             populateMainOtherExpenses(otherExpensesList);
                         }
                         break;
 
                     case 3:
-                        ArrayList<DriversForEngineers> searchedDFE = driversForEngineersList
+                        searchedDFE = driversForEngineersList
                                                                                         .stream()
                                                                                         .filter(dfe -> dfe.getId().equals(activitySearchValue.getText()) 
                                                                                                 || dfe.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
                                                                                                 || dfe.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                         .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
-                            driversForEngineersList = searchedDFE;
                             populateDriversForEngineersTable(searchedDFE);
                         } else {
-                            driversForEngineersList = new DriversForEngineersDBController().getList();
                             populateDriversForEngineersTable(driversForEngineersList);
                         }
                         break;
 
                     case 4:
-                        ArrayList<Program> searchedProgram = programList
+                        searchedProgram = programList
                                                                     .stream()
                                                                     .filter(program -> program.getId().equals(activitySearchValue.getText()) 
                                                                             || program.getSourceOfFund().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
                                                                             || program.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                     .collect(Collectors.toCollection(ArrayList::new));
                         if(!activitySearchValue.getText().isBlank()){
-                            programList = searchedProgram;
                             populateMainProgram(searchedProgram);
                         } else {
-                            programList = new ProgramDBController().getList();
                             populateMainProgram(programList);
                         }
                         break;
@@ -12467,48 +12482,42 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
                 switch(selectedTab){
                     case 0:
-                        ArrayList<WorkCategory> searchedWorkCategory = workCategoryList
+                        searchedWorkCategory = workCategoryList
                                                                                 .stream()
                                                                                 .filter(workCategory -> String.valueOf(workCategory.getWorkCategoryNumber()).equals(workCategorySearchValue.getText())
                                                                                         || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
-                            workCategoryList = searchedWorkCategory;
                             populateWorkCategoryTable(searchedWorkCategory);
                         } else {
-                            workCategoryList = new WorkCategoryDBController().getList();
                             populateWorkCategoryTable(workCategoryList);
                         }
                         break;
 
                     case 1:
-                        ArrayList<Activity> searchedActivity = activityList
+                        searchedActivity = activityList
                                                                                 .stream()
                                                                                 .filter(activity -> activity.getItemNumber().equals(workCategorySearchValue.getText())
                                                                                         || activity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
                                                                                         || activity.getWorkCategory().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
-                            activityList = searchedActivity;
                             populateActivityTable(searchedActivity);
                         } else {
-                            activityList = new ActivityDBController().getList();
                             populateActivityTable(activityList);
                         }
                         break; 
 
                     case 2:
-                        ArrayList<SubActivity> searchedSubActivity = subActivityList
+                        searchedSubActivity = subActivityList
                                                                                 .stream()
                                                                                 .filter(subActivity -> subActivity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
                                                                                         || subActivity.getActivity().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
                                                                                         || subActivity.getActivity().getItemNumber().equals(workCategorySearchValue.getText()))
                                                                                 .collect(Collectors.toCollection(ArrayList::new));
                         if(!workCategorySearchValue.getText().isBlank()){
-                            subActivityList = searchedSubActivity;
                             populateSubActivityTable(searchedSubActivity);
                         } else {
-                            subActivityList = new SubActivityDBController().getList();
                             populateSubActivityTable(subActivityList);
                         }
                         break;  
@@ -12535,17 +12544,15 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
             
             private void updateEquipment(){
-                ArrayList<Equipment> searchedEquipment = equipmentList
+                searchedEquipment = equipmentList
                                                         .stream()
                                                         .filter(equipment -> equipment.getEquipmentNumber().equals(equipmentSearchValue.getText()) 
                                                                 || equipment.getType().toLowerCase().contains(equipmentSearchValue.getText().toLowerCase()))
                                                         .collect(Collectors.toCollection(ArrayList::new));
         
                 if(!equipmentSearchValue.getText().isBlank()){
-                    equipmentList = searchedEquipment;
                     populateEquipmentTable(searchedEquipment);
                 } else {
-                    equipmentList = new EquipmentDBController().getList();
                     populateEquipmentTable(equipmentList);
                 } 
             }
@@ -12570,7 +12577,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
             
             private void updatePersonnel(){
-                ArrayList<Personnel> searchedPersonnel = personnelList
+                searchedPersonnel = personnelList
                                                     .stream()
                                                     .filter(personnel -> personnel.getName()
                                                                                   .toLowerCase()
@@ -12582,10 +12589,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                     .collect(Collectors.toCollection(ArrayList::new));
                 
                 if(!searchPersonnelValue.getText().isBlank()){
-                    personnelList = searchedPersonnel;
                     populatePersonnelTable(searchedPersonnel);
                 } else {
-                    personnelList = new PersonnelDBController().getList();
                     populatePersonnelTable(personnelList);
                 } 
             }
