@@ -55,15 +55,15 @@ import javax.swing.table.DefaultTableModel;
 import mdqrs.classes.Cryptographer;
 import mdqrs.classes.DriversForEngineers;
 import mdqrs.classes.ImageManipulator;
-import mdqrs.classes.MonthlyReport;
-import mdqrs.classes.MonthlyReportBuilder;
+import mdqrs.reports.MonthlyReport;
+import mdqrs.reports.MonthlyReportBuilder;
 import mdqrs.classes.OtherExpenses;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
-import mdqrs.classes.ReportFactory;
+import mdqrs.reports.ReportFactory;
 import mdqrs.classes.DataValidation;
-import mdqrs.classes.QuarterlyReport;
-import mdqrs.classes.QuarterlyReportBuilder;
+import mdqrs.reports.QuarterlyReport;
+import mdqrs.reports.QuarterlyReportBuilder;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
@@ -5264,7 +5264,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainDriversForEngineersPanelLayout.setVerticalGroup(
             mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainDriversForEngineersPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewDriversForEngineers1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5306,6 +5306,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel201.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel201.setText("Implementation Mode");
 
+        driversForEngineersFormImplementationMode.setText("Administration");
+        driversForEngineersFormImplementationMode.setEnabled(false);
         driversForEngineersFormImplementationMode.setPreferredSize(new java.awt.Dimension(7, 30));
 
         jLabel202.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -5491,6 +5493,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel210.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel210.setText("Implementation Mode");
 
+        driversForEngineersFormEditImplementationMode.setEnabled(false);
         driversForEngineersFormEditImplementationMode.setPreferredSize(new java.awt.Dimension(7, 30));
 
         jLabel211.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -5763,7 +5766,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
                     .addComponent(lubricantCost))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(totalCostBreakdownPanel);
@@ -8614,6 +8617,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 regularActivityTab.repaint();
                 regularActivityTab.revalidate();
                 regularActivityList = new ActivityListDBController().getList();
+                searchedRegularActivity = regularActivityList;
                 populateMainRegularActivity(regularActivityList);
                 resetRegularActivityForm();
                 timeframeDetailActionPerformed(null);
@@ -8629,6 +8633,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 regularActivityTab.repaint();
                 regularActivityTab.revalidate();
                 regularActivityList = new ActivityListDBController().getList();
+                searchedRegularActivity = regularActivityList;
                 populateMainRegularActivity(regularActivityList);
                 resetRegularActivityForm();
                 timeframeDetailActionPerformed(null);
@@ -8745,6 +8750,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityTab.repaint();
             regularActivityTab.revalidate();
             regularActivityList = new ActivityListDBController().getList();
+            searchedRegularActivity = regularActivityList;
             populateMainRegularActivity(regularActivityList);
             resetRegularActivityEditForm();
             timeframeDetailActionPerformed(null);
@@ -9042,6 +9048,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             otherActivityList = new OtherActivityListDBController().getList();
+            searchedOtherActivity = otherActivityList;
             populateMainOtherActivity(otherActivityList);
             resetOtherActivityForm();
             timeframeDetailActionPerformed(null);
@@ -9129,6 +9136,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             otherActivityList = new OtherActivityListDBController().getList();
+            searchedOtherActivity = otherActivityList;
             populateMainOtherActivity(otherActivityList);
             resetOtherActivityEditForm();
             timeframeDetailActionPerformed(null);
@@ -9259,6 +9267,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesTab.repaint();
             otherExpensesTab.revalidate();
             otherExpensesList = new OtherExpensesDBController().getList();
+            searchedOtherExpenses = otherExpensesList;
             populateMainOtherExpenses(otherExpensesList);
             resetOtherExpensesForm();
             timeframeDetailActionPerformed(null);
@@ -9595,6 +9604,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesTab.repaint();
             otherExpensesTab.revalidate();
             otherExpensesList = new OtherExpensesDBController().getList();
+            searchedOtherExpenses = otherExpensesList;
             populateMainOtherExpenses(otherExpensesList);
             resetOtherExpensesEditForm();
             timeframeDetailActionPerformed(null);
@@ -9620,8 +9630,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
         } else if(driversForEngineersFormLubricantCost.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
-        } else if(driversForEngineersFormImplementationMode.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the implementation mode!");
         } else if(driversForEngineersFormDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
         } else if(!dataValidation.validateInteger(driversForEngineersFormDaysOfOperation.getText())){
@@ -9646,6 +9654,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             new DriversForEngineersDBController().add(driversForEngineers);
             JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
             driversForEngineersList = new DriversForEngineersDBController().getList();
+            searchedDFE = driversForEngineersList;
             populateDriversForEngineersTable(driversForEngineersList);
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
@@ -9671,8 +9680,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
         } else if(driversForEngineersFormEditLubricantCost.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
-        } else if(driversForEngineersFormEditImplementationMode.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the implementation mode!");
         } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
         }   else if(!dataValidation.validateInteger(driversForEngineersFormEditDaysOfOperation.getText())){
@@ -9696,6 +9703,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             new DriversForEngineersDBController().edit(driversForEngineersForEdit);
             JOptionPane.showMessageDialog(rootPane, "Successfully Edited!");
             driversForEngineersList = new DriversForEngineersDBController().getList();
+            searchedDFE = driversForEngineersList;
             populateDriversForEngineersTable(driversForEngineersList);
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
@@ -9766,6 +9774,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             new ProgramDBController().add(program, projectList);
             JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
             programList = new ProgramDBController().getList();
+            searchedProgram = programList;
             populateMainProgram(programList);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
@@ -9826,6 +9835,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             new ProgramDBController().edit(programForEdit, projectList);
             JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
             programList = new ProgramDBController().getList();
+            searchedProgram = programList;
             populateMainProgram(programList);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
@@ -11369,7 +11379,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         String roadSection = regularActivity.isIsOtherRoadSection() ? regularActivity.getOtherRoadSection() : regularActivity.getRoadSection().getName();
         String subActivity = regularActivity.getSubActivity().getId() != 0 ? " ( " + regularActivity.getSubActivity().getDescription() + " ) " : "";
-
+        
         regularActivityViewActivityName.setText(regularActivity.getActivity().getItemNumber() + " - " + regularActivity.getActivity().getDescription() + subActivity);
         regularActivityViewRoadSectionName.setText(roadSection);
         regularActivityViewLocationName.setText(regularActivity.getLocation().getLocation());
@@ -11859,7 +11869,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
         driversForEngineersFormLaborEquipmentCost.setText("");
         driversForEngineersFormEquipmentFuelCost.setText("");
         driversForEngineersFormLubricantCost.setText("");
-        driversForEngineersFormImplementationMode.setText("");
         driversForEngineersFormDaysOfOperation.setText("");
     }
     
@@ -11869,7 +11878,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
         driversForEngineersFormEditLaborEquipmentCost.setText("");
         driversForEngineersFormEditEquipmentFuelCost.setText("");
         driversForEngineersFormEditLubricantCost.setText("");
-        driversForEngineersFormEditImplementationMode.setText("");
         driversForEngineersFormEditDaysOfOperation.setText("");
     }
     
@@ -12095,12 +12103,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     @Override
     public void updateWorkCategory() {
         workCategoryList = new WorkCategoryDBController().getList();
+        searchedWorkCategory = workCategoryList;
         populateWorkCategoryTable(workCategoryList);
     }
 
     @Override
     public void updateActivity() {
         activityList = new ActivityDBController().getList();
+        searchedActivity = activityList;
         populateActivityTable(activityList);
         regularActivityFormActivity.removeAllItems();
         initAddActivitySelectionBox();
@@ -12109,18 +12119,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
     @Override
     public void updateSubActivity() {
         subActivityList = new SubActivityDBController().getList();
+        searchedSubActivity = subActivityList;
         populateSubActivityTable(subActivityList);
     }
 
     @Override
     public void updateEquipment() {
         equipmentList = new EquipmentDBController().getList();
+        searchedEquipment = equipmentList;
         populateEquipmentTable(equipmentList);
     }
 
     @Override
     public void updatePersonnel() {
         personnelList = new PersonnelDBController().getList();
+        searchedPersonnel = personnelList;
         populatePersonnelTable(personnelList);
     }
 

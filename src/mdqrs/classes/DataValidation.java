@@ -16,7 +16,9 @@ public class DataValidation {
     
     public boolean validateInteger(String value){
         try{
-            Integer.parseInt(value);
+            if(!value.isBlank()){
+                Integer.parseInt(value);
+            }
             return true;
         } catch (NumberFormatException e){
             return false;
@@ -27,7 +29,9 @@ public class DataValidation {
         NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
         
         try{
-            format.parse(value);
+            if(!value.isBlank()){
+                format.parse(value);
+            }
             return true;
         } catch (ParseException e){
             return false;
@@ -36,9 +40,11 @@ public class DataValidation {
     
     public static Double convertToDouble(String currencyString) {
         NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-        
+        Number number = 0.00;
         try {
-            Number number = format.parse(currencyString);
+            if(!currencyString.isBlank()){
+                number = format.parse(currencyString);
+            }           
             return number.doubleValue();
         } catch (ParseException e) {
             

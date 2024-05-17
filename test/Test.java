@@ -1,12 +1,15 @@
 
+import classes.RegularActivity;
 import java.io.File;
 import java.util.ArrayList;
-import mdqrs.classes.MonthlyReport;
-import mdqrs.classes.MonthlyReportBuilder;
-import mdqrs.classes.QuarterlyReport;
-import mdqrs.classes.QuarterlyReportBuilder;
-import mdqrs.classes.Report;
-import mdqrs.classes.ReportFactory;
+import mdqrs.dbcontroller.ActivityListDBController;
+import mdqrs.reports.MonthlyReport;
+import mdqrs.reports.MonthlyReportBuilder;
+import mdqrs.reports.QuarterlyReport;
+import mdqrs.reports.QuarterlyReportBuilder;
+import mdqrs.reports.RegularActivityReport;
+import mdqrs.reports.Report;
+import mdqrs.reports.ReportFactory;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -30,11 +33,24 @@ public class Test {
 //        
 //        report.generateReport();
        
-        QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
-        QuarterlyReport quarterlyReport = quarterlyBuilder
-                                                        .setTimeFrameDetail("2nd Quarter", 2024)
-                                                        .build();
-        
-        quarterlyReport.generateReport();
+//        QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
+//        QuarterlyReport quarterlyReport = quarterlyBuilder
+//                                                        .setTimeFrameDetail("2nd Quarter", 2024)
+//                                                        .build();
+//        
+//        quarterlyReport.generateReport();
+
+          ArrayList<RegularActivity> list = new ActivityListDBController().getList();
+
+          RegularActivity regularActivity = list.get(0);
+          
+          RegularActivityReport regularReport = new RegularActivityReport(regularActivity);
+          
+          File file = new File("sample_data");
+          String filePath = "C:\\Users\\userpc\\Desktop\\";
+          
+          regularReport.setFilePath(filePath, file);
+          
+          regularReport.generateReport();
     }
 }

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package mdqrs.classes;
+package mdqrs.reports;
 
 import classes.Activity;
 import classes.RegularActivity;
@@ -16,6 +16,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
+import mdqrs.classes.DriversForEngineers;
+import mdqrs.classes.OtherExpenses;
+import mdqrs.classes.Program;
+import mdqrs.classes.Project;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.DriversForEngineersDBController;
 import mdqrs.dbcontroller.GeneralDBController;
@@ -795,15 +799,15 @@ public class MonthlyReport implements Report {
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 6));
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 7, 11));
         sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 12, 15));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 1, 3));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 4, 6));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 7, 11));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 1, startingRow + 1, 12, 15));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 3, startingRow + 3, 1, 3));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 3, startingRow + 3, 4, 6));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 3, startingRow + 3, 7, 11));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 3, startingRow + 3, 12, 15));
         
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 1, 3));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 4, 6));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 7, 11));
-        sheet.addMergedRegion(new CellRangeAddress(startingRow + 2, startingRow + 2, 12, 15));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 4, startingRow + 4, 1, 3));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 4, startingRow + 4, 4, 6));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 4, startingRow + 4, 7, 11));
+        sheet.addMergedRegion(new CellRangeAddress(startingRow + 4, startingRow + 4, 12, 15));
         
         Row row1 = sheet.createRow(startingRow);
         CellStyle style1 = workbook.createCellStyle();
@@ -844,7 +848,10 @@ public class MonthlyReport implements Report {
             cell.setCellStyle(style1);
         }
         
-        Row row2 = sheet.createRow(startingRow + 1);
+        addBlankRow(startingRow + 1, sheet);
+        addBlankRow(startingRow + 2, sheet);
+        
+        Row row2 = sheet.createRow(startingRow + 3);
         CellStyle style2 = workbook.createCellStyle();
         Font font2 = workbook.createFont();
         
@@ -895,7 +902,7 @@ public class MonthlyReport implements Report {
             cell.setCellStyle(style2);
         }
         
-        Row row3 = sheet.createRow(startingRow + 2);
+        Row row3 = sheet.createRow(startingRow + 4);
         CellStyle style3 = workbook.createCellStyle();
         Font font3 = workbook.createFont();
         

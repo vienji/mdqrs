@@ -98,6 +98,9 @@ public class EditProject extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Implementation Mode");
 
+        implementationMode.setText("Contract");
+        implementationMode.setEnabled(false);
+
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
         cancel.addActionListener(new java.awt.event.ActionListener() {
