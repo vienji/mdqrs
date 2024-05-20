@@ -78,6 +78,7 @@ import mdqrs.dbcontroller.RoadSectionDBController;
 import mdqrs.dbcontroller.SubActivityDBController;
 import mdqrs.dbcontroller.WorkCategoryDBController;
 import mdqrs.listeners.MainListener;
+import mdqrs.reports.RegularActivityReport;
 import mdqrs.view.equipment.AddEquipment;
 import mdqrs.view.equipment.EditEquipment;
 import mdqrs.view.personnel.AddPersonnel;
@@ -144,6 +145,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     
     //Temp
     RegularActivity regularActivityForEdit = new RegularActivity();
+    RegularActivity regularActivityToView = new RegularActivity();
     OtherActivity otherActivityForEdit = new OtherActivity();
     OtherExpenses otherExpensesForEdit = new OtherExpenses();
     DriversForEngineers driversForEngineersForEdit = new DriversForEngineers();
@@ -328,6 +330,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         regularActivityViewOpsMaintenanceCrewTotalExpenses = new javax.swing.JLabel();
         jLabel79 = new javax.swing.JLabel();
         regularActivityGrandTotalExpenses = new javax.swing.JLabel();
+        exportActivity = new javax.swing.JPanel();
+        jLabel226 = new javax.swing.JLabel();
         editRegularActivityPanel = new javax.swing.JPanel();
         cancelEditRegularActivity = new javax.swing.JPanel();
         jLabel84 = new javax.swing.JLabel();
@@ -2507,12 +2511,42 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         jScrollPane3.setViewportView(jPanel4);
 
+        exportActivity.setBackground(new java.awt.Color(0, 102, 102));
+        exportActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportActivityMouseClicked(evt);
+            }
+        });
+
+        jLabel226.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel226.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel226.setText("Export");
+
+        javax.swing.GroupLayout exportActivityLayout = new javax.swing.GroupLayout(exportActivity);
+        exportActivity.setLayout(exportActivityLayout);
+        exportActivityLayout.setHorizontalGroup(
+            exportActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exportActivityLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel226)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        exportActivityLayout.setVerticalGroup(
+            exportActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exportActivityLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel226)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout viewRegularActivityPanelLayout = new javax.swing.GroupLayout(viewRegularActivityPanel);
         viewRegularActivityPanel.setLayout(viewRegularActivityPanelLayout);
         viewRegularActivityPanelLayout.setHorizontalGroup(
             viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRegularActivityPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exportActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jScrollPane3)
@@ -2522,7 +2556,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
             .addGroup(viewRegularActivityPanelLayout.createSequentialGroup()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exportActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -5264,7 +5300,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainDriversForEngineersPanelLayout.setVerticalGroup(
             mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainDriversForEngineersPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewDriversForEngineers1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5766,7 +5802,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
                     .addComponent(lubricantCost))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(totalCostBreakdownPanel);
@@ -10608,6 +10644,39 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_exportQuarterlyReportMouseClicked
 
+    private void exportActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportActivityMouseClicked
+        if(evt.getSource() == exportActivity){
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
+                    
+                    RegularActivityReport regularReport = new RegularActivityReport(regularActivityToView);
+
+                    regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+                    System.out.println(file.getAbsolutePath() + "\\" + fileName);
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
+                    
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            regularReport.generateReport();
+                            return null;
+                        }
+
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
+                    
+                    worker.execute();
+                }
+            } 
+    }//GEN-LAST:event_exportActivityMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -11375,37 +11444,37 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setRegularActivityDataView(int i) {
-        RegularActivity regularActivity = searchedRegularActivity.get(i);
+        regularActivityToView = searchedRegularActivity.get(i);
 
-        String roadSection = regularActivity.isIsOtherRoadSection() ? regularActivity.getOtherRoadSection() : regularActivity.getRoadSection().getName();
-        String subActivity = regularActivity.getSubActivity().getId() != 0 ? " ( " + regularActivity.getSubActivity().getDescription() + " ) " : "";
+        String roadSection = regularActivityToView.isIsOtherRoadSection() ? regularActivityToView.getOtherRoadSection() : regularActivityToView.getRoadSection().getName();
+        String subActivity = regularActivityToView.getSubActivity().getId() != 0 ? " ( " + regularActivityToView.getSubActivity().getDescription() + " ) " : "";
         
-        regularActivityViewActivityName.setText(regularActivity.getActivity().getItemNumber() + " - " + regularActivity.getActivity().getDescription() + subActivity);
+        regularActivityViewActivityName.setText(regularActivityToView.getActivity().getItemNumber() + " - " + regularActivityToView.getActivity().getDescription() + subActivity);
         regularActivityViewRoadSectionName.setText(roadSection);
-        regularActivityViewLocationName.setText(regularActivity.getLocation().getLocation());
-        regularActivityViewDaysOfOperation.setText(String.valueOf(regularActivity.getNumberOfCD()) + " CD");
-        regularActivityViewDate.setText(regularActivity.getDate());
-        regularActivityViewImplementationMode.setText(regularActivity.getImplementationMode());
+        regularActivityViewLocationName.setText(regularActivityToView.getLocation().getLocation());
+        regularActivityViewDaysOfOperation.setText(String.valueOf(regularActivityToView.getNumberOfCD()) + " CD");
+        regularActivityViewDate.setText(regularActivityToView.getDate());
+        regularActivityViewImplementationMode.setText(regularActivityToView.getImplementationMode());
 
         //To Load Operation Equipment Table
         populateRegularActivityViewOpsEquipment(
                 new ActivityListDBController()
-                        .getRegularActivityOpsEquipmentList(regularActivity.getOpsEquipmentListID()));
+                        .getRegularActivityOpsEquipmentList(regularActivityToView.getOpsEquipmentListID()));
 
         //To Load Operation Maintenance Crew Table
         populateRegularActivityViewOpsMaintenanceCrew(
                 new ActivityListDBController()
-                        .getRegularActivityOpsCrewPersonnelList(regularActivity.getOpsMaintenanceCrewID()));
+                        .getRegularActivityOpsCrewPersonnelList(regularActivityToView.getOpsMaintenanceCrewID()));
 
         //To Load Operation Crew Materials Table
         populateRegularActivityViewOpsCrewMaterials(
                 new ActivityListDBController()
-                        .getRegularActivityOpsCrewMaterialsList(regularActivity.getOpsMaintenanceCrewID()));
+                        .getRegularActivityOpsCrewMaterialsList(regularActivityToView.getOpsMaintenanceCrewID()));
 
         //To Load Operation Crew Equipment      
         populateRegularActivityViewOpsCrewEquipment(
                 new ActivityListDBController()
-                        .getRegularActivityOpsCrewEquipmentList(regularActivity.getOpsMaintenanceCrewID()));
+                        .getRegularActivityOpsCrewEquipmentList(regularActivityToView.getOpsMaintenanceCrewID()));
 
         //Calculation for total expenses
         Double opsEquipmentTotalExpenses = 0.00;
@@ -11415,11 +11484,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         Double grandTotalExpenses = 0.00;
 
         opsEquipmentTotalExpenses = new ActivityListDBController()
-                .getRegularActivityOpsEquipmentList(regularActivity.getOpsEquipmentListID()).getTotal();
+                .getRegularActivityOpsEquipmentList(regularActivityToView.getOpsEquipmentListID()).getTotal();
         opsMaintenanceCrewSubtotal = new ActivityListDBController()
-                .getRegularActivityOpsCrewPersonnelList(regularActivity.getOpsMaintenanceCrewID()).getTotal();
+                .getRegularActivityOpsCrewPersonnelList(regularActivityToView.getOpsMaintenanceCrewID()).getTotal();
         opsCrewEquipmentSubtotal = new ActivityListDBController()
-                .getRegularActivityOpsCrewEquipmentList(regularActivity.getOpsMaintenanceCrewID()).getTotal();
+                .getRegularActivityOpsCrewEquipmentList(regularActivityToView.getOpsMaintenanceCrewID()).getTotal();
 
         opsMaintenanceCrewTotalExpenses = opsMaintenanceCrewSubtotal + opsCrewEquipmentSubtotal;
         grandTotalExpenses = opsEquipmentTotalExpenses + opsMaintenanceCrewTotalExpenses;
@@ -12683,6 +12752,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel backViewProgram;
     private javax.swing.JPanel backViewRegularActivity;
     private javax.swing.JPanel backViewRegularActivity1;
+    private javax.swing.JPanel backViewRegularActivity2;
     private javax.swing.JPanel cancelEditOtherExpenses;
     private javax.swing.JPanel cancelEditRegularActivity;
     private javax.swing.JButton cancelNetwork;
@@ -12753,6 +12823,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel equipmentFuelCost;
     private javax.swing.JPanel equipmentPanel;
     private javax.swing.JTextField equipmentSearchValue;
+    private javax.swing.JPanel exportActivity;
     private javax.swing.JButton exportMonthlyReport;
     private javax.swing.JButton exportQuarterlyReport;
     private javax.swing.JLabel iconActivityList;
@@ -12909,6 +12980,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel222;
     private javax.swing.JLabel jLabel223;
     private javax.swing.JLabel jLabel224;
+    private javax.swing.JLabel jLabel225;
+    private javax.swing.JLabel jLabel226;
     private javax.swing.JLabel jLabel227;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel230;
