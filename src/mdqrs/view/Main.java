@@ -8741,7 +8741,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityForEdit.setImplementationMode(regularActivityEditImplementationMode.getText());
             regularActivityForEdit.setNumberOfCD(Integer.parseInt(regularActivityEditDaysOfOperation.getText()));
             regularActivityForEdit.setSubActivity(subActivity);
-
+            
             activityListDBController.edit(regularActivityForEdit, opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList);
 
             JOptionPane.showMessageDialog(rootPane, "Changes Saved!");

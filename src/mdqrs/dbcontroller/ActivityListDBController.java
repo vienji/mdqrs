@@ -1167,7 +1167,7 @@ public class ActivityListDBController {
     }
     
     public String[] getOpsMaintenanceCrewID(String id){
-        String[] listIDs = new String[3];
+        String[] listIDs = {"", "", ""};
         
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -1183,9 +1183,12 @@ public class ActivityListDBController {
             result = preparedStatement.executeQuery();
             
             while(result.next()){
-                listIDs[0] = result.getString(1);
-                listIDs[1] = result.getString(2);
-                listIDs[2] = result.getString(3);
+                String id1 = result.getString(1).equals("NULL") ? "" : result.getString(1);
+                String id2 = result.getString(2).equals("NULL") ? "" : result.getString(2);
+                String id3 = result.getString(3).equals("NULL") ? "" : result.getString(3);
+                listIDs[0] = id1;
+                listIDs[1] = id2;
+                listIDs[2] = id3;
             }
             
         } catch (SQLException e){
@@ -1362,7 +1365,6 @@ public class ActivityListDBController {
                     }
                 }
                 
-                //Crew Materials
                 if(opsMaintenanceCrewIDs[1].isBlank()){
                     String crewMaterialsListID = "";
                 
@@ -1593,7 +1595,7 @@ public class ActivityListDBController {
                         while(result.next()){
                             crewMaterialsListID = result.getString(1);
                         }
-
+                        
                         query = "UPDATE ops_maintenance_crew SET crew_materials_list_id = '"+ crewMaterialsListID +"' WHERE  omid = '" + opsMaintenanceCrewID + "'";
 
                         preparedStatement = connection.prepareStatement(query);
