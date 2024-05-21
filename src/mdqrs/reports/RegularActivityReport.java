@@ -44,6 +44,10 @@ public class RegularActivityReport {
     private String filePath;
     private File file;
     
+    public RegularActivityReport(){
+    
+    }
+    
     public RegularActivityReport(RegularActivity regularActivity){
         this.regularActivity = regularActivity;
     }
@@ -51,6 +55,177 @@ public class RegularActivityReport {
     public void setFilePath(String filePath, File file){
         this.filePath = filePath;
         this.file = file;
+    }
+    
+    public void generateWorkbook(String month, int year){
+        ArrayList<RegularActivity> regularActivityList = new ActivityListDBController().getList(month, year);
+        Workbook workbook = new XSSFWorkbook();
+        
+        for(int i = 0; i < regularActivityList.size(); i++){
+            XSSFSheet sheet = (XSSFSheet) workbook.createSheet("Sheet " + (i + 1));
+            
+            RegularActivity regActivity = regularActivityList.get(i);
+            
+            //Paper Layout
+            sheet.getPrintSetup().setPaperSize(PrintSetup.LEGAL_PAPERSIZE);
+            sheet.setMargin(Sheet.LeftMargin, 0.3); 
+            sheet.setMargin(Sheet.RightMargin, 0.3); 
+            sheet.setMargin(Sheet.TopMargin, 0.5); 
+            sheet.setMargin(Sheet.BottomMargin, 0.5); 
+
+            //Print Setup
+            PrintSetup printSetup =  sheet.getPrintSetup();
+            printSetup.setLandscape(true);
+
+            //Merged Regions
+            sheet.addMergedRegion(new CellRangeAddress(0,0, 0, 1));
+            sheet.addMergedRegion(new CellRangeAddress(0,0, 2, 5));
+            sheet.addMergedRegion(new CellRangeAddress(1,1, 0, 1));
+            sheet.addMergedRegion(new CellRangeAddress(2,2, 0, 1));
+            sheet.addMergedRegion(new CellRangeAddress(0,0, 10, 11));
+            sheet.addMergedRegion(new CellRangeAddress(3,3, 0, 12));
+
+            //Column width
+            sheet.setColumnWidth(0, 2800);
+            sheet.setColumnWidth(1, 4000);
+            sheet.setColumnWidth(2, 6000);
+            sheet.setColumnWidth(3, 2000);
+            sheet.setColumnWidth(4, 2500);
+            sheet.setColumnWidth(5, 3200);
+            sheet.setColumnWidth(6, 3200);
+            sheet.setColumnWidth(7, 2500);
+            sheet.setColumnWidth(8, 3200);
+            sheet.setColumnWidth(9, 3200);
+            sheet.setColumnWidth(10, 2500);
+            sheet.setColumnWidth(11, 3200);
+            sheet.setColumnWidth(12, 3700);
+
+            //Cell styles
+            CellStyle leftNoBorder = createLeftNoBorderStyle(workbook);
+            CellStyle rightNoBorder = createRightNoBorderStyle(workbook);
+            CellStyle centerNoBorder = createCenterNoBorderStyle(workbook);
+            CellStyle center = createCenterStyle(workbook);
+            CellStyle centeredCurrency = createCenterCurrencyStyle(workbook);
+            CellStyle centeredBotBorderCurrency = createCenterBotBorderCurrencyStyle(workbook);
+
+            int startingRow = 0;
+
+            String roadSection = regActivity.isIsOtherRoadSection() ? regActivity.getOtherRoadSection() : regActivity.getRoadSection().getName();
+            String subActivity = regActivity.getSubActivity().getId() != 0 ? " ( " + regActivity.getSubActivity().getDescription() + " ) " : "";
+
+            addInfoRow(startingRow++, sheet, leftNoBorder, "Name of Road Section:", roadSection, "Month/Year", regActivity.getDate());
+            addInfoRow(startingRow++, sheet, leftNoBorder, "Location:", regActivity.getLocation().getLocation() + ", South Cotabato", "", "");
+            addInfoRow(startingRow++, sheet, leftNoBorder, "Days of Operation:", regActivity.getNumberOfCD() + " CD", "", "");
+            addActivityTitle(startingRow++, sheet, centerNoBorder, "Activity " + regActivity.getActivity().getItemNumber() + " - " + regActivity.getActivity().getDescription() + subActivity);
+            addOpsEquipmentColumnHeader(startingRow++, sheet, center);
+
+            Double totalEquipmentWages = 0.0, totalEquipmentFuel = 0.0, totalEquipmentLubricant = 0.0, opsEquipmentTotalExpenses = 0.0;
+
+            OpsEquipmentList opsEquipmentList = new ActivityListDBController()
+                            .getRegularActivityOpsEquipmentList(regActivity.getOpsEquipmentListID());
+
+            for(OpsEquipment opsEquipment : opsEquipmentList.toList()){
+                addOpsEquipment(startingRow++, sheet, new CellStyle[]{center, centeredCurrency}, opsEquipment);
+                totalEquipmentWages += opsEquipment.getTotalWages();
+                totalEquipmentFuel += opsEquipment.getFuelAmount();
+                totalEquipmentLubricant += opsEquipment.getLubricantAmount();
+            }
+
+            opsEquipmentTotalExpenses = totalEquipmentWages + totalEquipmentFuel + totalEquipmentLubricant;
+
+            addEquipmentSubTotal(startingRow++, sheet, new CellStyle[]{leftNoBorder, centeredBotBorderCurrency}, totalEquipmentWages, totalEquipmentFuel, totalEquipmentLubricant);
+            addEquipmentTotalExpenses(startingRow++, sheet, new CellStyle[]{rightNoBorder, centeredBotBorderCurrency}, opsEquipmentTotalExpenses);
+
+            //Maintenance Crew
+
+            Row bMaintenanceCrew = sheet.createRow(++startingRow);
+            sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 0, 1));
+
+            Cell bcell1 = bMaintenanceCrew.createCell(0);
+            bcell1.setCellValue("B.) Maintenance Crew");
+            bcell1.setCellStyle(leftNoBorder);
+
+            Row b1MaintenanceCrew = sheet.createRow(++startingRow);
+            sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 2));
+
+            Cell b1cell2 = b1MaintenanceCrew.createCell(1);
+            b1cell2.setCellValue("B.1. Maintenance Crew");
+            b1cell2.setCellStyle(leftNoBorder);
+
+            //Personnel
+            addPersonnelColumnHeader(++startingRow, sheet, center);
+
+            Double totalPersonnelWages = 0.0;
+
+            CrewPersonnelList crewPersonnelList = new ActivityListDBController()
+                            .getRegularActivityOpsCrewPersonnelList(regActivity.getOpsMaintenanceCrewID());
+
+            for(CrewPersonnel crewPersonnel : crewPersonnelList.toList()){
+                addPersonnel(++startingRow, sheet, new CellStyle[]{center, centeredCurrency}, crewPersonnel);
+                totalPersonnelWages += crewPersonnel.getTotalWages();
+            }
+
+            addPersonnelSubTotal(++startingRow, sheet, new CellStyle[]{leftNoBorder, centeredBotBorderCurrency}, totalPersonnelWages);
+
+            Row b2Materials = sheet.createRow(++startingRow);
+            sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 2));
+
+            Cell b2cell2 = b2Materials.createCell(1);
+            b2cell2.setCellValue("B.2. Materials");
+            b2cell2.setCellStyle(leftNoBorder);
+
+            //Materials
+            addMaterialsColumnHeader(++startingRow, sheet, center);
+
+            CrewMaterialsList crewMaterialsList = new ActivityListDBController()
+                            .getRegularActivityOpsCrewMaterialsList(regActivity.getOpsMaintenanceCrewID());
+
+            for(CrewMaterials crewMaterials : crewMaterialsList.toList()){
+                addMaterials(++startingRow, sheet, new CellStyle[]{center, centeredCurrency}, crewMaterials);
+            }
+
+            addMaterialsSubTotal(++startingRow, sheet, new CellStyle[]{leftNoBorder, centeredBotBorderCurrency}, 0.0);
+
+            Row b3Equipment = sheet.createRow(++startingRow);
+            sheet.addMergedRegion(new CellRangeAddress(startingRow, startingRow, 1, 2));
+
+            Cell b3cell2 = b3Equipment.createCell(1);
+            b3cell2.setCellValue("B.3. Equipment");
+            b3cell2.setCellStyle(leftNoBorder);
+
+            //Equipment
+            addEquipmentColumnHeader(++startingRow, sheet, center);
+
+            Double totalCrewEquipmentWages = 0.0, totalCrewEquipmentFuel = 0.0, totalCrewEquipmentLubricant = 0.0, crewEquipmentTotalExpenses = 0.0;
+
+            CrewEquipmentList crewEquipmentList = new ActivityListDBController()
+                            .getRegularActivityOpsCrewEquipmentList(regActivity.getOpsMaintenanceCrewID());
+
+            for(CrewEquipment crewEquipment : crewEquipmentList.toList()){
+                addEquipment(++startingRow, sheet, new CellStyle[]{center, centeredCurrency}, crewEquipment);
+                totalCrewEquipmentWages += crewEquipment.getTotalWages();
+                totalCrewEquipmentFuel += crewEquipment.getFuelAmount();
+                totalCrewEquipmentLubricant += crewEquipment.getLubricantAmount();
+            }
+
+            crewEquipmentTotalExpenses = totalCrewEquipmentWages + totalCrewEquipmentFuel + totalCrewEquipmentLubricant;
+
+            addEquipmentSubTotal(++startingRow, sheet, new CellStyle[]{leftNoBorder, centeredBotBorderCurrency}, totalCrewEquipmentWages, totalCrewEquipmentFuel, totalCrewEquipmentLubricant);
+            addEquipmentTotalExpenses(++startingRow, sheet, new CellStyle[]{rightNoBorder, centeredBotBorderCurrency}, crewEquipmentTotalExpenses + totalPersonnelWages);
+
+            addGrandTotalExpenses(++startingRow, sheet, new CellStyle[]{rightNoBorder, centeredBotBorderCurrency}, crewEquipmentTotalExpenses + totalPersonnelWages + opsEquipmentTotalExpenses);
+        }
+        
+        //Output
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        
+        try(FileOutputStream outputStream = new FileOutputStream(fileDirectory + fileName)){
+            workbook.write(outputStream);
+            outputStream.close();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     public void generateReport(){

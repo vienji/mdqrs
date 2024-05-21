@@ -51,6 +51,6 @@ public class Test {
           
           regularReport.setFilePath(filePath, file);
           
-          regularReport.generateReport();
+          regularReport.generateWorkbook("May", 2024);
     }
 }

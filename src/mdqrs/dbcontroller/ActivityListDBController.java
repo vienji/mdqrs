@@ -943,6 +943,68 @@ public class ActivityListDBController {
         return list;
     }
     
+    public ArrayList<RegularActivity> getList(String month, int year){
+        ArrayList<RegularActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT * FROM regular_activity WHERE month = ? AND year = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+        
+            preparedStatement.setString(1, month);
+            preparedStatement.setInt(2, year);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                RegularActivity regularActivity = new RegularActivity();
+                
+                boolean isOtherRoadSection = Boolean.valueOf(result.getString(5));
+                
+                regularActivity.setId(result.getString(2));
+                regularActivity.setActivity(new ActivityDBController().getActivity(result.getString(3)));
+                
+                if(isOtherRoadSection){
+                    regularActivity.setOtherRoadSection(result.getString(4));
+                } else {
+                    regularActivity.setRoadSection(new RoadSectionDBController().getRoadSection(result.getString(4)));
+                }
+                
+                regularActivity.setIsOtherRoadSection(isOtherRoadSection);
+                regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
+                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setMonth(result.getString(8));
+                regularActivity.setYear(result.getInt(9));
+                regularActivity.setOpsEquipmentListID(result.getString(10));
+                regularActivity.setOpsMaintenanceCrewID(result.getString(11));
+                regularActivity.setImplementationMode(result.getString(12));
+                
+                SubActivity subActivity = result.getInt(13) != 0 ? 
+                        new SubActivityDBController().getSubActivity(result.getInt(13)) : new SubActivity();
+                regularActivity.setSubActivity(subActivity);
+                
+                list.add(regularActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+            
+        return list;
+    }
+    
     public CrewPersonnelList getRegularActivityOpsCrewPersonnelList(String id){
         CrewPersonnelList list = new CrewPersonnelList();
         

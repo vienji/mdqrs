@@ -796,6 +796,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel227 = new javax.swing.JLabel();
         exportQuarterlyReport = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel228 = new javax.swing.JLabel();
+        jLabel229 = new javax.swing.JLabel();
+        regularActivityWorkbookMonth = new javax.swing.JComboBox<>();
+        exportWorkbook = new javax.swing.JButton();
+        regularActivityWorkbookYear = new javax.swing.JComboBox<>();
+        jLabel231 = new javax.swing.JLabel();
         settingsPanel = new javax.swing.JPanel();
         jScrollPane13 = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
@@ -7655,6 +7662,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
 
+        jSeparator3.setForeground(new java.awt.Color(102, 102, 102));
+
+        jLabel228.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel228.setText("Regular Activity Workbook");
+
+        jLabel229.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel229.setText("Month");
+
+        regularActivityWorkbookMonth.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" }));
+
+        exportWorkbook.setText("Export Workbook");
+        exportWorkbook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportWorkbookActionPerformed(evt);
+            }
+        });
+
+        jLabel231.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel231.setText("Year");
+
         javax.swing.GroupLayout reportPanelLayout = new javax.swing.GroupLayout(reportPanel);
         reportPanel.setLayout(reportPanelLayout);
         reportPanelLayout.setHorizontalGroup(
@@ -7663,18 +7690,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(52, 52, 52)
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reportPanelLayout.createSequentialGroup()
-                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(reportPanelLayout.createSequentialGroup()
-                                .addComponent(quarterlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(exportQuarterlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel227))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(reportPanelLayout.createSequentialGroup()
                         .addComponent(jLabel224)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reportPanelLayout.createSequentialGroup()
                         .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(reportPanelLayout.createSequentialGroup()
                                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7695,7 +7715,27 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                     .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addComponent(exportMonthlyReport, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                                         .addComponent(monthlyYear, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                        .addGap(56, 56, 56))))
+                        .addGap(56, 56, 56))
+                    .addGroup(reportPanelLayout.createSequentialGroup()
+                        .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(regularActivityWorkbookMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel229))
+                                .addGap(18, 18, 18)
+                                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel231)
+                                    .addGroup(reportPanelLayout.createSequentialGroup()
+                                        .addComponent(regularActivityWorkbookYear, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(exportWorkbook, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel228)
+                            .addGroup(reportPanelLayout.createSequentialGroup()
+                                .addComponent(quarterlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(exportQuarterlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel227))
+                        .addGap(0, 542, Short.MAX_VALUE))))
         );
         reportPanelLayout.setVerticalGroup(
             reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -7730,7 +7770,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(quarterlyYear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(exportQuarterlyReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(370, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel228)
+                .addGap(18, 18, 18)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel231)
+                    .addComponent(jLabel229))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(reportPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(regularActivityWorkbookMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(regularActivityWorkbookYear, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exportWorkbook, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         mainPanel.add(reportPanel, "card2");
@@ -10646,36 +10699,70 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void exportActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportActivityMouseClicked
         if(evt.getSource() == exportActivity){
-                int returnVal = fileChooser.showSaveDialog(Main.this);
-                if(returnVal == JFileChooser.APPROVE_OPTION){
-                    File file = fileChooser.getCurrentDirectory();
-                    File fileName = fileChooser.getSelectedFile();
-                    
-                    RegularActivityReport regularReport = new RegularActivityReport(regularActivityToView);
+            int returnVal = fileChooser.showSaveDialog(Main.this);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getCurrentDirectory();
+                File fileName = fileChooser.getSelectedFile();
 
-                    regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
-                    System.out.println(file.getAbsolutePath() + "\\" + fileName);
-                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                    exportLoadScreen.setVisible(true);
-                    
-                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            regularReport.generateReport();
-                            return null;
-                        }
+                RegularActivityReport regularReport = new RegularActivityReport(regularActivityToView);
 
-                        @Override
-                        protected void done(){
-                            exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                        }
-                    };
-                    
-                    worker.execute();
-                }
-            } 
+                regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+
+                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                exportLoadScreen.setVisible(true);
+
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        regularReport.generateReport();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done(){
+                        exportLoadScreen.dispose();
+                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                    }
+                };
+
+                worker.execute();
+            }
+        } 
     }//GEN-LAST:event_exportActivityMouseClicked
+
+    private void exportWorkbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportWorkbookActionPerformed
+        if(evt.getSource() == exportWorkbook){
+            int returnVal = fileChooser.showSaveDialog(Main.this);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getCurrentDirectory();
+                File fileName = fileChooser.getSelectedFile();
+
+                RegularActivityReport regularReport = new RegularActivityReport();
+
+                regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+
+                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                exportLoadScreen.setVisible(true);
+
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        regularReport.generateWorkbook(String.valueOf(regularActivityWorkbookMonth.getSelectedItem()), 
+                                Integer.parseInt(String.valueOf(regularActivityWorkbookYear.getSelectedItem())));
+                        return null;
+                    }
+
+                    @Override
+                    protected void done(){
+                        exportLoadScreen.dispose();
+                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                    }
+                };
+
+                worker.execute();
+            }
+        }
+    }//GEN-LAST:event_exportWorkbookActionPerformed
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -11844,6 +11931,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         });
         
         quarterlyYear.setSelectedIndex(new Date().getYear() - 75);
+        
+        getYears().forEach((y) -> {
+            regularActivityWorkbookYear.addItem(String.valueOf(y));
+        });
+
+        regularActivityWorkbookMonth.setSelectedIndex(new Date().getMonth());
+        regularActivityWorkbookYear.setSelectedIndex(new Date().getYear() - 75);
 
         //Edit
         getYears().forEach((y) -> {
@@ -12752,7 +12846,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel backViewProgram;
     private javax.swing.JPanel backViewRegularActivity;
     private javax.swing.JPanel backViewRegularActivity1;
-    private javax.swing.JPanel backViewRegularActivity2;
     private javax.swing.JPanel cancelEditOtherExpenses;
     private javax.swing.JPanel cancelEditRegularActivity;
     private javax.swing.JButton cancelNetwork;
@@ -12826,6 +12919,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel exportActivity;
     private javax.swing.JButton exportMonthlyReport;
     private javax.swing.JButton exportQuarterlyReport;
+    private javax.swing.JButton exportWorkbook;
     private javax.swing.JLabel iconActivityList;
     private javax.swing.JLabel iconEquipment;
     private javax.swing.JLabel iconPersonnel;
@@ -12980,11 +13074,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel222;
     private javax.swing.JLabel jLabel223;
     private javax.swing.JLabel jLabel224;
-    private javax.swing.JLabel jLabel225;
     private javax.swing.JLabel jLabel226;
     private javax.swing.JLabel jLabel227;
+    private javax.swing.JLabel jLabel228;
+    private javax.swing.JLabel jLabel229;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel230;
+    private javax.swing.JLabel jLabel231;
     private javax.swing.JLabel jLabel232;
     private javax.swing.JLabel jLabel233;
     private javax.swing.JLabel jLabel234;
@@ -13164,6 +13260,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel laborCrewCost;
@@ -13297,6 +13394,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel regularActivityViewOpsEquipmentTotalExpenses;
     private javax.swing.JLabel regularActivityViewOpsMaintenanceCrewTotalExpenses;
     private javax.swing.JLabel regularActivityViewRoadSectionName;
+    private javax.swing.JComboBox<String> regularActivityWorkbookMonth;
+    private javax.swing.JComboBox<String> regularActivityWorkbookYear;
     private javax.swing.JPanel removeCrewEquipment;
     private javax.swing.JPanel removeCrewEquipmentEdit;
     private javax.swing.JPanel removeCrewMaterials;
