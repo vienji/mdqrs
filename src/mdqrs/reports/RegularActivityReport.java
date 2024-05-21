@@ -62,9 +62,10 @@ public class RegularActivityReport {
         Workbook workbook = new XSSFWorkbook();
         
         for(int i = 0; i < regularActivityList.size(); i++){
-            XSSFSheet sheet = (XSSFSheet) workbook.createSheet("Sheet " + (i + 1));
-            
             RegularActivity regActivity = regularActivityList.get(i);
+            String roadSection = regActivity.isIsOtherRoadSection() ? regActivity.getOtherRoadSection() : regActivity.getRoadSection().getName();
+
+            XSSFSheet sheet = (XSSFSheet) workbook.createSheet((i + 1) + ".) " + roadSection);
             
             //Paper Layout
             sheet.getPrintSetup().setPaperSize(PrintSetup.LEGAL_PAPERSIZE);
@@ -110,7 +111,6 @@ public class RegularActivityReport {
 
             int startingRow = 0;
 
-            String roadSection = regActivity.isIsOtherRoadSection() ? regActivity.getOtherRoadSection() : regActivity.getRoadSection().getName();
             String subActivity = regActivity.getSubActivity().getId() != 0 ? " ( " + regActivity.getSubActivity().getDescription() + " ) " : "";
 
             addInfoRow(startingRow++, sheet, leftNoBorder, "Name of Road Section:", roadSection, "Month/Year", regActivity.getDate());
@@ -219,7 +219,7 @@ public class RegularActivityReport {
         //Output
         String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
         String fileDirectory = validateFilePath(filePath) ;
-        
+
         try(FileOutputStream outputStream = new FileOutputStream(fileDirectory + fileName)){
             workbook.write(outputStream);
             outputStream.close();

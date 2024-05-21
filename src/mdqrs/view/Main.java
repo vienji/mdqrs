@@ -10738,7 +10738,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 File fileName = fileChooser.getSelectedFile();
 
                 RegularActivityReport regularReport = new RegularActivityReport();
-
+                
                 regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
 
                 ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
