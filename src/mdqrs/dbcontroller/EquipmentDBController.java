@@ -162,7 +162,7 @@ public class EquipmentDBController {
         boolean present = false;
         
         try{
-            query = "SELECT * FROM equipment WHERE equipment_number = '" + equipmentNumber + "'";
+            query = "SELECT * FROM equipment WHERE equipment_number = '" + equipmentNumber + "' AND is_deleted = 'no'";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             

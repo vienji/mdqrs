@@ -66,6 +66,8 @@ public class AddPersonnel extends javax.swing.JFrame {
         add = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         ratePerDay = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        otherType = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add New Personnel");
@@ -77,7 +79,12 @@ public class AddPersonnel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Type");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Foreman", "Operator", "Maintenance Crew" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Foreman", "Operator", "Maintenance Crew", "Engineer", "Engineering Aide", "Laboratory Aide", "Survey Aide", "Other" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -100,6 +107,11 @@ public class AddPersonnel extends javax.swing.JFrame {
 
         ratePerDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Other Type");
+
+        otherType.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -113,11 +125,17 @@ public class AddPersonnel extends javax.swing.JFrame {
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(31, 31, 31)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(31, 31, 31))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(41, 41, 41)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(otherType, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -136,9 +154,13 @@ public class AddPersonnel extends javax.swing.JFrame {
                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(otherType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
                     .addComponent(cancel))
@@ -162,18 +184,31 @@ public class AddPersonnel extends javax.swing.JFrame {
                 String.format("Personnel %s type %s was already added!", name.getText(), String.valueOf(type.getSelectedItem())));
         } else if (type.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Please select a type!");
+        } else if (String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") && otherType.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "If other type, please specify!");
         } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
         } else if (ratePerDay.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
-            new PersonnelDBController().add(name.getText(), String.valueOf(type.getSelectedItem()), dataValidation.convertToDouble(ratePerDay.getText()));
+            String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+            new PersonnelDBController().add(name.getText(), jobType, dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             JOptionPane.showMessageDialog(rootPane, "New Personnel was successfully added!");
             instance = null;
             dispose();
         }
     }//GEN-LAST:event_addActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        String selected = String.valueOf(type.getSelectedItem());
+        
+        if(selected.equalsIgnoreCase("Other")){
+            otherType.setEnabled(true);
+        } else {
+            otherType.setEnabled(false);
+        }
+    }//GEN-LAST:event_typeActionPerformed
 
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -224,7 +259,9 @@ public class AddPersonnel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField name;
+    private javax.swing.JTextField otherType;
     private javax.swing.JFormattedTextField ratePerDay;
     private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
