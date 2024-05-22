@@ -15,9 +15,10 @@ import javax.swing.JLabel;
  */
 public class ImageManipulator {   
     public void setIcon(String filePath, JLabel label){
-          ImageIcon icon = new ImageIcon(filePath);
-          Image image = icon.getImage().getScaledInstance(label.getWidth(), 
-                  label.getHeight(), Image.SCALE_SMOOTH);
-          label.setIcon(new ImageIcon(image));
+        java.net.URL imgURL = getClass().getResource(filePath);
+        ImageIcon icon = new ImageIcon(imgURL);
+        Image image = icon.getImage().getScaledInstance(label.getWidth(), 
+                label.getHeight(), Image.SCALE_SMOOTH);
+        label.setIcon(new ImageIcon(image));
     }
 }

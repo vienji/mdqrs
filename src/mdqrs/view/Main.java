@@ -34,6 +34,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -62,6 +65,7 @@ import mdqrs.classes.Program;
 import mdqrs.classes.Project;
 import mdqrs.reports.ReportFactory;
 import mdqrs.classes.DataValidation;
+import mdqrs.classes.JarDirectory;
 import mdqrs.reports.QuarterlyReport;
 import mdqrs.reports.QuarterlyReportBuilder;
 import mdqrs.dbcontroller.ActivityDBController;
@@ -156,19 +160,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
      */
     public Main() {
         initComponents();
-        initIcons();
-
+        /*initIcons();
+        initNetworkSettings();
+        initReportSettings();
+        initSearchFieldListener();
+        initDate();*/
+        addWindowListener(new CloseWindow());
+        /*
         if (Driver.getConnection() != null) {
             initData();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please Setup Your Network!");
-        }
-
-        initNetworkSettings();
-        initReportSettings();
-        initSearchFieldListener();
-        initDate();
-        addWindowListener(new CloseWindow());
+        }*/
     }
 
     /**
@@ -8404,9 +8407,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void saveNetworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNetworkMouseClicked
         int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
-
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
+        File file = new File(parentDir,NETWORK_FILE);
         if (n == 0) {
-            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\config.properties")) {
+            try (OutputStream output = new FileOutputStream(file)) {
                 Properties network = new Properties();
 
                 Cryptographer cryptographer = new Cryptographer();
@@ -8439,7 +8450,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             networkPort.enableInputMethods(false);
             networkDatabase.enableInputMethods(false);
         } else {
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
+            try (FileInputStream input = new FileInputStream(file)) {
                 Properties network = new Properties();
                 network.load(input);
 
@@ -8480,7 +8491,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         networkPort.enableInputMethods(false);
         networkDatabase.enableInputMethods(false);
         
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
+        File file = new File(parentDir,NETWORK_FILE);
+        
+        try (FileInputStream input = new FileInputStream(file)) {
             Properties network = new Properties();
             network.load(input);
 
@@ -9534,85 +9555,87 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_timeRangeActionPerformed
 
     private void timeframeDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeframeDetailActionPerformed
-        if(timeframeDetail.getItemCount() > 0){
-            GeneralDBController gdbc = new GeneralDBController();
-            double totalLaborCrewCost, totalLaborEquipmentCost, totalEquipmentFuelCost, totalLubricantCost;
+        if(Driver.getConnection() != null){
+            if(timeframeDetail.getItemCount() > 0){
+                GeneralDBController gdbc = new GeneralDBController();
+                double totalLaborCrewCost, totalLaborEquipmentCost, totalEquipmentFuelCost, totalLubricantCost;
 
-            String selectedTimeRange = String.valueOf(timeRange.getSelectedItem());
-            Object selectedTimeFrame = timeframeDetail.getSelectedItem();
+                String selectedTimeRange = String.valueOf(timeRange.getSelectedItem());
+                Object selectedTimeFrame = timeframeDetail.getSelectedItem();
 
-            switch (selectedTimeRange) {
-                case "Monthly":
-                    totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
-                            gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getMonthlyOtherActivityList(String.valueOf(selectedTimeFrame)), 
-                            gdbc.getMonthlyOtherExpensesList(String.valueOf(selectedTimeFrame)));
-                    laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
+                switch (selectedTimeRange) {
+                    case "Monthly":
+                        totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
+                                gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getMonthlyOtherActivityList(String.valueOf(selectedTimeFrame)), 
+                                gdbc.getMonthlyOtherExpensesList(String.valueOf(selectedTimeFrame)));
+                        laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
 
-                    totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
-                            gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getMonthlyOtherExpensesList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
+                        totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
+                                gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getMonthlyOtherExpensesList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
 
-                    totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
-                            gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
+                        totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
+                                gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
 
-                    totalLubricantCost = gdbc.getTotalLubricantCost(
-                            gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
-                    break;
-                case "Quarterly":  
-                    totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
-                            gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getQuarterlyOtherActivityList(String.valueOf(selectedTimeFrame)), 
-                            gdbc.getQuarterlyOtherExpensesList(String.valueOf(selectedTimeFrame)));
-                    laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
+                        totalLubricantCost = gdbc.getTotalLubricantCost(
+                                gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        break;
+                    case "Quarterly":  
+                        totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
+                                gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getQuarterlyOtherActivityList(String.valueOf(selectedTimeFrame)), 
+                                gdbc.getQuarterlyOtherExpensesList(String.valueOf(selectedTimeFrame)));
+                        laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
 
-                    totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
-                            gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getQuarterlyOtherExpensesList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
+                        totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
+                                gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getQuarterlyOtherExpensesList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
 
-                    totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
-                            gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
+                        totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
+                                gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
 
-                    totalLubricantCost = gdbc.getTotalLubricantCost(
-                            gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
-                            gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
-                    lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
-                    break;
-                case "Annually":    
-                    totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
-                            gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
-                            gdbc.getAnnualOtherActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))), 
-                            gdbc.getAnnualOtherExpensesList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
-                    laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
+                        totalLubricantCost = gdbc.getTotalLubricantCost(
+                                gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
+                                gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
+                        lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        break;
+                    case "Annually":    
+                        totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
+                                gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
+                                gdbc.getAnnualOtherActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))), 
+                                gdbc.getAnnualOtherExpensesList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
+                        laborCrewCost.setText("₱ " + setDecimalFormat(totalLaborCrewCost));
 
-                    totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
-                            gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
-                            gdbc.getAnnualOtherExpensesList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
-                            gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
-                    laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
+                        totalLaborEquipmentCost = gdbc.getTotalLaborEquipmentCost(
+                                gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
+                                gdbc.getAnnualOtherExpensesList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
+                                gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
+                        laborEquipmentCost.setText("₱ " + setDecimalFormat(totalLaborEquipmentCost));
 
-                    totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
-                            gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
-                            gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
-                    equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
+                        totalEquipmentFuelCost = gdbc.getTotalEquipmentFuelCost(
+                                gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
+                                gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
+                        equipmentFuelCost.setText("₱ " + setDecimalFormat(totalEquipmentFuelCost));
 
-                    totalLubricantCost = gdbc.getTotalLubricantCost(
-                            gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
-                            gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
-                    lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
-                    break;
+                        totalLubricantCost = gdbc.getTotalLubricantCost(
+                                gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
+                                gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
+                        lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        break;
+                }
             }
-        }
+        }    
     }//GEN-LAST:event_timeframeDetailActionPerformed
 
     private void editDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editDriversForEngineers1MouseClicked
@@ -10018,8 +10041,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void saveReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveReportMouseClicked
         int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
 
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
+        File file1 = new File(parentDir, REPORT_FILE_1);
+        final String REPORT_FILE_2 = "src/mdqrs/path/to/quarterly_report_config.properties";
+        File file2 = new File(parentDir,REPORT_FILE_2);
+        
         if (n == 0) {
-            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            try (OutputStream output = new FileOutputStream(file1)) {
                 Properties report = new Properties();
 
                 report.setProperty("prepared_by_1_name", preparedBy1Name.getText());
@@ -10038,7 +10074,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
             saveReport.setEnabled(false);
         } else {
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            try (FileInputStream input = new FileInputStream(file1)) {
                 Properties report = new Properties();
                 report.load(input);
                 
@@ -10061,7 +10097,19 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void cancelReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelReportMouseClicked
         saveReport.setEnabled(false);
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+        
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
+        File file1 = new File(parentDir, REPORT_FILE_1);
+        
+        try (FileInputStream input = new FileInputStream(file1)) {
             Properties report = new Properties();
             report.load(input);
 
@@ -10635,8 +10683,19 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void saveQuarterlyReportDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveQuarterlyReportDetailsMouseClicked
         int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
 
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_2 = "src/mdqrs/path/to/quarterly_report_config.properties";
+        File file2 = new File(parentDir,REPORT_FILE_2);
+        
         if (n == 0) {
-            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+            try (OutputStream output = new FileOutputStream(file2)) {
                 Properties report = new Properties();
 
                 report.setProperty("total_provincial_roads", totalLengthOfProvincialRoads.getText());
@@ -10648,7 +10707,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 io.printStackTrace();
             }
         } else {
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+            try (FileInputStream input = new FileInputStream(file2)) {
                 Properties report = new Properties();
                 report.load(input);
                 
@@ -11709,7 +11768,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
 
-    private void initData() {
+    public void initData() {
         activityList = new ActivityDBController().getList();
         searchedActivity = activityList;
         subActivityList = new SubActivityDBController().getList();
@@ -11883,7 +11942,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
 
-    private void initDate() {
+    public void initDate() {
         getYears().forEach((y) -> {
             regularActivityFormYear.addItem(String.valueOf(y));
         });
@@ -12136,28 +12195,31 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editCrewEquipmentEdit.setVisible(false);
     }
 
-    private void initIcons() {
+    public void initIcons() {
         ImageManipulator imageManipulator = new ImageManipulator();
-        imageManipulator.setIcon("src\\mdqrs\\assets\\socot_seal_bgrmvd.png", menuLogo);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\socot_seal_bgrmvd.png", welcomeLogo);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_list.png", iconActivityList);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_category.png", iconWorkCategory);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_equipment.png", iconEquipment);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_personnel.png", iconPersonnel);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_report.png", iconReport);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_settings.png", iconSettings);
+        imageManipulator.setIcon("/mdqrs/assets/socot_seal_bgrmvd.png", menuLogo);
+        imageManipulator.setIcon("/mdqrs/assets/socot_seal_bgrmvd.png", welcomeLogo);
+        imageManipulator.setIcon("/mdqrs/assets/icon_list.png", iconActivityList);
+        imageManipulator.setIcon("/mdqrs/assets/icon_category.png", iconWorkCategory);
+        imageManipulator.setIcon("/mdqrs/assets/icon_equipment.png", iconEquipment);
+        imageManipulator.setIcon("/mdqrs/assets/icon_personnel.png", iconPersonnel);
+        imageManipulator.setIcon("/mdqrs/assets/icon_report.png", iconReport);
+        imageManipulator.setIcon("/mdqrs/assets/icon_settings.png", iconSettings);
 
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_search.png", searchActivity);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_search.png", searchWorkCategory);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_search.png", searchEquipment);
-        imageManipulator.setIcon("src\\mdqrs\\assets\\icon_search.png", searchPersonnel);
+        imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchActivity);
+        imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchWorkCategory);
+        imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchEquipment);
+        imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchPersonnel);
     }
 
-    public void initNetworkSettings() {
-        File file = new File("src\\mdqrs\\path\\to\\config.properties");
-        
+    public void initNetworkSettings() throws URISyntaxException, IOException {
+        File jarDir = JarDirectory.getJarDir(Main.class);
+        File parentDir = jarDir.getParentFile();
+        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
+        File file = new File(parentDir,NETWORK_FILE);
+
         if(file.exists()){
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")) {
+            try (FileInputStream input = new FileInputStream(file)) {
                 Properties network = new Properties();
                 network.load(input);
 
@@ -12188,19 +12250,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             networkPort.enableInputMethods(false);
             networkDatabase.enableInputMethods(false);
         } else {
-            try (OutputStream output = new FileOutputStream("src\\mdqrs\\path\\to\\config.properties")) {
+            try (OutputStream output = new FileOutputStream(file)) {
                 Properties network = new Properties();
-
-                Cryptographer cryptographer = new Cryptographer();
-
-                String encryptedPassword = "";
-
-                try {
-                    encryptedPassword = cryptographer.encrypt("");
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(rootPane, e.getMessage());
-                    e.printStackTrace();
-                }
 
                 network.setProperty("username", "admin");
                 network.setProperty("password", "admin");
@@ -12223,13 +12274,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }    
     }
     
-    public void initReportSettings() {
+    public void initReportSettings() throws URISyntaxException, IOException {
         saveReport.setEnabled(false);
-        File file1 = new File("src\\mdqrs\\path\\to\\report_config.properties");
-        File file2 = new File("src\\mdqrs\\path\\to\\quarterly_report_config.properties");
+        File jarDir = JarDirectory.getJarDir(Main.class);
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
+        final String REPORT_FILE_2 = "src/mdqrs/path/to/quarterly_report_config.properties";
+        File file1 = new File(parentDir, REPORT_FILE_1);
+        File file2 = new File(parentDir,REPORT_FILE_2);
         
         if(file1.exists()){
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+            try (FileInputStream input = new FileInputStream(file1)) {
                 Properties report = new Properties();
                 report.load(input);
 
@@ -12248,7 +12304,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
         
         if(file2.exists()){
-            try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+            try (FileInputStream input = new FileInputStream(file2)) {
                 Properties report = new Properties();
                 report.load(input);
 
@@ -12529,7 +12585,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
     
-    private void initSearchFieldListener(){
+    public void initSearchFieldListener(){
         personnelSearchFieldListener();
         equipmentSearchFieldListener();
         workCategorySearchFieldListener();

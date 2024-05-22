@@ -13,10 +13,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import mdqrs.classes.DriversForEngineers;
+import mdqrs.classes.JarDirectory;
 import mdqrs.classes.OtherExpenses;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
@@ -26,6 +28,7 @@ import mdqrs.dbcontroller.GeneralDBController;
 import mdqrs.dbcontroller.OtherExpensesDBController;
 import mdqrs.dbcontroller.ProgramDBController;
 import mdqrs.dbcontroller.SubActivityDBController;
+import mdqrs.view.Main;
 import org.apache.poi.hssf.usermodel.HSSFHeader;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -184,7 +187,7 @@ public class MonthlyReport implements Report {
         Double totalRALaborCrewExpenses = 0.0, totalRALaborEquipmentExpenses = 0.00, totalRAEquipmentFuelExpenses = 0.00, totalRALubricantExpenses = 0.00, grandRASubTotal = 0.00;
         
         for(Activity activity : activityList){
-            if( activityDBController.hasWorkActivities(activity.getItemNumber(), timeFrame) && !activity.getItemNumber().equals("504")){
+            if( activityDBController.hasWorkActivities(activity.getItemNumber(), timeFrame, year) && !activity.getItemNumber().equals("504")){
                 Double totalLaborCrewExpenses = 0.00, totalLaborEquipmentExpenses = 0.00, totalEquipmentFuelExpenses = 0.00, totalLubricantExpenses = 0.00, grandSubTotal = 0.00;
                 
                 ArrayList<RegularActivity> list = gdbc.getSpecifiedMonthlyRegularActivityList(timeFrame, activity.getItemNumber(), year);
@@ -245,7 +248,7 @@ public class MonthlyReport implements Report {
         //504
         Double total504LaborCrewExpenses = 0.0, total504LaborEquipmentExpenses = 0.00, total504EquipmentFuelExpenses = 0.00, total504LubricantExpenses = 0.00, grand504SubTotal = 0.00;
         for(Activity activity : activityList){
-            if(activityDBController.hasWorkActivities("504", timeFrame) && activity.getItemNumber().equals("504")){
+            if(activityDBController.hasWorkActivities("504", timeFrame, year) && activity.getItemNumber().equals("504")){
                 Double totalLaborCrewExpenses = 0.00, totalLaborEquipmentExpenses = 0.00, totalEquipmentFuelExpenses = 0.00, totalLubricantExpenses = 0.00, grandSubTotal = 0.00;
                 
                 ArrayList<RegularActivity> list = gdbc.getSpecifiedMonthlyRegularActivityList(timeFrame, activity.getItemNumber(), year);
@@ -776,10 +779,26 @@ public class MonthlyReport implements Report {
         return quarter;
     }
     
+    public InputStream getConfig(String network_file_in){
+        return getClass().getResourceAsStream(network_file_in);
+    }
+    
     private static void addNotes(int startingRow, XSSFSheet sheet, Workbook workbook){
         String preparedBy1Name = "", preparedBy1Position = "", preparedBy2Name = "", preparedBy2Position = "", 
                 submittedByName = "", submittedByPosition = "", approvedByName = "", approvedByPosition = "";
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+        
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
+        File file1 = new File(parentDir, REPORT_FILE_1);
+        
+        try (FileInputStream input = new FileInputStream(file1)) {
             Properties report = new Properties();
             report.load(input);
 

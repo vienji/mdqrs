@@ -4,12 +4,16 @@
  */
 package dbcontroller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.sql.*;
 import java.util.Properties;
 import mdqrs.classes.Cryptographer;
+import mdqrs.classes.JarDirectory;
+import mdqrs.view.Main;
 
 /**
  *
@@ -27,7 +31,17 @@ public class Driver {
     }
     
     public static Connection getConnection(){       
-        try(InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\config.properties")){
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
+        File file = new File(parentDir,NETWORK_FILE);
+        
+        try(FileInputStream input = new FileInputStream(file)){
             Properties network = new Properties();
             
             network.load(input);

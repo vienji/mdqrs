@@ -11,16 +11,19 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Properties;
 import mdqrs.classes.DriversForEngineers;
+import mdqrs.classes.JarDirectory;
 import mdqrs.classes.OtherExpenses;
 import mdqrs.classes.Program;
 import mdqrs.classes.Project;
 import mdqrs.dbcontroller.GeneralDBController;
 import mdqrs.dbcontroller.OtherExpensesDBController;
 import mdqrs.dbcontroller.ProgramDBController;
+import mdqrs.view.Main;
 import org.apache.poi.hssf.usermodel.HSSFHeader;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -128,7 +131,18 @@ public class QuarterlyReport implements Report {
                 
         Double totalLengthOfRoads = 0.0, totalFairToGoodRoads = 0.0, totalBudget = 0.0, firstQuarter = 0.0, secondQuarter = 0.0, thirdQuarter = 0.0, fourthQuarter = 0.0;
         
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\quarterly_report_config.properties")) {
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_2 = "src/mdqrs/path/to/quarterly_report_config.properties";
+        File file2 = new File(parentDir,REPORT_FILE_2);
+        
+        try (FileInputStream input = new FileInputStream(file2)) {
             Properties report = new Properties();
             report.load(input);
 
@@ -328,10 +342,26 @@ public class QuarterlyReport implements Report {
         return prevGrandTotal;
     }
     
+    public InputStream getConfig(String network_file_in){
+        return getClass().getResourceAsStream(network_file_in);
+    }
+    
     private static void addNotes(int startingRow, XSSFSheet sheet, Workbook workbook){
         String preparedBy1Name = "", preparedBy1Position = "", preparedBy2Name = "", preparedBy2Position = "", 
                 submittedByName = "", submittedByPosition = "", approvedByName = "", approvedByPosition = "";
-        try (InputStream input = new FileInputStream("src\\mdqrs\\path\\to\\report_config.properties")) {
+        
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){}
+        
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
+        File file1 = new File(parentDir, REPORT_FILE_1);
+        
+        try (FileInputStream input = new FileInputStream(file1)) {
             Properties report = new Properties();
             report.load(input);
 

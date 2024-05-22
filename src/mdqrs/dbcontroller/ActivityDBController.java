@@ -188,19 +188,20 @@ public class ActivityDBController {
         return present;
     }
     
-    public boolean hasWorkActivities(String itemNumber, String month){
+    public boolean hasWorkActivities(String itemNumber, String month, int year){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet result = null;
         boolean present = false;
         
         try{
-            query = "SELECT activity_number FROM regular_activity WHERE activity_number = ? AND month = ?";
+            query = "SELECT activity_number FROM regular_activity WHERE activity_number = ? AND month = ? AND year = ?";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setString(1, itemNumber);
             preparedStatement.setString(2, month);
+            preparedStatement.setInt(3, year);
             
             result = preparedStatement.executeQuery();
             present = result.next();
