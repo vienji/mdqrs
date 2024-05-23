@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="25">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="29">
         <file>
             <url>src/mdqrs/dbcontroller/ActivityListDBController.java</url>
             <bookmark id="12">
@@ -18,22 +18,22 @@
             <url>src/mdqrs/view/Main.java</url>
             <bookmark id="20">
                 <name/>
-                <line>8103</line>
+                <line>8146</line>
                 <key/>
             </bookmark>
-            <bookmark id="10">
+            <bookmark id="29">
                 <name/>
-                <line>9034</line>
+                <line>10046</line>
                 <key/>
             </bookmark>
-            <bookmark id="22">
+            <bookmark id="28">
                 <name/>
-                <line>10142</line>
+                <line>12286</line>
                 <key/>
             </bookmark>
             <bookmark id="23">
                 <name/>
-                <line>12309</line>
+                <line>12372</line>
                 <key/>
             </bookmark>
         </file>
@@ -42,13 +42,11 @@
         <group>
             <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/reports/QuarterlyReport.java</file>
             <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/test/Test.java</file>
+            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/classes/ImageManipulator.java</file>
             <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/reports/MonthlyReport.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/view/regularactivity/AddOpsCrewMaterials.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/listeners/MainListener.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/dbcontroller/ActivityListDBController.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/view/Main.java</file>
+            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/LoadScreen.java</file>
             <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/reports/RegularActivityReport.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/classes/OpsEquipment.java</file>
+            <file>file:/C:/Users/userpc/Desktop/MDQRS/system/MDQRS/src/mdqrs/view/Main.java</file>
         </group>
     </open-files>
 </project-private>

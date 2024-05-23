@@ -4,9 +4,6 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
     <Property name="title" type="java.lang.String" value="Maintenance Division Quarterly Report System"/>
-    <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-      <Connection code="new ImageIcon(&quot;src\\mdqrs\\assets\\socot_seal_bgrmvd.png&quot;).getImage()" type="code"/>
-    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[1400, 800]"/>
     </Property>
@@ -974,13 +971,13 @@
                                   <Component id="saveNewRegularActivity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addNewRegularActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane2" pref="519" max="32767" attributes="0"/>
+                                  <Component id="addNewRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewRegularActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1080,7 +1077,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                        <Container class="javax.swing.JScrollPane" name="addNewRegularActivityScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -2484,13 +2481,13 @@
                                   <Component id="backViewRegularActivity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="viewRegularActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane3" pref="519" max="32767" attributes="0"/>
+                                  <Component id="viewRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="backViewRegularActivity" min="-2" max="-2" attributes="0"/>
@@ -2546,7 +2543,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                        <Container class="javax.swing.JScrollPane" name="viewRegularActivityScrollPane">
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -3251,13 +3248,13 @@
                                   <Component id="saveEditRegularActivity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane18" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editRegularActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane18" pref="519" max="32767" attributes="0"/>
+                                  <Component id="editRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveEditRegularActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -3357,7 +3354,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane18">
+                        <Container class="javax.swing.JScrollPane" name="editRegularActivityScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -5055,13 +5052,13 @@
                                   <Component id="saveNewOtherActivity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane24" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addNewOtherActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane24" pref="519" max="32767" attributes="0"/>
+                                  <Component id="addNewOtherActivityScrollPane" pref="519" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewOtherActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -5161,7 +5158,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane24">
+                        <Container class="javax.swing.JScrollPane" name="addNewOtherActivityScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -5626,13 +5623,13 @@
                                   <Component id="backViewRegularActivity1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane25" alignment="0" max="32767" attributes="0"/>
+                              <Component id="viewOtherActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane25" max="32767" attributes="0"/>
+                                  <Component id="viewOtherActivityScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="backViewRegularActivity1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -5685,7 +5682,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane25">
+                        <Container class="javax.swing.JScrollPane" name="viewOtherActivityScrollPane">
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -5954,13 +5951,13 @@
                                   <Component id="saveEditedOtherActivity" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane27" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editOtherActivityScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane27" pref="519" max="32767" attributes="0"/>
+                                  <Component id="editOtherActivityScrollPane" pref="519" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveEditedOtherActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -6060,7 +6057,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane27">
+                        <Container class="javax.swing.JScrollPane" name="editOtherActivityScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -6827,13 +6824,13 @@
                                   <Component id="saveNewOtherExpenses" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane31" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addNewOtherExpensesScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane31" max="32767" attributes="0"/>
+                                  <Component id="addNewOtherExpensesScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewOtherExpenses" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -6933,7 +6930,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane31">
+                        <Container class="javax.swing.JScrollPane" name="addNewOtherExpensesScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -7225,13 +7222,13 @@
                                   <Component id="backViewOtherExpenses" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane32" alignment="0" pref="1059" max="32767" attributes="0"/>
+                              <Component id="viewOtherExpensesScrollPane" alignment="0" pref="1059" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane32" pref="523" max="32767" attributes="0"/>
+                                  <Component id="viewOtherExpensesScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="backViewOtherExpenses" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -7284,7 +7281,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane32">
+                        <Container class="javax.swing.JScrollPane" name="viewOtherExpensesScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                             <Property name="verticalScrollBarPolicy" type="int" value="21"/>
@@ -7575,13 +7572,13 @@
                                   <Component id="saveEditOtherExpenses" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane35" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editOtherExpensesScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane35" max="32767" attributes="0"/>
+                                  <Component id="editOtherExpensesScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveEditOtherExpenses" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -7681,7 +7678,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane35">
+                        <Container class="javax.swing.JScrollPane" name="editOtherExpensesScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -8254,7 +8251,7 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane34" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="addNewDFEScrollPane" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="cancelNewOtherExpenses1" min="-2" max="-2" attributes="0"/>
@@ -8267,7 +8264,7 @@
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jScrollPane34" max="32767" attributes="0"/>
+                                          <Component id="addNewDFEScrollPane" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="saveNewOtherExpenses1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -8279,7 +8276,7 @@
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Container class="javax.swing.JScrollPane" name="jScrollPane34">
+                                <Container class="javax.swing.JScrollPane" name="addNewDFEScrollPane">
                                   <Properties>
                                     <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                                     <Property name="verticalScrollBarPolicy" type="int" value="21"/>
@@ -8600,7 +8597,7 @@
                               <Layout>
                                 <DimensionLayout dim="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jScrollPane36" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="editDFEScrollPane" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="cancelNewOtherExpenses2" min="-2" max="-2" attributes="0"/>
@@ -8613,7 +8610,7 @@
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jScrollPane36" max="32767" attributes="0"/>
+                                          <Component id="editDFEScrollPane" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="saveNewOtherExpenses2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -8625,7 +8622,7 @@
                                 </DimensionLayout>
                               </Layout>
                               <SubComponents>
-                                <Container class="javax.swing.JScrollPane" name="jScrollPane36">
+                                <Container class="javax.swing.JScrollPane" name="editDFEScrollPane">
                                   <Properties>
                                     <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                                     <Property name="verticalScrollBarPolicy" type="int" value="21"/>
@@ -9460,13 +9457,13 @@
                                   <Component id="saveNewOtherActivity1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane41" alignment="0" max="32767" attributes="0"/>
+                              <Component id="addNewProjectsScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane41" max="32767" attributes="0"/>
+                                  <Component id="addNewProjectsScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewOtherActivity1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -9566,7 +9563,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane41">
+                        <Container class="javax.swing.JScrollPane" name="addNewProjectsScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -9959,13 +9956,13 @@
                                   <Component id="backViewProgram" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane38" alignment="0" max="32767" attributes="0"/>
+                              <Component id="viewProjectsScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane38" max="32767" attributes="0"/>
+                                  <Component id="viewProjectsScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="backViewProgram" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -10018,7 +10015,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane38">
+                        <Container class="javax.swing.JScrollPane" name="viewProjectsScrollPane">
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -10215,13 +10212,13 @@
                                   <Component id="saveNewOtherActivity2" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jScrollPane43" alignment="0" max="32767" attributes="0"/>
+                              <Component id="editProjectsScrollPane" alignment="0" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane43" max="32767" attributes="0"/>
+                                  <Component id="editProjectsScrollPane" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewOtherActivity2" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -10321,7 +10318,7 @@
                             </Component>
                           </SubComponents>
                         </Container>
-                        <Container class="javax.swing.JScrollPane" name="jScrollPane43">
+                        <Container class="javax.swing.JScrollPane" name="editProjectsScrollPane">
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
@@ -12491,17 +12488,17 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane13" alignment="0" max="32767" attributes="0"/>
+                  <Component id="settingsScrollPane" alignment="0" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane13" alignment="0" pref="813" max="32767" attributes="0"/>
+                  <Component id="settingsScrollPane" alignment="0" pref="813" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+            <Container class="javax.swing.JScrollPane" name="settingsScrollPane">
               <Properties>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>

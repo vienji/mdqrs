@@ -235,7 +235,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel20 = new javax.swing.JLabel();
         saveNewRegularActivity = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        addNewRegularActivityScrollPane = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         regularActivityFormActivity = new javax.swing.JComboBox<>();
@@ -296,7 +296,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         viewRegularActivityPanel = new javax.swing.JPanel();
         backViewRegularActivity = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        viewRegularActivityScrollPane = new javax.swing.JScrollPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         regularActivityViewActivityName = new javax.swing.JLabel();
@@ -340,7 +340,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel84 = new javax.swing.JLabel();
         saveEditRegularActivity = new javax.swing.JPanel();
         jLabel85 = new javax.swing.JLabel();
-        jScrollPane18 = new javax.swing.JScrollPane();
+        editRegularActivityScrollPane = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jLabel86 = new javax.swing.JLabel();
         regularActivityEditActivity = new javax.swing.JComboBox<>();
@@ -415,7 +415,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel112 = new javax.swing.JLabel();
         saveNewOtherActivity = new javax.swing.JPanel();
         jLabel113 = new javax.swing.JLabel();
-        jScrollPane24 = new javax.swing.JScrollPane();
+        addNewOtherActivityScrollPane = new javax.swing.JScrollPane();
         jPanel6 = new javax.swing.JPanel();
         otherActivityFormDescription = new javax.swing.JTextField();
         jLabel117 = new javax.swing.JLabel();
@@ -441,7 +441,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         viewOtherActivityPanel = new javax.swing.JPanel();
         backViewRegularActivity1 = new javax.swing.JPanel();
         jLabel114 = new javax.swing.JLabel();
-        jScrollPane25 = new javax.swing.JScrollPane();
+        viewOtherActivityScrollPane = new javax.swing.JScrollPane();
         jPanel7 = new javax.swing.JPanel();
         jLabel115 = new javax.swing.JLabel();
         otherActivityViewSubActivityName = new javax.swing.JLabel();
@@ -463,7 +463,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel121 = new javax.swing.JLabel();
         saveEditedOtherActivity = new javax.swing.JPanel();
         jLabel126 = new javax.swing.JLabel();
-        jScrollPane27 = new javax.swing.JScrollPane();
+        editOtherActivityScrollPane = new javax.swing.JScrollPane();
         jPanel8 = new javax.swing.JPanel();
         otherActivityEditDescription = new javax.swing.JTextField();
         jLabel127 = new javax.swing.JLabel();
@@ -503,7 +503,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel146 = new javax.swing.JLabel();
         saveNewOtherExpenses = new javax.swing.JPanel();
         jLabel147 = new javax.swing.JLabel();
-        jScrollPane31 = new javax.swing.JScrollPane();
+        addNewOtherExpensesScrollPane = new javax.swing.JScrollPane();
         jPanel9 = new javax.swing.JPanel();
         jLabel148 = new javax.swing.JLabel();
         jLabel149 = new javax.swing.JLabel();
@@ -528,7 +528,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         viewOtherExpensesPanel = new javax.swing.JPanel();
         backViewOtherExpenses = new javax.swing.JPanel();
         jLabel175 = new javax.swing.JLabel();
-        jScrollPane32 = new javax.swing.JScrollPane();
+        viewOtherExpensesScrollPane = new javax.swing.JScrollPane();
         jPanel11 = new javax.swing.JPanel();
         jLabel176 = new javax.swing.JLabel();
         otherExpensesViewDate = new javax.swing.JLabel();
@@ -554,7 +554,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel186 = new javax.swing.JLabel();
         saveEditOtherExpenses = new javax.swing.JPanel();
         jLabel187 = new javax.swing.JLabel();
-        jScrollPane35 = new javax.swing.JScrollPane();
+        editOtherExpensesScrollPane = new javax.swing.JScrollPane();
         jPanel12 = new javax.swing.JPanel();
         jLabel188 = new javax.swing.JLabel();
         jLabel189 = new javax.swing.JLabel();
@@ -589,7 +589,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jScrollPane33 = new javax.swing.JScrollPane();
         tableMainDriversForEngineers = new javax.swing.JTable();
         addNewDriversForEngineersPanel = new javax.swing.JPanel();
-        jScrollPane34 = new javax.swing.JScrollPane();
+        addNewDFEScrollPane = new javax.swing.JScrollPane();
         jPanel10 = new javax.swing.JPanel();
         jLabel172 = new javax.swing.JLabel();
         driversForEngineersFormLaborEquipmentCost = new javax.swing.JTextField();
@@ -610,7 +610,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         saveNewOtherExpenses1 = new javax.swing.JPanel();
         jLabel204 = new javax.swing.JLabel();
         editDriversForEngineersPanel = new javax.swing.JPanel();
-        jScrollPane36 = new javax.swing.JScrollPane();
+        editDFEScrollPane = new javax.swing.JScrollPane();
         jPanel13 = new javax.swing.JPanel();
         jLabel205 = new javax.swing.JLabel();
         driversForEngineersFormEditLaborEquipmentCost = new javax.swing.JTextField();
@@ -661,7 +661,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel252 = new javax.swing.JLabel();
         saveNewOtherActivity1 = new javax.swing.JPanel();
         jLabel253 = new javax.swing.JLabel();
-        jScrollPane41 = new javax.swing.JScrollPane();
+        addNewProjectsScrollPane = new javax.swing.JScrollPane();
         jPanel17 = new javax.swing.JPanel();
         projectsFormSourceOfFund = new javax.swing.JTextField();
         jLabel254 = new javax.swing.JLabel();
@@ -681,7 +681,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         viewProjectsPanel = new javax.swing.JPanel();
         backViewProgram = new javax.swing.JPanel();
         jLabel215 = new javax.swing.JLabel();
-        jScrollPane38 = new javax.swing.JScrollPane();
+        viewProjectsScrollPane = new javax.swing.JScrollPane();
         jPanel14 = new javax.swing.JPanel();
         jLabel216 = new javax.swing.JLabel();
         projectsViewSourceOfFund = new javax.swing.JLabel();
@@ -697,7 +697,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel255 = new javax.swing.JLabel();
         saveNewOtherActivity2 = new javax.swing.JPanel();
         jLabel258 = new javax.swing.JLabel();
-        jScrollPane43 = new javax.swing.JScrollPane();
+        editProjectsScrollPane = new javax.swing.JScrollPane();
         jPanel18 = new javax.swing.JPanel();
         projectsFormEditSourceOfFund = new javax.swing.JTextField();
         jLabel263 = new javax.swing.JLabel();
@@ -807,7 +807,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         regularActivityWorkbookYear = new javax.swing.JComboBox<>();
         jLabel231 = new javax.swing.JLabel();
         settingsPanel = new javax.swing.JPanel();
-        jScrollPane13 = new javax.swing.JScrollPane();
+        settingsScrollPane = new javax.swing.JScrollPane();
         jPanel3 = new javax.swing.JPanel();
         jLabel54 = new javax.swing.JLabel();
         jLabel55 = new javax.swing.JLabel();
@@ -861,7 +861,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Maintenance Division Quarterly Report System");
-        setIconImage(new ImageIcon("src\\mdqrs\\assets\\socot_seal_bgrmvd.png").getImage());
         setMinimumSize(new java.awt.Dimension(1400, 800));
         setResizable(false);
 
@@ -1466,7 +1465,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addNewRegularActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel1.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -2191,7 +2190,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(69, 69, 69))
         );
 
-        jScrollPane2.setViewportView(jPanel1);
+        addNewRegularActivityScrollPane.setViewportView(jPanel1);
 
         javax.swing.GroupLayout addNewRegularActivityPanelLayout = new javax.swing.GroupLayout(addNewRegularActivityPanel);
         addNewRegularActivityPanel.setLayout(addNewRegularActivityPanelLayout);
@@ -2203,12 +2202,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveNewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane2)
+            .addComponent(addNewRegularActivityScrollPane)
         );
         addNewRegularActivityPanelLayout.setVerticalGroup(
             addNewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(addNewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2519,7 +2518,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(73, Short.MAX_VALUE))
         );
 
-        jScrollPane3.setViewportView(jPanel4);
+        viewRegularActivityScrollPane.setViewportView(jPanel4);
 
         exportActivity.setBackground(new java.awt.Color(0, 102, 102));
         exportActivity.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2559,12 +2558,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(18, 18, 18)
                 .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane3)
+            .addComponent(viewRegularActivityScrollPane)
         );
         viewRegularActivityPanelLayout.setVerticalGroup(
             viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(viewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2630,7 +2629,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane18.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        editRegularActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel5.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -3355,7 +3354,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(69, 69, 69))
         );
 
-        jScrollPane18.setViewportView(jPanel5);
+        editRegularActivityScrollPane.setViewportView(jPanel5);
 
         javax.swing.GroupLayout editRegularActivityPanelLayout = new javax.swing.GroupLayout(editRegularActivityPanel);
         editRegularActivityPanel.setLayout(editRegularActivityPanelLayout);
@@ -3367,12 +3366,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveEditRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane18)
+            .addComponent(editRegularActivityScrollPane)
         );
         editRegularActivityPanelLayout.setVerticalGroup(
             editRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(editRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveEditRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3610,7 +3609,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane24.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addNewOtherActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel6.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -3845,7 +3844,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(37, 37, 37))
         );
 
-        jScrollPane24.setViewportView(jPanel6);
+        addNewOtherActivityScrollPane.setViewportView(jPanel6);
 
         javax.swing.GroupLayout addNewOtherActivityPanelLayout = new javax.swing.GroupLayout(addNewOtherActivityPanel);
         addNewOtherActivityPanel.setLayout(addNewOtherActivityPanelLayout);
@@ -3857,12 +3856,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveNewOtherActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane24)
+            .addComponent(addNewOtherActivityScrollPane)
         );
         addNewOtherActivityPanelLayout.setVerticalGroup(
             addNewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane24, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(addNewOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4025,7 +4024,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        jScrollPane25.setViewportView(jPanel7);
+        viewOtherActivityScrollPane.setViewportView(jPanel7);
 
         javax.swing.GroupLayout viewOtherActivityPanelLayout = new javax.swing.GroupLayout(viewOtherActivityPanel);
         viewOtherActivityPanel.setLayout(viewOtherActivityPanelLayout);
@@ -4035,12 +4034,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backViewRegularActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane25)
+            .addComponent(viewOtherActivityScrollPane)
         );
         viewOtherActivityPanelLayout.setVerticalGroup(
             viewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane25)
+                .addComponent(viewOtherActivityScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backViewRegularActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -4104,7 +4103,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane27.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        editOtherActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel8.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -4336,7 +4335,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGap(37, 37, 37))
         );
 
-        jScrollPane27.setViewportView(jPanel8);
+        editOtherActivityScrollPane.setViewportView(jPanel8);
 
         javax.swing.GroupLayout editOtherActivityPanelLayout = new javax.swing.GroupLayout(editOtherActivityPanel);
         editOtherActivityPanel.setLayout(editOtherActivityPanelLayout);
@@ -4348,12 +4347,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveEditedOtherActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane27)
+            .addComponent(editOtherActivityScrollPane)
         );
         editOtherActivityPanelLayout.setVerticalGroup(
             editOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane27, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(editOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveEditedOtherActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4593,7 +4592,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane31.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addNewOtherExpensesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel9.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -4733,7 +4732,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jScrollPane31.setViewportView(jPanel9);
+        addNewOtherExpensesScrollPane.setViewportView(jPanel9);
 
         javax.swing.GroupLayout addNewOtherExpensesPanelLayout = new javax.swing.GroupLayout(addNewOtherExpensesPanel);
         addNewOtherExpensesPanel.setLayout(addNewOtherExpensesPanelLayout);
@@ -4745,12 +4744,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveNewOtherExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane31)
+            .addComponent(addNewOtherExpensesScrollPane)
         );
         addNewOtherExpensesPanelLayout.setVerticalGroup(
             addNewOtherExpensesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewOtherExpensesPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane31)
+                .addComponent(addNewOtherExpensesScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewOtherExpensesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherExpenses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4788,8 +4787,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap())
         );
 
-        jScrollPane32.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane32.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        viewOtherExpensesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        viewOtherExpensesScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jLabel176.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel176.setText("Date");
@@ -4936,7 +4935,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane32.setViewportView(jPanel11);
+        viewOtherExpensesScrollPane.setViewportView(jPanel11);
 
         javax.swing.GroupLayout viewOtherExpensesPanelLayout = new javax.swing.GroupLayout(viewOtherExpensesPanel);
         viewOtherExpensesPanel.setLayout(viewOtherExpensesPanelLayout);
@@ -4946,12 +4945,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backViewOtherExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane32, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
+            .addComponent(viewOtherExpensesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1059, Short.MAX_VALUE)
         );
         viewOtherExpensesPanelLayout.setVerticalGroup(
             viewOtherExpensesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewOtherExpensesPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane32, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addComponent(viewOtherExpensesScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backViewOtherExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -5015,7 +5014,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane35.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        editOtherExpensesScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel12.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -5155,7 +5154,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jScrollPane35.setViewportView(jPanel12);
+        editOtherExpensesScrollPane.setViewportView(jPanel12);
 
         javax.swing.GroupLayout editOtherExpensesPanelLayout = new javax.swing.GroupLayout(editOtherExpensesPanel);
         editOtherExpensesPanel.setLayout(editOtherExpensesPanelLayout);
@@ -5167,12 +5166,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveEditOtherExpenses, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane35)
+            .addComponent(editOtherExpensesScrollPane)
         );
         editOtherExpensesPanelLayout.setVerticalGroup(
             editOtherExpensesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editOtherExpensesPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane35)
+                .addComponent(editOtherExpensesScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editOtherExpensesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveEditOtherExpenses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5321,8 +5320,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         driversForEngineersContainer.add(mainDriversForEngineersPanel, "card2");
 
-        jScrollPane34.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane34.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        addNewDFEScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addNewDFEScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jPanel10.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -5425,7 +5424,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        jScrollPane34.setViewportView(jPanel10);
+        addNewDFEScrollPane.setViewportView(jPanel10);
 
         cancelNewOtherExpenses1.setBackground(new java.awt.Color(255, 102, 0));
         cancelNewOtherExpenses1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -5487,7 +5486,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         addNewDriversForEngineersPanel.setLayout(addNewDriversForEngineersPanelLayout);
         addNewDriversForEngineersPanelLayout.setHorizontalGroup(
             addNewDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane34)
+            .addComponent(addNewDFEScrollPane)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewDriversForEngineersPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelNewOtherExpenses1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5498,7 +5497,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         addNewDriversForEngineersPanelLayout.setVerticalGroup(
             addNewDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewDriversForEngineersPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane34)
+                .addComponent(addNewDFEScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherExpenses1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5508,8 +5507,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         driversForEngineersContainer.add(addNewDriversForEngineersPanel, "card2");
 
-        jScrollPane36.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane36.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        editDFEScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        editDFEScrollPane.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         jPanel13.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -5611,7 +5610,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(64, Short.MAX_VALUE))
         );
 
-        jScrollPane36.setViewportView(jPanel13);
+        editDFEScrollPane.setViewportView(jPanel13);
 
         cancelNewOtherExpenses2.setBackground(new java.awt.Color(255, 102, 0));
         cancelNewOtherExpenses2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -5673,7 +5672,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editDriversForEngineersPanel.setLayout(editDriversForEngineersPanelLayout);
         editDriversForEngineersPanelLayout.setHorizontalGroup(
             editDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane36)
+            .addComponent(editDFEScrollPane)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriversForEngineersPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelNewOtherExpenses2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5684,7 +5683,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editDriversForEngineersPanelLayout.setVerticalGroup(
             editDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editDriversForEngineersPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane36)
+                .addComponent(editDFEScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherExpenses2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6054,7 +6053,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane41.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addNewProjectsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel17.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -6248,7 +6247,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jScrollPane41.setViewportView(jPanel17);
+        addNewProjectsScrollPane.setViewportView(jPanel17);
 
         javax.swing.GroupLayout addNewProjectsPanelLayout = new javax.swing.GroupLayout(addNewProjectsPanel);
         addNewProjectsPanel.setLayout(addNewProjectsPanelLayout);
@@ -6260,12 +6259,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveNewOtherActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane41)
+            .addComponent(addNewProjectsScrollPane)
         );
         addNewProjectsPanelLayout.setVerticalGroup(
             addNewProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewProjectsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane41)
+                .addComponent(addNewProjectsScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherActivity1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -6390,7 +6389,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(198, Short.MAX_VALUE))
         );
 
-        jScrollPane38.setViewportView(jPanel14);
+        viewProjectsScrollPane.setViewportView(jPanel14);
 
         javax.swing.GroupLayout viewProjectsPanelLayout = new javax.swing.GroupLayout(viewProjectsPanel);
         viewProjectsPanel.setLayout(viewProjectsPanelLayout);
@@ -6400,12 +6399,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backViewProgram, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane38)
+            .addComponent(viewProjectsScrollPane)
         );
         viewProjectsPanelLayout.setVerticalGroup(
             viewProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewProjectsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane38)
+                .addComponent(viewProjectsScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(backViewProgram, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -6469,7 +6468,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jScrollPane43.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        editProjectsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel18.setBackground(new java.awt.Color(241, 241, 182));
 
@@ -6663,7 +6662,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(81, Short.MAX_VALUE))
         );
 
-        jScrollPane43.setViewportView(jPanel18);
+        editProjectsScrollPane.setViewportView(jPanel18);
 
         javax.swing.GroupLayout editProjectsPanelLayout = new javax.swing.GroupLayout(editProjectsPanel);
         editProjectsPanel.setLayout(editProjectsPanelLayout);
@@ -6675,12 +6674,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(saveNewOtherActivity2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(jScrollPane43)
+            .addComponent(editProjectsScrollPane)
         );
         editProjectsPanelLayout.setVerticalGroup(
             editProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editProjectsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane43)
+                .addComponent(editProjectsScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherActivity2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7793,7 +7792,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         settingsPanel.setPreferredSize(new java.awt.Dimension(1133, 813));
 
-        jScrollPane13.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        settingsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel54.setForeground(new java.awt.Color(153, 153, 153));
@@ -8113,17 +8112,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
-        jScrollPane13.setViewportView(jPanel3);
+        settingsScrollPane.setViewportView(jPanel3);
 
         javax.swing.GroupLayout settingsPanelLayout = new javax.swing.GroupLayout(settingsPanel);
         settingsPanel.setLayout(settingsPanelLayout);
         settingsPanelLayout.setHorizontalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane13)
+            .addComponent(settingsScrollPane)
         );
         settingsPanelLayout.setVerticalGroup(
             settingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+            .addComponent(settingsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
         );
 
         mainPanel.add(settingsPanel, "card2");
@@ -8208,6 +8207,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 1);
         currentSection = 1;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navActivityListMouseClicked
 
     private void navWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navWorkCategoryMouseClicked
@@ -8217,6 +8217,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 2);
         currentSection = 2;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navWorkCategoryMouseClicked
 
     private void navEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEquipmentMouseClicked
@@ -8226,6 +8227,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 3);
         currentSection = 3;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navEquipmentMouseClicked
 
     private void navPersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navPersonnelMouseClicked
@@ -8235,6 +8237,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 4);
         currentSection = 4;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navPersonnelMouseClicked
 
     private void navReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navReportMouseClicked
@@ -8244,6 +8247,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 5);
         currentSection = 5;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navReportMouseClicked
 
     private void navSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navSettingsMouseClicked
@@ -8253,6 +8257,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 6);
         currentSection = 6;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_navSettingsMouseClicked
 
     private void menuLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuLogoMouseClicked
@@ -8262,6 +8267,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainPanel.revalidate();
         unselectSectionBefore(currentSection, 0);
         currentSection = 0;
+        settingsScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_menuLogoMouseClicked
 
     private void addNewRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewRegularActivityMouseClicked
@@ -8771,6 +8777,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         regularActivityTab.add(mainRegularActivityPanel);
         regularActivityTab.repaint();
         regularActivityTab.revalidate();
+        viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_backViewRegularActivityMouseClicked
 
     private void editSubActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editSubActivityMouseClicked
@@ -9206,6 +9213,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         otherActivityTab.add(mainOtherActivityPanel);
         otherActivityTab.repaint();
         otherActivityTab.revalidate();
+        viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
     }//GEN-LAST:event_backViewRegularActivity1MouseClicked
 
     private void cancelNewOtherActivity1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherActivity1MouseClicked
@@ -9661,6 +9669,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_addNewDriversForEngineers1MouseClicked
 
     private void backViewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backViewOtherExpensesMouseClicked
+        viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
         otherExpensesTab.removeAll();
         otherExpensesTab.add(mainOtherExpensesPanel);
         otherExpensesTab.repaint();
@@ -9988,6 +9997,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_removeProjectsItemEditMouseClicked
 
     private void backViewProgramMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backViewProgramMouseClicked
+        viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
         projectsOfWorksTab.removeAll();
         projectsOfWorksTab.add(mainProjectsPanel);
         projectsOfWorksTab.repaint();
@@ -12023,6 +12033,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void resetRegularActivityForm() {
+        addNewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
         regularActivityFormActivity.setSelectedIndex(0);
         regularActivityFormLocation.setSelectedIndex(0);
         initAddRoadSectionSelectionBox(locationList.get(0).getId());
@@ -12070,6 +12081,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void resetProjectsFormEdit(){
+        editProjectsScrollPane.getVerticalScrollBar().setValue(0);
         projectsFormEditSourceOfFund.setText("");
         projectsFormEditMonth.setSelectedItem(new Date().getMonth());
         projectsFormEditYear.setSelectedItem(new Date().getYear() - 75);
@@ -12078,6 +12090,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void resetProjectsForm(){
+        addNewProjectsScrollPane.getVerticalScrollBar().setValue(0);
         projectsFormSourceOfFund.setText("");
         projectsFormMonth.setSelectedItem(new Date().getMonth());
         projectsFormYear.setSelectedItem(new Date().getYear() - 75);
@@ -12086,6 +12099,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void resetDriversForEngineersForm(){
+        addNewDFEScrollPane.getVerticalScrollBar().setValue(0);
         driversForEngineersFormMonth.setSelectedIndex(new Date().getMonth());
         driversForEngineersFormYear.setSelectedIndex(new Date().getYear() - 75);
         driversForEngineersFormLaborEquipmentCost.setText("");
@@ -12095,6 +12109,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void resetDriversForEngineersEditForm(){
+        editDFEScrollPane.getVerticalScrollBar().setValue(0);
         driversForEngineersFormEditMonth.setSelectedIndex(new Date().getMonth());
         driversForEngineersFormEditYear.setSelectedIndex(new Date().getYear() - 75);
         driversForEngineersFormEditLaborEquipmentCost.setText("");
@@ -12104,6 +12119,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void resetOtherExpensesEditForm(){
+        editOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
         otherExpensesFormEditMonth.setSelectedIndex(new Date().getMonth());
         otherExpensesFormEditYear.setSelectedIndex(new Date().getYear() - 75);
         otherExpensesFormEditLaborCrewCost.setText("");
@@ -12115,6 +12131,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     private void resetOtherExpensesForm() {
+        addNewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
         otherExpensesFormMonth.setSelectedIndex(new Date().getMonth());
         otherExpensesFormYear.setSelectedIndex(new Date().getYear() - 75);
         otherExpensesFormLaborCrewCost.setText("");
@@ -12126,6 +12143,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void resetOtherActivityForm() {
+        addNewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
         otherActivityFormDescription.setText("");
         initAddOtherActivitySubActivitySelectionBox();
         otherActivityFormMonth.setSelectedIndex(new Date().getMonth());
@@ -12138,6 +12156,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void resetOtherActivityEditForm() {
+        editOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
         otherActivityEditDescription.setText("");
         initEditOtherActivitySubActivitySelectionBox();
         otherActivityEditMonth.setSelectedIndex(new Date().getMonth());
@@ -12150,6 +12169,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void resetRegularActivityEditForm() {
+        editRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
         regularActivityEditActivity.setSelectedIndex(0);
         regularActivityEditLocation.setSelectedIndex(0);
         initEditRoadSectionSelectionBox(locationList.get(0).getId());
@@ -12196,6 +12216,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     public void initIcons() {
+        java.net.URL imgURL = getClass().getResource("/mdqrs/assets/socot_seal_bgrmvd.png");
+        ImageIcon icons = new ImageIcon(imgURL);
+        setIconImage(icons.getImage());
+        
         ImageManipulator imageManipulator = new ImageManipulator();
         imageManipulator.setIcon("/mdqrs/assets/socot_seal_bgrmvd.png", menuLogo);
         imageManipulator.setIcon("/mdqrs/assets/socot_seal_bgrmvd.png", welcomeLogo);
@@ -12876,18 +12900,23 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel addMaintenanceCrew;
     private javax.swing.JPanel addMaintenanceCrewEdit;
     private javax.swing.JPanel addNewActivity;
+    private javax.swing.JScrollPane addNewDFEScrollPane;
     private javax.swing.JPanel addNewDriversForEngineers1;
     private javax.swing.JPanel addNewDriversForEngineersPanel;
     private javax.swing.JPanel addNewEquipment;
     private javax.swing.JPanel addNewOtherActivity;
     private javax.swing.JPanel addNewOtherActivityPanel;
+    private javax.swing.JScrollPane addNewOtherActivityScrollPane;
     private javax.swing.JPanel addNewOtherExpenses;
     private javax.swing.JPanel addNewOtherExpensesPanel;
+    private javax.swing.JScrollPane addNewOtherExpensesScrollPane;
     private javax.swing.JPanel addNewPersonnel;
     private javax.swing.JPanel addNewProjects;
     private javax.swing.JPanel addNewProjectsPanel;
+    private javax.swing.JScrollPane addNewProjectsScrollPane;
     private javax.swing.JPanel addNewRegularActivity;
     private javax.swing.JPanel addNewRegularActivityPanel;
+    private javax.swing.JScrollPane addNewRegularActivityScrollPane;
     private javax.swing.JPanel addNewSubActivity;
     private javax.swing.JPanel addNewWorkCategory;
     private javax.swing.JPanel addOperationEquipment;
@@ -12945,6 +12974,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editCrewEquipmentEdit;
     private javax.swing.JPanel editCrewMaterials;
     private javax.swing.JPanel editCrewMaterialsEdit;
+    private javax.swing.JScrollPane editDFEScrollPane;
     private javax.swing.JPanel editDriversForEngineers1;
     private javax.swing.JPanel editDriversForEngineersPanel;
     private javax.swing.JPanel editEquipment;
@@ -12955,8 +12985,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editOperationEquipmentEdit;
     private javax.swing.JPanel editOtherActivity;
     private javax.swing.JPanel editOtherActivityPanel;
+    private javax.swing.JScrollPane editOtherActivityScrollPane;
     private javax.swing.JPanel editOtherExpenses;
     private javax.swing.JPanel editOtherExpensesPanel;
+    private javax.swing.JScrollPane editOtherExpensesScrollPane;
     private javax.swing.JPanel editOtherMaintenanceCrew;
     private javax.swing.JPanel editOtherMaintenanceCrewEdit;
     private javax.swing.JPanel editPersonnel;
@@ -12964,8 +12996,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editProjectsItem;
     private javax.swing.JPanel editProjectsItemEdit;
     private javax.swing.JPanel editProjectsPanel;
+    private javax.swing.JScrollPane editProjectsScrollPane;
     private javax.swing.JPanel editRegularActivity;
     private javax.swing.JPanel editRegularActivityPanel;
+    private javax.swing.JScrollPane editRegularActivityScrollPane;
     private javax.swing.JButton editReport;
     private javax.swing.JPanel editSubActivity;
     private javax.swing.JPanel editWorkCategory;
@@ -13275,39 +13309,24 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
     private javax.swing.JScrollPane jScrollPane17;
-    private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane19;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane20;
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
-    private javax.swing.JScrollPane jScrollPane24;
-    private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
-    private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane28;
     private javax.swing.JScrollPane jScrollPane29;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane30;
-    private javax.swing.JScrollPane jScrollPane31;
-    private javax.swing.JScrollPane jScrollPane32;
     private javax.swing.JScrollPane jScrollPane33;
-    private javax.swing.JScrollPane jScrollPane34;
-    private javax.swing.JScrollPane jScrollPane35;
-    private javax.swing.JScrollPane jScrollPane36;
     private javax.swing.JScrollPane jScrollPane37;
-    private javax.swing.JScrollPane jScrollPane38;
     private javax.swing.JScrollPane jScrollPane39;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane41;
     private javax.swing.JScrollPane jScrollPane42;
-    private javax.swing.JScrollPane jScrollPane43;
     private javax.swing.JScrollPane jScrollPane44;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -13484,6 +13503,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTextField searchPersonnelValue;
     private javax.swing.JLabel searchWorkCategory;
     private javax.swing.JPanel settingsPanel;
+    private javax.swing.JScrollPane settingsScrollPane;
     private javax.swing.JComboBox<String> sortActivity;
     private javax.swing.JComboBox<String> sortEquipment;
     private javax.swing.JComboBox<String> sortPersonnel;
@@ -13527,12 +13547,16 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTextField totalLengthOfProvincialRoadsInFairToGood;
     private javax.swing.JPanel viewOtherActivity;
     private javax.swing.JPanel viewOtherActivityPanel;
+    private javax.swing.JScrollPane viewOtherActivityScrollPane;
     private javax.swing.JPanel viewOtherExpenses;
     private javax.swing.JPanel viewOtherExpensesPanel;
+    private javax.swing.JScrollPane viewOtherExpensesScrollPane;
     private javax.swing.JPanel viewProjects;
     private javax.swing.JPanel viewProjectsPanel;
+    private javax.swing.JScrollPane viewProjectsScrollPane;
     private javax.swing.JPanel viewRegularActivity;
     private javax.swing.JPanel viewRegularActivityPanel;
+    private javax.swing.JScrollPane viewRegularActivityScrollPane;
     private javax.swing.JLabel welcomeLogo;
     private javax.swing.JPanel welcomePanel;
     private javax.swing.JPanel workCategoryPanel;

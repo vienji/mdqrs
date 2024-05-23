@@ -191,8 +191,9 @@ public class AddPersonnel extends javax.swing.JFrame {
         } else if (ratePerDay.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
+            boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
             String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
-            new PersonnelDBController().add(name.getText(), jobType, dataValidation.convertToDouble(ratePerDay.getText()));
+            new PersonnelDBController().add(name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             JOptionPane.showMessageDialog(rootPane, "New Personnel was successfully added!");
             instance = null;

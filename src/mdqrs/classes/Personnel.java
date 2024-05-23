@@ -41,9 +41,18 @@ public class Personnel {
     public void setRatePerDay(Double ratePerDay){
         this.ratePerDay = ratePerDay;
     }
+
+    public String getIsOtherType() {
+        return isOtherType;
+    }
+
+    public void setIsOtherType(String isOtherType) {
+        this.isOtherType = isOtherType;
+    }
     
     private String id;
     private String name;
     private String type;
     private Double ratePerDay;
+    private String isOtherType;
 }

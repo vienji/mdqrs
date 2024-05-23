@@ -15,18 +15,19 @@ import classes.Personnel;
 public class PersonnelDBController {
     private String query = "";
     
-    public void add(String name, String type, Double ratePerDay){
+    public void add(String name, String type, boolean isOtherType, Double ratePerDay){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         
         try{
-            query = "INSERT INTO personnel (name, type, rate_per_day) VALUES (?, ?, ?)";
+            query = "INSERT INTO personnel (name, type, rate_per_day, is_other_type) VALUES (?, ?, ?, ?)";
             connection = Driver.getConnection();
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, type);
             preparedStatement.setDouble(3, ratePerDay);
+            preparedStatement.setString(4, String.valueOf(isOtherType));
             
             preparedStatement.executeUpdate();   
             
@@ -67,6 +68,7 @@ public class PersonnelDBController {
                 personnel.setName(result.getString(3));
                 personnel.setType(result.getString(4));
                 personnel.setRatePerDay(result.getDouble(5));
+                personnel.setIsOtherType(result.getString(7));
                 
                 list.add(personnel);
             }
@@ -167,13 +169,13 @@ public class PersonnelDBController {
         return personnel;
     }
     
-    public void edit(String pid, String newName, String newType, Double newRatePerDay){
+    public void edit(String pid, String newName, String newType, boolean isOtherType, Double newRatePerDay){
         Connection connection = null;
         Statement statement = null;
         try{
             connection = Driver.getConnection();
             statement = connection.createStatement();
-            query = "UPDATE personnel SET name = '" + newName + "', type = '"+ newType +"', rate_per_day = "+ newRatePerDay +" WHERE pid = '" + pid + "'";
+            query = "UPDATE personnel SET name = '" + newName + "', type = '"+ newType +"', rate_per_day = "+ newRatePerDay +", is_other_type = '" + String.valueOf(isOtherType) + "' WHERE pid = '" + pid + "'";
             
             statement.execute(query);
         } catch(SQLException e){

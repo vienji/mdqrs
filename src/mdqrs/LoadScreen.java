@@ -7,6 +7,7 @@ package mdqrs;
 import dbcontroller.Driver;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import mdqrs.view.Main;
@@ -27,6 +28,10 @@ public class LoadScreen extends javax.swing.JFrame {
 
     private void execute(){
         Main main = new Main();
+        
+        java.net.URL imgURL = getClass().getResource("/mdqrs/assets/socot_seal_bgrmvd.png");
+        ImageIcon icons = new ImageIcon(imgURL);
+        setIconImage(icons.getImage());
         
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
             @Override

@@ -29,8 +29,14 @@ public class EditPersonnel extends javax.swing.JFrame {
     private EditPersonnel() {
         initComponents();
         addWindowListener(new CloseWindow());
+        boolean isOtherType = personnel.getIsOtherType().equalsIgnoreCase("true");
         name.setText(personnel.getName());
-        type.setSelectedItem(personnel.getType());
+        String jobType = isOtherType ? "Other" : personnel.getType();
+        type.setSelectedItem(jobType);
+        otherType.setEnabled(isOtherType);
+        if(isOtherType){
+            otherType.setText(personnel.getType());
+        }
         ratePerDay.setText(String.valueOf(personnel.getRatePerDay()));
     }
     
@@ -73,6 +79,8 @@ public class EditPersonnel extends javax.swing.JFrame {
         save = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         ratePerDay = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        otherType = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Personnel");
@@ -84,7 +92,12 @@ public class EditPersonnel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Type");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Foreman", "Operator", "Maintenance Crew" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Foreman", "Operator", "Maintenance Crew", "Engineer", "Engineering Aide", "Laboratory Aide", "Survey Aide", "Other" }));
+        type.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeActionPerformed(evt);
+            }
+        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -107,6 +120,11 @@ public class EditPersonnel extends javax.swing.JFrame {
 
         ratePerDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Other Type");
+
+        otherType.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,15 +138,20 @@ public class EditPersonnel extends javax.swing.JFrame {
                         .addComponent(save, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1))
-                            .addGap(31, 31, 31)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(name)
-                                .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(41, 41, 41)
+                                .addComponent(otherType, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(31, 31, 31)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(name)
+                                    .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(ratePerDay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -144,9 +167,13 @@ public class EditPersonnel extends javax.swing.JFrame {
                     .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(jLabel4)
+                    .addComponent(otherType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save)
                     .addComponent(cancel))
@@ -172,13 +199,25 @@ public class EditPersonnel extends javax.swing.JFrame {
         } else if (ratePerDay.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
-            new PersonnelDBController().edit(personnel.getId(), name.getText(), String.valueOf(type.getSelectedItem()), dataValidation.convertToDouble(ratePerDay.getText()));
+            boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
+            String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+            new PersonnelDBController().edit(personnel.getId(), name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");
             instance = null;
             dispose();
         }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        String selected = String.valueOf(type.getSelectedItem());
+        
+        if(selected.equalsIgnoreCase("Other")){
+            otherType.setEnabled(true);
+        } else {
+            otherType.setEnabled(false);
+        }
+    }//GEN-LAST:event_typeActionPerformed
 
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -229,7 +268,9 @@ public class EditPersonnel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     public static javax.swing.JTextField name;
+    private javax.swing.JTextField otherType;
     private javax.swing.JFormattedTextField ratePerDay;
     private javax.swing.JButton save;
     public static javax.swing.JComboBox<String> type;
