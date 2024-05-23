@@ -208,7 +208,7 @@ public class MonthlyReport implements Report {
                     RegularActivity regularActivity = list.get(i);
                     
                     Double laborCrewExpense = gdbc.getTotalRegularActivityLaborCrewCost(regularActivity.getOpsMaintenanceCrewID()),
-                           laborEquipmentExpense = gdbc.getTotalRegularActivityLaborEquipmentCost(regularActivity.getOpsEquipmentListID()),
+                           laborEquipmentExpense = gdbc.getTotalRegularActivityLaborEquipmentCost(regularActivity.getOpsEquipmentListID(), regularActivity.getOpsMaintenanceCrewID()),
                            equipmentFuelExpense = gdbc.getTotalRegularActivityEquipmentFuelCost(regularActivity.getOpsMaintenanceCrewID(), regularActivity.getOpsEquipmentListID()),
                             lubricantExpense = gdbc.getTotalRegularActivityLubricantCost(regularActivity.getOpsMaintenanceCrewID(), regularActivity.getOpsEquipmentListID());
                     
@@ -271,7 +271,7 @@ public class MonthlyReport implements Report {
                     if(regularActivity.getSubActivity().getId() == 2){
 
                         Double laborCrewExpense = gdbc.getTotalRegularActivityLaborCrewCost(regularActivity.getOpsMaintenanceCrewID()),
-                               laborEquipmentExpense = gdbc.getTotalRegularActivityLaborEquipmentCost(regularActivity.getOpsEquipmentListID()),
+                               laborEquipmentExpense = gdbc.getTotalRegularActivityLaborEquipmentCost(regularActivity.getOpsEquipmentListID(), regularActivity.getOpsMaintenanceCrewID()),
                                equipmentFuelExpense = gdbc.getTotalRegularActivityEquipmentFuelCost(regularActivity.getOpsMaintenanceCrewID(), regularActivity.getOpsEquipmentListID()),
                                 lubricantExpense = gdbc.getTotalRegularActivityLubricantCost(regularActivity.getOpsMaintenanceCrewID(), regularActivity.getOpsEquipmentListID());
 

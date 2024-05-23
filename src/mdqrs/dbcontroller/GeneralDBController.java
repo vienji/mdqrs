@@ -49,13 +49,19 @@ public class GeneralDBController {
     }
     
     // Labor Equipment Cost
-    public double getTotalRegularActivityLaborEquipmentCost(String id){
+    public double getTotalRegularActivityLaborEquipmentCost(String opsEquipmentListID, String crewPersonnelListID){
         double total = 0.0;
-        OpsEquipmentList list = new ActivityListDBController().getRegularActivityOpsEquipmentList(id);
+        OpsEquipmentList list = new ActivityListDBController().getRegularActivityOpsEquipmentList(opsEquipmentListID);
+        CrewEquipmentList crewEquipmentList = new ActivityListDBController().getRegularActivityOpsCrewEquipmentList(crewPersonnelListID);
         
         for(OpsEquipment opsEquipment : list.toList()){
             total += opsEquipment.getTotalWages();
         }
+        
+        for(CrewEquipment crewEquipment : crewEquipmentList.toList()){
+            total += crewEquipment.getTotalWages();
+        }
+        
         return total;
     }
     
@@ -1039,7 +1045,7 @@ public class GeneralDBController {
          double total = 0.0;
          
          for(RegularActivity e : regularList){
-             total += getTotalRegularActivityLaborEquipmentCost(e.getOpsEquipmentListID());
+             total += getTotalRegularActivityLaborEquipmentCost(e.getOpsEquipmentListID(), e.getOpsMaintenanceCrewID());
          }
          
          for(OtherExpenses e : otherExpensesList){
