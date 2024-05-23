@@ -9410,18 +9410,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesTab.revalidate();
             resetOtherExpensesForm();
             resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
             otherActivityTab.removeAll();
             otherActivityTab.add(mainOtherActivityPanel);
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             resetOtherActivityEditForm();
             resetOtherActivityForm();
+            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
-            
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
             String[] sortingItems = {"id", "activity", "date", "implementation mode"};
             
             sortActivity.removeAllItems();
@@ -9441,17 +9443,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesTab.revalidate();
             resetOtherExpensesForm();
             resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
             regularActivityTab.removeAll();
             regularActivityTab.add(mainRegularActivityPanel);
             regularActivityTab.repaint();
             regularActivityTab.revalidate();
             resetRegularActivityEditForm();
             resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
             
             String[] sortingItems = {"id", "sub activity", "description", "date", "implementation mode"};
             
@@ -9472,17 +9477,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityTab.revalidate();
             resetRegularActivityEditForm();
             resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
             otherActivityTab.removeAll();
             otherActivityTab.add(mainOtherActivityPanel);
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             resetOtherActivityEditForm();
             resetOtherActivityForm();
+            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
             
             String[] sortingItems = {"id", "date"};
             
@@ -9497,23 +9505,27 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityTab.revalidate();
             resetRegularActivityEditForm();
             resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
             otherActivityTab.removeAll();
             otherActivityTab.add(mainOtherActivityPanel);
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             resetOtherActivityEditForm();
             resetOtherActivityForm();
+            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
             otherExpensesTab.removeAll();
             otherExpensesTab.add(mainOtherExpensesPanel);
             otherExpensesTab.repaint();
             otherExpensesTab.revalidate();
             resetOtherExpensesForm();
             resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
             projectsOfWorksTab.removeAll();
             projectsOfWorksTab.add(mainProjectsPanel);
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
             
             String[] sortingItems = {"id", "date"};
             
@@ -9529,18 +9541,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityTab.revalidate();
             resetRegularActivityEditForm();
             resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
             otherActivityTab.removeAll();
             otherActivityTab.add(mainOtherActivityPanel);
             otherActivityTab.repaint();
             otherActivityTab.revalidate();
             resetOtherActivityEditForm();
             resetOtherActivityForm();
+            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
             otherExpensesTab.removeAll();
             otherExpensesTab.add(mainOtherExpensesPanel);
             otherExpensesTab.repaint();
             otherExpensesTab.revalidate();
             resetOtherExpensesForm();
             resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
             driversForEngineersContainer.repaint();

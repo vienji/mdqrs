@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
+import mdqrs.classes.ImageManipulator;
 import mdqrs.view.Main;
 
 /**
@@ -32,6 +33,9 @@ public class LoadScreen extends javax.swing.JFrame {
         java.net.URL imgURL = getClass().getResource("/mdqrs/assets/socot_seal_bgrmvd.png");
         ImageIcon icons = new ImageIcon(imgURL);
         setIconImage(icons.getImage());
+        
+        ImageManipulator icon = new ImageManipulator();
+        icon.setIcon("/mdqrs/assets/loading_screen_background.jpg", loadScreenBG);
         
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
             @Override
@@ -75,16 +79,13 @@ public class LoadScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
+        loadScreenBG = new javax.swing.JLabel();
         loadingBar = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\userpc\\Desktop\\MDQRS\\system\\MDQRS\\src\\mdqrs\\assets\\loading_screen_background.jpg")); // NOI18N
-        jLabel2.setText("jLabel2");
 
         loadingBar.setForeground(new java.awt.Color(102, 204, 0));
 
@@ -99,7 +100,7 @@ public class LoadScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(loadScreenBG, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addComponent(loadingBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -108,7 +109,7 @@ public class LoadScreen extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loadScreenBG, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(loadingBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -153,8 +154,8 @@ public class LoadScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel loadScreenBG;
     private javax.swing.JProgressBar loadingBar;
     // End of variables declaration//GEN-END:variables
 }
