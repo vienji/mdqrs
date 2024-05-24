@@ -50,9 +50,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
     
     public static void setPersonnelList(ArrayList<Personnel> list){
         for(Personnel personnel : list){
-            if(personnel.getType().equalsIgnoreCase("maintenance crew")){
-                personnelList.add(personnel);
-            }
+            personnelList.add(personnel);
         }     
     }
     
@@ -64,7 +62,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
     
     public void initPersonnelSelectionBox(){
         personnelList.forEach((e) -> {
-            personnel.addItem(e.getName());
+            personnel.addItem(e.getName() + " (" + e.getType() + ")");
         });
     }
 

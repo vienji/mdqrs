@@ -82,6 +82,7 @@ import mdqrs.dbcontroller.RoadSectionDBController;
 import mdqrs.dbcontroller.SubActivityDBController;
 import mdqrs.dbcontroller.WorkCategoryDBController;
 import mdqrs.listeners.MainListener;
+import mdqrs.reports.OtherActivityReport;
 import mdqrs.reports.RegularActivityReport;
 import mdqrs.view.equipment.AddEquipment;
 import mdqrs.view.equipment.EditEquipment;
@@ -151,6 +152,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     RegularActivity regularActivityForEdit = new RegularActivity();
     RegularActivity regularActivityToView = new RegularActivity();
     OtherActivity otherActivityForEdit = new OtherActivity();
+    OtherActivity otherActivityToView = new OtherActivity();
     OtherExpenses otherExpensesForEdit = new OtherExpenses();
     DriversForEngineers driversForEngineersForEdit = new DriversForEngineers();
     Program programForEdit = new Program();
@@ -458,6 +460,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel130 = new javax.swing.JLabel();
         jLabel135 = new javax.swing.JLabel();
         otherActivityViewPersonnelTotalExpenses = new javax.swing.JLabel();
+        exportOtherActivity = new javax.swing.JPanel();
+        jLabel249 = new javax.swing.JLabel();
         editOtherActivityPanel = new javax.swing.JPanel();
         cancelNewOtherActivity1 = new javax.swing.JPanel();
         jLabel121 = new javax.swing.JLabel();
@@ -4026,12 +4030,42 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         viewOtherActivityScrollPane.setViewportView(jPanel7);
 
+        exportOtherActivity.setBackground(new java.awt.Color(0, 102, 102));
+        exportOtherActivity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exportOtherActivityMouseClicked(evt);
+            }
+        });
+
+        jLabel249.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel249.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel249.setText("Export");
+
+        javax.swing.GroupLayout exportOtherActivityLayout = new javax.swing.GroupLayout(exportOtherActivity);
+        exportOtherActivity.setLayout(exportOtherActivityLayout);
+        exportOtherActivityLayout.setHorizontalGroup(
+            exportOtherActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(exportOtherActivityLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel249)
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        exportOtherActivityLayout.setVerticalGroup(
+            exportOtherActivityLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exportOtherActivityLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel249)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout viewOtherActivityPanelLayout = new javax.swing.GroupLayout(viewOtherActivityPanel);
         viewOtherActivityPanel.setLayout(viewOtherActivityPanelLayout);
         viewOtherActivityPanelLayout.setHorizontalGroup(
             viewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewOtherActivityPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exportOtherActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backViewRegularActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(viewOtherActivityScrollPane)
@@ -4041,7 +4075,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
             .addGroup(viewOtherActivityPanelLayout.createSequentialGroup()
                 .addComponent(viewOtherActivityScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backViewRegularActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(viewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(backViewRegularActivity1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exportOtherActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -10848,6 +10884,39 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_exportWorkbookActionPerformed
 
+    private void exportOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportOtherActivityMouseClicked
+        if(evt.getSource() == exportOtherActivity){
+            int returnVal = fileChooser.showSaveDialog(Main.this);
+            if(returnVal == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getCurrentDirectory();
+                File fileName = fileChooser.getSelectedFile();
+
+                OtherActivityReport otherReport = new OtherActivityReport(otherActivityToView);
+
+                otherReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+
+                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                exportLoadScreen.setVisible(true);
+
+                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                    @Override
+                    protected Void doInBackground() throws Exception {
+                        otherReport.generateReport();
+                        return null;
+                    }
+
+                    @Override
+                    protected void done(){
+                        exportLoadScreen.dispose();
+                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                    }
+                };
+
+                worker.execute();
+            }
+        } 
+    }//GEN-LAST:event_exportOtherActivityMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -11709,17 +11778,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void setOtherActivityDataView(int i) {
-        OtherActivity otherActivity = searchedOtherActivity.get(i);
+        otherActivityToView = searchedOtherActivity.get(i);
 
-        otherActivityViewSubActivityName.setText(otherActivity.getSubActivity().getDescription());
-        otherActivityViewDescription.setText(otherActivity.getDescription());
-        otherActivityViewDaysOfOperation.setText(otherActivity.getNumberOfCD() + " CD");
-        otherActivityViewDate.setText(otherActivity.getDate());
-        otherActivityViewImplementationMode.setText(otherActivity.getImplementationMode());
+        otherActivityViewSubActivityName.setText(otherActivityToView.getSubActivity().getDescription());
+        otherActivityViewDescription.setText(otherActivityToView.getDescription());
+        otherActivityViewDaysOfOperation.setText(otherActivityToView.getNumberOfCD() + " CD");
+        otherActivityViewDate.setText(otherActivityToView.getDate());
+        otherActivityViewImplementationMode.setText(otherActivityToView.getImplementationMode());
 
         populateOtherActivityViewOpsPersonnel(
                 new OtherActivityListDBController()
-                        .getOtherActivityOpsCrewPersonnelList(otherActivity.getId()));
+                        .getOtherActivityOpsCrewPersonnelList(otherActivityToView.getId()));
 
     }
 
@@ -13023,6 +13092,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTextField equipmentSearchValue;
     private javax.swing.JPanel exportActivity;
     private javax.swing.JButton exportMonthlyReport;
+    private javax.swing.JPanel exportOtherActivity;
     private javax.swing.JButton exportQuarterlyReport;
     private javax.swing.JButton exportWorkbook;
     private javax.swing.JLabel iconActivityList;
@@ -13204,6 +13274,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel246;
     private javax.swing.JLabel jLabel247;
     private javax.swing.JLabel jLabel248;
+    private javax.swing.JLabel jLabel249;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel252;
     private javax.swing.JLabel jLabel253;

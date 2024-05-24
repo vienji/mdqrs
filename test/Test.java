@@ -1,10 +1,13 @@
 
+import classes.OtherActivity;
 import classes.RegularActivity;
 import java.io.File;
 import java.util.ArrayList;
 import mdqrs.dbcontroller.ActivityListDBController;
+import mdqrs.dbcontroller.OtherActivityListDBController;
 import mdqrs.reports.MonthlyReport;
 import mdqrs.reports.MonthlyReportBuilder;
+import mdqrs.reports.OtherActivityReport;
 import mdqrs.reports.QuarterlyReport;
 import mdqrs.reports.QuarterlyReportBuilder;
 import mdqrs.reports.RegularActivityReport;
@@ -40,17 +43,30 @@ public class Test {
 //        
 //        quarterlyReport.generateReport();
 
-          ArrayList<RegularActivity> list = new ActivityListDBController().getList();
+//          ArrayList<RegularActivity> list = new ActivityListDBController().getList();
+//
+//          RegularActivity regularActivity = list.get(0);
+//          
+//          RegularActivityReport regularReport = new RegularActivityReport(regularActivity);
+//          
+//          File file = new File("sample_data");
+//          String filePath = "C:\\Users\\userpc\\Desktop\\";
+//          
+//          regularReport.setFilePath(filePath, file);
+//          
+//          regularReport.generateWorkbook("May", 2024);
 
-          RegularActivity regularActivity = list.get(0);
-          
-          RegularActivityReport regularReport = new RegularActivityReport(regularActivity);
-          
-          File file = new File("sample_data");
-          String filePath = "C:\\Users\\userpc\\Desktop\\";
-          
-          regularReport.setFilePath(filePath, file);
-          
-          regularReport.generateWorkbook("May", 2024);
+            ArrayList<OtherActivity> list = new OtherActivityListDBController().getList();
+            
+            OtherActivity otherActivity = list.get(0);
+            
+            OtherActivityReport otherActivityReport = new OtherActivityReport(otherActivity);
+            
+            File file = new File("sample_data");
+            String filePath = "C:\\Users\\userpc\\Desktop\\";
+            
+            otherActivityReport.setFilePath(filePath, file);
+            
+            otherActivityReport.generateReport();
     }
 }
