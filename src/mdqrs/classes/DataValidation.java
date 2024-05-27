@@ -14,6 +14,17 @@ import java.util.Locale;
  */
 public class DataValidation {
     
+    public boolean validateDouble(String value){
+        try{
+            if(!value.isBlank()){
+                Double.parseDouble(value);
+            }
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
+    }
+    
     public boolean validateInteger(String value){
         try{
             if(!value.isBlank()){

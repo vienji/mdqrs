@@ -694,7 +694,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane1" pref="519" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane1" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="addNewRegularActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -977,7 +977,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="addNewRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
+                                  <Component id="addNewRegularActivityScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewRegularActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -2487,7 +2487,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="viewRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
+                                  <Component id="viewRegularActivityScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Component id="backViewRegularActivity" min="-2" max="-2" attributes="0"/>
@@ -3254,7 +3254,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="editRegularActivityScrollPane" pref="519" max="32767" attributes="0"/>
+                                  <Component id="editRegularActivityScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveEditRegularActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -4781,7 +4781,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane23" pref="519" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane23" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="addNewOtherActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -5058,7 +5058,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="addNewOtherActivityScrollPane" pref="519" max="32767" attributes="0"/>
+                                  <Component id="addNewOtherActivityScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveNewOtherActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -6006,7 +6006,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="editOtherActivityScrollPane" pref="519" max="32767" attributes="0"/>
+                                  <Component id="editOtherActivityScrollPane" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="saveEditedOtherActivity" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -8076,7 +8076,7 @@
                                 <DimensionLayout dim="1">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jScrollPane33" pref="503" max="32767" attributes="0"/>
+                                          <Component id="jScrollPane33" pref="507" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Component id="addNewDriversForEngineers1" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -8651,7 +8651,7 @@
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="cancelNewOtherExpenses2" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="saveNewOtherExpenses2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="saveDFE" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -8662,7 +8662,7 @@
                                           <Component id="editDFEScrollPane" max="32767" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="saveNewOtherExpenses2" alignment="1" min="-2" max="-2" attributes="0"/>
+                                              <Component id="saveDFE" alignment="1" min="-2" max="-2" attributes="0"/>
                                               <Component id="cancelNewOtherExpenses2" alignment="1" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -8935,14 +8935,14 @@
                                     </Component>
                                   </SubComponents>
                                 </Container>
-                                <Container class="javax.swing.JPanel" name="saveNewOtherExpenses2">
+                                <Container class="javax.swing.JPanel" name="saveDFE">
                                   <Properties>
                                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="0" green="cc" red="0" type="rgb"/>
                                     </Property>
                                   </Properties>
                                   <Events>
-                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveNewOtherExpenses2MouseClicked"/>
+                                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="saveDFEMouseClicked"/>
                                   </Events>
 
                                   <Layout>
@@ -9075,7 +9075,7 @@
                                           <Component id="jLabel166" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lubricantCost" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="264" max="32767" attributes="0"/>
+                                      <EmptySpace pref="268" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -9247,7 +9247,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane37" pref="519" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane37" pref="523" max="32767" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="addNewProjects" alignment="1" min="-2" max="-2" attributes="0"/>

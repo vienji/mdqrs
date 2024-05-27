@@ -632,7 +632,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         driversForEngineersFormEditDaysOfOperation = new javax.swing.JTextField();
         cancelNewOtherExpenses2 = new javax.swing.JPanel();
         jLabel212 = new javax.swing.JLabel();
-        saveNewOtherExpenses2 = new javax.swing.JPanel();
+        saveDFE = new javax.swing.JPanel();
         jLabel213 = new javax.swing.JLabel();
         totalCostBreakdownPanel = new javax.swing.JPanel();
         jLabel151 = new javax.swing.JLabel();
@@ -1401,7 +1401,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainRegularActivityPanelLayout.setVerticalGroup(
             mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2211,7 +2211,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         addNewRegularActivityPanelLayout.setVerticalGroup(
             addNewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(addNewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(addNewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2567,7 +2567,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         viewRegularActivityPanelLayout.setVerticalGroup(
             viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(viewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(viewRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(viewRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(backViewRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3375,7 +3375,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editRegularActivityPanelLayout.setVerticalGroup(
             editRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(editRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(editRegularActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveEditRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3545,7 +3545,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainOtherActivityPanelLayout.setVerticalGroup(
             mainOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane23, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane23, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewOtherActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3865,7 +3865,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         addNewOtherActivityPanelLayout.setVerticalGroup(
             addNewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(addNewOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(addNewOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(addNewOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(addNewOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveNewOtherActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -4388,7 +4388,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         editOtherActivityPanelLayout.setVerticalGroup(
             editOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(editOtherActivityPanelLayout.createSequentialGroup()
-                .addComponent(editOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(editOtherActivityScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editOtherActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveEditedOtherActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5345,7 +5345,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainDriversForEngineersPanelLayout.setVerticalGroup(
             mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainDriversForEngineersPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 503, Short.MAX_VALUE)
+                .addComponent(jScrollPane33, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewDriversForEngineers1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -5676,10 +5676,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        saveNewOtherExpenses2.setBackground(new java.awt.Color(0, 204, 0));
-        saveNewOtherExpenses2.addMouseListener(new java.awt.event.MouseAdapter() {
+        saveDFE.setBackground(new java.awt.Color(0, 204, 0));
+        saveDFE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                saveNewOtherExpenses2MouseClicked(evt);
+                saveDFEMouseClicked(evt);
             }
         });
 
@@ -5687,18 +5687,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel213.setForeground(new java.awt.Color(255, 255, 255));
         jLabel213.setText("Save");
 
-        javax.swing.GroupLayout saveNewOtherExpenses2Layout = new javax.swing.GroupLayout(saveNewOtherExpenses2);
-        saveNewOtherExpenses2.setLayout(saveNewOtherExpenses2Layout);
-        saveNewOtherExpenses2Layout.setHorizontalGroup(
-            saveNewOtherExpenses2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveNewOtherExpenses2Layout.createSequentialGroup()
+        javax.swing.GroupLayout saveDFELayout = new javax.swing.GroupLayout(saveDFE);
+        saveDFE.setLayout(saveDFELayout);
+        saveDFELayout.setHorizontalGroup(
+            saveDFELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saveDFELayout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jLabel213)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
-        saveNewOtherExpenses2Layout.setVerticalGroup(
-            saveNewOtherExpenses2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(saveNewOtherExpenses2Layout.createSequentialGroup()
+        saveDFELayout.setVerticalGroup(
+            saveDFELayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(saveDFELayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel213)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -5713,7 +5713,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(cancelNewOtherExpenses2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveNewOtherExpenses2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(saveDFE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         editDriversForEngineersPanelLayout.setVerticalGroup(
@@ -5722,7 +5722,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addComponent(editDFEScrollPane)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(editDriversForEngineersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveNewOtherExpenses2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveDFE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelNewOtherExpenses2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
@@ -5847,7 +5847,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
                     .addComponent(lubricantCost))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(268, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(totalCostBreakdownPanel);
@@ -6021,7 +6021,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainProjectsPanelLayout.setVerticalGroup(
             mainProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainProjectsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane37, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                .addComponent(jScrollPane37, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(mainProjectsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addNewProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -9570,6 +9570,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 sortActivity.addItem(item);
             }
             
+            timeframeDetailActionPerformed(null);
         } else if (activityTabbedPane.getSelectedIndex() == 4){
             regularActivityTab.removeAll();
             regularActivityTab.add(mainRegularActivityPanel);
@@ -9845,7 +9846,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         resetDriversForEngineersEditForm();
     }//GEN-LAST:event_cancelNewOtherExpenses2MouseClicked
 
-    private void saveNewOtherExpenses2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpenses2MouseClicked
+    private void saveDFEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveDFEMouseClicked
         if(driversForEngineersFormEditLaborEquipmentCost.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
         } else if(driversForEngineersFormEditEquipmentFuelCost.getText().isBlank()){
@@ -9854,13 +9855,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
         } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
-        }   else if(!dataValidation.validateInteger(driversForEngineersFormEditDaysOfOperation.getText())){
+        }   else if(!dataValidation.validateDouble(driversForEngineersFormEditDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormEditLaborEquipmentCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormEditLaborEquipmentCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormEditEquipmentFuelCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormEditEquipmentFuelCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormEditLubricantCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormEditLubricantCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
         } else {
             
@@ -9884,7 +9885,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             resetDriversForEngineersEditForm();
             timeframeDetailActionPerformed(null);
         }
-    }//GEN-LAST:event_saveNewOtherExpenses2MouseClicked
+    }//GEN-LAST:event_saveDFEMouseClicked
 
     private void editProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProjectsMouseClicked
         int selectedProgram = tableMainPrograms.getSelectedRow();
@@ -10590,6 +10591,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new ActivityListDBController().delete(regularActivity);
                 regularActivityList = new ActivityListDBController().getList();
+                searchedRegularActivity = regularActivityList;
                 populateMainRegularActivity(regularActivityList);
             }
         } else {
@@ -10606,6 +10608,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new OtherActivityListDBController().delete(otherActivity);
                 otherActivityList = new OtherActivityListDBController().getList();
+                searchedOtherActivity = otherActivityList;
                 populateMainOtherActivity(otherActivityList);
             }
         } else {
@@ -10622,6 +10625,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new OtherExpensesDBController().delete(otherExpenses);
                 otherExpensesList = new OtherExpensesDBController().getList();
+                searchedOtherExpenses = otherExpensesList;
                 populateMainOtherExpenses(otherExpensesList);
             }
         } else {
@@ -10638,7 +10642,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new DriversForEngineersDBController().delete(driversForEngineers);
                 driversForEngineersList = new DriversForEngineersDBController().getList();
+                searchedDFE = driversForEngineersList;
                 populateDriversForEngineersTable(driversForEngineersList);
+                timeframeDetailActionPerformed(null);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -10654,6 +10660,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new ProgramDBController().delete(program);
                 programList = new ProgramDBController().getList();
+                searchedProgram = programList;
                 populateMainProgram(programList);
             }
         } else {
@@ -10670,6 +10677,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new PersonnelDBController().delete(personnel.getId());
                 personnelList = new PersonnelDBController().getList();
+                searchedPersonnel = personnelList;
                 populatePersonnelTable(personnelList);
             }
         } else {
@@ -10686,6 +10694,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new EquipmentDBController().delete(equipment.getEquipmentNumber());
                 equipmentList = new EquipmentDBController().getList();
+                searchedEquipment = equipmentList;
                 populateEquipmentTable(equipmentList);
             }
         } else {
@@ -10702,6 +10711,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new WorkCategoryDBController().delete(workCategory.getWorkCategoryNumber());
                 workCategoryList = new WorkCategoryDBController().getList();
+                searchedWorkCategory = workCategoryList;
                 populateWorkCategoryTable(workCategoryList);
             }
         } else {
@@ -10718,6 +10728,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new ActivityDBController().delete(activity.getItemNumber());
                 activityList = new ActivityDBController().getList();
+                searchedActivity = activityList;
                 populateActivityTable(activityList);
             }
         } else {
@@ -10734,6 +10745,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             if(n == 0){
                 new SubActivityDBController().delete(subActivity);
                 subActivityList = new SubActivityDBController().getList();
+                searchedSubActivity = subActivityList;
                 populateSubActivityTable(subActivityList);
             }
         } else {
@@ -13570,6 +13582,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel removeProjectsItem;
     private javax.swing.JPanel removeProjectsItemEdit;
     private javax.swing.JPanel reportPanel;
+    private javax.swing.JPanel saveDFE;
     private javax.swing.JPanel saveEditOtherExpenses;
     private javax.swing.JPanel saveEditRegularActivity;
     private javax.swing.JPanel saveEditedOtherActivity;
@@ -13579,7 +13592,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel saveNewOtherActivity2;
     private javax.swing.JPanel saveNewOtherExpenses;
     private javax.swing.JPanel saveNewOtherExpenses1;
-    private javax.swing.JPanel saveNewOtherExpenses2;
     private javax.swing.JPanel saveNewRegularActivity;
     private javax.swing.JButton saveQuarterlyReportDetails;
     private javax.swing.JButton saveReport;
