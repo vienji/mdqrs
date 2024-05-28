@@ -26,7 +26,7 @@ public class OtherActivity {
         return implementationMode;
     }
 
-    public int getNumberOfCD() {
+    public double getNumberOfCD() {
         return numberOfCD;
     }
 
@@ -46,7 +46,7 @@ public class OtherActivity {
         this.implementationMode = implementationMode;
     }
 
-    public void setNumberOfCD(int numberOfCD) {
+    public void setNumberOfCD(double numberOfCD) {
         this.numberOfCD = numberOfCD;
     }
 
@@ -76,6 +76,6 @@ public class OtherActivity {
     private String month;
     private int year;
     private String implementationMode;
-    private int numberOfCD;
+    private double numberOfCD;
     private String date;
 }

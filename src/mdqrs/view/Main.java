@@ -8729,7 +8729,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
         } else if (regularActivityFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
-        } else if (!dataValidation.validateInteger(regularActivityFormDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(regularActivityFormDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (isOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
@@ -8866,7 +8866,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
         } else if (regularActivityEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
-        } else if (!dataValidation.validateInteger(regularActivityEditDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(regularActivityEditDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (isEditOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
@@ -8892,7 +8892,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             regularActivityForEdit.setMonth(String.valueOf(regularActivityEditMonth.getSelectedItem()));
             regularActivityForEdit.setYear(Integer.parseInt(String.valueOf(regularActivityEditYear.getSelectedItem())));
             regularActivityForEdit.setImplementationMode(regularActivityEditImplementationMode.getText());
-            regularActivityForEdit.setNumberOfCD(Integer.parseInt(regularActivityEditDaysOfOperation.getText()));
+            regularActivityForEdit.setNumberOfCD(Double.parseDouble(regularActivityEditDaysOfOperation.getText()));
             regularActivityForEdit.setSubActivity(subActivity);
             
             activityListDBController.edit(regularActivityForEdit, opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList);
@@ -9181,7 +9181,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherActivityFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateInteger(otherActivityFormDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(otherActivityFormDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else {
             OtherActivity otherActivity = new OtherActivity();
@@ -9191,7 +9191,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivity.setMonth(String.valueOf(otherActivityFormMonth.getSelectedItem()));
             otherActivity.setYear(Integer.parseInt(String.valueOf(otherActivityFormYear.getSelectedItem())));
             otherActivity.setImplementationMode(otherActivityFormImplementationMode.getText());
-            otherActivity.setNumberOfCD(Integer.parseInt(otherActivityFormDaysOfOperation.getText()));
+            otherActivity.setNumberOfCD(Double.parseDouble(otherActivityFormDaysOfOperation.getText()));
 
             new OtherActivityListDBController().add(otherActivity, crewPersonnelList);
 
@@ -9271,7 +9271,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherActivityEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateInteger(otherActivityEditDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(otherActivityEditDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else {
 
@@ -9280,7 +9280,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherActivityForEdit.setMonth(String.valueOf(otherActivityEditMonth.getSelectedItem()));
             otherActivityForEdit.setYear(Integer.parseInt(String.valueOf(otherActivityEditYear.getSelectedItem())));
             otherActivityForEdit.setImplementationMode(otherActivityEditImplementationMode.getText());
-            otherActivityForEdit.setNumberOfCD(Integer.parseInt(otherActivityEditDaysOfOperation.getText()));
+            otherActivityForEdit.setNumberOfCD(Double.parseDouble(otherActivityEditDaysOfOperation.getText()));
 
             new OtherActivityListDBController().edit(otherActivityForEdit, crewPersonnelList);
 
@@ -9391,7 +9391,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherExpensesFormDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateInteger(otherExpensesFormDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(otherExpensesFormDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
         } else if (otherExpensesFormLightEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
@@ -9407,7 +9407,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpenses.setLaborCrewCost(Double.parseDouble(otherExpensesFormLaborCrewCost.getText()));
             otherExpenses.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormLaborEquipmentCost.getText()));
             otherExpenses.setImplementationMode(otherExpensesFormImplementationMode.getText());
-            otherExpenses.setNumberOfCD(Integer.parseInt(otherExpensesFormDaysOfOperation.getText()));
+            otherExpenses.setNumberOfCD(Double.parseDouble(otherExpensesFormDaysOfOperation.getText()));
             otherExpenses.setLightEquipments(Double.parseDouble(otherExpensesFormLightEquipments.getText()));
             otherExpenses.setHeavyEquipments(Double.parseDouble(otherExpensesFormHeavyEquipments.getText()));
             otherExpenses.setMonth(String.valueOf(otherExpensesFormMonth.getSelectedItem()));
@@ -9749,7 +9749,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
         } else if (otherExpensesFormEditDaysOfOperation.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateInteger(otherExpensesFormEditDaysOfOperation.getText())){
+        } else if (!dataValidation.validateDouble(otherExpensesFormEditDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid days of operation!");
         } else if (otherExpensesFormEditLightEquipments.getText().isBlank()) {
             JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
@@ -9763,7 +9763,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             otherExpensesForEdit.setLaborCrewCost(Double.parseDouble(otherExpensesFormEditLaborCrewCost.getText()));
             otherExpensesForEdit.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormEditLaborEquipmentCost.getText()));
             otherExpensesForEdit.setImplementationMode(otherExpensesFormEditImplementationMode.getText());
-            otherExpensesForEdit.setNumberOfCD(Integer.parseInt(otherExpensesFormEditDaysOfOperation.getText()));
+            otherExpensesForEdit.setNumberOfCD(Double.parseDouble(otherExpensesFormEditDaysOfOperation.getText()));
             otherExpensesForEdit.setLightEquipments(Double.parseDouble(otherExpensesFormEditLightEquipments.getText()));
             otherExpensesForEdit.setHeavyEquipments(Double.parseDouble(otherExpensesFormEditHeavyEquipments.getText()));
             otherExpensesForEdit.setMonth(String.valueOf(otherExpensesFormEditMonth.getSelectedItem()));
@@ -9805,13 +9805,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
             JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
         } else if(driversForEngineersFormDaysOfOperation.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormDaysOfOperation.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormDaysOfOperation.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormLaborEquipmentCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormLaborEquipmentCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormEquipmentFuelCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormEquipmentFuelCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
-        } else if(!dataValidation.validateInteger(driversForEngineersFormLubricantCost.getText())){
+        } else if(!dataValidation.validateDouble(driversForEngineersFormLubricantCost.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
         } else {
             DriversForEngineers driversForEngineers = new DriversForEngineers();
@@ -9820,7 +9820,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             driversForEngineers.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEquipmentFuelCost.getText()));
             driversForEngineers.setLubricantCost(Double.parseDouble(driversForEngineersFormLubricantCost.getText()));
             driversForEngineers.setImplementationMode(driversForEngineersFormImplementationMode.getText());
-            driversForEngineers.setNumberOfCD(Integer.parseInt(driversForEngineersFormDaysOfOperation.getText()));
+            driversForEngineers.setNumberOfCD(Double.parseDouble(driversForEngineersFormDaysOfOperation.getText()));
             driversForEngineers.setMonth(String.valueOf(driversForEngineersFormMonth.getSelectedItem()));
             driversForEngineers.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormYear.getSelectedItem())));
             
@@ -9869,7 +9869,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             driversForEngineersForEdit.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEditEquipmentFuelCost.getText()));
             driversForEngineersForEdit.setLubricantCost(Double.parseDouble(driversForEngineersFormEditLubricantCost.getText()));
             driversForEngineersForEdit.setImplementationMode(driversForEngineersFormEditImplementationMode.getText());
-            driversForEngineersForEdit.setNumberOfCD(Integer.parseInt(driversForEngineersFormEditDaysOfOperation.getText()));
+            driversForEngineersForEdit.setNumberOfCD(Double.parseDouble(driversForEngineersFormEditDaysOfOperation.getText()));
             driversForEngineersForEdit.setMonth(String.valueOf(driversForEngineersFormEditMonth.getSelectedItem()));
             driversForEngineersForEdit.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormEditYear.getSelectedItem())));
             

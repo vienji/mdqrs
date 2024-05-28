@@ -278,7 +278,7 @@ public class ActivityListDBController {
                             
                             preparedStatement.setString(1, opsEquipment.getEquipment().getEquipmentNumber());
                             preparedStatement.setString(2, opsEquipment.getPersonnel().getId());
-                            preparedStatement.setInt(3, opsEquipment.getNumberOfCd());
+                            preparedStatement.setDouble(3, opsEquipment.getNumberOfCd());
                             preparedStatement.setDouble(4, opsEquipment.getRatePerDay());
                             preparedStatement.setDouble(5, opsEquipment.getFuelConsumption());
                             preparedStatement.setDouble(6, opsEquipment.getFuelCost());
@@ -361,7 +361,7 @@ public class ActivityListDBController {
                             preparedStatement = connection.prepareStatement(query);
                             
                             preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-                            preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+                            preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
                             preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
                             preparedStatement.setString(4, crewPersonnelListID);                            
                             
@@ -473,7 +473,7 @@ public class ActivityListDBController {
                             preparedStatement = connection.prepareStatement(query);
                             
                             preparedStatement.setString(1, crewEquipment.getEquipment().getEquipmentNumber());
-                            preparedStatement.setInt(2, crewEquipment.getNumberOfCd());
+                            preparedStatement.setDouble(2, crewEquipment.getNumberOfCd());
                             preparedStatement.setDouble(3, crewEquipment.getRatePerDay());
                             preparedStatement.setDouble(4, crewEquipment.getFuelConsumption());
                             preparedStatement.setDouble(5, crewEquipment.getFuelCost());
@@ -548,7 +548,7 @@ public class ActivityListDBController {
                             
             preparedStatement.setString(1, opsEquipment.getEquipment().getEquipmentNumber());
             preparedStatement.setString(2, opsEquipment.getPersonnel().getId());
-            preparedStatement.setInt(3, opsEquipment.getNumberOfCd());
+            preparedStatement.setDouble(3, opsEquipment.getNumberOfCd());
             preparedStatement.setDouble(4, opsEquipment.getRatePerDay());
             preparedStatement.setDouble(5, opsEquipment.getFuelConsumption());
             preparedStatement.setDouble(6, opsEquipment.getFuelCost());
@@ -586,7 +586,7 @@ public class ActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-            preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+            preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
             preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
             preparedStatement.setString(4, crewPersonnelListID);                            
 
@@ -657,7 +657,7 @@ public class ActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, crewEquipment.getEquipment().getEquipmentNumber());
-            preparedStatement.setInt(2, crewEquipment.getNumberOfCd());
+            preparedStatement.setDouble(2, crewEquipment.getNumberOfCd());
             preparedStatement.setDouble(3, crewEquipment.getRatePerDay());
             preparedStatement.setDouble(4, crewEquipment.getFuelConsumption());
             preparedStatement.setDouble(5, crewEquipment.getFuelCost());
@@ -779,7 +779,7 @@ public class ActivityListDBController {
             
             preparedStatement.setString(1, opsEquipment.getEquipment().getEquipmentNumber());
             preparedStatement.setString(2, opsEquipment.getPersonnel().getId());
-            preparedStatement.setInt(3, opsEquipment.getNumberOfCd());
+            preparedStatement.setDouble(3, opsEquipment.getNumberOfCd());
             preparedStatement.setDouble(4, opsEquipment.getRatePerDay());
             preparedStatement.setDouble(5, opsEquipment.getFuelConsumption());
             preparedStatement.setDouble(6, opsEquipment.getFuelCost());
@@ -809,7 +809,7 @@ public class ActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-            preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+            preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
             preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
             preparedStatement.setString(4, crewPersonnel.getId());
             
@@ -863,7 +863,7 @@ public class ActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setString(1, crewEquipment.getEquipment().getEquipmentNumber());
-            preparedStatement.setInt(2, crewEquipment.getNumberOfCd());
+            preparedStatement.setDouble(2, crewEquipment.getNumberOfCd());
             preparedStatement.setDouble(3, crewEquipment.getRatePerDay());
             preparedStatement.setDouble(4, crewEquipment.getFuelConsumption());
             preparedStatement.setDouble(5, crewEquipment.getFuelCost());
@@ -912,7 +912,7 @@ public class ActivityListDBController {
                 
                 regularActivity.setIsOtherRoadSection(isOtherRoadSection);
                 regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
-                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setNumberOfCD(result.getDouble(7));
                 regularActivity.setMonth(result.getString(8));
                 regularActivity.setYear(result.getInt(9));
                 regularActivity.setOpsEquipmentListID(result.getString(10));
@@ -974,7 +974,7 @@ public class ActivityListDBController {
                 
                 regularActivity.setIsOtherRoadSection(isOtherRoadSection);
                 regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
-                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setNumberOfCD(result.getDouble(7));
                 regularActivity.setMonth(result.getString(8));
                 regularActivity.setYear(result.getInt(9));
                 regularActivity.setOpsEquipmentListID(result.getString(10));
@@ -1037,7 +1037,7 @@ public class ActivityListDBController {
                
                crewPersonnel.setId(result.getString(1));
                crewPersonnel.setPersonnel(new PersonnelDBController().getPersonnel(result.getString(2)));
-               crewPersonnel.setNumberOfCd(result.getInt(3));
+               crewPersonnel.setNumberOfCd(result.getDouble(3));
                crewPersonnel.setRatePerDay(result.getDouble(4));
                
                list.addCrew(crewPersonnel);
@@ -1082,7 +1082,7 @@ public class ActivityListDBController {
                 opsEquipment.setId(result.getString(1));
                 opsEquipment.setEquipment(new EquipmentDBController().getEquipment(result.getString(2)));
                 opsEquipment.setPersonnel(new PersonnelDBController().getPersonnel(result.getString(3)));
-                opsEquipment.setNumberOfCd(result.getInt(4));
+                opsEquipment.setNumberOfCd(result.getDouble(4));
                 opsEquipment.setRatePerDay(result.getDouble(5));
                 opsEquipment.setTotalWages(opsEquipment.getNumberOfCd() * opsEquipment.getRatePerDay());
                 opsEquipment.setFuelConsumption(result.getInt(6));
@@ -1200,7 +1200,7 @@ public class ActivityListDBController {
                 
                 opsEquipment.setId(result.getString(1));
                 opsEquipment.setEquipment(new EquipmentDBController().getEquipment(result.getString(2)));
-                opsEquipment.setNumberOfCd(result.getInt(3));
+                opsEquipment.setNumberOfCd(result.getDouble(3));
                 opsEquipment.setRatePerDay(result.getDouble(4));
                 opsEquipment.setFuelConsumption(result.getInt(5));
                 opsEquipment.setFuelCost(result.getDouble(6));

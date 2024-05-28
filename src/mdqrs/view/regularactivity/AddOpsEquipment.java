@@ -260,7 +260,7 @@ public class AddOpsEquipment extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
         } else if (equipment.isEnabled() && equipment.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
-        }  else if (!dataValidation.validateInteger(numberOfCD.getText())){
+        }  else if (!dataValidation.validateDouble(numberOfCD.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel consumption!");
@@ -274,7 +274,7 @@ public class AddOpsEquipment extends javax.swing.JFrame {
             Personnel opsPersonnel = personnelList.get(personnel.getSelectedIndex() - 1);
             Equipment opsEquipment = equipment.isEnabled() ? equipmentList.get(equipment.getSelectedIndex() - 1) : new Equipment();
             double opsRatePerDay = personnelList.get(personnel.getSelectedIndex() - 1).getRatePerDay();
-            int opsNumberOfCD = !numberOfCD.getText().isBlank() ? Integer.parseInt(numberOfCD.getText()) : 0;
+            double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
             double opsTotalWages = opsRatePerDay * opsNumberOfCD;
             int opsFuelConsumption = !fuelConsumption.getText().isBlank() ? Integer.parseInt(fuelConsumption.getText()) : 0;
             double opsFuelCost = !fuelCost.getText().isBlank() ? Double.parseDouble(fuelCost.getText()) : 0.00;

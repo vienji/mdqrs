@@ -29,7 +29,7 @@ public class DriversForEngineersDBController {
             preparedStatement.setDouble(1, driversForEngineers.getLaborEquipmentCost());
             preparedStatement.setDouble(2, driversForEngineers.getEquipmentFuelCost());
             preparedStatement.setDouble(3, driversForEngineers.getLubricantCost());
-            preparedStatement.setInt(4, driversForEngineers.getNumberOfCD());
+            preparedStatement.setDouble(4, driversForEngineers.getNumberOfCD());
             preparedStatement.setString(5, driversForEngineers.getImplementationMode());
             preparedStatement.setString(6, driversForEngineers.getMonth());
             preparedStatement.setInt(7, driversForEngineers.getYear());
@@ -72,7 +72,7 @@ public class DriversForEngineersDBController {
                 driversForEngineers.setLaborEquipmentCost(result.getDouble(3));
                 driversForEngineers.setEquipmentFuelCost(result.getDouble(4));
                 driversForEngineers.setLubricantCost(result.getDouble(5));
-                driversForEngineers.setNumberOfCD(result.getInt(6));
+                driversForEngineers.setNumberOfCD(result.getDouble(6));
                 driversForEngineers.setImplementationMode(result.getString(7));
                 driversForEngineers.setMonth(result.getString(8));
                 driversForEngineers.setYear(result.getInt(9));
@@ -119,7 +119,7 @@ public class DriversForEngineersDBController {
                 driversForEngineers.setLaborEquipmentCost(result.getDouble(3));
                 driversForEngineers.setEquipmentFuelCost(result.getDouble(4));
                 driversForEngineers.setLubricantCost(result.getDouble(5));
-                driversForEngineers.setNumberOfCD(result.getInt(6));
+                driversForEngineers.setNumberOfCD(result.getDouble(6));
                 driversForEngineers.setImplementationMode(result.getString(7));
                 driversForEngineers.setMonth(result.getString(8));
                 driversForEngineers.setYear(result.getInt(9));
@@ -163,7 +163,7 @@ public class DriversForEngineersDBController {
             preparedStatement.setDouble(1, driversForEngineers.getLaborEquipmentCost());
             preparedStatement.setDouble(2, driversForEngineers.getEquipmentFuelCost());
             preparedStatement.setDouble(3, driversForEngineers.getLubricantCost());
-            preparedStatement.setInt(4, driversForEngineers.getNumberOfCD());
+            preparedStatement.setDouble(4, driversForEngineers.getNumberOfCD());
             preparedStatement.setString(5, driversForEngineers.getImplementationMode());
             preparedStatement.setString(6, driversForEngineers.getMonth());
             preparedStatement.setInt(7, driversForEngineers.getYear());

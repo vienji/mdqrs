@@ -38,7 +38,7 @@ public class CrewPersonnel {
         return personelId;
     }
 
-    public int getNumberOfCd() {
+    public double getNumberOfCd() {
         return numberOfCd;
     }
 
@@ -59,7 +59,7 @@ public class CrewPersonnel {
         this.personelId = personelId;
     }
 
-    public void setNumberOfCd(int numberOfCd) {
+    public void setNumberOfCd(double numberOfCd) {
         this.numberOfCd = numberOfCd;
     }
 
@@ -79,7 +79,7 @@ public class CrewPersonnel {
     private String crewPersonelId;
     private String personelId;
     private Personnel personnel;
-    private int numberOfCd;
+    private double numberOfCd;
     private double ratePerDay;
     private double totalWages;
     private String crewPersonelListId;

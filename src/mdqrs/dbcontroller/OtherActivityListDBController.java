@@ -34,7 +34,7 @@ public class OtherActivityListDBController {
             preparedStatement.setString(3, otherActivity.getMonth());
             preparedStatement.setInt(4, otherActivity.getYear());
             preparedStatement.setString(5, otherActivity.getImplementationMode());
-            preparedStatement.setInt(6, otherActivity.getNumberOfCD());
+            preparedStatement.setDouble(6, otherActivity.getNumberOfCD());
             
             preparedStatement.executeUpdate();
             
@@ -62,7 +62,7 @@ public class OtherActivityListDBController {
                     preparedStatement = connection.prepareStatement(query);
 
                     preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-                    preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+                    preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
                     preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
                     preparedStatement.setString(4, otherActivityID);                            
 
@@ -114,7 +114,7 @@ public class OtherActivityListDBController {
                 otherActivity.setMonth(result.getString(5));
                 otherActivity.setYear(result.getInt(6));
                 otherActivity.setImplementationMode(result.getString(7));
-                otherActivity.setNumberOfCD(result.getInt(8));
+                otherActivity.setNumberOfCD(result.getDouble(8));
                 
                 list.add(otherActivity);
             }
@@ -155,7 +155,7 @@ public class OtherActivityListDBController {
                
                crewPersonnel.setId(result.getString(2));
                crewPersonnel.setPersonnel(new PersonnelDBController().getPersonnel(result.getString(3)));
-               crewPersonnel.setNumberOfCd(result.getInt(4));
+               crewPersonnel.setNumberOfCd(result.getDouble(4));
                crewPersonnel.setRatePerDay(result.getDouble(5));
                
                list.addCrew(crewPersonnel);
@@ -196,7 +196,7 @@ public class OtherActivityListDBController {
             preparedStatement.setString(3, otherActivity.getMonth());
             preparedStatement.setInt(4, otherActivity.getYear());
             preparedStatement.setString(5, otherActivity.getImplementationMode());
-            preparedStatement.setInt(6, otherActivity.getNumberOfCD());
+            preparedStatement.setDouble(6, otherActivity.getNumberOfCD());
             preparedStatement.setString(7, otherActivity.getId());
             
             preparedStatement.executeUpdate();
@@ -212,7 +212,7 @@ public class OtherActivityListDBController {
                         preparedStatement = connection.prepareStatement(query);
 
                         preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-                        preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+                        preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
                         preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
                         preparedStatement.setString(4, otherActivity.getId());                            
 
@@ -300,7 +300,7 @@ public class OtherActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
             
             preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-            preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+            preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
             preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
             preparedStatement.setString(4, crewPersonnel.getId());
             
@@ -330,7 +330,7 @@ public class OtherActivityListDBController {
             preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, crewPersonnel.getPersonnel().getId());
-            preparedStatement.setInt(2, crewPersonnel.getNumberOfCd());
+            preparedStatement.setDouble(2, crewPersonnel.getNumberOfCd());
             preparedStatement.setDouble(3, crewPersonnel.getRatePerDay());
             preparedStatement.setString(4, otherActivityID);                            
 

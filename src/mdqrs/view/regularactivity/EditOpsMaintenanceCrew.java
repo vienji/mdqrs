@@ -174,10 +174,10 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
         if(personnel.getSelectedIndex() == 0){
             JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
-        } else if (!dataValidation.validateInteger(numberOfCD.getText())){
+        } else if (!dataValidation.validateDouble(numberOfCD.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else {          
-            int opsNumberOfCD = !numberOfCD.getText().isBlank() ? Integer.parseInt(numberOfCD.getText()) : 0;
+            double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
             double opsRatePerDay = personnelList.get(personnel.getSelectedIndex() - 1).getRatePerDay();
             
             crewPersonnel.setPersonnel(personnelList.get(personnel.getSelectedIndex() - 1));

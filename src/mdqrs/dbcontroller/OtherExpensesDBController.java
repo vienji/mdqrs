@@ -32,7 +32,7 @@ public class OtherExpensesDBController {
             preparedStatement.setDouble(2, otherExpenses.getLaborEquipmentCost());
             preparedStatement.setDouble(3, otherExpenses.getLightEquipments());
             preparedStatement.setDouble(4, otherExpenses.getHeavyEquipments());
-            preparedStatement.setInt(5, otherExpenses.getNumberOfCD());
+            preparedStatement.setDouble(5, otherExpenses.getNumberOfCD());
             preparedStatement.setString(6, otherExpenses.getImplementationMode());
             preparedStatement.setString(7, otherExpenses.getMonth());
             preparedStatement.setInt(8, otherExpenses.getYear());
@@ -76,7 +76,7 @@ public class OtherExpensesDBController {
                 otherExpenses.setLaborEquipmentCost(result.getDouble(4));
                 otherExpenses.setLightEquipments(result.getDouble(5));
                 otherExpenses.setHeavyEquipments(result.getDouble(6));
-                otherExpenses.setNumberOfCD(result.getInt(7));
+                otherExpenses.setNumberOfCD(result.getDouble(7));
                 otherExpenses.setImplementationMode(result.getString(8));
                 otherExpenses.setMonth(result.getString(9));
                 otherExpenses.setYear(result.getInt(10));
@@ -122,7 +122,7 @@ public class OtherExpensesDBController {
                 otherExpenses.setLaborEquipmentCost(result.getDouble(4));
                 otherExpenses.setLightEquipments(result.getDouble(5));
                 otherExpenses.setHeavyEquipments(result.getDouble(6));
-                otherExpenses.setNumberOfCD(result.getInt(7));
+                otherExpenses.setNumberOfCD(result.getDouble(7));
                 otherExpenses.setImplementationMode(result.getString(8));
                 otherExpenses.setMonth(result.getString(9));
                 otherExpenses.setYear(result.getInt(10));
@@ -168,7 +168,7 @@ public class OtherExpensesDBController {
                 otherExpenses.setLaborEquipmentCost(result.getDouble(4));
                 otherExpenses.setLightEquipments(result.getDouble(5));
                 otherExpenses.setHeavyEquipments(result.getDouble(6));
-                otherExpenses.setNumberOfCD(result.getInt(7));
+                otherExpenses.setNumberOfCD(result.getDouble(7));
                 otherExpenses.setImplementationMode(result.getString(8));
                 otherExpenses.setMonth(result.getString(9));
                 otherExpenses.setYear(result.getInt(10));
@@ -213,7 +213,7 @@ public class OtherExpensesDBController {
             preparedStatement.setDouble(2, otherExpenses.getLaborEquipmentCost());
             preparedStatement.setDouble(3, otherExpenses.getLightEquipments());
             preparedStatement.setDouble(4, otherExpenses.getHeavyEquipments());
-            preparedStatement.setInt(5, otherExpenses.getNumberOfCD());
+            preparedStatement.setDouble(5, otherExpenses.getNumberOfCD());
             preparedStatement.setString(6, otherExpenses.getImplementationMode());
             preparedStatement.setString(7, otherExpenses.getMonth());
             preparedStatement.setInt(8, otherExpenses.getYear());

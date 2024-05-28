@@ -26,7 +26,7 @@ public class OpsEquipment {
         return personnel;
     }
 
-    public int getNumberOfCd() {
+    public double getNumberOfCd() {
         return numberOfCd;
     }
 
@@ -78,7 +78,7 @@ public class OpsEquipment {
         this.personnel = personnel;
     }
 
-    public void setNumberOfCd(int numberOfCd) {
+    public void setNumberOfCd(double numberOfCd) {
         this.numberOfCd = numberOfCd;
     }
 
@@ -125,7 +125,7 @@ public class OpsEquipment {
     private String id;
     private Equipment equipment;
     private Personnel personnel;
-    private int numberOfCd;
+    private double numberOfCd;
     private double ratePerDay;
     private double totalWages;
     private int fuelConsumption;

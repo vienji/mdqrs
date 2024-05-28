@@ -42,7 +42,7 @@ public class OtherExpenses {
         return implementationMode;
     }
 
-    public int getNumberOfCD() {
+    public double getNumberOfCD() {
         return numberOfCD;
     }
 
@@ -70,7 +70,7 @@ public class OtherExpenses {
         this.implementationMode = implementationMode;
     }
 
-    public void setNumberOfCD(int numberOfCD) {
+    public void setNumberOfCD(double numberOfCD) {
         this.numberOfCD = numberOfCD;
     }
 
@@ -98,7 +98,7 @@ public class OtherExpenses {
     private Double laborCrewCost;
     private Double laborEquipmentCost;
     private String implementationMode;
-    private int numberOfCD;
+    private double numberOfCD;
     private Double lightEquipments;
     private Double heavyEquipments;
     private String month;

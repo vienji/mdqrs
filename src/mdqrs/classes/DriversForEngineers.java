@@ -30,7 +30,7 @@ public class DriversForEngineers {
         return implementationMode;
     }
 
-    public int getNumberOfCD() {
+    public double getNumberOfCD() {
         return numberOfCD;
     }
 
@@ -62,7 +62,7 @@ public class DriversForEngineers {
         this.implementationMode = implementationMode;
     }
 
-    public void setNumberOfCD(int numberOfCD) {
+    public void setNumberOfCD(double numberOfCD) {
         this.numberOfCD = numberOfCD;
     }
 
@@ -83,7 +83,7 @@ public class DriversForEngineers {
     private Double equipmentFuelCost;
     private Double lubricantCost;
     private String implementationMode;
-    private int numberOfCD;
+    private double numberOfCD;
     private String month;
     private int year;
 }

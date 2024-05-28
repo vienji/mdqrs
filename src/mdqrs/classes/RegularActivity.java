@@ -42,7 +42,7 @@ public class RegularActivity {
         return isOtherRoadSection;
     }
 
-    public int getNumberOfCD() {
+    public double getNumberOfCD() {
         return numberOfCD;
     }
 
@@ -90,7 +90,7 @@ public class RegularActivity {
         this.isOtherRoadSection = isOtherRoadSection;
     }
 
-    public void setNumberOfCD(int numberOfCD) {
+    public void setNumberOfCD(double numberOfCD) {
         this.numberOfCD = numberOfCD;
     }
 
@@ -129,7 +129,7 @@ public class RegularActivity {
     private String otherRoadSection;
     private boolean isOtherRoadSection;
     private Location location;
-    private int numberOfCD;
+    private double numberOfCD;
     private String month;
     private int year;
     private String opsEquipmentListID;

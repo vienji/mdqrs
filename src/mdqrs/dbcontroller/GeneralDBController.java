@@ -134,7 +134,7 @@ public class GeneralDBController {
                 
                 regularActivity.setIsOtherRoadSection(isOtherRoadSection);
                 regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
-                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setNumberOfCD(result.getDouble(7));
                 regularActivity.setMonth(result.getString(8));
                 regularActivity.setYear(result.getInt(9));
                 regularActivity.setOpsEquipmentListID(result.getString(10));
@@ -197,7 +197,7 @@ public class GeneralDBController {
                 
                 regularActivity.setIsOtherRoadSection(isOtherRoadSection);
                 regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
-                regularActivity.setNumberOfCD(result.getInt(7));
+                regularActivity.setNumberOfCD(result.getDouble(7));
                 regularActivity.setMonth(result.getString(8));
                 regularActivity.setYear(result.getInt(9));
                 regularActivity.setOpsEquipmentListID(result.getString(10));
@@ -333,7 +333,7 @@ public class GeneralDBController {
                 otherActivity.setMonth(result.getString(5));
                 otherActivity.setYear(result.getInt(6));
                 otherActivity.setImplementationMode(result.getString(7));
-                otherActivity.setNumberOfCD(result.getInt(8));
+                otherActivity.setNumberOfCD(result.getDouble(8));
                 
                 list.add(otherActivity);
             }
@@ -380,7 +380,7 @@ public class GeneralDBController {
                 otherActivity.setMonth(result.getString(5));
                 otherActivity.setYear(result.getInt(6));
                 otherActivity.setImplementationMode(result.getString(7));
-                otherActivity.setNumberOfCD(result.getInt(8));
+                otherActivity.setNumberOfCD(result.getDouble(8));
                 
                 list.add(otherActivity);
             }
