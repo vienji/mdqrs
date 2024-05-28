@@ -1476,7 +1476,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel18.setText("Activity");
 
-        regularActivityFormActivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose activity..." }));
         regularActivityFormActivity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 regularActivityFormActivityActionPerformed(evt);
@@ -11917,12 +11916,16 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     private void initAddActivitySelectionBox() {
+        regularActivityFormActivity.removeAllItems();
+        regularActivityFormActivity.addItem("Choose Activity...");
         activityList.forEach((e) -> {
             regularActivityFormActivity.addItem(e.getItemNumber() + " - " + e.getDescription());
         });
     }
 
     private void initEditActivitySelectionBox() {
+        regularActivityEditActivity.removeAllItems();
+        regularActivityEditActivity.addItem("Choose Activity...");
         activityList.forEach((e) -> {
             regularActivityEditActivity.addItem(e.getItemNumber() + " - " + e.getDescription());
         });
@@ -12452,7 +12455,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
         searchedActivity = activityList;
         populateActivityTable(activityList);
         regularActivityFormActivity.removeAllItems();
+        regularActivityEditActivity.removeAllItems();
         initAddActivitySelectionBox();
+        initEditActivitySelectionBox();
     }
 
     @Override
