@@ -6,6 +6,7 @@ package mdqrs.view.regularactivity;
 
 import classes.CrewPersonnel;
 import classes.Personnel;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -94,6 +95,12 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Number of CD");
 
+        numberOfCD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                numberOfCDKeyPressed(evt);
+            }
+        });
+
         add.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add.setText("Add");
         add.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -173,11 +180,50 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
             crewPersonnel.setRatePerDay(opsRatePerDay);
             
             mainListener.addRegularActivityOpsMaintenanceCrew(crewPersonnel, formType);
-            instance = null;
-            personnelList = new ArrayList();
-            dispose();
+            int n = JOptionPane.showConfirmDialog(rootPane, "Maintenance Crew Added! Do you want to add another one?");
+            
+            if(n != 0){               
+                instance = null;
+                personnelList = new ArrayList();
+                dispose(); 
+            } else {
+                personnel.setSelectedIndex(0);
+                numberOfCD.setText("");
+            }
         }
     }//GEN-LAST:event_addMouseClicked
+
+    private void numberOfCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberOfCDKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(personnel.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+            } else if (!dataValidation.validateDouble(numberOfCD.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
+            } else {
+                CrewPersonnel crewPersonnel = new CrewPersonnel();
+
+                double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
+                double opsRatePerDay = personnelList.get(personnel.getSelectedIndex() - 1).getRatePerDay();
+
+                crewPersonnel.setId("New");
+                crewPersonnel.setPersonnel(personnelList.get(personnel.getSelectedIndex() - 1));
+                crewPersonnel.setNumberOfCd(opsNumberOfCD);
+                crewPersonnel.setRatePerDay(opsRatePerDay);
+
+                mainListener.addRegularActivityOpsMaintenanceCrew(crewPersonnel, formType);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Maintenance Crew Added! Do you want to add another one?");
+
+                if(n != 0){               
+                    instance = null;
+                    personnelList = new ArrayList();
+                    dispose(); 
+                } else {
+                    personnel.setSelectedIndex(0);
+                    numberOfCD.setText("");
+                }
+            }
+        }
+    }//GEN-LAST:event_numberOfCDKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

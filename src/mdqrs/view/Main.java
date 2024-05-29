@@ -8796,12 +8796,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainRegularActivity.getSelectedRow();
         tableMainRegularActivity.clearSelection();
         if (selectedRow > -1) {
-            regularActivityTab.removeAll();
-            regularActivityTab.add(viewRegularActivityPanel);
-            regularActivityTab.repaint();
-            regularActivityTab.revalidate();
-            setRegularActivityDataView(selectedRow);
-            tableMainRegularActivity.clearSelection();
+            if(searchedRegularActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainRegularActivity.clearSelection();
+            } else {
+                regularActivityTab.removeAll();
+                regularActivityTab.add(viewRegularActivityPanel);
+                regularActivityTab.repaint();
+                regularActivityTab.revalidate();
+                setRegularActivityDataView(selectedRow);
+                tableMainRegularActivity.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
         }
@@ -9113,12 +9118,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainRegularActivity.getSelectedRow();
 
         if (selectedRow > -1) {
-            regularActivityTab.removeAll();
-            regularActivityTab.add(editRegularActivityPanel);
-            regularActivityTab.repaint();
-            regularActivityTab.revalidate();
-            setRegularActivityDataEdit(selectedRow);
-            tableMainRegularActivity.clearSelection();
+            if(searchedRegularActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainRegularActivity.clearSelection();
+            } else {
+                regularActivityTab.removeAll();
+                regularActivityTab.add(editRegularActivityPanel);
+                regularActivityTab.repaint();
+                regularActivityTab.revalidate();
+                setRegularActivityDataEdit(selectedRow);
+                tableMainRegularActivity.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
         }
@@ -9128,12 +9138,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherActivity.getSelectedRow();
 
         if (selectedRow > -1) {
-            otherActivityTab.removeAll();
-            otherActivityTab.add(editOtherActivityPanel);
-            otherActivityTab.repaint();
-            otherActivityTab.revalidate();
-            setOtherActivityDataEdit(selectedRow);
-            tableMainOtherActivity.clearSelection();
+            if(searchedOtherActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherActivity.clearSelection();
+            } else {
+                otherActivityTab.removeAll();
+                otherActivityTab.add(editOtherActivityPanel);
+                otherActivityTab.repaint();
+                otherActivityTab.revalidate();
+                setOtherActivityDataEdit(selectedRow);
+                tableMainOtherActivity.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
         }
@@ -9143,12 +9158,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherActivity.getSelectedRow();
 
         if (selectedRow > -1) {
-            otherActivityTab.removeAll();
-            otherActivityTab.add(viewOtherActivityPanel);
-            otherActivityTab.repaint();
-            otherActivityTab.revalidate();
-            setOtherActivityDataView(selectedRow);
-            tableMainOtherActivity.clearSelection();
+            if(searchedOtherActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherActivity.clearSelection();
+            } else {
+                otherActivityTab.removeAll();
+                otherActivityTab.add(viewOtherActivityPanel);
+                otherActivityTab.repaint();
+                otherActivityTab.revalidate();
+                setOtherActivityDataView(selectedRow);
+                tableMainOtherActivity.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
         }
@@ -9336,12 +9356,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedOtherExpenses = tableMainOtherExpenses.getSelectedRow();
 
         if (selectedOtherExpenses > -1) {
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(editOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            setOtherExpensesDataEdit(selectedOtherExpenses);
-            tableMainOtherExpenses.clearSelection();
+            if(searchedOtherExpenses.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherExpenses.clearSelection();
+            } else {
+                otherExpensesTab.removeAll();
+                otherExpensesTab.add(editOtherExpensesPanel);
+                otherExpensesTab.repaint();
+                otherExpensesTab.revalidate();
+                setOtherExpensesDataEdit(selectedOtherExpenses);
+                tableMainOtherExpenses.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
         }
@@ -9351,12 +9376,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedOtherExpenses = tableMainOtherExpenses.getSelectedRow();
 
         if (selectedOtherExpenses > -1) {
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(viewOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            setOtherExpensesDataView(selectedOtherExpenses);
-            tableMainOtherExpenses.clearSelection();
+            if(searchedOtherExpenses.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherExpenses.clearSelection();
+            } else {         
+                otherExpensesTab.removeAll();
+                otherExpensesTab.add(viewOtherExpensesPanel);
+                otherExpensesTab.repaint();
+                otherExpensesTab.revalidate();
+                setOtherExpensesDataView(selectedOtherExpenses);
+                tableMainOtherExpenses.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
         }
@@ -9701,12 +9731,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedDriversForEngineers = tableMainDriversForEngineers.getSelectedRow();
 
         if (selectedDriversForEngineers > -1) {
-            driversForEngineersContainer.removeAll();
-            driversForEngineersContainer.add(editDriversForEngineersPanel);
-            driversForEngineersContainer.repaint();
-            driversForEngineersContainer.revalidate();
-            setDriversForEngineersDataEdit(selectedDriversForEngineers);
-            tableMainDriversForEngineers.clearSelection();
+            if(searchedDFE.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainDriversForEngineers.clearSelection();
+            } else {
+                driversForEngineersContainer.removeAll();
+                driversForEngineersContainer.add(editDriversForEngineersPanel);
+                driversForEngineersContainer.repaint();
+                driversForEngineersContainer.revalidate();
+                setDriversForEngineersDataEdit(selectedDriversForEngineers);
+                tableMainDriversForEngineers.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
         }
@@ -9890,12 +9925,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedProgram = tableMainPrograms.getSelectedRow();
         
         if(selectedProgram > -1){
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(editProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();
-            setProgramDataEdit(selectedProgram);
-            tableMainPrograms.clearSelection();
+            if(searchedProgram.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainDriversForEngineers.clearSelection();
+            } else {
+                projectsOfWorksTab.removeAll();
+                projectsOfWorksTab.add(editProjectsPanel);
+                projectsOfWorksTab.repaint();
+                projectsOfWorksTab.revalidate();
+                setProgramDataEdit(selectedProgram);
+                tableMainPrograms.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
         }
@@ -9905,12 +9945,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedProgram = tableMainPrograms.getSelectedRow();
         
         if(selectedProgram > -1){
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(viewProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();
-            setProgramDataView(selectedProgram);
-            tableMainPrograms.clearSelection();
+            if(searchedProgram.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainDriversForEngineers.clearSelection();
+            } else {
+                projectsOfWorksTab.removeAll();
+                projectsOfWorksTab.add(viewProjectsPanel);
+                projectsOfWorksTab.repaint();
+                projectsOfWorksTab.revalidate();
+                setProgramDataView(selectedProgram);
+                tableMainPrograms.clearSelection();
+            }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
         }
@@ -10585,13 +10630,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainRegularActivity.getSelectedRow();
 
         if (selectedRow > -1) {
-            RegularActivity regularActivity = searchedRegularActivity.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new ActivityListDBController().delete(regularActivity);
-                regularActivityList = new ActivityListDBController().getList();
-                searchedRegularActivity = regularActivityList;
-                populateMainRegularActivity(regularActivityList);
+            if(searchedRegularActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainRegularActivity.clearSelection();
+            } else {
+                RegularActivity regularActivity = searchedRegularActivity.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new ActivityListDBController().delete(regularActivity);
+                    regularActivityList = new ActivityListDBController().getList();
+                    searchedRegularActivity = regularActivityList;
+                    populateMainRegularActivity(regularActivityList);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -10602,13 +10652,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherActivity.getSelectedRow();
         
         if (selectedRow > -1) {
-            OtherActivity otherActivity = searchedOtherActivity.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new OtherActivityListDBController().delete(otherActivity);
-                otherActivityList = new OtherActivityListDBController().getList();
-                searchedOtherActivity = otherActivityList;
-                populateMainOtherActivity(otherActivityList);
+            if(searchedOtherActivity.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherActivity.clearSelection();
+            } else {
+                OtherActivity otherActivity = searchedOtherActivity.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new OtherActivityListDBController().delete(otherActivity);
+                    otherActivityList = new OtherActivityListDBController().getList();
+                    searchedOtherActivity = otherActivityList;
+                    populateMainOtherActivity(otherActivityList);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -10619,13 +10674,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainOtherExpenses.getSelectedRow();
         
         if (selectedRow > -1) {
-            OtherExpenses otherExpenses = searchedOtherExpenses.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new OtherExpensesDBController().delete(otherExpenses);
-                otherExpensesList = new OtherExpensesDBController().getList();
-                searchedOtherExpenses = otherExpensesList;
-                populateMainOtherExpenses(otherExpensesList);
+            if(searchedOtherExpenses.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainOtherExpenses.clearSelection();
+            } else {
+                OtherExpenses otherExpenses = searchedOtherExpenses.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new OtherExpensesDBController().delete(otherExpenses);
+                    otherExpensesList = new OtherExpensesDBController().getList();
+                    searchedOtherExpenses = otherExpensesList;
+                    populateMainOtherExpenses(otherExpensesList);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -10636,14 +10696,19 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainDriversForEngineers.getSelectedRow();
         
         if (selectedRow > -1) {
-            DriversForEngineers driversForEngineers = searchedDFE.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new DriversForEngineersDBController().delete(driversForEngineers);
-                driversForEngineersList = new DriversForEngineersDBController().getList();
-                searchedDFE = driversForEngineersList;
-                populateDriversForEngineersTable(driversForEngineersList);
-                timeframeDetailActionPerformed(null);
+            if(searchedDFE.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainDriversForEngineers.clearSelection();
+            } else {
+                DriversForEngineers driversForEngineers = searchedDFE.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new DriversForEngineersDBController().delete(driversForEngineers);
+                    driversForEngineersList = new DriversForEngineersDBController().getList();
+                    searchedDFE = driversForEngineersList;
+                    populateDriversForEngineersTable(driversForEngineersList);
+                    timeframeDetailActionPerformed(null);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -10654,13 +10719,18 @@ public class Main extends javax.swing.JFrame implements MainListener {
         int selectedRow = tableMainPrograms.getSelectedRow();
         
         if (selectedRow > -1) {
-            Program program = searchedProgram.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new ProgramDBController().delete(program);
-                programList = new ProgramDBController().getList();
-                searchedProgram = programList;
-                populateMainProgram(programList);
+            if(searchedProgram.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                tableMainDriversForEngineers.clearSelection();
+            } else {
+                Program program = searchedProgram.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new ProgramDBController().delete(program);
+                    programList = new ProgramDBController().getList();
+                    searchedProgram = programList;
+                    populateMainProgram(programList);
+                }
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");

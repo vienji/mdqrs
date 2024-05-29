@@ -5,6 +5,7 @@
 package mdqrs.view.regularactivity;
 
 import classes.CrewMaterials;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -93,6 +94,12 @@ public class EditOpsCrewMaterials extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Unit");
 
+        unit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                unitKeyPressed(evt);
+            }
+        });
+
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
         cancel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -177,6 +184,26 @@ public class EditOpsCrewMaterials extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_saveMouseClicked
+
+    private void unitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if(quantity.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a quantity!");
+            } else if(unit.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please specify the unit!");
+            } else {           
+                operationCrewMaterials.setDescription(description.getText());
+                operationCrewMaterials.setQuantity(Double.parseDouble(quantity.getText()));
+                operationCrewMaterials.setUnit(unit.getText());
+
+                mainListener.editRegularActivityOpsCrewMaterials(index,operationCrewMaterials, formType);
+                instance = null;
+                dispose();
+            }
+        }
+    }//GEN-LAST:event_unitKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

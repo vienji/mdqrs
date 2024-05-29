@@ -4,6 +4,7 @@
  */
 package mdqrs.view.equipment;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -78,6 +79,12 @@ public class EditEquipment extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Type");
+
+        type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                typeKeyPressed(evt);
+            }
+        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -154,6 +161,20 @@ public class EditEquipment extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(type.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
+            } else {
+                new EquipmentDBController().edit(equipmentNumber.getText(), type.getText());
+                mainListener.updateEquipment();
+                JOptionPane.showMessageDialog(rootPane, "Equipment was successfully edited!");
+                instance = null;
+                dispose();
+            }
+        }
+    }//GEN-LAST:event_typeKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

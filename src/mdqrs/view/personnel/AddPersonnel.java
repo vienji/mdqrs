@@ -4,6 +4,7 @@
  */
 package mdqrs.view.personnel;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -106,6 +107,11 @@ public class AddPersonnel extends javax.swing.JFrame {
         jLabel2.setText("Rate Per Day");
 
         ratePerDay.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.##"))));
+        ratePerDay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                ratePerDayKeyPressed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Other Type");
@@ -195,9 +201,17 @@ public class AddPersonnel extends javax.swing.JFrame {
             String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
             new PersonnelDBController().add(name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
-            JOptionPane.showMessageDialog(rootPane, "New Personnel was successfully added!");
-            instance = null;
-            dispose();
+            int n = JOptionPane.showConfirmDialog(rootPane, "Personnel was added! Do you want to add another one?");
+            if(n != 0){
+                instance = null;
+                dispose();
+            } else {
+                name.setText("");
+                type.setSelectedIndex(0);
+                otherType.setText("");
+                otherType.setEnabled(false);
+                ratePerDay.setText("");
+            }
         }
     }//GEN-LAST:event_addActionPerformed
 
@@ -210,6 +224,41 @@ public class AddPersonnel extends javax.swing.JFrame {
             otherType.setEnabled(false);
         }
     }//GEN-LAST:event_typeActionPerformed
+
+    private void ratePerDayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ratePerDayKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(name.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a name!");
+            } else if (new PersonnelDBController().isPresent(name.getText(), String.valueOf(type.getSelectedItem()))){
+                JOptionPane.showMessageDialog(rootPane,
+                    String.format("Personnel %s type %s was already added!", name.getText(), String.valueOf(type.getSelectedItem())));
+            } else if (type.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please select a type!");
+            } else if (String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") && otherType.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "If other type, please specify!");
+            } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
+            } else if (ratePerDay.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
+            } else {
+                boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
+                String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+                new PersonnelDBController().add(name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
+                mainListener.updatePersonnel();
+                int n = JOptionPane.showConfirmDialog(rootPane, "Personnel was added! Do you want to add another one?");
+                if(n != 0){
+                    instance = null;
+                    dispose();
+                } else {
+                    name.setText("");
+                    type.setSelectedIndex(0);
+                    otherType.setText("");
+                    otherType.setEnabled(false);
+                    ratePerDay.setText("");
+                }
+            }
+        }
+    }//GEN-LAST:event_ratePerDayKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

@@ -79,6 +79,12 @@ public class EditWorkCategory extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Description");
 
+        description.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descriptionKeyPressed(evt);
+            }
+        });
+
         save.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         save.setText("Save");
         save.addActionListener(new java.awt.event.ActionListener() {
@@ -156,6 +162,18 @@ public class EditWorkCategory extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_saveActionPerformed
+
+    private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
+        if(description.getText().isBlank()){
+            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+        }else {
+            new WorkCategoryDBController().edit(String.valueOf(categoryNumber.getText()), description.getText());
+            mainListener.updateWorkCategory();
+            JOptionPane.showMessageDialog(rootPane, "Work Category was successfully edited!");
+            instance = null;
+            dispose();
+        }
+    }//GEN-LAST:event_descriptionKeyPressed
    
     private class CloseWindow extends WindowAdapter {
         @Override

@@ -4,6 +4,7 @@
  */
 package mdqrs.view.equipment;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -70,6 +71,12 @@ public class AddEquipment extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Type");
+
+        type.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                typeKeyPressed(evt);
+            }
+        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -146,11 +153,40 @@ public class AddEquipment extends javax.swing.JFrame {
         } else {
             new EquipmentDBController().add(equipmentNumber.getText(), type.getText());
             mainListener.updateEquipment();
-            JOptionPane.showMessageDialog(rootPane, "New Equipment was successfully added!");
-            instance = null;
-            dispose();
+            int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
+            if(n != 0){
+                instance = null;
+                dispose();
+            } else {
+                equipmentNumber.setText("");
+                type.setText("");
+            }
         }
     }//GEN-LAST:event_addActionPerformed
+
+    private void typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(equipmentNumber.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
+            } else if(type.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
+            } else if (new EquipmentDBController().isPresent(equipmentNumber.getText())){
+                JOptionPane.showMessageDialog(rootPane,
+                    String.format("Equipment %s number %s was already added!", type.getText(), equipmentNumber.getText()));
+            } else {
+                new EquipmentDBController().add(equipmentNumber.getText(), type.getText());
+                mainListener.updateEquipment();
+                int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
+                if(n != 0){
+                    instance = null;
+                    dispose();
+                } else {
+                    equipmentNumber.setText("");
+                    type.setText("");
+                } 
+            }
+        }
+    }//GEN-LAST:event_typeKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

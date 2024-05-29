@@ -148,9 +148,15 @@ public class AddSubActivity extends javax.swing.JFrame {
         } else {
             new SubActivityDBController().add(description.getText(), activityList.get(activity.getSelectedIndex() - 1));
             mainListener.updateSubActivity();
-            JOptionPane.showMessageDialog(rootPane, "Sub Activity added!");
-            instance = null;
-            dispose();
+            
+            int n = JOptionPane.showConfirmDialog(rootPane, "Sub Activity was added! Do you want to add another one?");
+            if(n != 0){
+                instance = null;
+                dispose();
+            } else {
+                description.setText("");
+                activity.setSelectedIndex(0);
+            }     
         }
     }//GEN-LAST:event_addActionPerformed
 

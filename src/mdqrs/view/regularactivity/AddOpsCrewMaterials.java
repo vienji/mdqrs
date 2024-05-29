@@ -5,6 +5,7 @@
 package mdqrs.view.regularactivity;
 
 import classes.CrewMaterials;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -78,6 +79,12 @@ public class AddOpsCrewMaterials extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Unit");
+
+        unit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                unitKeyPressed(evt);
+            }
+        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -162,10 +169,49 @@ public class AddOpsCrewMaterials extends javax.swing.JFrame {
             crewMaterials.setUnit(unit.getText());
             
             mainListener.addRegularActivityOpsCrewMaterials(crewMaterials, formType);
-            instance = null;
-            dispose();
+            int n = JOptionPane.showConfirmDialog(rootPane, "Crew Materials Added! Do you want to add another one?");
+            
+            if(n != 0){               
+                instance = null;
+                dispose(); 
+            } else {
+                description.setText("");
+                quantity.setText("");
+                unit.setText("");
+            }
         }
     }//GEN-LAST:event_addMouseClicked
+
+    private void unitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_unitKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if(quantity.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a quantity!");
+            } else if(unit.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please specify the unit!");
+            } else {
+                CrewMaterials crewMaterials = new CrewMaterials();
+
+                crewMaterials.setId("New");
+                crewMaterials.setDescription(description.getText());
+                crewMaterials.setQuantity(Integer.parseInt(quantity.getText()));
+                crewMaterials.setUnit(unit.getText());
+
+                mainListener.addRegularActivityOpsCrewMaterials(crewMaterials, formType);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Crew Materials Added! Do you want to add another one?");
+
+                if(n != 0){               
+                    instance = null;
+                    dispose(); 
+                } else {
+                    description.setText("");
+                    quantity.setText("");
+                    unit.setText("");
+                }
+            }
+        }
+    }//GEN-LAST:event_unitKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

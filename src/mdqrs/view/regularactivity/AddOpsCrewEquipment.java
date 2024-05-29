@@ -9,6 +9,7 @@ import classes.CrewMaterials;
 import classes.Equipment;
 import classes.OpsEquipment;
 import classes.Personnel;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -135,6 +136,12 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Number of CD");
 
+        lubricant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lubricantKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,10 +248,77 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
             operationCrewMaterials.setTotalCost(opsTotalCost);
             
             mainListener.addRegularActivityOpsCrewEquipment(operationCrewMaterials, formType);
-            instance = null;
-            dispose();   
+            
+            int n = JOptionPane.showConfirmDialog(rootPane, "Crew Equipment Added! Do you want to add another one?");
+            
+            if(n != 0){               
+                instance = null;
+                dispose(); 
+            } else {
+                equipment.setSelectedIndex(0);
+                ratePerDay.setText("");
+                numberOfCD.setText("");
+                fuelConsumption.setText("");
+                fuelCost.setText("");
+                lubricant.setText("");
+            }
         }
     }//GEN-LAST:event_addMouseClicked
+
+    private void lubricantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lubricantKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if (equipment.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
+            } else if (!dataValidation.validateDouble(numberOfCD.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
+            } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel consumption!");
+            } else if (!dataValidation.validateCurrency(fuelCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel cost!");
+            } else if (!dataValidation.validateCurrency(lubricant.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid lubricant cost!");
+            } else {
+                CrewEquipment operationCrewMaterials = new CrewEquipment();
+
+                Equipment opsEquipment = equipmentList.get(equipment.getSelectedIndex() - 1);
+                double opsRatePerDay = !ratePerDay.getText().isBlank() ? Double.parseDouble(ratePerDay.getText()) : 0.00;
+                double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
+                double opsTotalWages = opsRatePerDay * opsNumberOfCD;
+                int opsFuelConsumption = !fuelConsumption.getText().isBlank() ? Integer.parseInt(fuelConsumption.getText()) : 0;
+                double opsFuelCost = !fuelCost.getText().isBlank() ? Double.parseDouble(fuelCost.getText()) : 0.00;
+                double opsFuelAmount = opsFuelConsumption * opsFuelCost;
+                double opsLubricantAmount = !lubricant.getText().isBlank() ? Double.parseDouble(lubricant.getText()) : 0.00;
+                double opsTotalCost = opsTotalWages + opsFuelAmount + opsLubricantAmount;
+
+                operationCrewMaterials.setId("New");
+                operationCrewMaterials.setEquipment(opsEquipment);
+                operationCrewMaterials.setRatePerDay(opsRatePerDay);
+                operationCrewMaterials.setNumberOfCd(opsNumberOfCD);
+                operationCrewMaterials.setTotalWages(opsTotalWages);
+                operationCrewMaterials.setFuelConsumption(opsFuelConsumption);
+                operationCrewMaterials.setFuelCost(opsFuelCost);
+                operationCrewMaterials.setFuelAmount(opsFuelAmount);
+                operationCrewMaterials.setLubricantAmount(opsLubricantAmount);
+                operationCrewMaterials.setTotalCost(opsTotalCost);
+
+                mainListener.addRegularActivityOpsCrewEquipment(operationCrewMaterials, formType);
+
+                int n = JOptionPane.showConfirmDialog(rootPane, "Crew Equipment Added! Do you want to add another one?");
+
+                if(n != 0){               
+                    instance = null;
+                    dispose(); 
+                } else {
+                    equipment.setSelectedIndex(0);
+                    ratePerDay.setText("");
+                    numberOfCD.setText("");
+                    fuelConsumption.setText("");
+                    fuelCost.setText("");
+                    lubricant.setText("");
+                }
+            }
+        }
+    }//GEN-LAST:event_lubricantKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

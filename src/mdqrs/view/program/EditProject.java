@@ -4,6 +4,7 @@
  */
 package mdqrs.view.program;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -94,6 +95,12 @@ public class EditProject extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Project Cost");
+
+        projectCost.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                projectCostKeyPressed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Implementation Mode");
@@ -188,6 +195,28 @@ public class EditProject extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_saveMouseClicked
+
+    private void projectCostKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_projectCostKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if (projectCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the project cost!");
+            } else if (implementationMode.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
+            } else if (!dataValidation.validateCurrency(projectCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid project cost!");
+            } else {
+                project.setDescription(description.getText());
+                project.setProjectCost(Double.parseDouble(projectCost.getText()));
+                project.setImplementationMode(implementationMode.getText());
+
+                listener.editProject(index, project, formType);
+                instance = null;
+                dispose();
+            }
+         }
+    }//GEN-LAST:event_projectCostKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

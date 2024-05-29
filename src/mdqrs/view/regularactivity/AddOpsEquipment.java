@@ -7,6 +7,7 @@ package mdqrs.view.regularactivity;
 import classes.Equipment;
 import classes.OpsEquipment;
 import classes.Personnel;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -164,6 +165,12 @@ public class AddOpsEquipment extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Number of CD");
 
+        lubricant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                lubricantKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -295,11 +302,87 @@ public class AddOpsEquipment extends javax.swing.JFrame {
             operationEquipment.setTotalCost(opsTotalCost);
 
             mainListener.addRegularActivityOpsEquipment(operationEquipment, formType);
-            instance = null;
-            personnelList = new ArrayList();
-            dispose();   
+            
+            int n = JOptionPane.showConfirmDialog(rootPane, "Operation Equipment Added! Do you want to add another one?");
+            
+            if(n != 0){               
+                instance = null;
+                personnelList = new ArrayList();
+                dispose(); 
+            } else {
+                personnel.setSelectedIndex(0);
+                role.setText("");
+                equipment.setSelectedIndex(0);
+                equipment.setEnabled(false);
+                numberOfCD.setText("");
+                fuelConsumption.setText("");
+                fuelCost.setText("");
+                lubricant.setText("");
+            }
         }     
     }//GEN-LAST:event_addMouseClicked
+
+    private void lubricantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lubricantKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(personnel.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
+            } else if (equipment.isEnabled() && equipment.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
+            }  else if (!dataValidation.validateDouble(numberOfCD.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
+            } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel consumption!");
+            } else if (!dataValidation.validateCurrency(fuelCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid fuel cost!");
+            } else if (!dataValidation.validateCurrency(lubricant.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid lubricant cost!");
+            } else {
+                OpsEquipment operationEquipment = new OpsEquipment();
+
+                Personnel opsPersonnel = personnelList.get(personnel.getSelectedIndex() - 1);
+                Equipment opsEquipment = equipment.isEnabled() ? equipmentList.get(equipment.getSelectedIndex() - 1) : new Equipment();
+                double opsRatePerDay = personnelList.get(personnel.getSelectedIndex() - 1).getRatePerDay();
+                double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
+                double opsTotalWages = opsRatePerDay * opsNumberOfCD;
+                int opsFuelConsumption = !fuelConsumption.getText().isBlank() ? Integer.parseInt(fuelConsumption.getText()) : 0;
+                double opsFuelCost = !fuelCost.getText().isBlank() ? Double.parseDouble(fuelCost.getText()) : 0.00;
+                double opsFuelAmount = opsFuelConsumption * opsFuelCost;
+                double opsLubricantAmount = !lubricant.getText().isBlank() ? Double.parseDouble(lubricant.getText()) : 0.00;
+                double opsTotalCost = opsTotalWages + opsFuelAmount + opsLubricantAmount;
+
+                operationEquipment.setId("New");
+                operationEquipment.setPersonnel(opsPersonnel);
+                operationEquipment.setEquipment(opsEquipment);
+                operationEquipment.setRatePerDay(opsRatePerDay);
+                operationEquipment.setNumberOfCd(opsNumberOfCD);
+                operationEquipment.setTotalWages(opsTotalWages);   
+                operationEquipment.setFuelConsumption(opsFuelConsumption);
+                operationEquipment.setFuelCost(opsFuelCost);           
+                operationEquipment.setFuelAmount(opsFuelAmount);           
+                operationEquipment.setLubricantAmount(opsLubricantAmount);
+                operationEquipment.setTotalCost(opsTotalCost);
+
+                mainListener.addRegularActivityOpsEquipment(operationEquipment, formType);
+
+                int n = JOptionPane.showConfirmDialog(rootPane, "Operation Equipment Added! Do you want to add another one?");
+
+                if(n != 0){               
+                    instance = null;
+                    personnelList = new ArrayList();
+                    dispose(); 
+                } else {
+                    personnel.setSelectedIndex(0);
+                    role.setText("");
+                    equipment.setSelectedIndex(0);
+                    equipment.setEnabled(false);
+                    numberOfCD.setText("");
+                    fuelConsumption.setText("");
+                    fuelCost.setText("");
+                    lubricant.setText("");
+                }  
+            } 
+        }
+    }//GEN-LAST:event_lubricantKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

@@ -6,6 +6,7 @@ package mdqrs.view.regularactivity;
 
 import classes.CrewPersonnel;
 import classes.Personnel;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -109,6 +110,12 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Number of CD");
 
+        numberOfCD.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                numberOfCDKeyPressed(evt);
+            }
+        });
+
         save.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         save.setText("Save");
         save.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,6 +197,28 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_saveMouseClicked
+
+    private void numberOfCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberOfCDKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
+            if(personnel.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+            } else if (!dataValidation.validateDouble(numberOfCD.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
+            } else {          
+                double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
+                double opsRatePerDay = personnelList.get(personnel.getSelectedIndex() - 1).getRatePerDay();
+
+                crewPersonnel.setPersonnel(personnelList.get(personnel.getSelectedIndex() - 1));
+                crewPersonnel.setNumberOfCd(opsNumberOfCD);
+                crewPersonnel.setRatePerDay(opsRatePerDay);
+
+                mainListener.editRegularActivityOpsMaintenanceCrew(index, crewPersonnel, formType);
+                instance = null;
+                personnelList = new ArrayList();
+                dispose();
+            }
+        }
+    }//GEN-LAST:event_numberOfCDKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override

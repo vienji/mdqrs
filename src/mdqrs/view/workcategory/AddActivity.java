@@ -169,9 +169,16 @@ public class AddActivity extends javax.swing.JFrame {
             new ActivityDBController().add(
                     itemNumber.getText(), description.getText(), workCategoryList.get(category.getSelectedIndex() - 1).getWorkCategoryNumber());
             mainListener.updateActivity();
-            JOptionPane.showMessageDialog(rootPane, "New Activity was successfully added!");         
-            instance = null;
-            dispose();
+
+            int n = JOptionPane.showConfirmDialog(rootPane, "Activity was added! Do you want to add another one?");
+            if(n != 0){
+                instance = null;
+                dispose();
+            } else {
+                itemNumber.setText("");
+                category.setSelectedIndex(0);
+                description.setText("");
+            }
         }
     }//GEN-LAST:event_addActionPerformed
 
