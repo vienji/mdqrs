@@ -254,11 +254,18 @@ public class PersonnelDBController {
             
             result = preparedStatement.executeQuery();
             while(result.next()){
-                             
+                boolean isOtherType = Boolean.valueOf(result.getString(7));
                 personnel.setId(result.getString(2));
                 personnel.setName(result.getString(3));
-                personnel.setType(result.getString(4));
-                personnel.setRatePerDay(result.getDouble(5));
+                
+                if(isOtherType){
+                    personnel.setType(result.getString(4));
+                    personnel.setRatePerDay(result.getDouble(5));
+                } else {
+                    JobType jobType = getJobType(Integer.parseInt(result.getString(4)));
+                    personnel.setType(jobType.getType());
+                    personnel.setRatePerDay(jobType.getRatePerDay());
+                }
                 
             }
         } catch (SQLException e){
