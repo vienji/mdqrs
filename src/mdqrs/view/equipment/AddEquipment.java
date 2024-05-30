@@ -24,7 +24,7 @@ public class AddEquipment extends javax.swing.JFrame {
     private AddEquipment() {
         initComponents();
         equipmentNumber.setText("");
-        type.setText("");
+        type.setSelectedIndex(0);
         addWindowListener(new CloseWindow());
     }
 
@@ -58,25 +58,25 @@ public class AddEquipment extends javax.swing.JFrame {
         equipmentNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        type = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
         add = new javax.swing.JButton();
+        type = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add New Equipment");
         setResizable(false);
+
+        equipmentNumber.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                equipmentNumberKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Equipment No.");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Type");
-
-        type.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                typeKeyPressed(evt);
-            }
-        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -93,6 +93,8 @@ public class AddEquipment extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
+
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Equipment...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,8 +113,8 @@ public class AddEquipment extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(equipmentNumber)
-                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(equipmentNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
@@ -122,11 +124,11 @@ public class AddEquipment extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(equipmentNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
                     .addComponent(cancel))
@@ -145,13 +147,13 @@ public class AddEquipment extends javax.swing.JFrame {
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         if(equipmentNumber.getText().isBlank()){
             JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
-        } else if(type.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
+        } else if(type.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
         } else if (new EquipmentDBController().isPresent(equipmentNumber.getText())){
             JOptionPane.showMessageDialog(rootPane,
-                String.format("Equipment %s number %s was already added!", type.getText(), equipmentNumber.getText()));
+                String.format("Equipment %s number %s was already added!", String.valueOf(type.getSelectedItem()), equipmentNumber.getText()));
         } else {
-            new EquipmentDBController().add(equipmentNumber.getText(), type.getText());
+            new EquipmentDBController().add(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
             mainListener.updateEquipment();
             int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
             if(n != 0){
@@ -159,22 +161,21 @@ public class AddEquipment extends javax.swing.JFrame {
                 dispose();
             } else {
                 equipmentNumber.setText("");
-                type.setText("");
             }
         }
     }//GEN-LAST:event_addActionPerformed
 
-    private void typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeKeyPressed
+    private void equipmentNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipmentNumberKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(equipmentNumber.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
-            } else if(type.getText().isBlank()){
-                JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
+            } else if(type.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
             } else if (new EquipmentDBController().isPresent(equipmentNumber.getText())){
                 JOptionPane.showMessageDialog(rootPane,
-                    String.format("Equipment %s number %s was already added!", type.getText(), equipmentNumber.getText()));
+                    String.format("Equipment %s number %s was already added!", String.valueOf(type.getSelectedItem()), equipmentNumber.getText()));
             } else {
-                new EquipmentDBController().add(equipmentNumber.getText(), type.getText());
+                new EquipmentDBController().add(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
                 mainListener.updateEquipment();
                 int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
                 if(n != 0){
@@ -182,11 +183,10 @@ public class AddEquipment extends javax.swing.JFrame {
                     dispose();
                 } else {
                     equipmentNumber.setText("");
-                    type.setText("");
-                } 
+                }
             }
         }
-    }//GEN-LAST:event_typeKeyPressed
+    }//GEN-LAST:event_equipmentNumberKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -236,6 +236,6 @@ public class AddEquipment extends javax.swing.JFrame {
     private javax.swing.JTextField equipmentNumber;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField type;
+    private javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }

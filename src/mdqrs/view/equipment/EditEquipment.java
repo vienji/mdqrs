@@ -27,7 +27,7 @@ public class EditEquipment extends javax.swing.JFrame {
         initComponents();
         addWindowListener(new CloseWindow());
         equipmentNumber.setText(identification);
-        type.setText(equipmentType);
+        type.setSelectedItem(equipmentType);
     }
     
     public static EditEquipment getInstance(){
@@ -64,9 +64,9 @@ public class EditEquipment extends javax.swing.JFrame {
         equipmentNumber = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        type = new javax.swing.JTextField();
         cancel = new javax.swing.JButton();
         save = new javax.swing.JButton();
+        type = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Equipment");
@@ -79,12 +79,6 @@ public class EditEquipment extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Type");
-
-        type.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                typeKeyPressed(evt);
-            }
-        });
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -101,6 +95,8 @@ public class EditEquipment extends javax.swing.JFrame {
                 saveActionPerformed(evt);
             }
         });
+
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,22 +115,23 @@ public class EditEquipment extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(equipmentNumber)
-                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(equipmentNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                            .addComponent(type, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(equipmentNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(equipmentNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(save)
                     .addComponent(cancel))
@@ -151,30 +148,16 @@ public class EditEquipment extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(type.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
+        if(type.getSelectedIndex() == 0){
+            JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
         } else {
-            new EquipmentDBController().edit(equipmentNumber.getText(), type.getText());
+            new EquipmentDBController().edit(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
             mainListener.updateEquipment();
             JOptionPane.showMessageDialog(rootPane, "Equipment was successfully edited!");
             instance = null;
             dispose();
         }
     }//GEN-LAST:event_saveActionPerformed
-
-    private void typeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            if(type.getText().isBlank()){
-                JOptionPane.showMessageDialog(rootPane, "Please specify the type!");
-            } else {
-                new EquipmentDBController().edit(equipmentNumber.getText(), type.getText());
-                mainListener.updateEquipment();
-                JOptionPane.showMessageDialog(rootPane, "Equipment was successfully edited!");
-                instance = null;
-                dispose();
-            }
-        }
-    }//GEN-LAST:event_typeKeyPressed
 
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -225,6 +208,6 @@ public class EditEquipment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton save;
-    public javax.swing.JTextField type;
+    public javax.swing.JComboBox<String> type;
     // End of variables declaration//GEN-END:variables
 }

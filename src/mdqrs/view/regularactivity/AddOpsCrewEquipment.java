@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import mdqrs.classes.DataValidation;
 import mdqrs.listeners.MainListener;
@@ -33,7 +34,6 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
      */
     private AddOpsCrewEquipment() {
         initComponents();
-        initEquipmentSelectionBox();
         addWindowListener(new CloseWindow());
     }
     
@@ -63,10 +63,20 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
         }
     }   
     
-    public void initEquipmentSelectionBox(){
-        equipmentList.forEach((e) -> {
-            equipment.addItem(e.getType().concat("   ( " + e.getEquipmentNumber() + " )"));
+    public void initEquipmentNumberSelectionBox(String type){
+        equipmentNumber.removeAllItems();
+        equipmentNumber.addItem("Choose equipment number...");
+        equipmentList.stream().filter(e -> e.getType().equalsIgnoreCase(type)).forEach((eq) -> {
+            equipmentNumber.addItem(eq.getEquipmentNumber());
         });
+    }
+    
+    public Equipment getEquipment(String number){
+        Equipment equipmentData = equipmentList
+                                        .stream()
+                                        .filter(e -> e.getEquipmentNumber().equalsIgnoreCase(number))
+                                        .collect(Collectors.toCollection(ArrayList::new)).get(0);
+        return equipmentData;
     }
     
     /**
@@ -80,7 +90,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
 
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        equipment = new javax.swing.JComboBox<>();
+        equipmentType = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -93,6 +103,8 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
         fuelConsumption = new javax.swing.JTextField();
         fuelCost = new javax.swing.JTextField();
         lubricant = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        equipmentNumber = new javax.swing.JComboBox<>();
 
         jTextField2.setText("jTextField2");
 
@@ -103,7 +115,12 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Equipment");
 
-        equipment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose equipment..." }));
+        equipmentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose equipment type...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller" }));
+        equipmentType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equipmentTypeActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Rate Per Day");
@@ -142,6 +159,11 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel9.setText("Equipment Number");
+
+        equipmentNumber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose equipment number... " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,13 +171,16 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(equipmentNumber, 0, 260, Short.MAX_VALUE)
+                        .addComponent(jLabel9))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(add, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel4)
-                        .addComponent(equipment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(equipmentType, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)
@@ -174,8 +199,12 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(equipment, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(equipmentType, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(equipmentNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ratePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +228,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
                     .addComponent(cancel))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -213,8 +242,10 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
       
-        if (equipment.getSelectedIndex() == 0) {
+        if (equipmentType.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
+        } else if (equipmentNumber.isEnabled() && equipmentNumber.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment number!");
         } else if (!dataValidation.validateDouble(numberOfCD.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
@@ -226,7 +257,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
         } else {
             CrewEquipment operationCrewMaterials = new CrewEquipment();
             
-            Equipment opsEquipment = equipmentList.get(equipment.getSelectedIndex() - 1);
+            Equipment opsEquipment = getEquipment(String.valueOf(equipmentNumber.getSelectedItem()));
             double opsRatePerDay = !ratePerDay.getText().isBlank() ? Double.parseDouble(ratePerDay.getText()) : 0.00;
             double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
             double opsTotalWages = opsRatePerDay * opsNumberOfCD;
@@ -255,7 +286,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
                 instance = null;
                 dispose(); 
             } else {
-                equipment.setSelectedIndex(0);
+                equipmentType.setSelectedIndex(0);
                 ratePerDay.setText("");
                 numberOfCD.setText("");
                 fuelConsumption.setText("");
@@ -267,8 +298,10 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
 
     private void lubricantKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_lubricantKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            if (equipment.getSelectedIndex() == 0) {
+            if (equipmentType.getSelectedIndex() == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Please choose an equipment!");
+            } else if (equipmentNumber.isEnabled() && equipmentNumber.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment number!");
             } else if (!dataValidation.validateDouble(numberOfCD.getText())){
                 JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
             } else if (!dataValidation.validateCurrency(fuelConsumption.getText())){
@@ -280,7 +313,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
             } else {
                 CrewEquipment operationCrewMaterials = new CrewEquipment();
 
-                Equipment opsEquipment = equipmentList.get(equipment.getSelectedIndex() - 1);
+                Equipment opsEquipment = getEquipment(String.valueOf(equipmentNumber.getSelectedItem()));
                 double opsRatePerDay = !ratePerDay.getText().isBlank() ? Double.parseDouble(ratePerDay.getText()) : 0.00;
                 double opsNumberOfCD = !numberOfCD.getText().isBlank() ? Double.parseDouble(numberOfCD.getText()) : 0.0;
                 double opsTotalWages = opsRatePerDay * opsNumberOfCD;
@@ -309,7 +342,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
                     instance = null;
                     dispose(); 
                 } else {
-                    equipment.setSelectedIndex(0);
+                    equipmentType.setSelectedIndex(0);
                     ratePerDay.setText("");
                     numberOfCD.setText("");
                     fuelConsumption.setText("");
@@ -319,6 +352,10 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_lubricantKeyPressed
+
+    private void equipmentTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipmentTypeActionPerformed
+        initEquipmentNumberSelectionBox(String.valueOf(equipmentType.getSelectedItem()));
+    }//GEN-LAST:event_equipmentTypeActionPerformed
 
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -367,7 +404,8 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JButton cancel;
-    private javax.swing.JComboBox<String> equipment;
+    private javax.swing.JComboBox<String> equipmentNumber;
+    private javax.swing.JComboBox<String> equipmentType;
     private javax.swing.JTextField fuelConsumption;
     private javax.swing.JTextField fuelCost;
     private javax.swing.JLabel jLabel3;
@@ -376,6 +414,7 @@ public class AddOpsCrewEquipment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField lubricant;
     private javax.swing.JTextField numberOfCD;

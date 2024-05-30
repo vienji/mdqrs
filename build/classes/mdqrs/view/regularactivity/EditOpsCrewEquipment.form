@@ -40,19 +40,25 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="save" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <Component id="equipment" max="32767" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <Component id="ratePerDay" alignment="0" max="32767" attributes="0"/>
-                      <Component id="numberOfCD" alignment="0" max="32767" attributes="0"/>
-                      <Component id="fuelConsumption" alignment="0" max="32767" attributes="0"/>
-                      <Component id="fuelCost" alignment="0" max="32767" attributes="0"/>
-                      <Component id="lubricant" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="equipmentNumber" alignment="0" pref="260" max="32767" attributes="0"/>
+                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                          <Component id="equipmentType" max="32767" attributes="0"/>
+                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                          <Component id="ratePerDay" alignment="0" max="32767" attributes="0"/>
+                          <Component id="numberOfCD" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fuelConsumption" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fuelCost" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lubricant" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace pref="35" max="32767" attributes="0"/>
@@ -65,7 +71,11 @@
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="equipment" min="-2" pref="30" max="-2" attributes="0"/>
+              <Component id="equipmentType" min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="equipmentNumber" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -91,7 +101,7 @@
                   <Component id="save" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -105,14 +115,27 @@
         <Property name="text" type="java.lang.String" value="Equipment"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="equipment">
+    <Component class="javax.swing.JComboBox" name="equipmentType">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="Choose equipment..."/>
+          <StringArray count="11">
+            <StringItem index="0" value="Choose equipment type..."/>
+            <StringItem index="1" value="Backhoe"/>
+            <StringItem index="2" value="Boom Truck"/>
+            <StringItem index="3" value="Bulldozer"/>
+            <StringItem index="4" value="Dump Truck"/>
+            <StringItem index="5" value="Loader"/>
+            <StringItem index="6" value="Motor Grader"/>
+            <StringItem index="7" value="Prime Mover"/>
+            <StringItem index="8" value="Self Loading"/>
+            <StringItem index="9" value="Skid Steel Roller"/>
+            <StringItem index="10" value="Steel Roller"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="equipmentTypeActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -191,6 +214,26 @@
       <Events>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="lubricantKeyPressed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel9">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Equipment Number"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="equipmentNumber">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Choose equipment number... "/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
