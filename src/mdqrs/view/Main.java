@@ -88,6 +88,7 @@ import mdqrs.view.equipment.AddEquipment;
 import mdqrs.view.equipment.EditEquipment;
 import mdqrs.view.personnel.AddPersonnel;
 import mdqrs.view.personnel.EditPersonnel;
+import mdqrs.view.personnel.PersonnelSetting;
 import mdqrs.view.program.AddProject;
 import mdqrs.view.program.EditProject;
 import mdqrs.view.regularactivity.AddOpsCrewEquipment;
@@ -788,6 +789,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel51 = new javax.swing.JLabel();
         addNewPersonnel = new javax.swing.JPanel();
         jLabel52 = new javax.swing.JLabel();
+        personnelSettingsIcon = new javax.swing.JLabel();
         reportPanel = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel217 = new javax.swing.JLabel();
@@ -7604,13 +7606,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap())
         );
 
+        personnelSettingsIcon.setToolTipText("Personnel Settings");
+        personnelSettingsIcon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                personnelSettingsIconMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout personnelPanelLayout = new javax.swing.GroupLayout(personnelPanel);
         personnelPanel.setLayout(personnelPanelLayout);
         personnelPanelLayout.setHorizontalGroup(
             personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(personnelPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(personnelPanelLayout.createSequentialGroup()
                             .addComponent(deletePersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7630,15 +7639,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 .addComponent(jLabel75)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(sortPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jLabel4))
+                    .addGroup(personnelPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(personnelSettingsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(73, Short.MAX_VALUE))
         );
         personnelPanelLayout.setVerticalGroup(
             personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(personnelPanelLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel4)
-                .addGap(41, 41, 41)
+                .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(personnelSettingsIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(sortPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -7647,7 +7661,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(searchPersonnelValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel74))
                     .addComponent(searchPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(personnelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -10998,6 +11012,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         } 
     }//GEN-LAST:event_exportOtherActivityMouseClicked
 
+    private void personnelSettingsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personnelSettingsIconMouseClicked
+        PersonnelSetting.setListener(this);
+        PersonnelSetting.getInstance().showFrame();
+    }//GEN-LAST:event_personnelSettingsIconMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -12403,6 +12422,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchWorkCategory);
         imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchEquipment);
         imageManipulator.setIcon("/mdqrs/assets/icon_search.png", searchPersonnel);
+        
+        imageManipulator.setIcon("/mdqrs/assets/icon_personnel_settings.png", personnelSettingsIcon);
     }
 
     public void initNetworkSettings() throws URISyntaxException, IOException {
@@ -13593,6 +13614,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel otherExpensesViewLaborEquipmentCost;
     private javax.swing.JLabel otherExpensesViewLightEquipments;
     private javax.swing.JPanel personnelPanel;
+    private javax.swing.JLabel personnelSettingsIcon;
     private javax.swing.JTextField preparedBy1Name;
     private javax.swing.JTextField preparedBy1Position;
     private javax.swing.JTextField preparedBy2Name;

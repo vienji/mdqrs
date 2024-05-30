@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import mdqrs.classes.DataValidation;
+import mdqrs.classes.JobType;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.PersonnelDBController;
 import mdqrs.listeners.MainListener;
@@ -21,15 +22,24 @@ public class AddPersonnel extends javax.swing.JFrame {
     private DataValidation dataValidation = new DataValidation();
     private static MainListener mainListener;
     private static AddPersonnel instance;
-    
+    private ArrayList<JobType> types = new PersonnelDBController().getJobTypes();
     /**
      * Creates new form AddPersonnel
      */
     private AddPersonnel() {
         initComponents();
         name.setText("");
+        initType();
         type.setSelectedIndex(0);
         addWindowListener(new CloseWindow());
+    }
+    
+    private void initType(){      
+        type.addItem("Choose Type...");
+        types.forEach((e) -> {
+           type.addItem(e.getType());
+        });
+        type.addItem("Other");
     }
     
     public static AddPersonnel getInstance(){
@@ -80,7 +90,6 @@ public class AddPersonnel extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Type");
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Type...", "Foreman", "Operator", "Maintenance Crew", "Engineer", "Engineering Aide", "Laboratory Aide", "Survey Aide", "Other" }));
         type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeActionPerformed(evt);
@@ -198,7 +207,7 @@ public class AddPersonnel extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
         } else {
             boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
-            String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+            String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(types.get(type.getSelectedIndex() - 1).getId());
             new PersonnelDBController().add(name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
             mainListener.updatePersonnel();
             int n = JOptionPane.showConfirmDialog(rootPane, "Personnel was added! Do you want to add another one?");
@@ -217,11 +226,14 @@ public class AddPersonnel extends javax.swing.JFrame {
 
     private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
         String selected = String.valueOf(type.getSelectedItem());
-        
+        ratePerDay.setText("");
         if(selected.equalsIgnoreCase("Other")){
             otherType.setEnabled(true);
         } else {
             otherType.setEnabled(false);
+            if(type.getSelectedIndex() > 0){
+                ratePerDay.setText(String.valueOf(types.get(type.getSelectedIndex() - 1).getRatePerDay()));
+            }  
         }
     }//GEN-LAST:event_typeActionPerformed
 

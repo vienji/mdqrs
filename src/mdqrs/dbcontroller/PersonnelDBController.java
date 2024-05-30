@@ -8,12 +8,39 @@ import dbcontroller.Driver;
 import java.sql.*;
 import java.util.*;
 import classes.Personnel;
+import mdqrs.classes.JobType;
 /**
  *
  * @author Vienji
  */
 public class PersonnelDBController {
     private String query = "";
+    
+    public void addJobType(String type, Double ratePerDay){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        
+        try{
+            query = "INSERT INTO job_type (type, rate_per_day) VALUES (?, ?)";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, type);
+            preparedStatement.setDouble(2, ratePerDay);
+            
+            preparedStatement.executeUpdate();              
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
+    }
     
     public void add(String name, String type, boolean isOtherType, Double ratePerDay){
         Connection connection = null;
@@ -49,6 +76,80 @@ public class PersonnelDBController {
         }
     }
     
+    public ArrayList<JobType> getJobTypes(){
+        ArrayList<JobType> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM job_type";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                JobType jobType = new JobType();
+                
+                jobType.setId(result.getInt(1));
+                jobType.setType(result.getString(2));
+                jobType.setRatePerDay(result.getDouble(3));
+                
+                list.add(jobType);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
+    public JobType getJobType(int id){
+        JobType jobType = new JobType();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try{
+            query = "SELECT * FROM job_type WHERE id = ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setInt(1, id);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){             
+                jobType.setId(result.getInt(1));
+                jobType.setType(result.getString(2));
+                jobType.setRatePerDay(result.getDouble(3));
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return jobType;
+    }
+    
     public ArrayList<Personnel> getList(){
         ArrayList<Personnel> list = new ArrayList();
         Connection connection = null;
@@ -62,13 +163,21 @@ public class PersonnelDBController {
             
             result = preparedStatement.executeQuery();
             while(result.next()){
+                boolean isOtherType = Boolean.valueOf(result.getString(7));
                 Personnel personnel = new Personnel();
-                
                 personnel.setId(result.getString(2));
                 personnel.setName(result.getString(3));
-                personnel.setType(result.getString(4));
-                personnel.setRatePerDay(result.getDouble(5));
-                personnel.setIsOtherType(result.getString(7));
+                
+                if(isOtherType){
+                    personnel.setType(result.getString(4));
+                    personnel.setRatePerDay(result.getDouble(5));
+                } else {
+                    JobType jobType = getJobType(Integer.parseInt(result.getString(4)));
+                    personnel.setType(jobType.getType());
+                    personnel.setRatePerDay(jobType.getRatePerDay());
+                }
+                
+                personnel.setIsOtherType(String.valueOf(isOtherType));
                 
                 list.add(personnel);
             }
@@ -239,5 +348,32 @@ public class PersonnelDBController {
         }
         
         return present;
+    }
+    
+    public void updateRatePerDay(ArrayList<JobType> jobTypes){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        try{
+            connection = Driver.getConnection();
+            query = "UPDATE job_type SET rate_per_day = ? WHERE id = ?";
+            preparedStatement = connection.prepareStatement(query);
+            
+            for(int i = 0; i < jobTypes.size(); i++){
+                JobType jobType = jobTypes.get(i);
+                preparedStatement.setDouble(1, jobType.getRatePerDay());
+                preparedStatement.setInt(2, jobType.getId());
+                
+                preparedStatement.executeUpdate();
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+        }
     }
 }

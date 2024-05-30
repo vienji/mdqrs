@@ -5,22 +5,22 @@
             <url>src/mdqrs/view/Main.java</url>
             <bookmark id="20">
                 <name/>
-                <line>8181</line>
+                <line>8307</line>
                 <key/>
             </bookmark>
             <bookmark id="29">
                 <name/>
-                <line>10082</line>
+                <line>10253</line>
                 <key/>
             </bookmark>
             <bookmark id="28">
                 <name/>
-                <line>12370</line>
+                <line>12603</line>
                 <key/>
             </bookmark>
             <bookmark id="23">
                 <name/>
-                <line>12456</line>
+                <line>12689</line>
                 <key/>
             </bookmark>
         </file>
@@ -44,9 +44,6 @@
             <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/reports/OtherActivityReport.java</file>
             <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/view/Main.java</file>
             <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/reports/MonthlyReport.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/view/workcategory/AddActivity.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/view/regularactivity/AddOpsMaintenanceCrew.java</file>
-            <file>file:/C:/Users/userpc/Desktop/MDQRS%20Files/system/MDQRS/src/mdqrs/classes/RegularActivity.java</file>
         </group>
     </open-files>
 </project-private>

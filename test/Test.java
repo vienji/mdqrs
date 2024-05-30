@@ -5,6 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.OtherActivityListDBController;
+import mdqrs.dbcontroller.PersonnelDBController;
 import mdqrs.reports.MonthlyReport;
 import mdqrs.reports.MonthlyReportBuilder;
 import mdqrs.reports.OtherActivityReport;
@@ -55,18 +56,21 @@ public class Test {
 //          regularReport.setFilePath(filePath, file);
 //          
 //          regularReport.generateWorkbook("May", 2024);
-
-            ArrayList<OtherActivity> list = new OtherActivityListDBController().getList();
             
-            OtherActivity otherActivity = list.get(0);
+            PersonnelDBController pdbc = new PersonnelDBController();
             
-            OtherActivityReport otherActivityReport = new OtherActivityReport(otherActivity);
+            String[] data = {
+                "Foreman",
+                "Operator",
+                "Maintenance Crew",
+                "Engineer",
+                "Engineering Aide",
+                "Laboratory Aide",
+                "Survey Aide"
+            };
             
-            File file = new File("sample_data");
-            String filePath = "C:\\Users\\userpc\\Desktop\\";
-            
-            otherActivityReport.setFilePath(filePath, file);
-            
-            otherActivityReport.generateReport();
+            for(int i = 0; i < 7; i++){
+                pdbc.addJobType(data[i], 0.00);
+            }
     }
 }
