@@ -861,6 +861,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         totalBudget = new javax.swing.JTextField();
         saveQuarterlyReportDetails = new javax.swing.JButton();
         testNetworkConnection = new javax.swing.JButton();
+        systemRefresh = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Maintenance Division Quarterly Report System");
@@ -7950,6 +7951,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         });
 
+        systemRefresh.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        systemRefresh.setText("System Refresh");
+        systemRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                systemRefreshMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -8003,8 +8012,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(saveQuarterlyReportDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(systemRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(testNetworkConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -8054,7 +8065,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(testNetworkConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(testNetworkConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(systemRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -11106,6 +11118,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }//GEN-LAST:event_testNetworkConnectionMouseClicked
 
+    private void systemRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_systemRefreshMouseClicked
+        RefreshLoadScreen refreshLoadScreen = new RefreshLoadScreen();
+        refreshLoadScreen.setVisible(true);
+
+        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+            @Override
+            protected Void doInBackground() throws Exception {
+                initData();
+                return null;
+            }
+
+            @Override
+            protected void done(){
+                refreshLoadScreen.dispose();
+            }
+        };
+
+        worker.execute();
+    }//GEN-LAST:event_systemRefreshMouseClicked
+
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
         tableViewProjects.setModel(new DefaultTableModel(null, new String[]{"Description", "Project Cost", "Implementation Mode"}));
@@ -13812,6 +13844,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel subActivityTab;
     private javax.swing.JTextField submittedByName;
     private javax.swing.JTextField submittedByPosition;
+    private javax.swing.JButton systemRefresh;
     private javax.swing.JTable tableActivity;
     private javax.swing.JTable tableEditProjects;
     private javax.swing.JTable tableEquipment;
