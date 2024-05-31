@@ -167,7 +167,7 @@ public class AddEquipment extends javax.swing.JFrame {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         }  
     }//GEN-LAST:event_addActionPerformed
 
@@ -194,7 +194,7 @@ public class AddEquipment extends javax.swing.JFrame {
                 }
             } else {
                 String message = "Error 59: An unexpected network error occurred.";
-                JOptionPane.showMessageDialog(rootPane, message);
+                JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
             }  
         }
     }//GEN-LAST:event_equipmentNumberKeyPressed

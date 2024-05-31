@@ -860,6 +860,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel248 = new javax.swing.JLabel();
         totalBudget = new javax.swing.JTextField();
         saveQuarterlyReportDetails = new javax.swing.JButton();
+        testNetworkConnection = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Maintenance Division Quarterly Report System");
@@ -7941,6 +7942,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         });
 
+        testNetworkConnection.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        testNetworkConnection.setText("Test Connection");
+        testNetworkConnection.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                testNetworkConnectionMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -7995,7 +8004,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         .addComponent(saveQuarterlyReportDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(testNetworkConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createSequentialGroup()
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6)
@@ -8040,7 +8052,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel62))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(testNetworkConnection, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -8292,7 +8306,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             AddWorkCategory.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_addNewWorkCategoryMouseClicked
 
@@ -8302,7 +8316,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             AddActivity.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_addNewActivityMouseClicked
 
@@ -8312,7 +8326,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             AddEquipment.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message, "Error", 0);
         }  
     }//GEN-LAST:event_addNewEquipmentMouseClicked
 
@@ -8333,7 +8347,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editActivityMouseClicked
 
@@ -8352,21 +8366,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editWorkCategoryMouseClicked
 
     private void editEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editEquipmentMouseClicked
         int selectedRow = tableEquipment.getSelectedRow();
         tableEquipment.clearSelection();
-        if (selectedRow > -1) {
-            Equipment equipment = searchedEquipment.get(selectedRow);
-            EditEquipment.setData(equipment.getEquipmentNumber(),
-                    equipment.getType());
-            EditEquipment.setListener(this);
-            EditEquipment.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                Equipment equipment = searchedEquipment.get(selectedRow);
+                EditEquipment.setData(equipment.getEquipmentNumber(),
+                        equipment.getType());
+                EditEquipment.setListener(this);
+                EditEquipment.getInstance().showFrame();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message, "Error", 0);
         }
     }//GEN-LAST:event_editEquipmentMouseClicked
 
@@ -8383,7 +8402,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         }  
     }//GEN-LAST:event_editPersonnelMouseClicked
 
@@ -8393,7 +8412,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             AddPersonnel.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         }  
     }//GEN-LAST:event_addNewPersonnelMouseClicked
 
@@ -8735,7 +8754,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewRegularActivityMouseClicked
 
@@ -8760,7 +8779,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_viewRegularActivityMouseClicked
 
@@ -8785,7 +8804,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editSubActivityMouseClicked
 
@@ -8795,7 +8814,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             AddSubActivity.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_addNewSubActivityMouseClicked
 
@@ -8876,7 +8895,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveEditRegularActivityMouseClicked
 
@@ -9101,7 +9120,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editRegularActivityMouseClicked
 
@@ -9126,7 +9145,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editOtherActivityMouseClicked
 
@@ -9151,7 +9170,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_viewOtherActivityMouseClicked
 
@@ -9209,7 +9228,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewOtherActivityMouseClicked
 
@@ -9303,7 +9322,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveEditedOtherActivityMouseClicked
 
@@ -9363,7 +9382,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editOtherExpensesMouseClicked
 
@@ -9387,7 +9406,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_viewOtherExpensesMouseClicked
 
@@ -9457,7 +9476,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewOtherExpensesMouseClicked
 
@@ -9751,7 +9770,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editDriversForEngineers1MouseClicked
 
@@ -9827,7 +9846,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveEditOtherExpensesMouseClicked
 
@@ -9886,7 +9905,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewOtherExpenses1MouseClicked
 
@@ -9940,7 +9959,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveDFEMouseClicked
 
@@ -9964,7 +9983,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_editProjectsMouseClicked
 
@@ -9988,7 +10007,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_viewProjectsMouseClicked
 
@@ -10033,7 +10052,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewOtherActivity1MouseClicked
 
@@ -10099,7 +10118,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_saveNewOtherActivity2MouseClicked
 
@@ -10654,7 +10673,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteRegularActivityMouseClicked
 
@@ -10680,7 +10699,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteOtherActivityMouseClicked
 
@@ -10707,7 +10726,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteOtherExpensesMouseClicked
 
@@ -10734,7 +10753,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteDriversForEngineers1MouseClicked
 
@@ -10760,7 +10779,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteProjectsMouseClicked
 
@@ -10782,24 +10801,28 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         }  
     }//GEN-LAST:event_deletePersonnelMouseClicked
 
     private void deleteEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteEquipmentMouseClicked
         int selectedRow = tableEquipment.getSelectedRow();
-        
-        if (selectedRow > -1) {
-            Equipment equipment = searchedEquipment.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new EquipmentDBController().delete(equipment.getEquipmentNumber());
-                equipmentList = new EquipmentDBController().getList();
-                searchedEquipment = equipmentList;
-                populateEquipmentTable(equipmentList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                Equipment equipment = searchedEquipment.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new EquipmentDBController().delete(equipment.getEquipmentNumber());
+                    equipmentList = new EquipmentDBController().getList();
+                    searchedEquipment = equipmentList;
+                    populateEquipmentTable(equipmentList);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         }
     }//GEN-LAST:event_deleteEquipmentMouseClicked
 
@@ -10821,7 +10844,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteWorkCategoryMouseClicked
 
@@ -10843,7 +10866,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteActivityMouseClicked
 
@@ -10865,7 +10888,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
         } 
     }//GEN-LAST:event_deleteSubActivityMouseClicked
 
@@ -10983,7 +11006,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 }
             } else {
                 String message = "Error 59: An unexpected network error occurred.";
-                JOptionPane.showMessageDialog(rootPane, message);
+                JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
             } 
         } 
     }//GEN-LAST:event_exportActivityMouseClicked
@@ -11060,7 +11083,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 }
             } else {
                 String message = "Error 59: An unexpected network error occurred.";
-                JOptionPane.showMessageDialog(rootPane, message);
+                JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
             } 
         } 
     }//GEN-LAST:event_exportOtherActivityMouseClicked
@@ -11071,9 +11094,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
         PersonnelSetting.getInstance().showFrame();
         } else {
             String message = "Error 59: An unexpected network error occurred.";
-            JOptionPane.showMessageDialog(rootPane, message);
+            JOptionPane.showMessageDialog(rootPane, message, "Error", 0);
         }  
     }//GEN-LAST:event_personnelSettingsIconMouseClicked
+
+    private void testNetworkConnectionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_testNetworkConnectionMouseClicked
+        if(Driver.getConnection() != null){
+            JOptionPane.showMessageDialog(rootPane, "You're connected to the server!", "Message", 1);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Can't connect to the server. Please check your network credentials and try again.", "Error", 0);
+        }
+    }//GEN-LAST:event_testNetworkConnectionMouseClicked
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -12021,26 +12052,49 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
 
     public void initData() {
-        activityList = new ActivityDBController().getList();
-        searchedActivity = activityList;
-        subActivityList = new SubActivityDBController().getList();
-        searchedSubActivity = subActivityList;
-        workCategoryList = new WorkCategoryDBController().getList();
-        searchedWorkCategory = workCategoryList;
-        personnelList = new PersonnelDBController().getList();
-        searchedPersonnel = personnelList;
-        equipmentList = new EquipmentDBController().getList();
-        searchedEquipment = equipmentList;
-        regularActivityList = new ActivityListDBController().getList();
-        searchedRegularActivity = regularActivityList;
-        otherActivityList = new OtherActivityListDBController().getList();
-        searchedOtherActivity = otherActivityList;
-        otherExpensesList = new OtherExpensesDBController().getList();
-        searchedOtherExpenses = otherExpensesList;
-        driversForEngineersList = new DriversForEngineersDBController().getList();
-        searchedDFE = driversForEngineersList;
-        programList = new ProgramDBController().getList();
-        searchedProgram = programList;
+        if(Driver.getConnection() != null){
+            activityList = new ActivityDBController().getList();
+            searchedActivity = activityList;
+            subActivityList = new SubActivityDBController().getList();
+            searchedSubActivity = subActivityList;
+            workCategoryList = new WorkCategoryDBController().getList();
+            searchedWorkCategory = workCategoryList;
+            personnelList = new PersonnelDBController().getList();
+            searchedPersonnel = personnelList;
+            equipmentList = new EquipmentDBController().getList();
+            searchedEquipment = equipmentList;
+            regularActivityList = new ActivityListDBController().getList();
+            searchedRegularActivity = regularActivityList;
+            otherActivityList = new OtherActivityListDBController().getList();
+            searchedOtherActivity = otherActivityList;
+            otherExpensesList = new OtherExpensesDBController().getList();
+            searchedOtherExpenses = otherExpensesList;
+            driversForEngineersList = new DriversForEngineersDBController().getList();
+            searchedDFE = driversForEngineersList;
+            programList = new ProgramDBController().getList();
+            searchedProgram = programList;
+        } else {
+            activityList = new ArrayList();
+            searchedActivity = new ArrayList();
+            subActivityList = new ArrayList();
+            searchedSubActivity = new ArrayList();
+            workCategoryList = new ArrayList();
+            searchedWorkCategory = new ArrayList();
+            personnelList = new ArrayList();
+            searchedPersonnel = new ArrayList();
+            equipmentList = new ArrayList();
+            searchedEquipment = new ArrayList();
+            regularActivityList = new ArrayList();
+            searchedRegularActivity = new ArrayList();
+            otherActivityList = new ArrayList();
+            searchedOtherActivity = new ArrayList();
+            otherExpensesList = new ArrayList();
+            searchedOtherExpenses = new ArrayList();
+            driversForEngineersList = new ArrayList();
+            searchedDFE = new ArrayList();
+            programList = new ArrayList();
+            searchedProgram = new ArrayList();
+        }
         
         populateMainProgram(programList);
         populateWorkCategoryTable(workCategoryList);
@@ -12052,6 +12106,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         populateEquipmentTable(equipmentList);
         populatePersonnelTable(personnelList);
         populateDriversForEngineersTable(driversForEngineersList);
+        
         initAddActivitySelectionBox();
         initAddLocationSelectionBox();
         initAddRoadSectionSelectionBox(locationList.get(0).getId());
@@ -13785,6 +13840,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTable tableSubActivity;
     private javax.swing.JTable tableViewProjects;
     private javax.swing.JTable tableWorkCategory;
+    private javax.swing.JButton testNetworkConnection;
     private javax.swing.JComboBox<String> timeRange;
     private javax.swing.JComboBox<String> timeframeDetail;
     private javax.swing.JTextField totalBudget;

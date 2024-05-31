@@ -51,9 +51,7 @@ public class LoadScreen extends javax.swing.JFrame {
                 loadingBar.setValue(30);
                 main.initSearchFieldListener();
                 loadingBar.setValue(55);
-                if(Driver.getConnection() != null){
-                    main.initData();                   
-                }
+                main.initData();                   
                 loadingBar.setValue(100);
                 return null;
             }
