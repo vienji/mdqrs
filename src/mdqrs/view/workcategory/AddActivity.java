@@ -5,6 +5,7 @@
 package mdqrs.view.workcategory;
 
 import classes.WorkCategory;
+import dbcontroller.Driver;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -156,30 +157,35 @@ public class AddActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        if(itemNumber.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put an item number!");
-        } else if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
-        } else if (new ActivityDBController().isPresent(itemNumber.getText())){
-            JOptionPane.showMessageDialog(rootPane,
-                String.format("Activity %s number %s was already added!", description.getText(), itemNumber.getText()));
-        } else if (category.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please select a category!");
-        } else {
-            new ActivityDBController().add(
-                    itemNumber.getText(), description.getText(), workCategoryList.get(category.getSelectedIndex() - 1).getWorkCategoryNumber());
-            mainListener.updateActivity();
-
-            int n = JOptionPane.showConfirmDialog(rootPane, "Activity was added! Do you want to add another one?");
-            if(n != 0){
-                instance = null;
-                dispose();
+        if(Driver.getConnection() != null){
+            if(itemNumber.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put an item number!");
+            } else if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+            } else if (new ActivityDBController().isPresent(itemNumber.getText())){
+                JOptionPane.showMessageDialog(rootPane,
+                    String.format("Activity %s number %s was already added!", description.getText(), itemNumber.getText()));
+            } else if (category.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please select a category!");
             } else {
-                itemNumber.setText("");
-                category.setSelectedIndex(0);
-                description.setText("");
+                new ActivityDBController().add(
+                        itemNumber.getText(), description.getText(), workCategoryList.get(category.getSelectedIndex() - 1).getWorkCategoryNumber());
+                mainListener.updateActivity();
+
+                int n = JOptionPane.showConfirmDialog(rootPane, "Activity was added! Do you want to add another one?");
+                if(n != 0){
+                    instance = null;
+                    dispose();
+                } else {
+                    itemNumber.setText("");
+                    category.setSelectedIndex(0);
+                    description.setText("");
+                }
             }
-        }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_addActionPerformed
 
     private void initCategorySelectionBox(){

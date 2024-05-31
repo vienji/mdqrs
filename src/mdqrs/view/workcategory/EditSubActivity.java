@@ -6,6 +6,7 @@ package mdqrs.view.workcategory;
 
 import classes.Activity;
 import classes.SubActivity;
+import dbcontroller.Driver;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -150,21 +151,26 @@ public class EditSubActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-        } else if (activity.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
-        } else {
-            subActivity.setDescription(description.getText());
-            subActivity.setActivity(activityList.get(activity.getSelectedIndex() - 1));
+        if(Driver.getConnection() != null){
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if (activity.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
+            } else {
+                subActivity.setDescription(description.getText());
+                subActivity.setActivity(activityList.get(activity.getSelectedIndex() - 1));
 
-            new SubActivityDBController().edit(subActivity);
-            
-            mainListener.updateSubActivity();
-            JOptionPane.showMessageDialog(rootPane, "Sub Activity successfully edited!");
-            instance = null;
-            dispose();
-        }
+                new SubActivityDBController().edit(subActivity);
+
+                mainListener.updateSubActivity();
+                JOptionPane.showMessageDialog(rootPane, "Sub Activity successfully edited!");
+                instance = null;
+                dispose();
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveActionPerformed
 
     private void initActivitySelectionBox(){

@@ -4,6 +4,8 @@
  */
 package mdqrs.view.workcategory;
 
+import dbcontroller.Driver;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -152,26 +154,38 @@ public class EditWorkCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
-        }else {
-            new WorkCategoryDBController().edit(String.valueOf(categoryNumber.getText()), description.getText());
-            mainListener.updateWorkCategory();
-            JOptionPane.showMessageDialog(rootPane, "Work Category was successfully edited!");
-            instance = null;
-            dispose();
-        }
+        if(Driver.getConnection() != null){
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+            } else {
+                new WorkCategoryDBController().edit(String.valueOf(categoryNumber.getText()), description.getText());
+                mainListener.updateWorkCategory();
+                JOptionPane.showMessageDialog(rootPane, "Work Category was successfully edited!");
+                instance = null;
+                dispose();
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveActionPerformed
 
     private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
-        if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
-        }else {
-            new WorkCategoryDBController().edit(String.valueOf(categoryNumber.getText()), description.getText());
-            mainListener.updateWorkCategory();
-            JOptionPane.showMessageDialog(rootPane, "Work Category was successfully edited!");
-            instance = null;
-            dispose();
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){    
+            if(Driver.getConnection() != null) {
+                if(description.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+                }else {
+                    new WorkCategoryDBController().edit(String.valueOf(categoryNumber.getText()), description.getText());
+                    mainListener.updateWorkCategory();
+                    JOptionPane.showMessageDialog(rootPane, "Work Category was successfully edited!");
+                    instance = null;
+                    dispose();
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            } 
         }
     }//GEN-LAST:event_descriptionKeyPressed
    

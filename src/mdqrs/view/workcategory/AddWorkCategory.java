@@ -4,6 +4,7 @@
  */
 package mdqrs.view.workcategory;
 
+import dbcontroller.Driver;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -142,33 +143,7 @@ public class AddWorkCategory extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        if(categoryNumber.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a category number!");
-        } else if (isNaN(categoryNumber.getText())){
-            JOptionPane.showMessageDialog(rootPane, "\"" + categoryNumber.getText() + "\" is not a number!");
-        } else if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
-        } else if (new WorkCategoryDBController().isPresent(Integer.parseInt(categoryNumber.getText()))){
-            JOptionPane.showMessageDialog(rootPane, 
-                    String.format("Work Category %s number %s was already added!", description.getText(), categoryNumber.getText()));
-        } else {
-            new WorkCategoryDBController().add(Integer.parseInt(String.valueOf(categoryNumber.getText())), description.getText());
-            mainListener.updateWorkCategory();
-            JOptionPane.showMessageDialog(rootPane, "New Work Category was successfully added!");
-            int n = JOptionPane.showConfirmDialog(rootPane, "Work Category was added! Do you want to add another one?");
-            
-            if(n != 0){
-                instance = null;
-                dispose();
-            } else {
-                categoryNumber.setText("");
-                description.setText("");
-            }
-        }
-    }//GEN-LAST:event_addActionPerformed
-
-    private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if(Driver.getConnection() != null){
             if(categoryNumber.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please put a category number!");
             } else if (isNaN(categoryNumber.getText())){
@@ -192,6 +167,42 @@ public class AddWorkCategory extends javax.swing.JFrame {
                     description.setText("");
                 }
             }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
+    }//GEN-LAST:event_addActionPerformed
+
+    private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(Driver.getConnection() != null){
+                if(categoryNumber.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please put a category number!");
+                } else if (isNaN(categoryNumber.getText())){
+                    JOptionPane.showMessageDialog(rootPane, "\"" + categoryNumber.getText() + "\" is not a number!");
+                } else if(description.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+                } else if (new WorkCategoryDBController().isPresent(Integer.parseInt(categoryNumber.getText()))){
+                    JOptionPane.showMessageDialog(rootPane, 
+                            String.format("Work Category %s number %s was already added!", description.getText(), categoryNumber.getText()));
+                } else {
+                    new WorkCategoryDBController().add(Integer.parseInt(String.valueOf(categoryNumber.getText())), description.getText());
+                    mainListener.updateWorkCategory();
+                    JOptionPane.showMessageDialog(rootPane, "New Work Category was successfully added!");
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Work Category was added! Do you want to add another one?");
+
+                    if(n != 0){
+                        instance = null;
+                        dispose();
+                    } else {
+                        categoryNumber.setText("");
+                        description.setText("");
+                    }
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            } 
         }
     }//GEN-LAST:event_descriptionKeyPressed
 

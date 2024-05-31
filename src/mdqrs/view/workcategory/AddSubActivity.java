@@ -5,6 +5,7 @@
 package mdqrs.view.workcategory;
 
 import classes.Activity;
+import dbcontroller.Driver;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -141,23 +142,28 @@ public class AddSubActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-        } else if (activity.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
-        } else {
-            new SubActivityDBController().add(description.getText(), activityList.get(activity.getSelectedIndex() - 1));
-            mainListener.updateSubActivity();
-            
-            int n = JOptionPane.showConfirmDialog(rootPane, "Sub Activity was added! Do you want to add another one?");
-            if(n != 0){
-                instance = null;
-                dispose();
+        if(Driver.getConnection() != null){
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if (activity.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
             } else {
-                description.setText("");
-                activity.setSelectedIndex(0);
-            }     
-        }
+                new SubActivityDBController().add(description.getText(), activityList.get(activity.getSelectedIndex() - 1));
+                mainListener.updateSubActivity();
+
+                int n = JOptionPane.showConfirmDialog(rootPane, "Sub Activity was added! Do you want to add another one?");
+                if(n != 0){
+                    instance = null;
+                    dispose();
+                } else {
+                    description.setText("");
+                    activity.setSelectedIndex(0);
+                }     
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_addActionPerformed
 
     private void initActivitySelectionBox(){

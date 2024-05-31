@@ -4,6 +4,7 @@
  */
 package mdqrs.view.personnel;
 
+import dbcontroller.Driver;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -156,27 +157,32 @@ public class PersonnelSetting extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        int count = 0;
-        for(int i = 0; i < jobTypeList.size(); i++){
-            JobType jobType = jobTypeList.get(i);
-            
-            if(dataValidation.validateDouble(String.valueOf(personnelSettingTable.getValueAt(i, 1)))){
-                jobType.setRatePerDay(Double.parseDouble(String.valueOf(personnelSettingTable.getValueAt(i, 1))));                          
-                jobTypeList.set(i, jobType);
-                count++;
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Invalid rate per day for  " + jobType.getType());
+        if(Driver.getConnection() != null){
+            int count = 0;
+            for(int i = 0; i < jobTypeList.size(); i++){
+                JobType jobType = jobTypeList.get(i);
+
+                if(dataValidation.validateDouble(String.valueOf(personnelSettingTable.getValueAt(i, 1)))){
+                    jobType.setRatePerDay(Double.parseDouble(String.valueOf(personnelSettingTable.getValueAt(i, 1))));                          
+                    jobTypeList.set(i, jobType);
+                    count++;
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Invalid rate per day for  " + jobType.getType());
+                }
             }
-        }
-        
-        if(count == jobTypeList.size()){
-            new PersonnelDBController().updateRatePerDay(jobTypeList);
-            mainListener.updatePersonnel();
-            dispose();
+
+            if(count == jobTypeList.size()){
+                new PersonnelDBController().updateRatePerDay(jobTypeList);
+                mainListener.updatePersonnel();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Failed to save changes!");
+                dispose();
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Failed to save changes!");
-            dispose();
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_saveActionPerformed
 
     /**

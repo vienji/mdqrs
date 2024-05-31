@@ -826,9 +826,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel61 = new javax.swing.JLabel();
         jLabel62 = new javax.swing.JLabel();
         networkDatabase = new javax.swing.JTextField();
-        cancelNetwork = new javax.swing.JButton();
         saveNetwork = new javax.swing.JButton();
-        editNetwork = new javax.swing.JButton();
         networkPassword = new javax.swing.JPasswordField();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel230 = new javax.swing.JLabel();
@@ -852,9 +850,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         approvedByName = new javax.swing.JTextField();
         jLabel242 = new javax.swing.JLabel();
         jLabel243 = new javax.swing.JLabel();
-        editReport = new javax.swing.JButton();
         saveReport = new javax.swing.JButton();
-        cancelReport = new javax.swing.JButton();
         jLabel244 = new javax.swing.JLabel();
         jLabel245 = new javax.swing.JLabel();
         jLabel246 = new javax.swing.JLabel();
@@ -7865,28 +7861,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel62.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel62.setText("Database");
 
-        cancelNetwork.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cancelNetwork.setText("Cancel");
-        cancelNetwork.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelNetworkMouseClicked(evt);
-            }
-        });
-
         saveNetwork.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         saveNetwork.setText("Save");
-        saveNetwork.setEnabled(false);
         saveNetwork.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveNetworkMouseClicked(evt);
-            }
-        });
-
-        editNetwork.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editNetwork.setText("Edit");
-        editNetwork.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editNetworkMouseClicked(evt);
             }
         });
 
@@ -7929,28 +7908,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel243.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel243.setText("Approved by");
 
-        editReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        editReport.setText("Edit");
-        editReport.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                editReportMouseClicked(evt);
-            }
-        });
-
         saveReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         saveReport.setText("Save");
-        saveReport.setEnabled(false);
         saveReport.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 saveReportMouseClicked(evt);
-            }
-        });
-
-        cancelReport.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cancelReport.setText("Cancel");
-        cancelReport.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cancelReportMouseClicked(evt);
             }
         });
 
@@ -7993,26 +7955,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(jLabel230)
                     .addComponent(jLabel55)
                     .addComponent(jLabel54)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel59)
-                            .addComponent(jLabel60)
-                            .addComponent(jLabel61)
-                            .addComponent(jLabel62))
-                        .addGap(52, 52, 52)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(networkPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(networkUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(networkServer, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(networkPort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 1050, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel246)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -8021,13 +7963,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             .addComponent(jLabel238)
                             .addComponent(jLabel243)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(editReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(46, 46, 46)
-                                    .addComponent(cancelReport, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel236)
                                         .addComponent(jLabel237)
@@ -8056,7 +7993,23 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(jLabel248)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(saveQuarterlyReportDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(totalBudget, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel59)
+                                .addComponent(jLabel60)
+                                .addComponent(jLabel61)
+                                .addComponent(jLabel62))
+                            .addGap(52, 52, 52)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(networkPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(networkUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(networkServer, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(networkPort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -8087,10 +8040,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(networkDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel62))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(saveNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -8138,10 +8088,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     .addComponent(jLabel241)
                     .addComponent(approvedByPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(editReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(saveReport, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jLabel245)
                 .addGap(37, 37, 37)
@@ -8340,47 +8287,73 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_regularActivityFormRoadSectionActionPerformed
 
     private void addNewWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewWorkCategoryMouseClicked
-        AddWorkCategory.setListener(this);
-        AddWorkCategory.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            AddWorkCategory.setListener(this);
+            AddWorkCategory.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_addNewWorkCategoryMouseClicked
 
     private void addNewActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewActivityMouseClicked
-        AddActivity.setListener(this);
-        AddActivity.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            AddActivity.setListener(this);
+            AddActivity.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_addNewActivityMouseClicked
 
     private void addNewEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewEquipmentMouseClicked
-        AddEquipment.setListener(this);
-        AddEquipment.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            AddEquipment.setListener(this);
+            AddEquipment.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_addNewEquipmentMouseClicked
 
     private void editActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editActivityMouseClicked
         int selectedRow = tableActivity.getSelectedRow();
         tableActivity.clearSelection();
-        if (selectedRow > -1) {
-            Activity activity = searchedActivity.get(selectedRow);
-            EditActivity.setListener(this);
-            EditActivity.setData(activity.getItemNumber(),
-                    activity.getDescription(),
-                    activity.getWorkCategory().getDescription());
-            EditActivity.getInstance().showFrame();
+        
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                Activity activity = searchedActivity.get(selectedRow);
+                EditActivity.setListener(this);
+                EditActivity.setData(activity.getItemNumber(),
+                        activity.getDescription(),
+                        activity.getWorkCategory().getDescription());
+                EditActivity.getInstance().showFrame();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editActivityMouseClicked
 
     private void editWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editWorkCategoryMouseClicked
         int selectedRow = tableWorkCategory.getSelectedRow();
         tableWorkCategory.clearSelection();
-        if (selectedRow > -1) {
-            WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
-            EditWorkCategory.setListener(this);
-            EditWorkCategory.setData(String.valueOf(workCategory.getWorkCategoryNumber()),
-                    workCategory.getDescription());
-            EditWorkCategory.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
+                EditWorkCategory.setListener(this);
+                EditWorkCategory.setData(String.valueOf(workCategory.getWorkCategoryNumber()),
+                        workCategory.getDescription());
+                EditWorkCategory.getInstance().showFrame();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editWorkCategoryMouseClicked
 
     private void editEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editEquipmentMouseClicked
@@ -8400,18 +8373,28 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void editPersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editPersonnelMouseClicked
         int selectedRow = tablePersonnel.getSelectedRow();
         tablePersonnel.clearSelection();
-        if (selectedRow > -1) {
-            EditPersonnel.setListener(this);
-            EditPersonnel.setData(searchedPersonnel.get(selectedRow));
-            EditPersonnel.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                EditPersonnel.setListener(this);
+                EditPersonnel.setData(searchedPersonnel.get(selectedRow));
+                EditPersonnel.getInstance().showFrame();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to be edited!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_editPersonnelMouseClicked
 
     private void addNewPersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewPersonnelMouseClicked
-        AddPersonnel.setListener(this);
-        AddPersonnel.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            AddPersonnel.setListener(this);
+            AddPersonnel.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_addNewPersonnelMouseClicked
 
     private void regularActivityFormLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityFormLocationActionPerformed
@@ -8451,15 +8434,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
         AddOpsCrewEquipment.getInstance().showFrame();
     }//GEN-LAST:event_addCrewEquipmentMouseClicked
 
-    private void editNetworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editNetworkMouseClicked
-        saveNetwork.setEnabled(true);
-        networkUsername.enableInputMethods(true);
-        networkPassword.enableInputMethods(true);
-        networkServer.enableInputMethods(true);
-        networkPort.enableInputMethods(true);
-        networkDatabase.enableInputMethods(true);
-    }//GEN-LAST:event_editNetworkMouseClicked
-
     private void saveNetworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNetworkMouseClicked
         int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
         File jarDir = null;
@@ -8497,8 +8471,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             } catch (IOException io) {
                 io.printStackTrace();
             }
-
-            saveNetwork.setEnabled(false);
+            
             networkUsername.enableInputMethods(false);
             networkPassword.enableInputMethods(false);
             networkServer.enableInputMethods(false);
@@ -8529,7 +8502,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 io.printStackTrace();
             }
 
-            saveNetwork.setEnabled(false);
             networkUsername.enableInputMethods(false);
             networkPassword.enableInputMethods(false);
             networkServer.enableInputMethods(false);
@@ -8537,49 +8509,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
             networkDatabase.enableInputMethods(false);
         }
     }//GEN-LAST:event_saveNetworkMouseClicked
-
-    private void cancelNetworkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNetworkMouseClicked
-        saveNetwork.setEnabled(false);
-        networkUsername.enableInputMethods(false);
-        networkPassword.enableInputMethods(false);
-        networkServer.enableInputMethods(false);
-        networkPort.enableInputMethods(false);
-        networkDatabase.enableInputMethods(false);
-        
-        File jarDir = null;
-        
-        try{
-            jarDir = JarDirectory.getJarDir(Main.class);
-        } catch (URISyntaxException | IOException e){}
-        
-        File parentDir = jarDir.getParentFile();
-        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
-        File file = new File(parentDir,NETWORK_FILE);
-        
-        try (FileInputStream input = new FileInputStream(file)) {
-            Properties network = new Properties();
-            network.load(input);
-
-            Cryptographer cryptographer = new Cryptographer();
-
-            String decryptedPassword = "";
-
-            try {
-                decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(rootPane, e.getMessage());
-                e.printStackTrace();
-            }
-
-            networkUsername.setText(network.getProperty("username"));
-            networkPassword.setText(decryptedPassword);
-            networkServer.setText(network.getProperty("server"));
-            networkPort.setText(network.getProperty("port"));
-            networkDatabase.setText(network.getProperty("database"));
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-    }//GEN-LAST:event_cancelNetworkMouseClicked
 
     private void isOperationEquipmentTableSelectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isOperationEquipmentTableSelectedActionPerformed
         if (isOperationEquipmentTableSelected.isSelected()) {
@@ -8731,99 +8660,108 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void saveNewRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewRegularActivityMouseClicked
         int selectedActivity = regularActivityFormActivity.getSelectedIndex();
-
-        if (selectedActivity == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Please select an activity!");
-        } else if (regularActivitySubActivitySelectionBox.isEnabled() && regularActivitySubActivitySelectionBox.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "If 504, please specify sub-activity!");
-        } else if (!regularActivityFormOtherRoadSection.isEnabled() && regularActivityFormOtherRoadSection.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "If other road section, please specify!");
-        } else if (regularActivityFormImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
-        } else if (regularActivityFormDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
-        } else if (!dataValidation.validateDouble(regularActivityFormDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
-        } else if (isOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
-        } else if (isMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Maintenance Crew table if empty or not used!");
-        } else if (isMaterialsTableSelected.isSelected() && crewMaterialsList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Materials table if empty or not used!");
-        } else if (isEquipmentTableSelected.isSelected() && crewEquipmentList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Equipment table if empty or not used!");
-        } else {
-            ActivityListDBController activityListDBController = new ActivityListDBController();
-            SubActivity subActivity = regularActivitySubActivitySelectionBox.isEnabled() ? subActivityTempList.get(regularActivitySubActivitySelectionBox.getSelectedIndex() - 1) : new SubActivity();
-
-            if (!isOperationEquipmentTableSelected.isSelected()) {
-                opsEquipmentList.toList().clear();
-            }
-            if (!isMaintenanceCrewTableSelected.isSelected()) {
-                crewPersonnelList.toList().clear();
-            }
-            if (!isMaterialsTableSelected.isSelected()) {
-                crewMaterialsList.toList().clear();
-            }
-            if (!isEquipmentTableSelected.isSelected()) {
-                crewEquipmentList.toList().clear();
-            }
-
-            if (regularActivityFormOtherRoadSection.isEditable()) {
-
-                activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
-                        regularActivityFormOtherRoadSection.getText(), true, String.valueOf(regularActivityFormMonth.getSelectedItem()),
-                         Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
-                        Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
-
-                JOptionPane.showMessageDialog(rootPane, "Activity added!");
-                regularActivityTab.removeAll();
-                regularActivityTab.add(mainRegularActivityPanel);
-                regularActivityTab.repaint();
-                regularActivityTab.revalidate();
-                regularActivityList = new ActivityListDBController().getList();
-                searchedRegularActivity = regularActivityList;
-                populateMainRegularActivity(regularActivityList);
-                resetRegularActivityForm();
-                timeframeDetailActionPerformed(null);
+        if(Driver.getConnection() != null){
+            if (selectedActivity == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please select an activity!");
+            } else if (regularActivitySubActivitySelectionBox.isEnabled() && regularActivitySubActivitySelectionBox.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "If 504, please specify sub-activity!");
+            } else if (!regularActivityFormOtherRoadSection.isEnabled() && regularActivityFormOtherRoadSection.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "If other road section, please specify!");
+            } else if (regularActivityFormImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
+            } else if (regularActivityFormDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
+            } else if (!dataValidation.validateDouble(regularActivityFormDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+            } else if (isOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
+            } else if (isMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Maintenance Crew table if empty or not used!");
+            } else if (isMaterialsTableSelected.isSelected() && crewMaterialsList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Materials table if empty or not used!");
+            } else if (isEquipmentTableSelected.isSelected() && crewEquipmentList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Equipment table if empty or not used!");
             } else {
-                activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
-                        roadSectionList.get(regularActivityFormRoadSection.getSelectedIndex()), false, String.valueOf(regularActivityFormMonth.getSelectedItem()),
-                         Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
-                        Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
+                ActivityListDBController activityListDBController = new ActivityListDBController();
+                SubActivity subActivity = regularActivitySubActivitySelectionBox.isEnabled() ? subActivityTempList.get(regularActivitySubActivitySelectionBox.getSelectedIndex() - 1) : new SubActivity();
 
-                JOptionPane.showMessageDialog(rootPane, "Activity added!");
-                regularActivityTab.removeAll();
-                regularActivityTab.add(mainRegularActivityPanel);
-                regularActivityTab.repaint();
-                regularActivityTab.revalidate();
-                regularActivityList = new ActivityListDBController().getList();
-                searchedRegularActivity = regularActivityList;
-                populateMainRegularActivity(regularActivityList);
-                resetRegularActivityForm();
-                timeframeDetailActionPerformed(null);
+                if (!isOperationEquipmentTableSelected.isSelected()) {
+                    opsEquipmentList.toList().clear();
+                }
+                if (!isMaintenanceCrewTableSelected.isSelected()) {
+                    crewPersonnelList.toList().clear();
+                }
+                if (!isMaterialsTableSelected.isSelected()) {
+                    crewMaterialsList.toList().clear();
+                }
+                if (!isEquipmentTableSelected.isSelected()) {
+                    crewEquipmentList.toList().clear();
+                }
+
+                if (regularActivityFormOtherRoadSection.isEditable()) {
+
+                    activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
+                            regularActivityFormOtherRoadSection.getText(), true, String.valueOf(regularActivityFormMonth.getSelectedItem()),
+                             Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
+                            Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
+
+                    JOptionPane.showMessageDialog(rootPane, "Activity added!");
+                    regularActivityTab.removeAll();
+                    regularActivityTab.add(mainRegularActivityPanel);
+                    regularActivityTab.repaint();
+                    regularActivityTab.revalidate();
+                    regularActivityList = new ActivityListDBController().getList();
+                    searchedRegularActivity = regularActivityList;
+                    populateMainRegularActivity(regularActivityList);
+                    resetRegularActivityForm();
+                    timeframeDetailActionPerformed(null);
+                } else {
+                    activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
+                            roadSectionList.get(regularActivityFormRoadSection.getSelectedIndex()), false, String.valueOf(regularActivityFormMonth.getSelectedItem()),
+                             Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
+                            Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
+
+                    JOptionPane.showMessageDialog(rootPane, "Activity added!");
+                    regularActivityTab.removeAll();
+                    regularActivityTab.add(mainRegularActivityPanel);
+                    regularActivityTab.repaint();
+                    regularActivityTab.revalidate();
+                    regularActivityList = new ActivityListDBController().getList();
+                    searchedRegularActivity = regularActivityList;
+                    populateMainRegularActivity(regularActivityList);
+                    resetRegularActivityForm();
+                    timeframeDetailActionPerformed(null);
+                }
             }
-        }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewRegularActivityMouseClicked
 
     private void viewRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewRegularActivityMouseClicked
         int selectedRow = tableMainRegularActivity.getSelectedRow();
         tableMainRegularActivity.clearSelection();
-        if (selectedRow > -1) {
-            if(searchedRegularActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainRegularActivity.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedRegularActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainRegularActivity.clearSelection();
+                } else {
+                    regularActivityTab.removeAll();
+                    regularActivityTab.add(viewRegularActivityPanel);
+                    regularActivityTab.repaint();
+                    regularActivityTab.revalidate();
+                    setRegularActivityDataView(selectedRow);
+                    tableMainRegularActivity.clearSelection();
+                }
             } else {
-                regularActivityTab.removeAll();
-                regularActivityTab.add(viewRegularActivityPanel);
-                regularActivityTab.repaint();
-                regularActivityTab.revalidate();
-                setRegularActivityDataView(selectedRow);
-                tableMainRegularActivity.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_viewRegularActivityMouseClicked
 
     private void backViewRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backViewRegularActivityMouseClicked
@@ -8837,18 +8775,28 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void editSubActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editSubActivityMouseClicked
         int selectedRow = tableSubActivity.getSelectedRow();
         tableSubActivity.clearSelection();
-        if (selectedRow > -1) {
-            EditSubActivity.setData(searchedSubActivity.get(selectedRow));
-            EditSubActivity.setListener(this);
-            EditSubActivity.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                EditSubActivity.setData(searchedSubActivity.get(selectedRow));
+                EditSubActivity.setListener(this);
+                EditSubActivity.getInstance().showFrame();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editSubActivityMouseClicked
 
     private void addNewSubActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewSubActivityMouseClicked
-        AddSubActivity.setListener(this);
-        AddSubActivity.getInstance().showFrame();
+        if(Driver.getConnection() != null){
+            AddSubActivity.setListener(this);
+            AddSubActivity.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_addNewSubActivityMouseClicked
 
     private void regularActivityFormActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityFormActivityActionPerformed
@@ -8873,59 +8821,63 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void saveEditRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditRegularActivityMouseClicked
         int selectedActivity = regularActivityEditActivity.getSelectedIndex();
-
-        if (selectedActivity == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Please select an activity!");
-        } else if (regularActivityEditSubActivitySelectionBox.isEnabled() && regularActivityEditSubActivitySelectionBox.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "If 504, please specify sub-activity!");
-        } else if (!regularActivityEditOtherRoadSection.isEnabled() && regularActivityEditOtherRoadSection.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "If other road section, please specify!");
-        } else if (regularActivityEditImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
-        } else if (regularActivityEditDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
-        } else if (!dataValidation.validateDouble(regularActivityEditDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
-        } else if (isEditOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
-        } else if (isEditMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Maintenance Crew table if empty or not used!");
-        } else if (isEditMaterialsTableSelected.isSelected() && crewMaterialsList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Materials table if empty or not used!");
-        } else if (isEditEquipmentTableSelected.isSelected() && crewEquipmentList.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Please unselect Equipment table if empty or not used!");
-        } else {
-            ActivityListDBController activityListDBController = new ActivityListDBController();
-            SubActivity subActivity = regularActivityEditSubActivitySelectionBox.isEnabled() ? subActivityTempList.get(regularActivityEditSubActivitySelectionBox.getSelectedIndex() - 1) : new SubActivity();
-
-            regularActivityForEdit.setActivity(activityList.get(selectedActivity - 1));
-            regularActivityForEdit.setLocation(locationList.get(regularActivityEditLocation.getSelectedIndex()));
-            if (regularActivityEditOtherRoadSection.isEditable()) {
-                regularActivityForEdit.setOtherRoadSection(regularActivityEditOtherRoadSection.getText());
-                regularActivityForEdit.setIsOtherRoadSection(true);
+        if(Driver.getConnection() != null){
+            if (selectedActivity == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please select an activity!");
+            } else if (regularActivityEditSubActivitySelectionBox.isEnabled() && regularActivityEditSubActivitySelectionBox.getSelectedIndex() == 0) {
+                JOptionPane.showMessageDialog(rootPane, "If 504, please specify sub-activity!");
+            } else if (!regularActivityEditOtherRoadSection.isEnabled() && regularActivityEditOtherRoadSection.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "If other road section, please specify!");
+            } else if (regularActivityEditImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please specify the implementation mode!");
+            } else if (regularActivityEditDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please specify the days of operation!");
+            } else if (!dataValidation.validateDouble(regularActivityEditDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+            } else if (isEditOperationEquipmentTableSelected.isSelected() && opsEquipmentList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Operation Equipment table if empty or not used!");
+            } else if (isEditMaintenanceCrewTableSelected.isSelected() && crewPersonnelList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Maintenance Crew table if empty or not used!");
+            } else if (isEditMaterialsTableSelected.isSelected() && crewMaterialsList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Materials table if empty or not used!");
+            } else if (isEditEquipmentTableSelected.isSelected() && crewEquipmentList.isEmpty()) {
+                JOptionPane.showMessageDialog(rootPane, "Please unselect Equipment table if empty or not used!");
             } else {
-                regularActivityForEdit.setRoadSection(roadSectionList.get(regularActivityEditRoadSection.getSelectedIndex()));
-                regularActivityForEdit.setIsOtherRoadSection(false);
-            }
-            regularActivityForEdit.setMonth(String.valueOf(regularActivityEditMonth.getSelectedItem()));
-            regularActivityForEdit.setYear(Integer.parseInt(String.valueOf(regularActivityEditYear.getSelectedItem())));
-            regularActivityForEdit.setImplementationMode(regularActivityEditImplementationMode.getText());
-            regularActivityForEdit.setNumberOfCD(Double.parseDouble(regularActivityEditDaysOfOperation.getText()));
-            regularActivityForEdit.setSubActivity(subActivity);
-            
-            activityListDBController.edit(regularActivityForEdit, opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList);
+                ActivityListDBController activityListDBController = new ActivityListDBController();
+                SubActivity subActivity = regularActivityEditSubActivitySelectionBox.isEnabled() ? subActivityTempList.get(regularActivityEditSubActivitySelectionBox.getSelectedIndex() - 1) : new SubActivity();
 
-            JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
-            regularActivityTab.removeAll();
-            regularActivityTab.add(mainRegularActivityPanel);
-            regularActivityTab.repaint();
-            regularActivityTab.revalidate();
-            regularActivityList = new ActivityListDBController().getList();
-            searchedRegularActivity = regularActivityList;
-            populateMainRegularActivity(regularActivityList);
-            resetRegularActivityEditForm();
-            timeframeDetailActionPerformed(null);
-        }
+                regularActivityForEdit.setActivity(activityList.get(selectedActivity - 1));
+                regularActivityForEdit.setLocation(locationList.get(regularActivityEditLocation.getSelectedIndex()));
+                if (regularActivityEditOtherRoadSection.isEditable()) {
+                    regularActivityForEdit.setOtherRoadSection(regularActivityEditOtherRoadSection.getText());
+                    regularActivityForEdit.setIsOtherRoadSection(true);
+                } else {
+                    regularActivityForEdit.setRoadSection(roadSectionList.get(regularActivityEditRoadSection.getSelectedIndex()));
+                    regularActivityForEdit.setIsOtherRoadSection(false);
+                }
+                regularActivityForEdit.setMonth(String.valueOf(regularActivityEditMonth.getSelectedItem()));
+                regularActivityForEdit.setYear(Integer.parseInt(String.valueOf(regularActivityEditYear.getSelectedItem())));
+                regularActivityForEdit.setImplementationMode(regularActivityEditImplementationMode.getText());
+                regularActivityForEdit.setNumberOfCD(Double.parseDouble(regularActivityEditDaysOfOperation.getText()));
+                regularActivityForEdit.setSubActivity(subActivity);
+
+                activityListDBController.edit(regularActivityForEdit, opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList);
+
+                JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
+                regularActivityTab.removeAll();
+                regularActivityTab.add(mainRegularActivityPanel);
+                regularActivityTab.repaint();
+                regularActivityTab.revalidate();
+                regularActivityList = new ActivityListDBController().getList();
+                searchedRegularActivity = regularActivityList;
+                populateMainRegularActivity(regularActivityList);
+                resetRegularActivityEditForm();
+                timeframeDetailActionPerformed(null);
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveEditRegularActivityMouseClicked
 
     private void regularActivityEditActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityEditActivityActionPerformed
@@ -9130,62 +9082,77 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void editRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editRegularActivityMouseClicked
         int selectedRow = tableMainRegularActivity.getSelectedRow();
-
-        if (selectedRow > -1) {
-            if(searchedRegularActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainRegularActivity.clearSelection();
+        
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedRegularActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainRegularActivity.clearSelection();
+                } else {
+                    regularActivityTab.removeAll();
+                    regularActivityTab.add(editRegularActivityPanel);
+                    regularActivityTab.repaint();
+                    regularActivityTab.revalidate();
+                    setRegularActivityDataEdit(selectedRow);
+                    tableMainRegularActivity.clearSelection();
+                }
             } else {
-                regularActivityTab.removeAll();
-                regularActivityTab.add(editRegularActivityPanel);
-                regularActivityTab.repaint();
-                regularActivityTab.revalidate();
-                setRegularActivityDataEdit(selectedRow);
-                tableMainRegularActivity.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editRegularActivityMouseClicked
 
     private void editOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editOtherActivityMouseClicked
         int selectedRow = tableMainOtherActivity.getSelectedRow();
 
-        if (selectedRow > -1) {
-            if(searchedOtherActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherActivity.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedOtherActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherActivity.clearSelection();
+                } else {
+                    otherActivityTab.removeAll();
+                    otherActivityTab.add(editOtherActivityPanel);
+                    otherActivityTab.repaint();
+                    otherActivityTab.revalidate();
+                    setOtherActivityDataEdit(selectedRow);
+                    tableMainOtherActivity.clearSelection();
+                }
             } else {
-                otherActivityTab.removeAll();
-                otherActivityTab.add(editOtherActivityPanel);
-                otherActivityTab.repaint();
-                otherActivityTab.revalidate();
-                setOtherActivityDataEdit(selectedRow);
-                tableMainOtherActivity.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editOtherActivityMouseClicked
 
     private void viewOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewOtherActivityMouseClicked
         int selectedRow = tableMainOtherActivity.getSelectedRow();
 
-        if (selectedRow > -1) {
-            if(searchedOtherActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherActivity.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedOtherActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherActivity.clearSelection();
+                } else {
+                    otherActivityTab.removeAll();
+                    otherActivityTab.add(viewOtherActivityPanel);
+                    otherActivityTab.repaint();
+                    otherActivityTab.revalidate();
+                    setOtherActivityDataView(selectedRow);
+                    tableMainOtherActivity.clearSelection();
+                }
             } else {
-                otherActivityTab.removeAll();
-                otherActivityTab.add(viewOtherActivityPanel);
-                otherActivityTab.repaint();
-                otherActivityTab.revalidate();
-                setOtherActivityDataView(selectedRow);
-                tableMainOtherActivity.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_viewOtherActivityMouseClicked
 
     private void addNewOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewOtherActivityMouseClicked
@@ -9205,40 +9172,45 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void saveNewOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivityMouseClicked
         int selectedSubActivity = otherActivityFormSubActivitySelectionBox.getSelectedIndex();
+        
+        if(Driver.getConnection() != null){
+            if (selectedSubActivity == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please select a sub activity!");
+            } else if (otherActivityFormDescription.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if (otherActivityFormImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
+            } else if (otherActivityFormDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+            } else if (!dataValidation.validateDouble(otherActivityFormDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+            } else {
+                OtherActivity otherActivity = new OtherActivity();
 
-        if (selectedSubActivity == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Please select a sub activity!");
-        } else if (otherActivityFormDescription.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-        } else if (otherActivityFormImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
-        } else if (otherActivityFormDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateDouble(otherActivityFormDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+                otherActivity.setSubActivity(subActivityOtherList.get(otherActivityFormSubActivitySelectionBox.getSelectedIndex() - 1));
+                otherActivity.setDescription(otherActivityFormDescription.getText());
+                otherActivity.setMonth(String.valueOf(otherActivityFormMonth.getSelectedItem()));
+                otherActivity.setYear(Integer.parseInt(String.valueOf(otherActivityFormYear.getSelectedItem())));
+                otherActivity.setImplementationMode(otherActivityFormImplementationMode.getText());
+                otherActivity.setNumberOfCD(Double.parseDouble(otherActivityFormDaysOfOperation.getText()));
+
+                new OtherActivityListDBController().add(otherActivity, crewPersonnelList);
+
+                JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
+                otherActivityTab.removeAll();
+                otherActivityTab.add(mainOtherActivityPanel);
+                otherActivityTab.repaint();
+                otherActivityTab.revalidate();
+                otherActivityList = new OtherActivityListDBController().getList();
+                searchedOtherActivity = otherActivityList;
+                populateMainOtherActivity(otherActivityList);
+                resetOtherActivityForm();
+                timeframeDetailActionPerformed(null);
+            }
         } else {
-            OtherActivity otherActivity = new OtherActivity();
-
-            otherActivity.setSubActivity(subActivityOtherList.get(otherActivityFormSubActivitySelectionBox.getSelectedIndex() - 1));
-            otherActivity.setDescription(otherActivityFormDescription.getText());
-            otherActivity.setMonth(String.valueOf(otherActivityFormMonth.getSelectedItem()));
-            otherActivity.setYear(Integer.parseInt(String.valueOf(otherActivityFormYear.getSelectedItem())));
-            otherActivity.setImplementationMode(otherActivityFormImplementationMode.getText());
-            otherActivity.setNumberOfCD(Double.parseDouble(otherActivityFormDaysOfOperation.getText()));
-
-            new OtherActivityListDBController().add(otherActivity, crewPersonnelList);
-
-            JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
-            otherActivityTab.removeAll();
-            otherActivityTab.add(mainOtherActivityPanel);
-            otherActivityTab.repaint();
-            otherActivityTab.revalidate();
-            otherActivityList = new OtherActivityListDBController().getList();
-            searchedOtherActivity = otherActivityList;
-            populateMainOtherActivity(otherActivityList);
-            resetOtherActivityForm();
-            timeframeDetailActionPerformed(null);
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewOtherActivityMouseClicked
 
     private void addOtherMaintenanceCrewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOtherMaintenanceCrewMouseClicked
@@ -9295,39 +9267,44 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void saveEditedOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditedOtherActivityMouseClicked
         int selectedSubActivity = otherActivityEditSubActivitySelectionBox.getSelectedIndex();
+        
+        if(Driver.getConnection() != null){
+            if (selectedSubActivity == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Please select a sub activity!");
+            } else if (otherActivityEditDescription.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+            } else if (otherActivityEditImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
+            } else if (otherActivityEditDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+            } else if (!dataValidation.validateDouble(otherActivityEditDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+            } else {
 
-        if (selectedSubActivity == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Please select a sub activity!");
-        } else if (otherActivityEditDescription.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-        } else if (otherActivityEditImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
-        } else if (otherActivityEditDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateDouble(otherActivityEditDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+                otherActivityForEdit.setSubActivity(subActivityOtherList.get(otherActivityEditSubActivitySelectionBox.getSelectedIndex() - 1));
+                otherActivityForEdit.setDescription(otherActivityEditDescription.getText());
+                otherActivityForEdit.setMonth(String.valueOf(otherActivityEditMonth.getSelectedItem()));
+                otherActivityForEdit.setYear(Integer.parseInt(String.valueOf(otherActivityEditYear.getSelectedItem())));
+                otherActivityForEdit.setImplementationMode(otherActivityEditImplementationMode.getText());
+                otherActivityForEdit.setNumberOfCD(Double.parseDouble(otherActivityEditDaysOfOperation.getText()));
+
+                new OtherActivityListDBController().edit(otherActivityForEdit, crewPersonnelList);
+
+                JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
+                otherActivityTab.removeAll();
+                otherActivityTab.add(mainOtherActivityPanel);
+                otherActivityTab.repaint();
+                otherActivityTab.revalidate();
+                otherActivityList = new OtherActivityListDBController().getList();
+                searchedOtherActivity = otherActivityList;
+                populateMainOtherActivity(otherActivityList);
+                resetOtherActivityEditForm();
+                timeframeDetailActionPerformed(null);
+            }
         } else {
-
-            otherActivityForEdit.setSubActivity(subActivityOtherList.get(otherActivityEditSubActivitySelectionBox.getSelectedIndex() - 1));
-            otherActivityForEdit.setDescription(otherActivityEditDescription.getText());
-            otherActivityForEdit.setMonth(String.valueOf(otherActivityEditMonth.getSelectedItem()));
-            otherActivityForEdit.setYear(Integer.parseInt(String.valueOf(otherActivityEditYear.getSelectedItem())));
-            otherActivityForEdit.setImplementationMode(otherActivityEditImplementationMode.getText());
-            otherActivityForEdit.setNumberOfCD(Double.parseDouble(otherActivityEditDaysOfOperation.getText()));
-
-            new OtherActivityListDBController().edit(otherActivityForEdit, crewPersonnelList);
-
-            JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
-            otherActivityTab.removeAll();
-            otherActivityTab.add(mainOtherActivityPanel);
-            otherActivityTab.repaint();
-            otherActivityTab.revalidate();
-            otherActivityList = new OtherActivityListDBController().getList();
-            searchedOtherActivity = otherActivityList;
-            populateMainOtherActivity(otherActivityList);
-            resetOtherActivityEditForm();
-            timeframeDetailActionPerformed(null);
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveEditedOtherActivityMouseClicked
 
     private void addOtherMaintenanceCrewEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addOtherMaintenanceCrewEditMouseClicked
@@ -9368,42 +9345,50 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void editOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editOtherExpensesMouseClicked
         int selectedOtherExpenses = tableMainOtherExpenses.getSelectedRow();
-
-        if (selectedOtherExpenses > -1) {
-            if(searchedOtherExpenses.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherExpenses.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedOtherExpenses > -1) {
+                if(searchedOtherExpenses.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherExpenses.clearSelection();
+                } else {
+                    otherExpensesTab.removeAll();
+                    otherExpensesTab.add(editOtherExpensesPanel);
+                    otherExpensesTab.repaint();
+                    otherExpensesTab.revalidate();
+                    setOtherExpensesDataEdit(selectedOtherExpenses);
+                    tableMainOtherExpenses.clearSelection();
+                }
             } else {
-                otherExpensesTab.removeAll();
-                otherExpensesTab.add(editOtherExpensesPanel);
-                otherExpensesTab.repaint();
-                otherExpensesTab.revalidate();
-                setOtherExpensesDataEdit(selectedOtherExpenses);
-                tableMainOtherExpenses.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editOtherExpensesMouseClicked
 
     private void viewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewOtherExpensesMouseClicked
         int selectedOtherExpenses = tableMainOtherExpenses.getSelectedRow();
-
-        if (selectedOtherExpenses > -1) {
-            if(searchedOtherExpenses.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherExpenses.clearSelection();
-            } else {         
-                otherExpensesTab.removeAll();
-                otherExpensesTab.add(viewOtherExpensesPanel);
-                otherExpensesTab.repaint();
-                otherExpensesTab.revalidate();
-                setOtherExpensesDataView(selectedOtherExpenses);
-                tableMainOtherExpenses.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedOtherExpenses > -1) {
+                if(searchedOtherExpenses.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherExpenses.clearSelection();
+                } else {         
+                    otherExpensesTab.removeAll();
+                    otherExpensesTab.add(viewOtherExpensesPanel);
+                    otherExpensesTab.repaint();
+                    otherExpensesTab.revalidate();
+                    setOtherExpensesDataView(selectedOtherExpenses);
+                    tableMainOtherExpenses.clearSelection();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_viewOtherExpensesMouseClicked
 
     private void addNewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewOtherExpensesMouseClicked
@@ -9422,53 +9407,58 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherExpensesMouseClicked
 
     private void saveNewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpensesMouseClicked
-        if (otherExpensesFormLaborCrewCost.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
-        } else if (otherExpensesFormLaborEquipmentCost.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor Crew cost!");
-        } else if (otherExpensesFormImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
-        } else if (otherExpensesFormDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateDouble(otherExpensesFormDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
-        } else if (otherExpensesFormLightEquipments.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
-        } else if (otherExpensesFormHeavyEquipments.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormLightEquipments.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormHeavyEquipments.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
+        if(Driver.getConnection() != null){
+            if (otherExpensesFormLaborCrewCost.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
+            } else if (otherExpensesFormLaborEquipmentCost.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor Crew cost!");
+            } else if (otherExpensesFormImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
+            } else if (otherExpensesFormDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+            } else if (!dataValidation.validateDouble(otherExpensesFormDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please specify a valid days of operation!");
+            } else if (otherExpensesFormLightEquipments.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
+            } else if (otherExpensesFormHeavyEquipments.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormLightEquipments.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormHeavyEquipments.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
+            } else {
+                OtherExpenses otherExpenses = new OtherExpenses();
+
+                otherExpenses.setLaborCrewCost(Double.parseDouble(otherExpensesFormLaborCrewCost.getText()));
+                otherExpenses.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormLaborEquipmentCost.getText()));
+                otherExpenses.setImplementationMode(otherExpensesFormImplementationMode.getText());
+                otherExpenses.setNumberOfCD(Double.parseDouble(otherExpensesFormDaysOfOperation.getText()));
+                otherExpenses.setLightEquipments(Double.parseDouble(otherExpensesFormLightEquipments.getText()));
+                otherExpenses.setHeavyEquipments(Double.parseDouble(otherExpensesFormHeavyEquipments.getText()));
+                otherExpenses.setMonth(String.valueOf(otherExpensesFormMonth.getSelectedItem()));
+                otherExpenses.setYear(Integer.parseInt(String.valueOf(otherExpensesFormYear.getSelectedItem())));
+
+                new OtherExpensesDBController().add(otherExpenses);
+
+                JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
+                otherExpensesTab.removeAll();
+                otherExpensesTab.add(mainOtherExpensesPanel);
+                otherExpensesTab.repaint();
+                otherExpensesTab.revalidate();
+                otherExpensesList = new OtherExpensesDBController().getList();
+                searchedOtherExpenses = otherExpensesList;
+                populateMainOtherExpenses(otherExpensesList);
+                resetOtherExpensesForm();
+                timeframeDetailActionPerformed(null);
+            }
         } else {
-            OtherExpenses otherExpenses = new OtherExpenses();
-
-            otherExpenses.setLaborCrewCost(Double.parseDouble(otherExpensesFormLaborCrewCost.getText()));
-            otherExpenses.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormLaborEquipmentCost.getText()));
-            otherExpenses.setImplementationMode(otherExpensesFormImplementationMode.getText());
-            otherExpenses.setNumberOfCD(Double.parseDouble(otherExpensesFormDaysOfOperation.getText()));
-            otherExpenses.setLightEquipments(Double.parseDouble(otherExpensesFormLightEquipments.getText()));
-            otherExpenses.setHeavyEquipments(Double.parseDouble(otherExpensesFormHeavyEquipments.getText()));
-            otherExpenses.setMonth(String.valueOf(otherExpensesFormMonth.getSelectedItem()));
-            otherExpenses.setYear(Integer.parseInt(String.valueOf(otherExpensesFormYear.getSelectedItem())));
-
-            new OtherExpensesDBController().add(otherExpenses);
-
-            JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(mainOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            otherExpensesList = new OtherExpensesDBController().getList();
-            searchedOtherExpenses = otherExpensesList;
-            populateMainOtherExpenses(otherExpensesList);
-            resetOtherExpensesForm();
-            timeframeDetailActionPerformed(null);
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewOtherExpensesMouseClicked
 
     private void otherExpensesFormDaysOfOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherExpensesFormDaysOfOperationActionPerformed
@@ -9743,22 +9733,26 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void editDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editDriversForEngineers1MouseClicked
         int selectedDriversForEngineers = tableMainDriversForEngineers.getSelectedRow();
-
-        if (selectedDriversForEngineers > -1) {
-            if(searchedDFE.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainDriversForEngineers.clearSelection();
+        if(Driver.getConnection() != null){
+            if (selectedDriversForEngineers > -1) {
+                if(searchedDFE.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainDriversForEngineers.clearSelection();
+                } else {
+                    driversForEngineersContainer.removeAll();
+                    driversForEngineersContainer.add(editDriversForEngineersPanel);
+                    driversForEngineersContainer.repaint();
+                    driversForEngineersContainer.revalidate();
+                    setDriversForEngineersDataEdit(selectedDriversForEngineers);
+                    tableMainDriversForEngineers.clearSelection();
+                }
             } else {
-                driversForEngineersContainer.removeAll();
-                driversForEngineersContainer.add(editDriversForEngineersPanel);
-                driversForEngineersContainer.repaint();
-                driversForEngineersContainer.revalidate();
-                setDriversForEngineersDataEdit(selectedDriversForEngineers);
-                tableMainDriversForEngineers.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editDriversForEngineers1MouseClicked
 
     private void addNewDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewDriversForEngineers1MouseClicked
@@ -9785,51 +9779,56 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelEditOtherExpensesMouseClicked
 
     private void saveEditOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditOtherExpensesMouseClicked
-        if (otherExpensesFormEditLaborCrewCost.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
-        } else if (otherExpensesFormEditLaborEquipmentCost.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
-        }  else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor crew cost!");
-        } else if (otherExpensesFormEditImplementationMode.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
-        } else if (otherExpensesFormEditDaysOfOperation.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
-        } else if (!dataValidation.validateDouble(otherExpensesFormEditDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid days of operation!");
-        } else if (otherExpensesFormEditLightEquipments.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
-        } else if (otherExpensesFormEditHeavyEquipments.getText().isBlank()) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormEditLightEquipments.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
-        } else if (!dataValidation.validateCurrency(otherExpensesFormEditHeavyEquipments.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
-        } else {
-            otherExpensesForEdit.setLaborCrewCost(Double.parseDouble(otherExpensesFormEditLaborCrewCost.getText()));
-            otherExpensesForEdit.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormEditLaborEquipmentCost.getText()));
-            otherExpensesForEdit.setImplementationMode(otherExpensesFormEditImplementationMode.getText());
-            otherExpensesForEdit.setNumberOfCD(Double.parseDouble(otherExpensesFormEditDaysOfOperation.getText()));
-            otherExpensesForEdit.setLightEquipments(Double.parseDouble(otherExpensesFormEditLightEquipments.getText()));
-            otherExpensesForEdit.setHeavyEquipments(Double.parseDouble(otherExpensesFormEditHeavyEquipments.getText()));
-            otherExpensesForEdit.setMonth(String.valueOf(otherExpensesFormEditMonth.getSelectedItem()));
-            otherExpensesForEdit.setYear(Integer.parseInt(String.valueOf(otherExpensesFormEditYear.getSelectedItem())));
-            
-            new OtherExpensesDBController().edit(otherExpensesForEdit);
+        if(Driver.getConnection() != null){
+            if (otherExpensesFormEditLaborCrewCost.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter a labor crew cost!");
+            } else if (otherExpensesFormEditLaborEquipmentCost.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter a labor equipment cost!");
+            }  else if (!dataValidation.validateCurrency(otherExpensesFormLaborEquipmentCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor equipment cost!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormLaborCrewCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid labor crew cost!");
+            } else if (otherExpensesFormEditImplementationMode.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write an implementation mode!");
+            } else if (otherExpensesFormEditDaysOfOperation.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please write the days of operation!");
+            } else if (!dataValidation.validateDouble(otherExpensesFormEditDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid days of operation!");
+            } else if (otherExpensesFormEditLightEquipments.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter light equipments expenses!");
+            } else if (otherExpensesFormEditHeavyEquipments.getText().isBlank()) {
+                JOptionPane.showMessageDialog(rootPane, "Please enter heavy equipments expenses!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormEditLightEquipments.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid light equipment cost!");
+            } else if (!dataValidation.validateCurrency(otherExpensesFormEditHeavyEquipments.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter a valid heavy equipment cost!");
+            } else {
+                otherExpensesForEdit.setLaborCrewCost(Double.parseDouble(otherExpensesFormEditLaborCrewCost.getText()));
+                otherExpensesForEdit.setLaborEquipmentCost(Double.parseDouble(otherExpensesFormEditLaborEquipmentCost.getText()));
+                otherExpensesForEdit.setImplementationMode(otherExpensesFormEditImplementationMode.getText());
+                otherExpensesForEdit.setNumberOfCD(Double.parseDouble(otherExpensesFormEditDaysOfOperation.getText()));
+                otherExpensesForEdit.setLightEquipments(Double.parseDouble(otherExpensesFormEditLightEquipments.getText()));
+                otherExpensesForEdit.setHeavyEquipments(Double.parseDouble(otherExpensesFormEditHeavyEquipments.getText()));
+                otherExpensesForEdit.setMonth(String.valueOf(otherExpensesFormEditMonth.getSelectedItem()));
+                otherExpensesForEdit.setYear(Integer.parseInt(String.valueOf(otherExpensesFormEditYear.getSelectedItem())));
 
-            JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(mainOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            otherExpensesList = new OtherExpensesDBController().getList();
-            searchedOtherExpenses = otherExpensesList;
-            populateMainOtherExpenses(otherExpensesList);
-            resetOtherExpensesEditForm();
-            timeframeDetailActionPerformed(null);
-        }
+                new OtherExpensesDBController().edit(otherExpensesForEdit);
+
+                JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
+                otherExpensesTab.removeAll();
+                otherExpensesTab.add(mainOtherExpensesPanel);
+                otherExpensesTab.repaint();
+                otherExpensesTab.revalidate();
+                otherExpensesList = new OtherExpensesDBController().getList();
+                searchedOtherExpenses = otherExpensesList;
+                populateMainOtherExpenses(otherExpensesList);
+                resetOtherExpensesEditForm();
+                timeframeDetailActionPerformed(null);
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveEditOtherExpensesMouseClicked
 
     private void otherExpensesFormEditDaysOfOperationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otherExpensesFormEditDaysOfOperationActionPerformed
@@ -9845,45 +9844,50 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherExpenses1MouseClicked
 
     private void saveNewOtherExpenses1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpenses1MouseClicked
-        if(driversForEngineersFormLaborEquipmentCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
-        } else if(driversForEngineersFormEquipmentFuelCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
-        } else if(driversForEngineersFormLubricantCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
-        } else if(driversForEngineersFormDaysOfOperation.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormLaborEquipmentCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormEquipmentFuelCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormLubricantCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
+        if(Driver.getConnection() != null) {
+            if(driversForEngineersFormLaborEquipmentCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
+            } else if(driversForEngineersFormEquipmentFuelCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
+            } else if(driversForEngineersFormLubricantCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
+            } else if(driversForEngineersFormDaysOfOperation.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormLaborEquipmentCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormEquipmentFuelCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormLubricantCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
+            } else {
+                DriversForEngineers driversForEngineers = new DriversForEngineers();
+
+                driversForEngineers.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormLaborEquipmentCost.getText()));
+                driversForEngineers.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEquipmentFuelCost.getText()));
+                driversForEngineers.setLubricantCost(Double.parseDouble(driversForEngineersFormLubricantCost.getText()));
+                driversForEngineers.setImplementationMode(driversForEngineersFormImplementationMode.getText());
+                driversForEngineers.setNumberOfCD(Double.parseDouble(driversForEngineersFormDaysOfOperation.getText()));
+                driversForEngineers.setMonth(String.valueOf(driversForEngineersFormMonth.getSelectedItem()));
+                driversForEngineers.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormYear.getSelectedItem())));
+
+                new DriversForEngineersDBController().add(driversForEngineers);
+                JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
+                driversForEngineersList = new DriversForEngineersDBController().getList();
+                searchedDFE = driversForEngineersList;
+                populateDriversForEngineersTable(driversForEngineersList);
+                driversForEngineersContainer.removeAll();
+                driversForEngineersContainer.add(mainDriversForEngineersPanel);
+                driversForEngineersContainer.repaint();
+                driversForEngineersContainer.revalidate();
+                resetDriversForEngineersForm();
+                timeframeDetailActionPerformed(null);
+            }
         } else {
-            DriversForEngineers driversForEngineers = new DriversForEngineers();
-            
-            driversForEngineers.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormLaborEquipmentCost.getText()));
-            driversForEngineers.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEquipmentFuelCost.getText()));
-            driversForEngineers.setLubricantCost(Double.parseDouble(driversForEngineersFormLubricantCost.getText()));
-            driversForEngineers.setImplementationMode(driversForEngineersFormImplementationMode.getText());
-            driversForEngineers.setNumberOfCD(Double.parseDouble(driversForEngineersFormDaysOfOperation.getText()));
-            driversForEngineers.setMonth(String.valueOf(driversForEngineersFormMonth.getSelectedItem()));
-            driversForEngineers.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormYear.getSelectedItem())));
-            
-            new DriversForEngineersDBController().add(driversForEngineers);
-            JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
-            driversForEngineersList = new DriversForEngineersDBController().getList();
-            searchedDFE = driversForEngineersList;
-            populateDriversForEngineersTable(driversForEngineersList);
-            driversForEngineersContainer.removeAll();
-            driversForEngineersContainer.add(mainDriversForEngineersPanel);
-            driversForEngineersContainer.repaint();
-            driversForEngineersContainer.revalidate();
-            resetDriversForEngineersForm();
-            timeframeDetailActionPerformed(null);
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewOtherExpenses1MouseClicked
 
     private void cancelNewOtherExpenses2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherExpenses2MouseClicked
@@ -9895,84 +9899,97 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherExpenses2MouseClicked
 
     private void saveDFEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveDFEMouseClicked
-        if(driversForEngineersFormEditLaborEquipmentCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
-        } else if(driversForEngineersFormEditEquipmentFuelCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
-        } else if(driversForEngineersFormEditLubricantCost.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
-        } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
-        }   else if(!dataValidation.validateDouble(driversForEngineersFormEditDaysOfOperation.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormEditLaborEquipmentCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormEditEquipmentFuelCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
-        } else if(!dataValidation.validateDouble(driversForEngineersFormEditLubricantCost.getText())){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
+        if(Driver.getConnection() != null) {
+            if(driversForEngineersFormEditLaborEquipmentCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the labor equipment cost!");
+            } else if(driversForEngineersFormEditEquipmentFuelCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the equipment fuel cost!");
+            } else if(driversForEngineersFormEditLubricantCost.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the lubricant cost!");
+            } else if(driversForEngineersFormEditDaysOfOperation.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the days of operation!");
+            }   else if(!dataValidation.validateDouble(driversForEngineersFormEditDaysOfOperation.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid days of operation!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormEditLaborEquipmentCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid labor equipment cost!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormEditEquipmentFuelCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid equipment fuel cost!");
+            } else if(!dataValidation.validateDouble(driversForEngineersFormEditLubricantCost.getText())){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the valid lubricant cost!");
+            } else {
+
+                driversForEngineersForEdit.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormEditLaborEquipmentCost.getText()));
+                driversForEngineersForEdit.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEditEquipmentFuelCost.getText()));
+                driversForEngineersForEdit.setLubricantCost(Double.parseDouble(driversForEngineersFormEditLubricantCost.getText()));
+                driversForEngineersForEdit.setImplementationMode(driversForEngineersFormEditImplementationMode.getText());
+                driversForEngineersForEdit.setNumberOfCD(Double.parseDouble(driversForEngineersFormEditDaysOfOperation.getText()));
+                driversForEngineersForEdit.setMonth(String.valueOf(driversForEngineersFormEditMonth.getSelectedItem()));
+                driversForEngineersForEdit.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormEditYear.getSelectedItem())));
+
+                new DriversForEngineersDBController().edit(driversForEngineersForEdit);
+                JOptionPane.showMessageDialog(rootPane, "Successfully Edited!");
+                driversForEngineersList = new DriversForEngineersDBController().getList();
+                searchedDFE = driversForEngineersList;
+                populateDriversForEngineersTable(driversForEngineersList);
+                driversForEngineersContainer.removeAll();
+                driversForEngineersContainer.add(mainDriversForEngineersPanel);
+                driversForEngineersContainer.repaint();
+                driversForEngineersContainer.revalidate();
+                resetDriversForEngineersEditForm();
+                timeframeDetailActionPerformed(null);
+            }
         } else {
-            
-            driversForEngineersForEdit.setLaborEquipmentCost(Double.parseDouble(driversForEngineersFormEditLaborEquipmentCost.getText()));
-            driversForEngineersForEdit.setEquipmentFuelCost(Double.parseDouble(driversForEngineersFormEditEquipmentFuelCost.getText()));
-            driversForEngineersForEdit.setLubricantCost(Double.parseDouble(driversForEngineersFormEditLubricantCost.getText()));
-            driversForEngineersForEdit.setImplementationMode(driversForEngineersFormEditImplementationMode.getText());
-            driversForEngineersForEdit.setNumberOfCD(Double.parseDouble(driversForEngineersFormEditDaysOfOperation.getText()));
-            driversForEngineersForEdit.setMonth(String.valueOf(driversForEngineersFormEditMonth.getSelectedItem()));
-            driversForEngineersForEdit.setYear(Integer.parseInt(String.valueOf(driversForEngineersFormEditYear.getSelectedItem())));
-            
-            new DriversForEngineersDBController().edit(driversForEngineersForEdit);
-            JOptionPane.showMessageDialog(rootPane, "Successfully Edited!");
-            driversForEngineersList = new DriversForEngineersDBController().getList();
-            searchedDFE = driversForEngineersList;
-            populateDriversForEngineersTable(driversForEngineersList);
-            driversForEngineersContainer.removeAll();
-            driversForEngineersContainer.add(mainDriversForEngineersPanel);
-            driversForEngineersContainer.repaint();
-            driversForEngineersContainer.revalidate();
-            resetDriversForEngineersEditForm();
-            timeframeDetailActionPerformed(null);
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveDFEMouseClicked
 
     private void editProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editProjectsMouseClicked
         int selectedProgram = tableMainPrograms.getSelectedRow();
-        
-        if(selectedProgram > -1){
-            if(searchedProgram.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainDriversForEngineers.clearSelection();
+        if(Driver.getConnection() != null){
+            if(selectedProgram > -1){
+                if(searchedProgram.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainDriversForEngineers.clearSelection();
+                } else {
+                    projectsOfWorksTab.removeAll();
+                    projectsOfWorksTab.add(editProjectsPanel);
+                    projectsOfWorksTab.repaint();
+                    projectsOfWorksTab.revalidate();
+                    setProgramDataEdit(selectedProgram);
+                    tableMainPrograms.clearSelection();
+                }
             } else {
-                projectsOfWorksTab.removeAll();
-                projectsOfWorksTab.add(editProjectsPanel);
-                projectsOfWorksTab.repaint();
-                projectsOfWorksTab.revalidate();
-                setProgramDataEdit(selectedProgram);
-                tableMainPrograms.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to edit!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_editProjectsMouseClicked
 
     private void viewProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewProjectsMouseClicked
         int selectedProgram = tableMainPrograms.getSelectedRow();
-        
-        if(selectedProgram > -1){
-            if(searchedProgram.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainDriversForEngineers.clearSelection();
+        if(Driver.getConnection() != null){
+            if(selectedProgram > -1){
+                if(searchedProgram.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainDriversForEngineers.clearSelection();
+                } else {
+                    projectsOfWorksTab.removeAll();
+                    projectsOfWorksTab.add(viewProjectsPanel);
+                    projectsOfWorksTab.repaint();
+                    projectsOfWorksTab.revalidate();
+                    setProgramDataView(selectedProgram);
+                    tableMainPrograms.clearSelection();
+                }
             } else {
-                projectsOfWorksTab.removeAll();
-                projectsOfWorksTab.add(viewProjectsPanel);
-                projectsOfWorksTab.repaint();
-                projectsOfWorksTab.revalidate();
-                setProgramDataView(selectedProgram);
-                tableMainPrograms.clearSelection();
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to view!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_viewProjectsMouseClicked
 
     private void addNewProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addNewProjectsMouseClicked
@@ -9991,28 +10008,33 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherActivity2MouseClicked
 
     private void saveNewOtherActivity1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivity1MouseClicked
-        if(projectsFormSourceOfFund.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please indicate the source of fund!");
-        } else if (projectList.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the projects related to the fund!");
+        if(Driver.getConnection() != null) {
+            if(projectsFormSourceOfFund.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please indicate the source of fund!");
+            } else if (projectList.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the projects related to the fund!");
+            } else {
+                Program program = new Program();
+
+                program.setSourceOfFund(projectsFormSourceOfFund.getText());
+                program.setMonth(String.valueOf(projectsFormMonth.getSelectedItem()));
+                program.setYear(Integer.parseInt(String.valueOf(projectsFormYear.getSelectedItem())));
+
+                new ProgramDBController().add(program, projectList);
+                JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
+                programList = new ProgramDBController().getList();
+                searchedProgram = programList;
+                populateMainProgram(programList);
+                projectsOfWorksTab.removeAll();
+                projectsOfWorksTab.add(mainProjectsPanel);
+                projectsOfWorksTab.repaint();
+                projectsOfWorksTab.revalidate();    
+                resetProjectsForm();
+            }
         } else {
-            Program program = new Program();
-            
-            program.setSourceOfFund(projectsFormSourceOfFund.getText());
-            program.setMonth(String.valueOf(projectsFormMonth.getSelectedItem()));
-            program.setYear(Integer.parseInt(String.valueOf(projectsFormYear.getSelectedItem())));
-            
-            new ProgramDBController().add(program, projectList);
-            JOptionPane.showMessageDialog(rootPane, "Successfully Added!");
-            programList = new ProgramDBController().getList();
-            searchedProgram = programList;
-            populateMainProgram(programList);
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(mainProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();    
-            resetProjectsForm();
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewOtherActivity1MouseClicked
 
     private void addProjectsItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProjectsItemMouseClicked
@@ -10054,26 +10076,31 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_cancelNewOtherActivity3MouseClicked
 
     private void saveNewOtherActivity2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivity2MouseClicked
-        if(projectsFormEditSourceOfFund.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please indicate the source of fund!");
-        } else if (projectList.isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter the projects related to the fund!");
-        } else {           
-            programForEdit.setSourceOfFund(projectsFormEditSourceOfFund.getText());
-            programForEdit.setMonth(String.valueOf(projectsFormEditMonth.getSelectedItem()));
-            programForEdit.setYear(Integer.parseInt(String.valueOf(projectsFormEditYear.getSelectedItem())));
-            
-            new ProgramDBController().edit(programForEdit, projectList);
-            JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
-            programList = new ProgramDBController().getList();
-            searchedProgram = programList;
-            populateMainProgram(programList);
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(mainProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();    
-            resetProjectsFormEdit();
-        }
+        if(Driver.getConnection() != null){
+            if(projectsFormEditSourceOfFund.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please indicate the source of fund!");
+            } else if (projectList.isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Please enter the projects related to the fund!");
+            } else {           
+                programForEdit.setSourceOfFund(projectsFormEditSourceOfFund.getText());
+                programForEdit.setMonth(String.valueOf(projectsFormEditMonth.getSelectedItem()));
+                programForEdit.setYear(Integer.parseInt(String.valueOf(projectsFormEditYear.getSelectedItem())));
+
+                new ProgramDBController().edit(programForEdit, projectList);
+                JOptionPane.showMessageDialog(rootPane, "Changes Saved!");
+                programList = new ProgramDBController().getList();
+                searchedProgram = programList;
+                populateMainProgram(programList);
+                projectsOfWorksTab.removeAll();
+                projectsOfWorksTab.add(mainProjectsPanel);
+                projectsOfWorksTab.repaint();
+                projectsOfWorksTab.revalidate();    
+                resetProjectsFormEdit();
+            }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveNewOtherActivity2MouseClicked
 
     private void addProjectsItemEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addProjectsItemEditMouseClicked
@@ -10115,48 +10142,49 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_backViewProgramMouseClicked
 
     private void exportMonthlyReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportMonthlyReportActionPerformed
-        if(!monthlyHeaderTitle.getText().isBlank()){
-            if(evt.getSource() == exportMonthlyReport){
-                int returnVal = fileChooser.showSaveDialog(Main.this);
-                if(returnVal == JFileChooser.APPROVE_OPTION){
-                    File file = fileChooser.getCurrentDirectory();
-                    File fileName = fileChooser.getSelectedFile();
+        if(Driver.getConnection() != null){
+            if(!monthlyHeaderTitle.getText().isBlank()){
+                if(evt.getSource() == exportMonthlyReport){
+                    int returnVal = fileChooser.showSaveDialog(Main.this);
+                    if(returnVal == JFileChooser.APPROVE_OPTION){
+                        File file = fileChooser.getCurrentDirectory();
+                        File fileName = fileChooser.getSelectedFile();
 
-                    MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
-                    MonthlyReport report = builder
-                                                .setHeaderTitle(monthlyHeaderTitle.getText())
-                                                .setTimeFrameDetail(monthlyMonth.getSelectedItem(), Integer.parseInt(String.valueOf(monthlyYear.getSelectedItem())))
-                                                .setFilePath(file.getAbsolutePath() + "\\", fileName)
-                                                .build();
+                        MonthlyReportBuilder builder = new ReportFactory().createMonthlyReportBuilder();
+                        MonthlyReport report = builder
+                                                    .setHeaderTitle(monthlyHeaderTitle.getText())
+                                                    .setTimeFrameDetail(monthlyMonth.getSelectedItem(), Integer.parseInt(String.valueOf(monthlyYear.getSelectedItem())))
+                                                    .setFilePath(file.getAbsolutePath() + "\\", fileName)
+                                                    .build();
 
-                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                    exportLoadScreen.setVisible(true);
-                    
-                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                        @Override
-                        protected Void doInBackground() throws Exception {
-                            report.generateReport();
-                            return null;
-                        }
+                        ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                        exportLoadScreen.setVisible(true);
 
-                        @Override
-                        protected void done(){
-                            exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                        }
-                    };
-                    
-                    worker.execute();
-                }
-            }  
+                        SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                            @Override
+                            protected Void doInBackground() throws Exception {
+                                report.generateReport();
+                                return null;
+                            }
+
+                            @Override
+                            protected void done(){
+                                exportLoadScreen.dispose();
+                                JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                            }
+                        };
+
+                        worker.execute();
+                    }
+                }  
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please write a header title for the report!");
+            }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please write a header title for the report!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_exportMonthlyReportActionPerformed
-
-    private void editReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editReportMouseClicked
-        saveReport.setEnabled(true);
-    }//GEN-LAST:event_editReportMouseClicked
 
     private void saveReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveReportMouseClicked
         int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to save these changes?");
@@ -10191,8 +10219,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
             } catch (IOException io) {
                 io.printStackTrace();
             }
-
-            saveReport.setEnabled(false);
         } else {
             try (FileInputStream input = new FileInputStream(file1)) {
                 Properties report = new Properties();
@@ -10210,42 +10236,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             } catch (IOException io) {
                 io.printStackTrace();
             }
-
-            saveReport.setEnabled(false);
         }
     }//GEN-LAST:event_saveReportMouseClicked
-
-    private void cancelReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelReportMouseClicked
-        saveReport.setEnabled(false);
-        
-        File jarDir = null;
-        
-        try{
-            jarDir = JarDirectory.getJarDir(Main.class);
-        } catch (URISyntaxException | IOException e){}
-        
-        File parentDir = jarDir.getParentFile();
-        
-        final String REPORT_FILE_1 = "src/mdqrs/path/to/report_config.properties";
-        File file1 = new File(parentDir, REPORT_FILE_1);
-        
-        try (FileInputStream input = new FileInputStream(file1)) {
-            Properties report = new Properties();
-            report.load(input);
-
-            preparedBy1Name.setText(report.getProperty("prepared_by_1_name"));
-            preparedBy1Position.setText(report.getProperty("prepared_by_1_position"));
-            preparedBy2Name.setText(report.getProperty("prepared_by_2_name"));
-            preparedBy2Position.setText(report.getProperty("prepared_by_2_position"));
-            submittedByName.setText(report.getProperty("submitted_by_name"));
-            submittedByPosition.setText(report.getProperty("submitted_by_position"));
-            approvedByName.setText(report.getProperty("approved_by_name"));
-            approvedByPosition.setText(report.getProperty("approved_by_position"));
-
-        } catch (IOException io) {
-            io.printStackTrace();
-        }
-    }//GEN-LAST:event_cancelReportMouseClicked
 
     private void sortPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortPersonnelActionPerformed
         String sort = String.valueOf(sortPersonnel.getSelectedItem());
@@ -10642,130 +10634,156 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void deleteRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteRegularActivityMouseClicked
         int selectedRow = tableMainRegularActivity.getSelectedRow();
-
-        if (selectedRow > -1) {
-            if(searchedRegularActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainRegularActivity.clearSelection();
-            } else {
-                RegularActivity regularActivity = searchedRegularActivity.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new ActivityListDBController().delete(regularActivity);
-                    regularActivityList = new ActivityListDBController().getList();
-                    searchedRegularActivity = regularActivityList;
-                    populateMainRegularActivity(regularActivityList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedRegularActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainRegularActivity.clearSelection();
+                } else {
+                    RegularActivity regularActivity = searchedRegularActivity.get(selectedRow);
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new ActivityListDBController().delete(regularActivity);
+                        regularActivityList = new ActivityListDBController().getList();
+                        searchedRegularActivity = regularActivityList;
+                        populateMainRegularActivity(regularActivityList);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteRegularActivityMouseClicked
 
     private void deleteOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteOtherActivityMouseClicked
         int selectedRow = tableMainOtherActivity.getSelectedRow();
-        
-        if (selectedRow > -1) {
-            if(searchedOtherActivity.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherActivity.clearSelection();
-            } else {
-                OtherActivity otherActivity = searchedOtherActivity.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new OtherActivityListDBController().delete(otherActivity);
-                    otherActivityList = new OtherActivityListDBController().getList();
-                    searchedOtherActivity = otherActivityList;
-                    populateMainOtherActivity(otherActivityList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedOtherActivity.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherActivity.clearSelection();
+                } else {
+                    OtherActivity otherActivity = searchedOtherActivity.get(selectedRow);
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new OtherActivityListDBController().delete(otherActivity);
+                        otherActivityList = new OtherActivityListDBController().getList();
+                        searchedOtherActivity = otherActivityList;
+                        populateMainOtherActivity(otherActivityList);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteOtherActivityMouseClicked
 
     private void deleteOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteOtherExpensesMouseClicked
         int selectedRow = tableMainOtherExpenses.getSelectedRow();
         
-        if (selectedRow > -1) {
-            if(searchedOtherExpenses.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainOtherExpenses.clearSelection();
-            } else {
-                OtherExpenses otherExpenses = searchedOtherExpenses.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new OtherExpensesDBController().delete(otherExpenses);
-                    otherExpensesList = new OtherExpensesDBController().getList();
-                    searchedOtherExpenses = otherExpensesList;
-                    populateMainOtherExpenses(otherExpensesList);
+        if(Driver.getConnection() != null) {
+            if (selectedRow > -1) {
+                if(searchedOtherExpenses.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainOtherExpenses.clearSelection();
+                } else {
+                    OtherExpenses otherExpenses = searchedOtherExpenses.get(selectedRow);
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new OtherExpensesDBController().delete(otherExpenses);
+                        otherExpensesList = new OtherExpensesDBController().getList();
+                        searchedOtherExpenses = otherExpensesList;
+                        populateMainOtherExpenses(otherExpensesList);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteOtherExpensesMouseClicked
 
     private void deleteDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteDriversForEngineers1MouseClicked
         int selectedRow = tableMainDriversForEngineers.getSelectedRow();
-        
-        if (selectedRow > -1) {
-            if(searchedDFE.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainDriversForEngineers.clearSelection();
-            } else {
-                DriversForEngineers driversForEngineers = searchedDFE.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new DriversForEngineersDBController().delete(driversForEngineers);
-                    driversForEngineersList = new DriversForEngineersDBController().getList();
-                    searchedDFE = driversForEngineersList;
-                    populateDriversForEngineersTable(driversForEngineersList);
-                    timeframeDetailActionPerformed(null);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedDFE.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainDriversForEngineers.clearSelection();
+                } else {
+                    DriversForEngineers driversForEngineers = searchedDFE.get(selectedRow);
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new DriversForEngineersDBController().delete(driversForEngineers);
+                        driversForEngineersList = new DriversForEngineersDBController().getList();
+                        searchedDFE = driversForEngineersList;
+                        populateDriversForEngineersTable(driversForEngineersList);
+                        timeframeDetailActionPerformed(null);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteDriversForEngineers1MouseClicked
 
     private void deleteProjectsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteProjectsMouseClicked
         int selectedRow = tableMainPrograms.getSelectedRow();
-        
-        if (selectedRow > -1) {
-            if(searchedProgram.isEmpty()){
-                JOptionPane.showMessageDialog(rootPane, "There's no data!");
-                tableMainDriversForEngineers.clearSelection();
-            } else {
-                Program program = searchedProgram.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new ProgramDBController().delete(program);
-                    programList = new ProgramDBController().getList();
-                    searchedProgram = programList;
-                    populateMainProgram(programList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                if(searchedProgram.isEmpty()){
+                    JOptionPane.showMessageDialog(rootPane, "There's no data!");
+                    tableMainDriversForEngineers.clearSelection();
+                } else {
+                    Program program = searchedProgram.get(selectedRow);
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new ProgramDBController().delete(program);
+                        programList = new ProgramDBController().getList();
+                        searchedProgram = programList;
+                        populateMainProgram(programList);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteProjectsMouseClicked
 
     private void deletePersonnelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deletePersonnelMouseClicked
         int selectedRow = tablePersonnel.getSelectedRow();
         
-        if (selectedRow > -1) {
-            Personnel personnel = searchedPersonnel.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new PersonnelDBController().delete(personnel.getId());
-                personnelList = new PersonnelDBController().getList();
-                searchedPersonnel = personnelList;
-                populatePersonnelTable(personnelList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                Personnel personnel = searchedPersonnel.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new PersonnelDBController().delete(personnel.getId());
+                    personnelList = new PersonnelDBController().getList();
+                    searchedPersonnel = personnelList;
+                    populatePersonnelTable(personnelList);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_deletePersonnelMouseClicked
 
     private void deleteEquipmentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteEquipmentMouseClicked
@@ -10788,52 +10806,67 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private void deleteWorkCategoryMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteWorkCategoryMouseClicked
         int selectedRow = tableWorkCategory.getSelectedRow();
         
-        if (selectedRow > -1) {
-            WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new WorkCategoryDBController().delete(workCategory.getWorkCategoryNumber());
-                workCategoryList = new WorkCategoryDBController().getList();
-                searchedWorkCategory = workCategoryList;
-                populateWorkCategoryTable(workCategoryList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                WorkCategory workCategory = searchedWorkCategory.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new WorkCategoryDBController().delete(workCategory.getWorkCategoryNumber());
+                    workCategoryList = new WorkCategoryDBController().getList();
+                    searchedWorkCategory = workCategoryList;
+                    populateWorkCategoryTable(workCategoryList);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteWorkCategoryMouseClicked
 
     private void deleteActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteActivityMouseClicked
         int selectedRow = tableActivity.getSelectedRow();
         
-        if (selectedRow > -1) {
-            Activity activity = searchedActivity.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new ActivityDBController().delete(activity.getItemNumber());
-                activityList = new ActivityDBController().getList();
-                searchedActivity = activityList;
-                populateActivityTable(activityList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                Activity activity = searchedActivity.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new ActivityDBController().delete(activity.getItemNumber());
+                    activityList = new ActivityDBController().getList();
+                    searchedActivity = activityList;
+                    populateActivityTable(activityList);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteActivityMouseClicked
 
     private void deleteSubActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteSubActivityMouseClicked
         int selectedRow = tableSubActivity.getSelectedRow();
         
-        if (selectedRow > -1) {
-            SubActivity subActivity = searchedSubActivity.get(selectedRow);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-            if(n == 0){
-                new SubActivityDBController().delete(subActivity);
-                subActivityList = new SubActivityDBController().getList();
-                searchedSubActivity = subActivityList;
-                populateSubActivityTable(subActivityList);
+        if(Driver.getConnection() != null){
+            if (selectedRow > -1) {
+                SubActivity subActivity = searchedSubActivity.get(selectedRow);
+                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                if(n == 0){
+                    new SubActivityDBController().delete(subActivity);
+                    subActivityList = new SubActivityDBController().getList();
+                    searchedSubActivity = subActivityList;
+                    populateSubActivityTable(subActivityList);
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_deleteSubActivityMouseClicked
 
     private void saveQuarterlyReportDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveQuarterlyReportDetailsMouseClicked
@@ -10878,143 +10911,168 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_saveQuarterlyReportDetailsMouseClicked
 
     private void exportQuarterlyReportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportQuarterlyReportMouseClicked
-        if(evt.getSource() == exportQuarterlyReport){
-            int returnVal = fileChooser.showSaveDialog(Main.this);
-            if(returnVal == JFileChooser.APPROVE_OPTION){
-                File file = fileChooser.getCurrentDirectory();
-                File fileName = fileChooser.getSelectedFile();
+        if(Driver.getConnection() != null) {
+            if(evt.getSource() == exportQuarterlyReport){
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
 
-                QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
-                QuarterlyReport quarterlyReport = quarterlyBuilder
-                                                                .setTimeFrameDetail("", Integer.parseInt(String.valueOf(quarterlyYear.getSelectedItem())))
-                                                                .setFilePath(file.getAbsolutePath() + "\\", fileName)
-                                                                .build();
+                    QuarterlyReportBuilder quarterlyBuilder = new ReportFactory().createQuarterlyReportBuilder();
+                    QuarterlyReport quarterlyReport = quarterlyBuilder
+                                                                    .setTimeFrameDetail("", Integer.parseInt(String.valueOf(quarterlyYear.getSelectedItem())))
+                                                                    .setFilePath(file.getAbsolutePath() + "\\", fileName)
+                                                                    .build();
 
-                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                exportLoadScreen.setVisible(true);
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
 
-                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        quarterlyReport.generateReport();
-                        return null;
-                    }
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            quarterlyReport.generateReport();
+                            return null;
+                        }
 
-                    @Override
-                    protected void done(){
-                        exportLoadScreen.dispose();
-                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                    }
-                };
-                    
-                worker.execute();
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
+
+                    worker.execute();
+                }
             }
-        }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_exportQuarterlyReportMouseClicked
 
     private void exportActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportActivityMouseClicked
         if(evt.getSource() == exportActivity){
-            int returnVal = fileChooser.showSaveDialog(Main.this);
-            if(returnVal == JFileChooser.APPROVE_OPTION){
-                File file = fileChooser.getCurrentDirectory();
-                File fileName = fileChooser.getSelectedFile();
+            if(Driver.getConnection() != null){
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
 
-                RegularActivityReport regularReport = new RegularActivityReport(regularActivityToView);
+                    RegularActivityReport regularReport = new RegularActivityReport(regularActivityToView);
 
-                regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+                    regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
 
-                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                exportLoadScreen.setVisible(true);
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
 
-                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        regularReport.generateReport();
-                        return null;
-                    }
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            regularReport.generateReport();
+                            return null;
+                        }
 
-                    @Override
-                    protected void done(){
-                        exportLoadScreen.dispose();
-                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                    }
-                };
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
 
-                worker.execute();
-            }
+                    worker.execute();
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            } 
         } 
     }//GEN-LAST:event_exportActivityMouseClicked
 
     private void exportWorkbookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportWorkbookActionPerformed
-        if(evt.getSource() == exportWorkbook){
-            int returnVal = fileChooser.showSaveDialog(Main.this);
-            if(returnVal == JFileChooser.APPROVE_OPTION){
-                File file = fileChooser.getCurrentDirectory();
-                File fileName = fileChooser.getSelectedFile();
+        if(Driver.getConnection() != null) {
+            if(evt.getSource() == exportWorkbook){
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
 
-                RegularActivityReport regularReport = new RegularActivityReport();
-                
-                regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+                    RegularActivityReport regularReport = new RegularActivityReport();
 
-                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                exportLoadScreen.setVisible(true);
+                    regularReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
 
-                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        regularReport.generateWorkbook(String.valueOf(regularActivityWorkbookMonth.getSelectedItem()), 
-                                Integer.parseInt(String.valueOf(regularActivityWorkbookYear.getSelectedItem())));
-                        return null;
-                    }
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
 
-                    @Override
-                    protected void done(){
-                        exportLoadScreen.dispose();
-                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                    }
-                };
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            regularReport.generateWorkbook(String.valueOf(regularActivityWorkbookMonth.getSelectedItem()), 
+                                    Integer.parseInt(String.valueOf(regularActivityWorkbookYear.getSelectedItem())));
+                            return null;
+                        }
 
-                worker.execute();
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
+
+                    worker.execute();
+                }
             }
-        }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_exportWorkbookActionPerformed
 
     private void exportOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exportOtherActivityMouseClicked
         if(evt.getSource() == exportOtherActivity){
-            int returnVal = fileChooser.showSaveDialog(Main.this);
-            if(returnVal == JFileChooser.APPROVE_OPTION){
-                File file = fileChooser.getCurrentDirectory();
-                File fileName = fileChooser.getSelectedFile();
+            if(Driver.getConnection() != null){
+                int returnVal = fileChooser.showSaveDialog(Main.this);
+                if(returnVal == JFileChooser.APPROVE_OPTION){
+                    File file = fileChooser.getCurrentDirectory();
+                    File fileName = fileChooser.getSelectedFile();
 
-                OtherActivityReport otherReport = new OtherActivityReport(otherActivityToView);
+                    OtherActivityReport otherReport = new OtherActivityReport(otherActivityToView);
 
-                otherReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
+                    otherReport.setFilePath(file.getAbsolutePath() + "\\", fileName);
 
-                ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
-                exportLoadScreen.setVisible(true);
+                    ExportLoadScreen exportLoadScreen = new ExportLoadScreen();
+                    exportLoadScreen.setVisible(true);
 
-                SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
-                    @Override
-                    protected Void doInBackground() throws Exception {
-                        otherReport.generateReport();
-                        return null;
-                    }
+                    SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
+                        @Override
+                        protected Void doInBackground() throws Exception {
+                            otherReport.generateReport();
+                            return null;
+                        }
 
-                    @Override
-                    protected void done(){
-                        exportLoadScreen.dispose();
-                        JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
-                    }
-                };
+                        @Override
+                        protected void done(){
+                            exportLoadScreen.dispose();
+                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                        }
+                    };
 
-                worker.execute();
-            }
+                    worker.execute();
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            } 
         } 
     }//GEN-LAST:event_exportOtherActivityMouseClicked
 
     private void personnelSettingsIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_personnelSettingsIconMouseClicked
+        if(Driver.getConnection() != null){
         PersonnelSetting.setListener(this);
         PersonnelSetting.getInstance().showFrame();
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
     }//GEN-LAST:event_personnelSettingsIconMouseClicked
 
     // Table populators
@@ -12457,7 +12515,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 io.printStackTrace();
             }
 
-            saveNetwork.setEnabled(false);
             networkUsername.enableInputMethods(false);
             networkPassword.enableInputMethods(false);
             networkServer.enableInputMethods(false);
@@ -12479,7 +12536,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 io.printStackTrace();
             }
 
-            saveNetwork.setEnabled(false);
             networkUsername.enableInputMethods(false);
             networkPassword.enableInputMethods(false);
             networkServer.enableInputMethods(false);
@@ -12489,7 +12545,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     public void initReportSettings() throws URISyntaxException, IOException {
-        saveReport.setEnabled(false);
         File jarDir = JarDirectory.getJarDir(Main.class);
         File parentDir = jarDir.getParentFile();
         
@@ -13125,7 +13180,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel backViewRegularActivity1;
     private javax.swing.JPanel cancelEditOtherExpenses;
     private javax.swing.JPanel cancelEditRegularActivity;
-    private javax.swing.JButton cancelNetwork;
     private javax.swing.JPanel cancelNewOtherActivity;
     private javax.swing.JPanel cancelNewOtherActivity1;
     private javax.swing.JPanel cancelNewOtherActivity2;
@@ -13134,7 +13188,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel cancelNewOtherExpenses1;
     private javax.swing.JPanel cancelNewOtherExpenses2;
     private javax.swing.JPanel cancelNewRegularActivity;
-    private javax.swing.JButton cancelReport;
     private javax.swing.JPanel deleteActivity;
     private javax.swing.JPanel deleteDriversForEngineers1;
     private javax.swing.JPanel deleteEquipment;
@@ -13172,7 +13225,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editEquipment;
     private javax.swing.JPanel editMaintenanceCrew;
     private javax.swing.JPanel editMaintenanceCrewEdit;
-    private javax.swing.JButton editNetwork;
     private javax.swing.JPanel editOperationEquipment;
     private javax.swing.JPanel editOperationEquipmentEdit;
     private javax.swing.JPanel editOtherActivity;
@@ -13192,7 +13244,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel editRegularActivity;
     private javax.swing.JPanel editRegularActivityPanel;
     private javax.swing.JScrollPane editRegularActivityScrollPane;
-    private javax.swing.JButton editReport;
     private javax.swing.JPanel editSubActivity;
     private javax.swing.JPanel editWorkCategory;
     private javax.swing.JLabel equipmentFuelCost;

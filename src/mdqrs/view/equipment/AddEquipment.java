@@ -4,6 +4,7 @@
  */
 package mdqrs.view.equipment;
 
+import dbcontroller.Driver;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -145,28 +146,7 @@ public class AddEquipment extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-        if(equipmentNumber.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
-        } else if(type.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
-        } else if (new EquipmentDBController().isPresent(equipmentNumber.getText())){
-            JOptionPane.showMessageDialog(rootPane,
-                String.format("Equipment %s number %s was already added!", String.valueOf(type.getSelectedItem()), equipmentNumber.getText()));
-        } else {
-            new EquipmentDBController().add(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
-            mainListener.updateEquipment();
-            int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
-            if(n != 0){
-                instance = null;
-                dispose();
-            } else {
-                equipmentNumber.setText("");
-            }
-        }
-    }//GEN-LAST:event_addActionPerformed
-
-    private void equipmentNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipmentNumberKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if(Driver.getConnection() != null){
             if(equipmentNumber.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
             } else if(type.getSelectedIndex() == 0){
@@ -185,6 +165,37 @@ public class AddEquipment extends javax.swing.JFrame {
                     equipmentNumber.setText("");
                 }
             }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
+    }//GEN-LAST:event_addActionPerformed
+
+    private void equipmentNumberKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipmentNumberKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(Driver.getConnection() != null){
+                if(equipmentNumber.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please put an equipment number!");
+                } else if(type.getSelectedIndex() == 0){
+                    JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
+                } else if (new EquipmentDBController().isPresent(equipmentNumber.getText())){
+                    JOptionPane.showMessageDialog(rootPane,
+                        String.format("Equipment %s number %s was already added!", String.valueOf(type.getSelectedItem()), equipmentNumber.getText()));
+                } else {
+                    new EquipmentDBController().add(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
+                    mainListener.updateEquipment();
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Equipment was added! Do you want to add another one?");
+                    if(n != 0){
+                        instance = null;
+                        dispose();
+                    } else {
+                        equipmentNumber.setText("");
+                    }
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            }  
         }
     }//GEN-LAST:event_equipmentNumberKeyPressed
 

@@ -5,6 +5,7 @@
 package mdqrs.view.personnel;
 
 import classes.Personnel;
+import dbcontroller.Driver;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -196,37 +197,7 @@ public class EditPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(name.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a name!");
-        } else if (type.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please select a type!");
-        } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
-            JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
-        } else if (ratePerDay.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
-        } else {
-            boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
-            String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
-            new PersonnelDBController().edit(personnel.getId(), name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
-            mainListener.updatePersonnel();
-            JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");
-            instance = null;
-            dispose();
-        }
-    }//GEN-LAST:event_saveActionPerformed
-
-    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
-        String selected = String.valueOf(type.getSelectedItem());
-        
-        if(selected.equalsIgnoreCase("Other")){
-            otherType.setEnabled(true);
-        } else {
-            otherType.setEnabled(false);
-        }
-    }//GEN-LAST:event_typeActionPerformed
-
-    private void ratePerDayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ratePerDayKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if(Driver.getConnection() != null){
             if(name.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please put a name!");
             } else if (type.getSelectedIndex() == 0){
@@ -244,7 +215,48 @@ public class EditPersonnel extends javax.swing.JFrame {
                 instance = null;
                 dispose();
             }
+        } else {
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        }  
+    }//GEN-LAST:event_saveActionPerformed
+
+    private void typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeActionPerformed
+        String selected = String.valueOf(type.getSelectedItem());
+        
+        if(selected.equalsIgnoreCase("Other")){
+            otherType.setEnabled(true);
+        } else {
+            otherType.setEnabled(false);
         }
+    }//GEN-LAST:event_typeActionPerformed
+
+    private void ratePerDayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ratePerDayKeyPressed
+        
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(Driver.getConnection() != null){
+                if(name.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please put a name!");
+                } else if (type.getSelectedIndex() == 0){
+                    JOptionPane.showMessageDialog(rootPane, "Please select a type!");
+                } else if (!dataValidation.validateCurrency(ratePerDay.getText())) {
+                    JOptionPane.showMessageDialog(rootPane, "Please enter a valid numeric input!");
+                } else if (ratePerDay.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
+                } else {
+                    boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
+                    String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+                    new PersonnelDBController().edit(personnel.getId(), name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
+                    mainListener.updatePersonnel();
+                    JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");
+                    instance = null;
+                    dispose();
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message);
+            } 
+        }  
     }//GEN-LAST:event_ratePerDayKeyPressed
 
     private class CloseWindow extends WindowAdapter {

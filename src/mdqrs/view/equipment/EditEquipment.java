@@ -4,6 +4,7 @@
  */
 package mdqrs.view.equipment;
 
+import dbcontroller.Driver;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -148,15 +149,20 @@ public class EditEquipment extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(type.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
+        if(Driver.getConnection() != null){
+            if(type.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please choose an equipment type!");
+            } else {
+                new EquipmentDBController().edit(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
+                mainListener.updateEquipment();
+                JOptionPane.showMessageDialog(rootPane, "Equipment was successfully edited!");
+                instance = null;
+                dispose();
+            }
         } else {
-            new EquipmentDBController().edit(equipmentNumber.getText(), String.valueOf(type.getSelectedItem()));
-            mainListener.updateEquipment();
-            JOptionPane.showMessageDialog(rootPane, "Equipment was successfully edited!");
-            instance = null;
-            dispose();
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveActionPerformed
 
     private class CloseWindow extends WindowAdapter {

@@ -35,7 +35,10 @@ public class Driver {
         
         try{
             jarDir = JarDirectory.getJarDir(Main.class);
-        } catch (URISyntaxException | IOException e){}
+        } catch (URISyntaxException | IOException e){
+            System.out.println("Driver getConnection() Error: " + e.getMessage());
+            e.printStackTrace();
+        }
         
         File parentDir = jarDir.getParentFile();
         final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";

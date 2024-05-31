@@ -5,6 +5,7 @@
 package mdqrs.view.workcategory;
 
 import classes.WorkCategory;
+import dbcontroller.Driver;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -166,18 +167,23 @@ public class EditActivity extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveActionPerformed
-        if(description.getText().isBlank()){
-            JOptionPane.showMessageDialog(rootPane, "Please put a description!");
-        } else if (category.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please select a category!");
+        if(Driver.getConnection() != null){
+            if(description.getText().isBlank()){
+                JOptionPane.showMessageDialog(rootPane, "Please put a description!");
+            } else if (category.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(rootPane, "Please select a category!");
+            } else {
+                new ActivityDBController().edit(
+                        itemNumber.getText(), description.getText(), workCategoryList.get(category.getSelectedIndex() - 1).getWorkCategoryNumber());
+                mainListener.updateActivity();
+                JOptionPane.showMessageDialog(rootPane, "Activity was successfully edited!");         
+                instance = null;
+                dispose();
+            }
         } else {
-            new ActivityDBController().edit(
-                    itemNumber.getText(), description.getText(), workCategoryList.get(category.getSelectedIndex() - 1).getWorkCategoryNumber());
-            mainListener.updateActivity();
-            JOptionPane.showMessageDialog(rootPane, "Activity was successfully edited!");         
-            instance = null;
-            dispose();
-        }
+            String message = "Error 59: An unexpected network error occurred.";
+            JOptionPane.showMessageDialog(rootPane, message);
+        } 
     }//GEN-LAST:event_saveActionPerformed
 
     private void initCategorySelectionBox(){
