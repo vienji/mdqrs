@@ -9759,7 +9759,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         break;
                 }
             }
-        }    
+        } else {
+            laborCrewCost.setText("₱ " + setDecimalFormat(0.0));
+            laborEquipmentCost.setText("₱ " + setDecimalFormat(0.0));
+            equipmentFuelCost.setText("₱ " + setDecimalFormat(0.0));
+            lubricantCost.setText("₱ " + setDecimalFormat(0.0));
+        }
     }//GEN-LAST:event_timeframeDetailActionPerformed
 
     private void editDriversForEngineers1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editDriversForEngineers1MouseClicked
@@ -10201,7 +10206,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             @Override
                             protected void done(){
                                 exportLoadScreen.dispose();
-                                JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                                int n = JOptionPane.showConfirmDialog(rootPane, "Report successfully exported and saved at " + report.getFileDirectory() + ". Do you want to open this file?");
+                            
+                                if(n == 0){
+                                    report.openReport();
+                                }
                             }
                         };
 
@@ -10972,7 +10981,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         @Override
                         protected void done(){
                             exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                            int n = JOptionPane.showConfirmDialog(rootPane, "Report successfully exported and saved at " + quarterlyReport.getFileDirectory() + ". Do you want to open this file?");
+                            
+                            if(n == 0){
+                                quarterlyReport.openReport();
+                            }
                         }
                     };
 
@@ -11010,7 +11023,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         @Override
                         protected void done(){
                             exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                            int n = JOptionPane.showConfirmDialog(rootPane, "Report successfully exported and saved at " + regularReport.getFileDirectory() + ". Do you want to open this file?");
+                            
+                            if(n == 0){
+                                regularReport.openReport();
+                            }
                         }
                     };
 
@@ -11049,7 +11066,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         @Override
                         protected void done(){
                             exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                            int n = JOptionPane.showConfirmDialog(rootPane, "Report successfully exported and saved at " + regularReport.getFileDirectory() + ". Do you want to open this file?");
+                            
+                            if(n == 0){
+                                regularReport.openReport();
+                            }
                         }
                     };
 
@@ -11087,7 +11108,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         @Override
                         protected void done(){
                             exportLoadScreen.dispose();
-                            JOptionPane.showMessageDialog(rootPane, "Report successfully exported!");
+                            int n = JOptionPane.showConfirmDialog(rootPane, "Report successfully exported and saved at " + otherReport.getFileDirectory() + ". Do you want to open this file?");
+                            
+                            if(n == 0){
+                                otherReport.openReport();
+                            }
                         }
                     };
 
@@ -11125,7 +11150,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         SwingWorker<Void, Void> worker = new SwingWorker<Void, Void>(){
             @Override
             protected Void doInBackground() throws Exception {
+                initIcons();
+                initNetworkSettings();
+                initReportSettings();
+                initDate();
+                initSearchFieldListener();  
                 initData();
+                timeframeDetailActionPerformed(null);
                 return null;
             }
 

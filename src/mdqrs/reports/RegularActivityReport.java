@@ -13,6 +13,7 @@ import classes.CrewPersonnelList;
 import classes.OpsEquipment;
 import classes.OpsEquipmentList;
 import classes.RegularActivity;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -417,6 +418,25 @@ public class RegularActivityReport {
         Cell cell3 = row.createCell(12);
         cell3.setCellValue(totalExpenses);
         cell3.setCellStyle(style[1]);
+    }
+    
+    public String getFileDirectory(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        
+        return fileDirectory + fileName;
+    }
+    
+    public void openReport(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        File reportFile = new File(fileDirectory + fileName);
+                
+        try{
+            Desktop.getDesktop().open(reportFile);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
     
     private void addGrandTotalExpenses(int startingRow, XSSFSheet sheet, CellStyle[] style, Double totalExpenses){

@@ -8,6 +8,7 @@ import classes.Activity;
 import classes.RegularActivity;
 import classes.SubActivity;
 import classes.OtherActivity;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -730,6 +731,25 @@ public class MonthlyReport implements Report {
             e.printStackTrace();
         }
     }  
+    
+    public String getFileDirectory(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        
+        return fileDirectory + fileName;
+    }
+    
+    public void openReport(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        File reportFile = new File(fileDirectory + fileName);
+                
+        try{
+            Desktop.getDesktop().open(reportFile);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
     
     private static String checkQuarter(String month){
         String quarter = "";

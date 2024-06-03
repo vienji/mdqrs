@@ -3,6 +3,7 @@ import classes.OtherActivity;
 import classes.RegularActivity;
 import java.io.File;
 import java.util.ArrayList;
+import mdqrs.classes.Cryptographer;
 import mdqrs.dbcontroller.ActivityListDBController;
 import mdqrs.dbcontroller.OtherActivityListDBController;
 import mdqrs.dbcontroller.PersonnelDBController;
@@ -57,20 +58,5 @@ public class Test {
 //          
 //          regularReport.generateWorkbook("May", 2024);
             
-            PersonnelDBController pdbc = new PersonnelDBController();
-            
-            String[] data = {
-                "Foreman",
-                "Operator",
-                "Maintenance Crew",
-                "Engineer",
-                "Engineering Aide",
-                "Laboratory Aide",
-                "Survey Aide"
-            };
-            
-            for(int i = 0; i < 7; i++){
-                pdbc.addJobType(data[i], 0.00);
-            }
     }
 }

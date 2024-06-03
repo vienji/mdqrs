@@ -85,7 +85,7 @@ public class LoadScreen extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        loadingBar.setForeground(new java.awt.Color(102, 204, 0));
+        loadingBar.setForeground(new java.awt.Color(0, 0, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel3.setText("M             D             Q             R              S");

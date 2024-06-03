@@ -7,6 +7,7 @@ package mdqrs.reports;
 import classes.CrewPersonnel;
 import classes.CrewPersonnelList;
 import classes.OtherActivity;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
 import mdqrs.dbcontroller.OtherActivityListDBController;
@@ -153,6 +154,25 @@ public class OtherActivityReport {
             Cell cell = row.createCell(i + 2);
             cell.setCellValue(columnHeaders[i]);
             cell.setCellStyle(style);
+        }
+    }
+    
+    public String getFileDirectory(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        
+        return fileDirectory + fileName;
+    }
+    
+    public void openReport(){
+        String fileName = getExtension(file.getName()).toLowerCase().equals(xlsx) ? file.getName() : file.getName() + "." + xlsx;
+        String fileDirectory = validateFilePath(filePath) ;
+        File reportFile = new File(fileDirectory + fileName);
+                
+        try{
+            Desktop.getDesktop().open(reportFile);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
     
