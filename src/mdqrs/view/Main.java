@@ -10200,6 +10200,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             @Override
                             protected Void doInBackground() throws Exception {
                                 report.generateReport();
+                                
+                                File jarDir = JarDirectory.getJarDir(Main.class);
+                                File parentDir = jarDir.getParentFile();
+                                final String REPORT_FILE = "src/mdqrs/path/to/report_header_config.properties";
+                                File reportFile = new File(parentDir, REPORT_FILE);
+                                try (OutputStream output = new FileOutputStream(reportFile)) {
+                                    Properties headerTitle = new Properties();
+
+                                    headerTitle.setProperty("header_title", monthlyHeaderTitle.getText());
+                                    headerTitle.store(output, null);
+
+                                } catch (IOException io) {
+                                    io.printStackTrace();
+                                }
                                 return null;
                             }
 
@@ -10875,12 +10889,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
         if(Driver.getConnection() != null){
             if (selectedRow > -1) {
                 Activity activity = searchedActivity.get(selectedRow);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
-                if(n == 0){
-                    new ActivityDBController().delete(activity.getItemNumber());
-                    activityList = new ActivityDBController().getList();
-                    searchedActivity = activityList;
-                    populateActivityTable(activityList);
+                
+                if(!activity.getItemNumber().equals("504")){
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
+                    if(n == 0){
+                        new ActivityDBController().delete(activity.getItemNumber());
+                        activityList = new ActivityDBController().getList();
+                        searchedActivity = activityList;
+                        populateActivityTable(activityList);
+                    } else {
+                        tableActivity.clearSelection();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Forbidden Action! Removing 504 will cause unwanted system behaviour.", "Warning!", 2);
+                    tableActivity.clearSelection();
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Please select a row to delete!");
@@ -12654,6 +12676,30 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 io.printStackTrace();
             }
 
+            try (FileInputStream input = new FileInputStream(file)) {
+                Properties network = new Properties();
+                network.load(input);
+
+                Cryptographer cryptographer = new Cryptographer();
+
+                String decryptedPassword = "";
+
+                try {
+                    decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage());
+                    e.printStackTrace();
+                }
+
+                networkUsername.setText(network.getProperty("username"));
+                networkPassword.setText(decryptedPassword);
+                networkServer.setText(network.getProperty("server"));
+                networkPort.setText(network.getProperty("port"));
+                networkDatabase.setText(network.getProperty("database"));
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            
             networkUsername.enableInputMethods(false);
             networkPassword.enableInputMethods(false);
             networkServer.enableInputMethods(false);
@@ -12704,7 +12750,48 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         }
     }
+    
+    public void initHeaderTitle() throws URISyntaxException, IOException{
+        File jarDir = JarDirectory.getJarDir(Main.class);
+        File parentDir = jarDir.getParentFile();
+        
+        final String REPORT_FILE = "src/mdqrs/path/to/report_header_config.properties";
+        File file = new File(parentDir, REPORT_FILE);
+        
+        if(file.exists()){
+            try (FileInputStream input = new FileInputStream(file)) {
+                Properties report = new Properties();
+                report.load(input);
 
+                monthlyHeaderTitle.setText(report.getProperty("header_title"));
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        } else {
+            try (OutputStream output = new FileOutputStream(file)) {
+                Properties headerTitle = new Properties();
+
+                headerTitle.setProperty("header_title", "");
+                headerTitle.store(output, null);
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+            
+            
+            try (FileInputStream input = new FileInputStream(file)) {
+                Properties report = new Properties();
+                report.load(input);
+
+                monthlyHeaderTitle.setText(report.getProperty("header_title"));
+
+            } catch (IOException io) {
+                io.printStackTrace();
+            }
+        }
+    }
+    
     //Listeners
     @Override
     public void updateWorkCategory() {

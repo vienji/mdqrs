@@ -6,6 +6,7 @@ package mdqrs.view.workcategory;
 
 import classes.Activity;
 import dbcontroller.Driver;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -21,13 +22,14 @@ import mdqrs.listeners.MainListener;
 public class AddSubActivity extends javax.swing.JFrame {
     private static MainListener mainListener;
     private static AddSubActivity instance;
+    private static Activity activity504 = new ActivityDBController().getActivity("504");
     private ArrayList<Activity> activityList = new ActivityDBController().getList();
     /**
      * Creates new form AddSubActivity
      */
     private AddSubActivity() {
         initComponents();
-        initActivitySelectionBox();
+        activity.setText(activity504.getItemNumber() + " - "  + activity504.getDescription());
         addWindowListener(new CloseWindow());
     }
 
@@ -61,9 +63,9 @@ public class AddSubActivity extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         description = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        activity = new javax.swing.JComboBox<>();
         cancel = new javax.swing.JButton();
         add = new javax.swing.JButton();
+        activity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Sub Activity");
@@ -72,10 +74,14 @@ public class AddSubActivity extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Description");
 
+        description.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descriptionKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Activity");
-
-        activity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose activity..." }));
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -93,6 +99,8 @@ public class AddSubActivity extends javax.swing.JFrame {
             }
         });
 
+        activity.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,9 +117,9 @@ public class AddSubActivity extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(activity, 0, 244, Short.MAX_VALUE)
-                            .addComponent(description))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -122,9 +130,9 @@ public class AddSubActivity extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(add)
@@ -145,10 +153,8 @@ public class AddSubActivity extends javax.swing.JFrame {
         if(Driver.getConnection() != null){
             if(description.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-            } else if (activity.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
             } else {
-                new SubActivityDBController().add(description.getText(), activityList.get(activity.getSelectedIndex() - 1));
+                new SubActivityDBController().add(description.getText(), new ActivityDBController().getActivity("504"));
                 mainListener.updateSubActivity();
 
                 int n = JOptionPane.showConfirmDialog(rootPane, "Sub Activity was added! Do you want to add another one?");
@@ -157,7 +163,6 @@ public class AddSubActivity extends javax.swing.JFrame {
                     dispose();
                 } else {
                     description.setText("");
-                    activity.setSelectedIndex(0);
                 }     
             }
         } else {
@@ -166,11 +171,29 @@ public class AddSubActivity extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_addActionPerformed
 
-    private void initActivitySelectionBox(){
-        activityList.forEach((e) -> {
-            activity.addItem("( " + e.getItemNumber() + " )   " + e.getDescription());
-        });
-    }
+    private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(Driver.getConnection() != null){
+                if(description.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+                } else {
+                    new SubActivityDBController().add(description.getText(), new ActivityDBController().getActivity("504"));
+                    mainListener.updateSubActivity();
+
+                    int n = JOptionPane.showConfirmDialog(rootPane, "Sub Activity was added! Do you want to add another one?");
+                    if(n != 0){
+                        instance = null;
+                        dispose();
+                    } else {
+                        description.setText("");
+                    }     
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
+            } 
+        }
+    }//GEN-LAST:event_descriptionKeyPressed
     
     private class CloseWindow extends WindowAdapter {
         @Override
@@ -216,7 +239,7 @@ public class AddSubActivity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> activity;
+    private javax.swing.JTextField activity;
     private javax.swing.JButton add;
     private javax.swing.JButton cancel;
     private javax.swing.JTextField description;

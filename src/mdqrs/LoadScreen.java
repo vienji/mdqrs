@@ -45,6 +45,7 @@ public class LoadScreen extends javax.swing.JFrame {
                 loadingBar.setValue(5);
                 main.initNetworkSettings();
                 loadingBar.setValue(15);
+                main.initHeaderTitle();
                 main.initReportSettings();
                 loadingBar.setValue(20);
                 main.initDate();

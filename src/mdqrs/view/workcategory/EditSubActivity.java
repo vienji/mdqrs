@@ -7,6 +7,7 @@ package mdqrs.view.workcategory;
 import classes.Activity;
 import classes.SubActivity;
 import dbcontroller.Driver;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -30,9 +31,8 @@ public class EditSubActivity extends javax.swing.JFrame {
      */
     private EditSubActivity() {
         initComponents();
-        initActivitySelectionBox();
         description.setText(subActivity.getDescription());
-        activity.setSelectedItem("( " + subActivity.getActivity().getItemNumber() + " )   " + subActivity.getActivity().getDescription());
+        activity.setText(subActivity.getActivity().getItemNumber() + " - " + subActivity.getActivity().getDescription());
         addWindowListener(new CloseWindow());
     }
 
@@ -70,9 +70,9 @@ public class EditSubActivity extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         description = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        activity = new javax.swing.JComboBox<>();
         cancel = new javax.swing.JButton();
         save = new javax.swing.JButton();
+        activity = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Sub Activity");
@@ -81,10 +81,15 @@ public class EditSubActivity extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Description");
 
+        description.setMaximumSize(new java.awt.Dimension(2147483647, 22));
+        description.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                descriptionKeyPressed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Activity");
-
-        activity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose activity..." }));
 
         cancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cancel.setText("Cancel");
@@ -102,6 +107,8 @@ public class EditSubActivity extends javax.swing.JFrame {
             }
         });
 
+        activity.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,9 +125,9 @@ public class EditSubActivity extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(activity, 0, 244, Short.MAX_VALUE)
-                            .addComponent(description))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
@@ -131,7 +138,7 @@ public class EditSubActivity extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(description, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(activity, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -154,11 +161,8 @@ public class EditSubActivity extends javax.swing.JFrame {
         if(Driver.getConnection() != null){
             if(description.getText().isBlank()){
                 JOptionPane.showMessageDialog(rootPane, "Please write a description!");
-            } else if (activity.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(rootPane, "Please choose an activity!");
             } else {
                 subActivity.setDescription(description.getText());
-                subActivity.setActivity(activityList.get(activity.getSelectedIndex() - 1));
 
                 new SubActivityDBController().edit(subActivity);
 
@@ -173,12 +177,28 @@ public class EditSubActivity extends javax.swing.JFrame {
         } 
     }//GEN-LAST:event_saveActionPerformed
 
-    private void initActivitySelectionBox(){
-        activityList.forEach((e) -> {
-            activity.addItem("( " + e.getItemNumber() + " )   " + e.getDescription());
-        });
-    }
-    
+    private void descriptionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            if(Driver.getConnection() != null){
+                if(description.getText().isBlank()){
+                    JOptionPane.showMessageDialog(rootPane, "Please write a description!");
+                } else {
+                    subActivity.setDescription(description.getText());
+
+                    new SubActivityDBController().edit(subActivity);
+
+                    mainListener.updateSubActivity();
+                    JOptionPane.showMessageDialog(rootPane, "Sub Activity successfully edited!");
+                    instance = null;
+                    dispose();
+                }
+            } else {
+                String message = "Error 59: An unexpected network error occurred.";
+                JOptionPane.showMessageDialog(rootPane, message,"Error", 0);
+            } 
+        }
+    }//GEN-LAST:event_descriptionKeyPressed
+   
     private class CloseWindow extends WindowAdapter {
         @Override
         public void windowClosing(WindowEvent e){
@@ -224,7 +244,7 @@ public class EditSubActivity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> activity;
+    private javax.swing.JTextField activity;
     private javax.swing.JButton cancel;
     private javax.swing.JTextField description;
     private javax.swing.JLabel jLabel1;
