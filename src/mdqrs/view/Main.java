@@ -2021,7 +2021,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         regularActivitySubActivityTitle.setText("Sub Activity");
 
         jLabel83.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel83.setText("Note: Please remember to select the checkbox on the right side of the table title if using the table, and uncheck it if not.");
+        jLabel83.setText("Note: Please remember to select the checkbox on the left side of the table title if using the table, and uncheck it if not.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -3185,7 +3185,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         regularActivitySubActivityTitle1.setText("Sub Activity");
 
         jLabel107.setForeground(new java.awt.Color(0, 0, 204));
-        jLabel107.setText("Note: Please remember to select the checkbox on the right side of the table title if using the table, and uncheck it if not.");
+        jLabel107.setText("Note: Please remember to select the checkbox on the left side of the table title if using the table, and uncheck it if not.");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

@@ -2453,7 +2453,7 @@
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="cc" green="0" red="0" type="rgb"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="Note: Please remember to select the checkbox on the right side of the table title if using the table, and uncheck it if not."/>
+                                    <Property name="text" type="java.lang.String" value="Note: Please remember to select the checkbox on the left side of the table title if using the table, and uncheck it if not."/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -4730,7 +4730,7 @@
                                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                       <Color blue="cc" green="0" red="0" type="rgb"/>
                                     </Property>
-                                    <Property name="text" type="java.lang.String" value="Note: Please remember to select the checkbox on the right side of the table title if using the table, and uncheck it if not."/>
+                                    <Property name="text" type="java.lang.String" value="Note: Please remember to select the checkbox on the left side of the table title if using the table, and uncheck it if not."/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
