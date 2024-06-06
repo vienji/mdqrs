@@ -28,6 +28,8 @@ public class AddProject extends javax.swing.JFrame {
     private AddProject() {
         initComponents();
         addWindowListener(new CloseWindow());
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
     }
 
     public static void setFormType(int id){
@@ -80,6 +82,7 @@ public class AddProject extends javax.swing.JFrame {
 
         description.setColumns(20);
         description.setRows(5);
+        description.setWrapStyleWord(true);
         jScrollPane1.setViewportView(description);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N

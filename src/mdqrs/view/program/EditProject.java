@@ -32,6 +32,8 @@ public class EditProject extends javax.swing.JFrame {
         initComponents();
         addWindowListener(new CloseWindow());
         description.setText(project.getDescription());
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
         projectCost.setText(String.valueOf(project.getProjectCost()));
         implementationMode.setText(project.getImplementationMode());
     }
