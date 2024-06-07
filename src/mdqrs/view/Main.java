@@ -8913,12 +8913,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void regularActivityEditActivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityEditActivityActionPerformed
         boolean isOther = false;
-        if (regularActivityEditActivity.getSelectedIndex() - 1 > -1) {
+        if (regularActivityEditActivity.getSelectedIndex() > 0) {
             isOther = activityList.get(regularActivityEditActivity.getSelectedIndex() - 1).getItemNumber().equals("504");
         }
         regularActivityEditSubActivitySelectionBox.removeAllItems();
         regularActivityEditSubActivitySelectionBox.setEnabled(isOther);
-        initEditRegularActivitySubActivitySelectionBox(regularActivityForEdit.getId());
+        if (regularActivityEditActivity.getSelectedIndex() > 0){
+            initEditRegularActivitySubActivitySelectionBox(activityList.get(regularActivityEditActivity.getSelectedIndex() - 1).getItemNumber());
+        }
     }//GEN-LAST:event_regularActivityEditActivityActionPerformed
 
     private void regularActivityEditRoadSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityEditRoadSectionActionPerformed
@@ -10385,14 +10387,20 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 switch(sort){
                     case "item no.":
                         Collections.sort(searchedActivity, Comparator.comparing(Activity::getItemNumber));
+                        initAddActivitySelectionBox();
+                        initEditActivitySelectionBox();
                         populateActivityTable(searchedActivity);
                         break;
                     case "description":
                         Collections.sort(searchedActivity, Comparator.comparing(Activity::getDescription));
+                        initAddActivitySelectionBox();
+                        initEditActivitySelectionBox();
                         populateActivityTable(searchedActivity);
                         break;
                     case "work category":
                         Collections.sort(searchedActivity, new ActivityComparator());
+                        initAddActivitySelectionBox();
+                        initEditActivitySelectionBox();
                         populateActivityTable(searchedActivity);
                         break;
                 }
