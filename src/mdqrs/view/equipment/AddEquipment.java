@@ -95,7 +95,7 @@ public class AddEquipment extends javax.swing.JFrame {
             }
         });
 
-        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Equipment...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller" }));
+        type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose Equipment...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller", "Utility Vehicle" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

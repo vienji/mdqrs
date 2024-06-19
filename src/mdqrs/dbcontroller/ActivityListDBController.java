@@ -17,7 +17,7 @@ public class ActivityListDBController {
     private String query = "";
     
     public void add(Activity activity, Location location, RoadSection roadSection,boolean isOtherRoadSection, String month, 
-                    int year, String implementationMode, int numberOfCD, 
+                    int year, String implementationMode, Double numberOfCD, 
                     OpsEquipmentList opsEquipmentList, CrewPersonnelList crewPersonnelList, 
                     CrewMaterialsList crewMaterialsList, CrewEquipmentList crewEquipmentList, SubActivity subActivity){
         
@@ -197,7 +197,7 @@ public class ActivityListDBController {
             preparedStatement.setString(2, roadSection.getId());
             preparedStatement.setString(3, String.valueOf(isOtherRoadSection));
             preparedStatement.setString(4, location.getId());
-            preparedStatement.setInt(5, numberOfCD);
+            preparedStatement.setDouble(5, numberOfCD);
             preparedStatement.setString(6, month);
             preparedStatement.setInt(7, year);
             preparedStatement.setString(8, equipmentListID);
@@ -228,7 +228,7 @@ public class ActivityListDBController {
     }
     
     public void add(Activity activity, Location location, String roadSection, boolean isOtherRoadSection, String month, 
-                    int year, String implementationMode, int numberOfCD, 
+                    int year, String implementationMode, Double numberOfCD, 
                     OpsEquipmentList opsEquipmentList, CrewPersonnelList crewPersonnelList, 
                     CrewMaterialsList crewMaterialsList, CrewEquipmentList crewEquipmentList, SubActivity subActivity){
         
@@ -506,7 +506,7 @@ public class ActivityListDBController {
             preparedStatement.setString(2, roadSection);
             preparedStatement.setString(3, String.valueOf(isOtherRoadSection));
             preparedStatement.setString(4, location.getId());
-            preparedStatement.setInt(5, numberOfCD);
+            preparedStatement.setDouble(5, numberOfCD);
             preparedStatement.setString(6, month);
             preparedStatement.setInt(7, year);
             preparedStatement.setString(8, equipmentListID);

@@ -244,7 +244,7 @@ public class AddPersonnel extends javax.swing.JFrame {
     }//GEN-LAST:event_typeActionPerformed
 
     private void ratePerDayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ratePerDayKeyPressed
-        
+
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(Driver.getConnection() != null){
                 if(name.getText().isBlank()){
@@ -262,7 +262,7 @@ public class AddPersonnel extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
                 } else {
                     boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
-                    String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+                    String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(types.get(type.getSelectedIndex() - 1).getId());
                     new PersonnelDBController().add(name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
                     mainListener.updatePersonnel();
                     int n = JOptionPane.showConfirmDialog(rootPane, "Personnel was added! Do you want to add another one?");

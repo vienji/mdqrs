@@ -107,6 +107,7 @@ public class OtherActivityReport {
         addInfoRow(startingRow++, sheet, leftNoBorder, "Description:", otherActivity.getDescription(), "", "");
         addInfoRow(startingRow++, sheet, leftNoBorder, "Days of Operation:", otherActivity.getNumberOfCD() + " CD", "", "");
         addBlankRow(startingRow++, sheet);
+        addBlankRow(startingRow++, sheet);
         
         addPersonnelColumnHeader(startingRow++, sheet, center);
         

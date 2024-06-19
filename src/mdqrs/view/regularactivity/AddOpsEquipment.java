@@ -146,7 +146,7 @@ public class AddOpsEquipment extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel3.setText("Equipment Type");
 
-        equipmentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose equipment type...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller" }));
+        equipmentType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose equipment type...", "Backhoe", "Boom Truck", "Bulldozer", "Dump Truck", "Loader", "Motor Grader", "Prime Mover", "Self Loading", "Skid Steel Roller", "Steel Roller", "Utility Vehicle" }));
         equipmentType.setEnabled(false);
         equipmentType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

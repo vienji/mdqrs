@@ -1081,6 +1081,9 @@
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="addNewRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -2542,6 +2545,9 @@
                           </SubComponents>
                         </Container>
                         <Container class="javax.swing.JScrollPane" name="viewRegularActivityScrollPane">
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="viewRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -3356,6 +3362,9 @@
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="editRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);&#xd;&#xa;"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -5160,6 +5169,9 @@
                           <Properties>
                             <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
                           </Properties>
+                          <AuxValues>
+                            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="addNewOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);"/>
+                          </AuxValues>
 
                           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                           <SubComponents>
@@ -5607,6 +5619,9 @@
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="viewOtherActivityPanel">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="viewOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);&#xd;&#xa;"/>
+                      </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                           <CardConstraints cardName="card2"/>
@@ -5982,6 +5997,9 @@
                       </SubComponents>
                     </Container>
                     <Container class="javax.swing.JPanel" name="editOtherActivityPanel">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="editOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);&#xd;&#xa;"/>
+                      </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
                           <CardConstraints cardName="card2"/>
@@ -9024,6 +9042,7 @@
                                                   <Component id="jLabel164" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel153" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel156" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel225" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -9031,6 +9050,7 @@
                                                   <Component id="laborEquipmentCost" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="equipmentFuelCost" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="lubricantCost" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="grandTotalCost" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                           </Group>
@@ -9073,7 +9093,12 @@
                                           <Component id="jLabel166" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="lubricantCost" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="268" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jLabel225" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="grandTotalCost" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace pref="223" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -9199,6 +9224,23 @@
                                   <Font name="Segoe UI" size="12" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Timeframe detail"/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="jLabel225">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="1"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="Grand Total Cost "/>
+                              </Properties>
+                            </Component>
+                            <Component class="javax.swing.JLabel" name="grandTotalCost">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Segoe UI" size="14" style="1"/>
+                                </Property>
+                                <Property name="horizontalAlignment" type="int" value="4"/>
+                                <Property name="text" type="java.lang.String" value="&#x20b1; 0.00"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -12564,6 +12606,9 @@
               <Properties>
                 <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="settingsScrollPane.getVerticalScrollBar().setUnitIncrement(20);&#xd;&#xa;"/>
+              </AuxValues>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>

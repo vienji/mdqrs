@@ -649,6 +649,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         timeRange = new javax.swing.JComboBox<>();
         jLabel168 = new javax.swing.JLabel();
         jLabel169 = new javax.swing.JLabel();
+        jLabel225 = new javax.swing.JLabel();
+        grandTotalCost = new javax.swing.JLabel();
         projectsOfWorksTab = new javax.swing.JPanel();
         mainProjectsPanel = new javax.swing.JPanel();
         jScrollPane37 = new javax.swing.JScrollPane();
@@ -1469,6 +1471,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        addNewRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
         addNewRegularActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel1.setBackground(new java.awt.Color(241, 241, 182));
@@ -2248,6 +2251,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap())
         );
 
+        viewRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
+
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel14.setText("Activity");
 
@@ -2632,6 +2637,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        editRegularActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
         editRegularActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel5.setBackground(new java.awt.Color(241, 241, 182));
@@ -3612,6 +3618,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        addNewOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
         addNewOtherActivityScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jPanel6.setBackground(new java.awt.Color(241, 241, 182));
@@ -3874,6 +3881,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         otherActivityTab.add(addNewOtherActivityPanel, "card2");
 
+        viewOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
+
         backViewRegularActivity1.setBackground(new java.awt.Color(0, 102, 204));
         backViewRegularActivity1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4081,6 +4090,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         );
 
         otherActivityTab.add(viewOtherActivityPanel, "card2");
+
+        editOtherActivityScrollPane.getVerticalScrollBar().setUnitIncrement(20);
 
         cancelNewOtherActivity1.setBackground(new java.awt.Color(255, 102, 0));
         cancelNewOtherActivity1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -5783,6 +5794,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel169.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel169.setText("Timeframe detail");
 
+        jLabel225.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel225.setText("Grand Total Cost ");
+
+        grandTotalCost.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        grandTotalCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        grandTotalCost.setText("₱ 0.00");
+
         javax.swing.GroupLayout totalCostBreakdownPanelLayout = new javax.swing.GroupLayout(totalCostBreakdownPanel);
         totalCostBreakdownPanel.setLayout(totalCostBreakdownPanelLayout);
         totalCostBreakdownPanelLayout.setHorizontalGroup(
@@ -5808,13 +5826,15 @@ public class Main extends javax.swing.JFrame implements MainListener {
                             .addComponent(jLabel166)
                             .addComponent(jLabel164)
                             .addComponent(jLabel153)
-                            .addComponent(jLabel156))
+                            .addComponent(jLabel156)
+                            .addComponent(jLabel225))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(laborCrewCost)
                             .addComponent(laborEquipmentCost)
                             .addComponent(equipmentFuelCost)
-                            .addComponent(lubricantCost))
+                            .addComponent(lubricantCost)
+                            .addComponent(grandTotalCost))
                         .addGap(20, 20, 20))))
         );
         totalCostBreakdownPanelLayout.setVerticalGroup(
@@ -5846,7 +5866,11 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel166)
                     .addComponent(lubricantCost))
-                .addContainerGap(268, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addGroup(totalCostBreakdownPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel225)
+                    .addComponent(grandTotalCost))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(totalCostBreakdownPanel);
@@ -7839,6 +7863,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         settingsPanel.setPreferredSize(new java.awt.Dimension(1133, 813));
 
+        settingsScrollPane.getVerticalScrollBar().setUnitIncrement(20);
         settingsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jLabel54.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -8734,7 +8759,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
                             regularActivityFormOtherRoadSection.getText(), true, String.valueOf(regularActivityFormMonth.getSelectedItem()),
                              Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
-                            Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
+                            Double.parseDouble(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
 
                     JOptionPane.showMessageDialog(rootPane, "Activity added!");
                     regularActivityTab.removeAll();
@@ -8750,7 +8775,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     activityListDBController.add(activityList.get(selectedActivity - 1), locationList.get(regularActivityFormLocation.getSelectedIndex()),
                             roadSectionList.get(regularActivityFormRoadSection.getSelectedIndex()), false, String.valueOf(regularActivityFormMonth.getSelectedItem()),
                              Integer.parseInt(String.valueOf(regularActivityFormYear.getSelectedItem())), regularActivityFormImplementationMode.getText(),
-                            Integer.parseInt(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
+                            Double.parseDouble(regularActivityFormDaysOfOperation.getText()), opsEquipmentList, crewPersonnelList, crewMaterialsList, crewEquipmentList, subActivity);
 
                     JOptionPane.showMessageDialog(rootPane, "Activity added!");
                     regularActivityTab.removeAll();
@@ -9684,7 +9709,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         if(Driver.getConnection() != null){
             if(timeframeDetail.getItemCount() > 0){
                 GeneralDBController gdbc = new GeneralDBController();
-                double totalLaborCrewCost, totalLaborEquipmentCost, totalEquipmentFuelCost, totalLubricantCost;
+                double totalLaborCrewCost, totalLaborEquipmentCost, totalEquipmentFuelCost, totalLubricantCost, totalGrandCost;
 
                 String selectedTimeRange = String.valueOf(timeRange.getSelectedItem());
                 Object selectedTimeFrame = timeframeDetail.getSelectedItem();
@@ -9712,6 +9737,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 gdbc.getMonthlyRegularActivityList(String.valueOf(selectedTimeFrame)),
                                 gdbc.getMonthlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
                         lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        
+                        totalGrandCost = totalLaborCrewCost + totalLaborEquipmentCost + totalEquipmentFuelCost + totalLubricantCost;
+                        grandTotalCost.setText("₱ " + setDecimalFormat(totalGrandCost));
                         break;
                     case "Quarterly":  
                         totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
@@ -9735,6 +9763,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 gdbc.getQuarterlyRegularActivityList(String.valueOf(selectedTimeFrame)),
                                 gdbc.getQuarterlyDriversForEngineersList(String.valueOf(selectedTimeFrame)));
                         lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        
+                        totalGrandCost = totalLaborCrewCost + totalLaborEquipmentCost + totalEquipmentFuelCost + totalLubricantCost;
+                        grandTotalCost.setText("₱ " + setDecimalFormat(totalGrandCost));
                         break;
                     case "Annually":    
                         totalLaborCrewCost = gdbc.getTotalLaborCrewCost(
@@ -9758,6 +9789,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                 gdbc.getAnnualRegularActivityList(Integer.parseInt(String.valueOf(selectedTimeFrame))),
                                 gdbc.getAnnualDriversForEngineersList(Integer.parseInt(String.valueOf(selectedTimeFrame))));
                         lubricantCost.setText("₱ " + setDecimalFormat(totalLubricantCost));
+                        
+                        totalGrandCost = totalLaborCrewCost + totalLaborEquipmentCost + totalEquipmentFuelCost + totalLubricantCost;
+                        grandTotalCost.setText("₱ " + setDecimalFormat(totalGrandCost));
                         break;
                 }
             }
@@ -9766,6 +9800,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             laborEquipmentCost.setText("₱ " + setDecimalFormat(0.0));
             equipmentFuelCost.setText("₱ " + setDecimalFormat(0.0));
             lubricantCost.setText("₱ " + setDecimalFormat(0.0));
+            grandTotalCost.setText("₱ " + setDecimalFormat(0.0));
         }
     }//GEN-LAST:event_timeframeDetailActionPerformed
 
@@ -13467,6 +13502,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JPanel exportOtherActivity;
     private javax.swing.JButton exportQuarterlyReport;
     private javax.swing.JButton exportWorkbook;
+    private javax.swing.JLabel grandTotalCost;
     private javax.swing.JLabel iconActivityList;
     private javax.swing.JLabel iconEquipment;
     private javax.swing.JLabel iconPersonnel;
@@ -13621,6 +13657,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel222;
     private javax.swing.JLabel jLabel223;
     private javax.swing.JLabel jLabel224;
+    private javax.swing.JLabel jLabel225;
     private javax.swing.JLabel jLabel226;
     private javax.swing.JLabel jLabel227;
     private javax.swing.JLabel jLabel228;

@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import mdqrs.classes.DataValidation;
+import mdqrs.classes.JobType;
 import mdqrs.dbcontroller.ActivityDBController;
 import mdqrs.dbcontroller.PersonnelDBController;
 import mdqrs.listeners.MainListener;
@@ -24,7 +25,7 @@ public class EditPersonnel extends javax.swing.JFrame {
     private static MainListener mainListener;
     private static EditPersonnel instance;
     private static Personnel personnel;
-    
+     private ArrayList<JobType> types = new PersonnelDBController().getJobTypes();
     /**
      * Creates new form AddPersonnel
      */
@@ -208,7 +209,7 @@ public class EditPersonnel extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
             } else {
                 boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
-                String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+                String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(types.get(type.getSelectedIndex() - 1).getId());
                 new PersonnelDBController().edit(personnel.getId(), name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
                 mainListener.updatePersonnel();
                 JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");
@@ -245,7 +246,7 @@ public class EditPersonnel extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(rootPane, "Please enter a rate per day!");
                 } else {
                     boolean isOtherType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other");
-                    String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(type.getSelectedItem());
+                    String jobType = String.valueOf(type.getSelectedItem()).equalsIgnoreCase("Other") ? otherType.getText() : String.valueOf(types.get(type.getSelectedIndex() - 1).getId());
                     new PersonnelDBController().edit(personnel.getId(), name.getText(), jobType, isOtherType, dataValidation.convertToDouble(ratePerDay.getText()));
                     mainListener.updatePersonnel();
                     JOptionPane.showMessageDialog(rootPane, "Personnel was successfully edited!");

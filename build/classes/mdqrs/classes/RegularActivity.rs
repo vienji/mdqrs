@@ -1,2 +1,0 @@
-RegularActivity
-classes.RegularActivity
