@@ -90,7 +90,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Personnel");
 
-        personnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose maintenance crew..." }));
+        personnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose personnel..." }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Number of CD");
@@ -165,7 +165,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
 
     private void addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMouseClicked
         if(personnel.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+            JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
         } else if (!dataValidation.validateDouble(numberOfCD.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else {
@@ -180,7 +180,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
             crewPersonnel.setRatePerDay(opsRatePerDay);
             
             mainListener.addRegularActivityOpsMaintenanceCrew(crewPersonnel, formType);
-            int n = JOptionPane.showConfirmDialog(rootPane, "Maintenance Crew Added! Do you want to add another one?");
+            int n = JOptionPane.showConfirmDialog(rootPane, "Personnel Added! Do you want to add another one?");
             
             if(n != 0){               
                 instance = null;
@@ -196,7 +196,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
     private void numberOfCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberOfCDKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             if(personnel.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+                JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
             } else if (!dataValidation.validateDouble(numberOfCD.getText())){
                 JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
             } else {
@@ -211,7 +211,7 @@ public class AddOpsMaintenanceCrew extends javax.swing.JFrame {
                 crewPersonnel.setRatePerDay(opsRatePerDay);
 
                 mainListener.addRegularActivityOpsMaintenanceCrew(crewPersonnel, formType);
-                int n = JOptionPane.showConfirmDialog(rootPane, "Maintenance Crew Added! Do you want to add another one?");
+                int n = JOptionPane.showConfirmDialog(rootPane, "Personnel Added! Do you want to add another one?");
 
                 if(n != 0){               
                     instance = null;

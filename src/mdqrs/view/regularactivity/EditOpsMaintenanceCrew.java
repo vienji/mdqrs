@@ -54,7 +54,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
     }
     
     private void initData(){
-        personnel.setSelectedItem(crewPersonnel.getPersonnel().getName());
+        personnel.setSelectedItem(crewPersonnel.getPersonnel().getName() + " (" + crewPersonnel.getPersonnel().getType() + ")");
         numberOfCD.setText(String.valueOf(crewPersonnel.getNumberOfCd()));
     }
     
@@ -64,9 +64,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
     
     public static void setPersonnelList(ArrayList<Personnel> list){
         for(Personnel personnel : list){
-            if(personnel.getType().equalsIgnoreCase("maintenance crew")){
-                personnelList.add(personnel);
-            }
+            personnelList.add(personnel);
         }     
     }
     
@@ -78,7 +76,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
     
     public void initPersonnelSelectionBox(){
         personnelList.forEach((e) -> {
-            personnel.addItem(e.getName());
+            personnel.addItem(e.getName() + " (" + e.getType() + ")");
         });
     }
 
@@ -105,7 +103,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Personnel");
 
-        personnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose maintenance crew..." }));
+        personnel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Choose personnel..." }));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setText("Number of CD");
@@ -180,7 +178,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
 
     private void saveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveMouseClicked
         if(personnel.getSelectedIndex() == 0){
-            JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+            JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
         } else if (!dataValidation.validateDouble(numberOfCD.getText())){
             JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
         } else {          
@@ -201,7 +199,7 @@ public class EditOpsMaintenanceCrew extends javax.swing.JFrame {
     private void numberOfCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_numberOfCDKeyPressed
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){  
             if(personnel.getSelectedIndex() == 0){
-                JOptionPane.showMessageDialog(rootPane, "Please choose a maintenance crew!");
+                JOptionPane.showMessageDialog(rootPane, "Please choose a personnel!");
             } else if (!dataValidation.validateDouble(numberOfCD.getText())){
                 JOptionPane.showMessageDialog(rootPane, "Please enter a valid number of days!");
             } else {          
