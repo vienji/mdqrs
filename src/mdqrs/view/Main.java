@@ -11436,6 +11436,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsEquipmentCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             OpsEquipment opsEquipment = (OpsEquipment) i.next();
 
@@ -11449,7 +11451,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(opsEquipment.getFuelCost()), "₱ " + setDecimalFormat(opsEquipment.getFuelAmount()),
                 "₱ " + setDecimalFormat(opsEquipment.getLubricantAmount()), "₱ " + setDecimalFormat(opsEquipment.getTotalCost())};
 
+            totalExpenses += opsEquipment.getTotalCost();
+            
             opsEquipmentTableModel.addRow(opsEquipmentData);
+        }
+        
+        if(!opsEquipmentCollection.isEmpty()){
+            String[] totalRow = {"", "", "","","","", "", "", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            opsEquipmentTableModel.addRow(totalRow);
         }
     }
 
@@ -11462,6 +11471,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsMaintenanceCrewCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewPersonnel crewPersonnel = (CrewPersonnel) i.next();
 
@@ -11469,7 +11480,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewPersonnel.getRatePerDay()),
                 "₱ " + setDecimalFormat(crewPersonnel.getTotalWages())};
 
+            totalExpenses += crewPersonnel.getTotalWages();
+            
             maintenanceCrewTableModel.addRow(maintenanceCrewData);
+        }
+        
+        if(!opsMaintenanceCrewCollection.isEmpty()){
+            String[] totalRow = {"", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            maintenanceCrewTableModel.addRow(totalRow);
         }
     }
 
@@ -11482,6 +11500,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsMaintenanceCrewCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewPersonnel crewPersonnel = (CrewPersonnel) i.next();
 
@@ -11489,7 +11509,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewPersonnel.getRatePerDay()),
                 "₱ " + setDecimalFormat(crewPersonnel.getTotalWages())};
 
+            totalExpenses += crewPersonnel.getTotalWages();
+            
             maintenanceCrewTableModel.addRow(maintenanceCrewData);
+        }
+        
+        if(!opsMaintenanceCrewCollection.isEmpty()){
+            String[] totalRow = {"", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            maintenanceCrewTableModel.addRow(totalRow);
         }
     }
 
@@ -11502,6 +11529,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsMaintenanceCrewCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewPersonnel crewPersonnel = (CrewPersonnel) i.next();
 
@@ -11509,7 +11538,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewPersonnel.getRatePerDay()),
                 "₱ " + setDecimalFormat(crewPersonnel.getTotalWages())};
 
+            totalExpenses += crewPersonnel.getTotalWages();
+            
             maintenanceCrewTableModel.addRow(maintenanceCrewData);
+        }
+        
+        if(!opsMaintenanceCrewCollection.isEmpty()){
+            String[] totalRow = {"", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            maintenanceCrewTableModel.addRow(totalRow);
         }
     }
 
@@ -11541,6 +11577,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) crewEquipmentCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewEquipment crewEquipment = (CrewEquipment) i.next();
 
@@ -11550,7 +11588,15 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewEquipment.getFuelCost()), "₱ " + setDecimalFormat(crewEquipment.getFuelAmount()),
                 "₱ " + setDecimalFormat(crewEquipment.getLubricantAmount()), "₱ " + setDecimalFormat(crewEquipment.getTotalCost())};
 
+            totalExpenses += crewEquipment.getTotalCost();
+            
             crewEquipmentTableModel.addRow(crewEquipmentData);
+        }
+        
+        
+        if(!crewEquipmentCollection.isEmpty()){
+            String[] totalRow = {"", "", "", "", "", "", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            crewEquipmentTableModel.addRow(totalRow);
         }
     }
 
@@ -11658,6 +11704,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsEquipmentCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             OpsEquipment opsEquipment = (OpsEquipment) i.next();
 
@@ -11671,7 +11719,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(opsEquipment.getFuelCost()), "₱ " + setDecimalFormat(opsEquipment.getFuelAmount()),
                 "₱ " + setDecimalFormat(opsEquipment.getLubricantAmount()), "₱ " + setDecimalFormat(opsEquipment.getTotalCost())};
 
+            totalExpenses += opsEquipment.getTotalCost();
+            
             opsEquipmentTableModel.addRow(opsEquipmentData);
+        }
+        
+        if(!opsEquipmentCollection.isEmpty()){
+            String[] totalRow = {"", "", "","","","", "", "", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            opsEquipmentTableModel.addRow(totalRow);
         }
     }
 
@@ -11684,6 +11739,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) opsMaintenanceCrewCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewPersonnel crewPersonnel = (CrewPersonnel) i.next();
 
@@ -11691,7 +11748,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewPersonnel.getRatePerDay()),
                 "₱ " + setDecimalFormat(crewPersonnel.getTotalWages())};
 
+            totalExpenses += crewPersonnel.getTotalWages();
+            
             maintenanceCrewTableModel.addRow(maintenanceCrewData);
+        }
+        
+        if(!opsMaintenanceCrewCollection.isEmpty()){
+            String[] totalRow = {"", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            maintenanceCrewTableModel.addRow(totalRow);
         }
     }
 
@@ -11723,6 +11787,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         Iterator i = (Iterator) crewEquipmentCollection.toList().iterator();
 
+        Double totalExpenses = 0.0;
+        
         while (i.hasNext()) {
             CrewEquipment crewEquipment = (CrewEquipment) i.next();
 
@@ -11732,7 +11798,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 "₱ " + setDecimalFormat(crewEquipment.getFuelCost()), "₱ " + setDecimalFormat(crewEquipment.getFuelAmount()),
                 "₱ " + setDecimalFormat(crewEquipment.getLubricantAmount()), "₱ " + setDecimalFormat(crewEquipment.getTotalCost())};
 
+            totalExpenses += crewEquipment.getTotalCost();
+            
             crewEquipmentTableModel.addRow(crewEquipmentData);
+        }
+        
+        if(!crewEquipmentCollection.isEmpty()){
+            String[] totalRow = {"", "", "", "", "", "", "", "Total Expenses", "₱ " + setDecimalFormat(totalExpenses)};
+            crewEquipmentTableModel.addRow(totalRow);
         }
     }
 

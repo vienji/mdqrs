@@ -330,8 +330,10 @@ public class EditOpsEquipment extends javax.swing.JFrame {
             role.setText(type);
             if(type.equalsIgnoreCase("Operator")){
                 equipmentType.setEnabled(true);
+                equipmentNumber.setEnabled(true);
             } else {
                 equipmentType.setEnabled(false);
+                equipmentNumber.setEnabled(false);
             }
         } else {
             role.setText("");
