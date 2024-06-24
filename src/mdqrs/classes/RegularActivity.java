@@ -122,6 +122,11 @@ public class RegularActivity {
         this.subActivity = subActivity;
     }
     
+    public RegularActivity(){
+        otherRoadSection = "";
+        roadSection = new RoadSection();
+    }
+    
     private String id;
     private SubActivity subActivity;
     private Activity activity;

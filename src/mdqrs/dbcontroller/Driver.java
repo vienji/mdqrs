@@ -78,4 +78,62 @@ public class Driver {
             return null;
         }
     }
+    
+    public static String getErrorMessage(){       
+        File jarDir = null;
+        
+        try{
+            jarDir = JarDirectory.getJarDir(Main.class);
+        } catch (URISyntaxException | IOException e){
+            System.out.println("Driver getConnection() Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        File parentDir = jarDir.getParentFile();
+        final String NETWORK_FILE = "src/mdqrs/path/to/config.properties";
+        File file = new File(parentDir,NETWORK_FILE);
+        
+        try(FileInputStream input = new FileInputStream(file)){
+            Properties network = new Properties();
+            
+            network.load(input);
+            
+            Cryptographer cryptographer = new Cryptographer();
+            
+            String decryptedPassword = "";
+            try {
+                decryptedPassword = cryptographer.decrypt(network.getProperty("password"));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
+            USER = network.getProperty("username");
+            PASSWORD = decryptedPassword;
+            SERVER = network.getProperty("server");
+            PORT = network.getProperty("port");
+            DATABASE = network.getProperty("database");
+        }
+        catch (IOException io) {}
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mysql://" + 
+                    SERVER.concat(":" + PORT + "/" + DATABASE), USER, PASSWORD);
+            
+            return null;
+        }
+        catch (ClassNotFoundException | SQLException e) {
+            StackTraceElement[] ste = e.getStackTrace();
+            String message = "java.sql.SQLException: " + e.getMessage() + " \n";
+            
+            for(int i = 0; i < ste.length; i++){
+                message += "              at " + ste[i] ;
+                if(i < ste.length - 1){
+                    message += " \n";
+                }
+            }
+            
+            return message;
+        }
+    }  
 }

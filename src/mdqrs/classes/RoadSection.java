@@ -34,6 +34,12 @@ public class RoadSection {
         this.locationId = locationId;
     }
     
+    public RoadSection(){
+        id = "";
+        name = "";
+        locationId = "";
+    }
+    
     private String id;
     private String name;
     private String locationId;

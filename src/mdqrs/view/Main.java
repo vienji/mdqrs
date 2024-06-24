@@ -24,6 +24,7 @@ import classes.WorkCategory;
 import dbcontroller.Driver;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
@@ -38,6 +39,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -45,6 +47,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import javax.swing.ImageIcon;
@@ -123,7 +126,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private ArrayList<Location> locationList;
     private ArrayList<RoadSection> roadSectionList; 
     private ArrayList<WorkCategory> workCategoryList;
-    private ArrayList<RegularActivity> regularActivityList;
     private ArrayList<OtherActivity> otherActivityList;
     private ArrayList<OtherExpenses> otherExpensesList;
     private ArrayList<DriversForEngineers> driversForEngineersList;
@@ -143,7 +145,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
     ArrayList<WorkCategory> searchedWorkCategory;
     ArrayList<Activity> searchedActivity;
     ArrayList<SubActivity> searchedSubActivity;
-    ArrayList<RegularActivity> searchedRegularActivity;
     ArrayList<OtherActivity> searchedOtherActivity;
     ArrayList<OtherExpenses> searchedOtherExpenses;
     ArrayList<DriversForEngineers> searchedDFE;
@@ -157,6 +158,36 @@ public class Main extends javax.swing.JFrame implements MainListener {
     OtherExpenses otherExpensesForEdit = new OtherExpenses();
     DriversForEngineers driversForEngineersForEdit = new DriversForEngineers();
     Program programForEdit = new Program();
+    
+    //Pagination
+    private ArrayList<RegularActivity> regularActivityList;
+    ArrayList<RegularActivity> searchedRegularActivity;
+    private int currentPage = 1;
+    private double fullPage = 1;
+    private final int PAGE_LIMIT = 21;
+    
+    private void updateRegularActivity(){
+        regularActivityList = new ActivityListDBController().fetchData(currentPage, PAGE_LIMIT);
+        searchedRegularActivity = regularActivityList;
+        
+        populateMainRegularActivity(regularActivityList);
+        
+        pageLabel.setText(currentPage + " / " + (int) fullPage);
+        prevRAPage.setEnabled(currentPage > 1);
+        nextRAPage.setEnabled(currentPage != fullPage);
+    }   
+    
+    private void updateSearchedRegularActivity(String value){                                       
+        regularActivityList = new ActivityListDBController().searchData(currentPage, PAGE_LIMIT, value);
+        searchedRegularActivity = regularActivityList;
+        
+        populateMainRegularActivity(regularActivityList);
+  
+        pageLabel.setText(currentPage + " / " + (int) fullPage);
+        prevRAPage.setEnabled(currentPage > 1);
+        nextRAPage.setEnabled(currentPage != fullPage);
+    }   
+    
     
     /**
      * Creates new form Main
@@ -213,6 +244,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         welcomeLogo = new javax.swing.JLabel();
+        jLabel250 = new javax.swing.JLabel();
         activityListPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         searchActivity = new javax.swing.JLabel();
@@ -233,6 +265,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel17 = new javax.swing.JLabel();
         addNewRegularActivity = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        prevRAPage = new javax.swing.JButton();
+        nextRAPage = new javax.swing.JButton();
+        pageLabel = new javax.swing.JLabel();
         addNewRegularActivityPanel = new javax.swing.JPanel();
         cancelNewRegularActivity = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -1187,31 +1222,42 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jLabel9.setText("Maintenance Division Quarterly Report System");
 
+        jLabel250.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel250.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel250.setText("Developed by Vienji");
+
         javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
         welcomePanel.setLayout(welcomePanelLayout);
         welcomePanelLayout.setHorizontalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
-                .addGap(233, 233, 233)
                 .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
                     .addGroup(welcomePanelLayout.createSequentialGroup()
-                        .addGap(227, 227, 227)
+                        .addGap(233, 233, 233)
                         .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(welcomeLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
+                            .addComponent(jLabel9)
+                            .addGroup(welcomePanelLayout.createSequentialGroup()
+                                .addGap(227, 227, 227)
+                                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(welcomeLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)))))
+                    .addGroup(welcomePanelLayout.createSequentialGroup()
+                        .addGap(503, 503, 503)
+                        .addComponent(jLabel250)))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
         welcomePanelLayout.setVerticalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePanelLayout.createSequentialGroup()
-                .addContainerGap(239, Short.MAX_VALUE)
+                .addContainerGap(248, Short.MAX_VALUE)
                 .addComponent(welcomeLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
-                .addGap(252, 252, 252))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel250)
+                .addGap(229, 229, 229))
         );
 
         mainPanel.add(welcomePanel, "card2");
@@ -1223,6 +1269,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
         searchActivity.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchActivityMouseClicked(evt);
+            }
+        });
+
+        activitySearchValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                activitySearchValueKeyPressed(evt);
             }
         });
 
@@ -1246,6 +1298,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
         });
 
         regularActivityTab.setLayout(new java.awt.CardLayout());
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         tableMainRegularActivity.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1384,13 +1439,36 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 .addContainerGap())
         );
 
+        prevRAPage.setText("Prev");
+        prevRAPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prevRAPageActionPerformed(evt);
+            }
+        });
+
+        nextRAPage.setText("Next");
+        nextRAPage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextRAPageActionPerformed(evt);
+            }
+        });
+
+        pageLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        pageLabel.setText("1 / 1");
+
         javax.swing.GroupLayout mainRegularActivityPanelLayout = new javax.swing.GroupLayout(mainRegularActivityPanel);
         mainRegularActivityPanel.setLayout(mainRegularActivityPanelLayout);
         mainRegularActivityPanelLayout.setHorizontalGroup(
             mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainRegularActivityPanelLayout.createSequentialGroup()
-                .addContainerGap(575, Short.MAX_VALUE)
+                .addGap(22, 22, 22)
+                .addComponent(prevRAPage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pageLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nextRAPage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 392, Short.MAX_VALUE)
                 .addComponent(deleteRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(editRegularActivity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1403,13 +1481,21 @@ public class Main extends javax.swing.JFrame implements MainListener {
         mainRegularActivityPanelLayout.setVerticalGroup(
             mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainRegularActivityPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                 .addGroup(mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addNewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(editRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(deleteRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainRegularActivityPanelLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(addNewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(viewRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(deleteRegularActivity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(mainRegularActivityPanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(mainRegularActivityPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(prevRAPage)
+                            .addComponent(nextRAPage)
+                            .addComponent(pageLabel))))
                 .addContainerGap())
         );
 
@@ -7226,6 +7312,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
         jLabel70.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel70.setText("Search");
 
+        workCategorySearchValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                workCategorySearchValueKeyPressed(evt);
+            }
+        });
+
         searchWorkCategory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 searchWorkCategoryMouseClicked(evt);
@@ -7291,6 +7383,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         jLabel72.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel72.setText("Search");
+
+        equipmentSearchValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                equipmentSearchValueKeyPressed(evt);
+            }
+        });
 
         searchEquipment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -7502,6 +7600,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         jLabel74.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel74.setText("Search");
+
+        searchPersonnelValue.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchPersonnelValueKeyPressed(evt);
+            }
+        });
 
         tablePersonnel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -8325,11 +8429,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_addNewRegularActivityMouseClicked
 
     private void cancelNewRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewRegularActivityMouseClicked
-        regularActivityTab.removeAll();
-        regularActivityTab.add(mainRegularActivityPanel);
-        regularActivityTab.repaint();
-        regularActivityTab.revalidate();
-        resetRegularActivityForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            regularActivityTab.removeAll();
+            regularActivityTab.add(mainRegularActivityPanel);
+            regularActivityTab.repaint();
+            regularActivityTab.revalidate();
+            resetRegularActivityForm();
+            fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+            currentPage = 1;
+            updateRegularActivity();
+        }
     }//GEN-LAST:event_cancelNewRegularActivityMouseClicked
 
     private void regularActivityFormRoadSectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regularActivityFormRoadSectionActionPerformed
@@ -8766,9 +8876,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     regularActivityTab.add(mainRegularActivityPanel);
                     regularActivityTab.repaint();
                     regularActivityTab.revalidate();
-                    regularActivityList = new ActivityListDBController().getList();
-                    searchedRegularActivity = regularActivityList;
-                    populateMainRegularActivity(regularActivityList);
+                    fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+                    currentPage = 1;
+                    updateRegularActivity();
                     resetRegularActivityForm();
                     timeframeDetailActionPerformed(null);
                 } else {
@@ -8782,9 +8892,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     regularActivityTab.add(mainRegularActivityPanel);
                     regularActivityTab.repaint();
                     regularActivityTab.revalidate();
-                    regularActivityList = new ActivityListDBController().getList();
-                    searchedRegularActivity = regularActivityList;
-                    populateMainRegularActivity(regularActivityList);
+                    fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+                    currentPage = 1;
+                    updateRegularActivity();
                     resetRegularActivityForm();
                     timeframeDetailActionPerformed(null);
                 }
@@ -8868,11 +8978,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_regularActivityFormActivityActionPerformed
 
     private void cancelEditRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelEditRegularActivityMouseClicked
-        regularActivityTab.removeAll();
-        regularActivityTab.add(mainRegularActivityPanel);
-        regularActivityTab.repaint();
-        regularActivityTab.revalidate();
-        resetRegularActivityEditForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            regularActivityTab.removeAll();
+            regularActivityTab.add(mainRegularActivityPanel);
+            regularActivityTab.repaint();
+            regularActivityTab.revalidate();
+            resetRegularActivityEditForm();
+            fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+            currentPage = 1;
+            updateRegularActivity();
+        }
     }//GEN-LAST:event_cancelEditRegularActivityMouseClicked
 
     private void saveEditRegularActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditRegularActivityMouseClicked
@@ -8924,9 +9040,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 regularActivityTab.add(mainRegularActivityPanel);
                 regularActivityTab.repaint();
                 regularActivityTab.revalidate();
-                regularActivityList = new ActivityListDBController().getList();
-                searchedRegularActivity = regularActivityList;
-                populateMainRegularActivity(regularActivityList);
+                fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+                currentPage = 1;
+                updateRegularActivity();
                 resetRegularActivityEditForm();
                 timeframeDetailActionPerformed(null);
             }
@@ -9221,11 +9337,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_addNewOtherActivityMouseClicked
 
     private void cancelNewOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherActivityMouseClicked
-        otherActivityTab.removeAll();
-        otherActivityTab.add(mainOtherActivityPanel);
-        otherActivityTab.repaint();
-        otherActivityTab.revalidate();
-        resetOtherActivityForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            otherActivityTab.removeAll();
+            otherActivityTab.add(mainOtherActivityPanel);
+            otherActivityTab.repaint();
+            otherActivityTab.revalidate();
+            resetOtherActivityForm();
+        }
     }//GEN-LAST:event_cancelNewOtherActivityMouseClicked
 
     private void saveNewOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivityMouseClicked
@@ -9316,11 +9435,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_backViewRegularActivity1MouseClicked
 
     private void cancelNewOtherActivity1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherActivity1MouseClicked
-        otherActivityTab.removeAll();
-        otherActivityTab.add(mainOtherActivityPanel);
-        otherActivityTab.repaint();
-        otherActivityTab.revalidate();
-        resetOtherActivityEditForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");        
+        if(n == 0){
+            otherActivityTab.removeAll();
+            otherActivityTab.add(mainOtherActivityPanel);
+            otherActivityTab.repaint();
+            otherActivityTab.revalidate();
+            resetOtherActivityEditForm();
+        }
     }//GEN-LAST:event_cancelNewOtherActivity1MouseClicked
 
     private void saveEditedOtherActivityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditedOtherActivityMouseClicked
@@ -9457,11 +9579,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_addNewOtherExpensesMouseClicked
 
     private void cancelNewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherExpensesMouseClicked
-        otherExpensesTab.removeAll();
-        otherExpensesTab.add(mainOtherExpensesPanel);
-        otherExpensesTab.repaint();
-        otherExpensesTab.revalidate();
-        resetOtherExpensesForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            otherExpensesTab.removeAll();
+            otherExpensesTab.add(mainOtherExpensesPanel);
+            otherExpensesTab.repaint();
+            otherExpensesTab.revalidate();
+            resetOtherExpensesForm();
+        }
     }//GEN-LAST:event_cancelNewOtherExpensesMouseClicked
 
     private void saveNewOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpensesMouseClicked
@@ -9525,6 +9650,13 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     private void activityTabbedPaneMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_activityTabbedPaneMouseClicked
         if (activityTabbedPane.getSelectedIndex() == 0) {
+            String[] sortingItems = {"id", "activity", "date", "implementation mode"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            } 
+            
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
             driversForEngineersContainer.repaint();
@@ -9550,48 +9682,49 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
-            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
-            String[] sortingItems = {"id", "activity", "date", "implementation mode"};
-            
-            sortActivity.removeAllItems();
-            for(String item : sortingItems){
-                sortActivity.addItem(item);
-            }          
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);         
         } else if (activityTabbedPane.getSelectedIndex() == 1) {
-            driversForEngineersContainer.removeAll();
-            driversForEngineersContainer.add(mainDriversForEngineersPanel);
-            driversForEngineersContainer.repaint();
-            driversForEngineersContainer.revalidate();
-            resetDriversForEngineersForm();
-            resetDriversForEngineersEditForm();
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(mainOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            resetOtherExpensesForm();
-            resetOtherExpensesEditForm();
-            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
-            regularActivityTab.removeAll();
-            regularActivityTab.add(mainRegularActivityPanel);
-            regularActivityTab.repaint();
-            regularActivityTab.revalidate();
-            resetRegularActivityEditForm();
-            resetRegularActivityForm();
-            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(mainProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();   
-            resetProjectsForm();
-            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
-            
             String[] sortingItems = {"id", "sub activity", "description", "date", "implementation mode"};
             
             sortActivity.removeAllItems();
             for(String item : sortingItems){
                 sortActivity.addItem(item);
             }
+            
+            driversForEngineersContainer.removeAll();
+            driversForEngineersContainer.add(mainDriversForEngineersPanel);
+            driversForEngineersContainer.repaint();
+            driversForEngineersContainer.revalidate();
+            resetDriversForEngineersForm();
+            resetDriversForEngineersEditForm();
+            otherExpensesTab.removeAll();
+            otherExpensesTab.add(mainOtherExpensesPanel);
+            otherExpensesTab.repaint();
+            otherExpensesTab.revalidate();
+            resetOtherExpensesForm();
+            resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
+            regularActivityTab.removeAll();
+            regularActivityTab.add(mainRegularActivityPanel);
+            regularActivityTab.repaint();
+            regularActivityTab.revalidate();
+            resetRegularActivityEditForm();
+            resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
+            projectsOfWorksTab.removeAll();
+            projectsOfWorksTab.add(mainProjectsPanel);
+            projectsOfWorksTab.repaint();
+            projectsOfWorksTab.revalidate();   
+            resetProjectsForm();
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
         } else if (activityTabbedPane.getSelectedIndex() == 2) {
+            String[] sortingItems = {"id", "date"};
+            
+            sortActivity.removeAllItems();
+            for(String item : sortingItems){
+                sortActivity.addItem(item);
+            } 
+            
             driversForEngineersContainer.removeAll();
             driversForEngineersContainer.add(mainDriversForEngineersPanel);
             driversForEngineersContainer.repaint();
@@ -9617,43 +9750,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             projectsOfWorksTab.repaint();
             projectsOfWorksTab.revalidate();   
             resetProjectsForm();
-            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
-            
-            String[] sortingItems = {"id", "date"};
-            
-            sortActivity.removeAllItems();
-            for(String item : sortingItems){
-                sortActivity.addItem(item);
-            }          
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);                  
         } else if (activityTabbedPane.getSelectedIndex() == 3) {
-            regularActivityTab.removeAll();
-            regularActivityTab.add(mainRegularActivityPanel);
-            regularActivityTab.repaint();
-            regularActivityTab.revalidate();
-            resetRegularActivityEditForm();
-            resetRegularActivityForm();
-            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
-            otherActivityTab.removeAll();
-            otherActivityTab.add(mainOtherActivityPanel);
-            otherActivityTab.repaint();
-            otherActivityTab.revalidate();
-            resetOtherActivityEditForm();
-            resetOtherActivityForm();
-            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
-            otherExpensesTab.removeAll();
-            otherExpensesTab.add(mainOtherExpensesPanel);
-            otherExpensesTab.repaint();
-            otherExpensesTab.revalidate();
-            resetOtherExpensesForm();
-            resetOtherExpensesEditForm();
-            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
-            projectsOfWorksTab.removeAll();
-            projectsOfWorksTab.add(mainProjectsPanel);
-            projectsOfWorksTab.repaint();
-            projectsOfWorksTab.revalidate();   
-            resetProjectsForm();
-            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
-            
             String[] sortingItems = {"id", "date"};
             
             sortActivity.removeAllItems();
@@ -9661,8 +9759,6 @@ public class Main extends javax.swing.JFrame implements MainListener {
                 sortActivity.addItem(item);
             }
             
-            timeframeDetailActionPerformed(null);
-        } else if (activityTabbedPane.getSelectedIndex() == 4){
             regularActivityTab.removeAll();
             regularActivityTab.add(mainRegularActivityPanel);
             regularActivityTab.repaint();
@@ -9684,19 +9780,49 @@ public class Main extends javax.swing.JFrame implements MainListener {
             resetOtherExpensesForm();
             resetOtherExpensesEditForm();
             viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
-            driversForEngineersContainer.removeAll();
-            driversForEngineersContainer.add(mainDriversForEngineersPanel);
-            driversForEngineersContainer.repaint();
-            driversForEngineersContainer.revalidate();
-            resetDriversForEngineersForm();
-            resetDriversForEngineersEditForm();
+            projectsOfWorksTab.removeAll();
+            projectsOfWorksTab.add(mainProjectsPanel);
+            projectsOfWorksTab.repaint();
+            projectsOfWorksTab.revalidate();   
+            resetProjectsForm();
+            viewProjectsScrollPane.getVerticalScrollBar().setValue(0);
             
+            timeframeDetailActionPerformed(null);
+        } else if (activityTabbedPane.getSelectedIndex() == 4){
             String[] sortingItems = {"id", "source of fund","date"};
             
             sortActivity.removeAllItems();
             for(String item : sortingItems){
                 sortActivity.addItem(item);
             }
+            
+            regularActivityTab.removeAll();
+            regularActivityTab.add(mainRegularActivityPanel);
+            regularActivityTab.repaint();
+            regularActivityTab.revalidate();
+            resetRegularActivityEditForm();
+            resetRegularActivityForm();
+            viewRegularActivityScrollPane.getVerticalScrollBar().setValue(0);
+            otherActivityTab.removeAll();
+            otherActivityTab.add(mainOtherActivityPanel);
+            otherActivityTab.repaint();
+            otherActivityTab.revalidate();
+            resetOtherActivityEditForm();
+            resetOtherActivityForm();
+            viewOtherActivityScrollPane.getVerticalScrollBar().setValue(0);
+            otherExpensesTab.removeAll();
+            otherExpensesTab.add(mainOtherExpensesPanel);
+            otherExpensesTab.repaint();
+            otherExpensesTab.revalidate();
+            resetOtherExpensesForm();
+            resetOtherExpensesEditForm();
+            viewOtherExpensesScrollPane.getVerticalScrollBar().setValue(0);
+            driversForEngineersContainer.removeAll();
+            driversForEngineersContainer.add(mainDriversForEngineersPanel);
+            driversForEngineersContainer.repaint();
+            driversForEngineersContainer.revalidate();
+            resetDriversForEngineersForm();
+            resetDriversForEngineersEditForm();
         }
     }//GEN-LAST:event_activityTabbedPaneMouseClicked
 
@@ -9844,11 +9970,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_backViewOtherExpensesMouseClicked
 
     private void cancelEditOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelEditOtherExpensesMouseClicked
-        otherExpensesTab.removeAll();
-        otherExpensesTab.add(mainOtherExpensesPanel);
-        otherExpensesTab.repaint();
-        otherExpensesTab.revalidate();
-        resetOtherExpensesEditForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            otherExpensesTab.removeAll();
+            otherExpensesTab.add(mainOtherExpensesPanel);
+            otherExpensesTab.repaint();
+            otherExpensesTab.revalidate();
+            resetOtherExpensesEditForm();
+        }
     }//GEN-LAST:event_cancelEditOtherExpensesMouseClicked
 
     private void saveEditOtherExpensesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveEditOtherExpensesMouseClicked
@@ -9909,11 +10038,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_otherExpensesFormEditDaysOfOperationActionPerformed
 
     private void cancelNewOtherExpenses1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherExpenses1MouseClicked
-        driversForEngineersContainer.removeAll();
-        driversForEngineersContainer.add(mainDriversForEngineersPanel);
-        driversForEngineersContainer.repaint();
-        driversForEngineersContainer.revalidate();
-        resetDriversForEngineersForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            driversForEngineersContainer.removeAll();
+            driversForEngineersContainer.add(mainDriversForEngineersPanel);
+            driversForEngineersContainer.repaint();
+            driversForEngineersContainer.revalidate();
+            resetDriversForEngineersForm();
+        }
     }//GEN-LAST:event_cancelNewOtherExpenses1MouseClicked
 
     private void saveNewOtherExpenses1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherExpenses1MouseClicked
@@ -9964,11 +10096,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_saveNewOtherExpenses1MouseClicked
 
     private void cancelNewOtherExpenses2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherExpenses2MouseClicked
-        driversForEngineersContainer.removeAll();
-        driversForEngineersContainer.add(mainDriversForEngineersPanel);
-        driversForEngineersContainer.repaint();
-        driversForEngineersContainer.revalidate();
-        resetDriversForEngineersEditForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            driversForEngineersContainer.removeAll();
+            driversForEngineersContainer.add(mainDriversForEngineersPanel);
+            driversForEngineersContainer.repaint();
+            driversForEngineersContainer.revalidate();
+            resetDriversForEngineersEditForm();
+        }
     }//GEN-LAST:event_cancelNewOtherExpenses2MouseClicked
 
     private void saveDFEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveDFEMouseClicked
@@ -10073,11 +10208,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_addNewProjectsMouseClicked
 
     private void cancelNewOtherActivity2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherActivity2MouseClicked
-        projectsOfWorksTab.removeAll();
-        projectsOfWorksTab.add(mainProjectsPanel);
-        projectsOfWorksTab.repaint();
-        projectsOfWorksTab.revalidate();    
-        resetProjectsForm();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            projectsOfWorksTab.removeAll();
+            projectsOfWorksTab.add(mainProjectsPanel);
+            projectsOfWorksTab.repaint();
+            projectsOfWorksTab.revalidate();    
+            resetProjectsForm();
+        }
     }//GEN-LAST:event_cancelNewOtherActivity2MouseClicked
 
     private void saveNewOtherActivity1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivity1MouseClicked
@@ -10141,11 +10279,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }//GEN-LAST:event_removeProjectsItemMouseClicked
 
     private void cancelNewOtherActivity3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelNewOtherActivity3MouseClicked
-        projectsOfWorksTab.removeAll();
-        projectsOfWorksTab.add(mainProjectsPanel);
-        projectsOfWorksTab.repaint();
-        projectsOfWorksTab.revalidate();    
-        resetProjectsFormEdit();
+        int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to cancel this without saving?");
+        if(n == 0){
+            projectsOfWorksTab.removeAll();
+            projectsOfWorksTab.add(mainProjectsPanel);
+            projectsOfWorksTab.repaint();
+            projectsOfWorksTab.revalidate();    
+            resetProjectsFormEdit();
+        }
     }//GEN-LAST:event_cancelNewOtherActivity3MouseClicked
 
     private void saveNewOtherActivity2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveNewOtherActivity2MouseClicked
@@ -10475,7 +10616,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
                         break;
 
                     case "date":
-                        Collections.sort(searchedRegularActivity, Comparator.comparing(RegularActivity::getDate));
+                        Collections.sort(searchedRegularActivity, new DateComparator());
+                        Collections.reverse(searchedRegularActivity);
                         populateMainRegularActivity(searchedRegularActivity);
                         break;
 
@@ -10653,6 +10795,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
         
         switch(selectedTab){
             case 0:
+                /*
                 searchedRegularActivity = regularActivityList
                                                                                     .stream()
                                                                                     .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
@@ -10662,11 +10805,17 @@ public class Main extends javax.swing.JFrame implements MainListener {
                                                                                             || regularActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
                                                                                             || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
                                                                                     .collect(Collectors.toCollection(ArrayList::new));
+                */
+                fullPage = Math.ceil((double) new ActivityListDBController().getSearchCount(activitySearchValue.getText()) / (double) PAGE_LIMIT);  
+                currentPage = 1;
+                updateSearchedRegularActivity(activitySearchValue.getText());   
+                /*
                 if(!activitySearchValue.getText().isBlank()){
                     populateMainRegularActivity(searchedRegularActivity);
                 } else {
                     populateMainRegularActivity(regularActivityList);
                 }
+                */
                 break;
             
             case 1:
@@ -10741,9 +10890,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
                     int n = JOptionPane.showConfirmDialog(rootPane, "Are you sure you wanted to delete this selected item? Warning: This action can't be undone!");
                     if(n == 0){
                         new ActivityListDBController().delete(regularActivity);
-                        regularActivityList = new ActivityListDBController().getList();
-                        searchedRegularActivity = regularActivityList;
-                        populateMainRegularActivity(regularActivityList);
+                        fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);                    
+                        currentPage = 1;
+                        updateRegularActivity();
                     }
                 }
             } else {
@@ -11204,7 +11353,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
         if(Driver.getConnection() != null){
             JOptionPane.showMessageDialog(rootPane, "You're connected to the server!", "Message", 1);
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Can't connect to the server. Please check your network credentials and try again.", "Error", 0);
+            //JOptionPane.showMessageDialog(rootPane, "Can't connect to the server. Please check your network credentials and try again.", "Error", 0);
+            new ConnectionErrorMessage().setVisible(true);
         }
     }//GEN-LAST:event_testNetworkConnectionMouseClicked
 
@@ -11233,6 +11383,204 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
         worker.execute();
     }//GEN-LAST:event_systemRefreshMouseClicked
+
+    private void activitySearchValueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_activitySearchValueKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER ){
+            int selectedTab = activityTabbedPane.getSelectedIndex();
+        
+            switch(selectedTab){
+                case 0:    
+                    /*
+                    searchedRegularActivity = regularActivityList
+                                                                                        .stream()
+                                                                                        .filter(regularActivity -> regularActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                                || regularActivity.getActivity().getItemNumber().equals(activitySearchValue.getText())
+                                                                                                || regularActivity.getActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || regularActivity.getLocation().getLocation().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || regularActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || regularActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                                || regularActivity.getOtherRoadSection().toLowerCase().contains(activitySearchValue.getText())
+                                                                                                || regularActivity.getRoadSection().getName().toLowerCase().contains(activitySearchValue.getText()))
+                                                                                        .collect(Collectors.toCollection(ArrayList::new));
+                    */  
+                    fullPage = Math.ceil((double) new ActivityListDBController().getSearchCount(activitySearchValue.getText()) / (double) PAGE_LIMIT);  
+                    currentPage = 1;
+                    updateSearchedRegularActivity(activitySearchValue.getText());               
+                    /*                   
+                    if(!activitySearchValue.getText().isBlank()){
+                        populateMainRegularActivity(searchedRegularActivity);
+                    } else {
+                        populateMainRegularActivity(regularActivityList);
+                    }
+                    */
+                    break;
+
+                case 1:
+                    searchedOtherActivity = otherActivityList
+                                                                                    .stream()
+                                                                                    .filter(otherActivity -> otherActivity.getId().equals(activitySearchValue.getText()) 
+                                                                                            || otherActivity.getSubActivity().getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || otherActivity.getDescription().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || otherActivity.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || otherActivity.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                    .collect(Collectors.toCollection(ArrayList::new));
+                    if(!activitySearchValue.getText().isBlank()){
+                        populateMainOtherActivity(searchedOtherActivity);
+                    } else {
+                        populateMainOtherActivity(otherActivityList);
+                    }
+                    break;
+
+                case 2:
+                    searchedOtherExpenses = otherExpensesList
+                                                                                    .stream()
+                                                                                    .filter(otherExpenses -> otherExpenses.getId().equals(activitySearchValue.getText()) 
+                                                                                            || otherExpenses.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || otherExpenses.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                    .collect(Collectors.toCollection(ArrayList::new));
+                    if(!activitySearchValue.getText().isBlank()){
+                        populateMainOtherExpenses(searchedOtherExpenses);
+                    } else {
+                        populateMainOtherExpenses(otherExpensesList);
+                    }
+                    break;
+
+                case 3:
+                    searchedDFE = driversForEngineersList
+                                                                                    .stream()
+                                                                                    .filter(dfe -> dfe.getId().equals(activitySearchValue.getText()) 
+                                                                                            || dfe.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                                            || dfe.getImplementationMode().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                                    .collect(Collectors.toCollection(ArrayList::new));
+                    if(!activitySearchValue.getText().isBlank()){
+                        populateDriversForEngineersTable(searchedDFE);
+                    } else {
+                        populateDriversForEngineersTable(driversForEngineersList);
+                    }
+                    break;
+
+                case 4:
+                    searchedProgram = programList
+                                                                .stream()
+                                                                .filter(program -> program.getId().equals(activitySearchValue.getText()) 
+                                                                        || program.getSourceOfFund().toLowerCase().contains(activitySearchValue.getText().toLowerCase())
+                                                                        || program.getMonth().toLowerCase().contains(activitySearchValue.getText().toLowerCase()))
+                                                                .collect(Collectors.toCollection(ArrayList::new));
+                    if(!activitySearchValue.getText().isBlank()){
+                        populateMainProgram(searchedProgram);
+                    } else {
+                        populateMainProgram(programList);
+                    }
+                    break;
+            }
+        }
+    }//GEN-LAST:event_activitySearchValueKeyPressed
+
+    private void workCategorySearchValueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_workCategorySearchValueKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            int selectedTab = workCategoryTabbedPane.getSelectedIndex();
+
+            switch(selectedTab){
+                case 0:
+                    searchedWorkCategory = workCategoryList
+                                                                            .stream()
+                                                                            .filter(workCategory -> String.valueOf(workCategory.getWorkCategoryNumber()).equals(workCategorySearchValue.getText())
+                                                                                    || workCategory.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                            .collect(Collectors.toCollection(ArrayList::new));
+                    if(!workCategorySearchValue.getText().isBlank()){
+                        populateWorkCategoryTable(searchedWorkCategory);
+                    } else {
+                        populateWorkCategoryTable(workCategoryList);
+                    }
+                    break;
+
+                case 1:
+                    searchedActivity = activityList
+                                                                            .stream()
+                                                                            .filter(activity -> activity.getItemNumber().equals(workCategorySearchValue.getText())
+                                                                                    || activity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                    || activity.getWorkCategory().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase()))
+                                                                            .collect(Collectors.toCollection(ArrayList::new));
+                    if(!workCategorySearchValue.getText().isBlank()){
+                        populateActivityTable(searchedActivity);
+                    } else {
+                        populateActivityTable(activityList);
+                    }
+                    break; 
+
+                case 2:
+                    searchedSubActivity = subActivityList
+                                                                            .stream()
+                                                                            .filter(subActivity -> subActivity.getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                    || subActivity.getActivity().getDescription().toLowerCase().contains(workCategorySearchValue.getText().toLowerCase())
+                                                                                    || subActivity.getActivity().getItemNumber().equals(workCategorySearchValue.getText()))
+                                                                            .collect(Collectors.toCollection(ArrayList::new));
+                    if(!workCategorySearchValue.getText().isBlank()){
+                        populateSubActivityTable(searchedSubActivity);
+                    } else {
+                        populateSubActivityTable(subActivityList);
+                    }
+                    break;  
+            }
+        }
+    }//GEN-LAST:event_workCategorySearchValueKeyPressed
+
+    private void equipmentSearchValueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_equipmentSearchValueKeyPressed
+         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            searchedEquipment = equipmentList
+                                                            .stream()
+                                                            .filter(equipment -> equipment.getEquipmentNumber().equals(equipmentSearchValue.getText()) 
+                                                                    || equipment.getType().toLowerCase().contains(equipmentSearchValue.getText().toLowerCase()))
+                                                            .collect(Collectors.toCollection(ArrayList::new));
+
+            if(!equipmentSearchValue.getText().isBlank()){
+                populateEquipmentTable(searchedEquipment);
+            } else {
+                populateEquipmentTable(equipmentList);
+            } 
+         }
+    }//GEN-LAST:event_equipmentSearchValueKeyPressed
+
+    private void searchPersonnelValueKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchPersonnelValueKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            searchedPersonnel = personnelList
+                                                .stream()
+                                                .filter(personnel -> personnel.getName()
+                                                                              .toLowerCase()
+                                                                              .contains(searchPersonnelValue.getText().toLowerCase()) 
+                                                        || personnel.getId().equals(searchPersonnelValue.getText()) 
+                                                        || personnel.getType()
+                                                                    .toLowerCase()
+                                                                    .contains(searchPersonnelValue.getText().toLowerCase()))
+                                                .collect(Collectors.toCollection(ArrayList::new));
+
+            if(!searchPersonnelValue.getText().isBlank()){
+                populatePersonnelTable(searchedPersonnel);
+            } else {
+                populatePersonnelTable(personnelList);
+            }  
+        }
+    }//GEN-LAST:event_searchPersonnelValueKeyPressed
+
+    private void prevRAPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prevRAPageActionPerformed
+        if(currentPage > 1){
+            currentPage--;
+            if(activitySearchValue.getText().isBlank()){
+                updateRegularActivity();
+            } else {
+                updateSearchedRegularActivity(activitySearchValue.getText());
+            }
+        }
+    }//GEN-LAST:event_prevRAPageActionPerformed
+
+    private void nextRAPageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextRAPageActionPerformed
+        currentPage++;
+        if(activitySearchValue.getText().isBlank()){
+                updateRegularActivity();
+        } else {
+            updateSearchedRegularActivity(activitySearchValue.getText());
+        }
+    }//GEN-LAST:event_nextRAPageActionPerformed
 
     // Table populators
     private void populateViewProjects(ArrayList<Project> projectCollection){
@@ -12254,6 +12602,9 @@ public class Main extends javax.swing.JFrame implements MainListener {
 
     public void initData() {
         if(Driver.getConnection() != null){
+            fullPage = Math.ceil((double) new ActivityListDBController().getCount() / (double) PAGE_LIMIT);
+            currentPage = 1;
+            
             activityList = new ActivityDBController().getList();
             searchedActivity = activityList;
             subActivityList = new SubActivityDBController().getList();
@@ -12264,8 +12615,8 @@ public class Main extends javax.swing.JFrame implements MainListener {
             searchedPersonnel = personnelList;
             equipmentList = new EquipmentDBController().getList();
             searchedEquipment = equipmentList;
-            regularActivityList = new ActivityListDBController().getList();
-            searchedRegularActivity = regularActivityList;
+            regularActivityList = new ActivityListDBController().fetchData(currentPage, PAGE_LIMIT);
+            searchedRegularActivity = regularActivityList;        
             otherActivityList = new OtherActivityListDBController().getList();
             searchedOtherActivity = otherActivityList;
             otherExpensesList = new OtherExpensesDBController().getList();
@@ -12316,6 +12667,10 @@ public class Main extends javax.swing.JFrame implements MainListener {
         initEditRoadSectionSelectionBox(locationList.get(0).getId());
         initAddOtherActivitySubActivitySelectionBox();
         initEditOtherActivitySubActivitySelectionBox();
+
+        pageLabel.setText(currentPage + " / " + (int) fullPage);
+        prevRAPage.setEnabled(currentPage > 1);
+        nextRAPage.setEnabled(currentPage != fullPage);
     }
 
     private void initAddActivitySelectionBox() {
@@ -13122,6 +13477,22 @@ public class Main extends javax.swing.JFrame implements MainListener {
         }
     }
     
+    public class DateComparator implements Comparator<RegularActivity>{
+        @Override
+        public int compare(final RegularActivity d1, final RegularActivity d2){
+            Date date1 = new Date(), date2 = new Date();
+            
+            try {
+                date1 = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH).parse(d1.getDate());
+                date2 = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH).parse(d2.getDate());
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+            
+            return date1.compareTo(date2);
+         }
+    }
+    
     public class RegularActivityComparator implements Comparator<RegularActivity>{
         @Override
         public int compare(RegularActivity regularActivity1, RegularActivity regularActivity2){
@@ -13178,12 +13549,12 @@ public class Main extends javax.swing.JFrame implements MainListener {
     }
     
     public void initSearchFieldListener(){
-        personnelSearchFieldListener();
-        equipmentSearchFieldListener();
-        workCategorySearchFieldListener();
-        activitySearchFieldListener();
+//        personnelSearchFieldListener();
+//        equipmentSearchFieldListener();
+//        workCategorySearchFieldListener();
+//        activitySearchFieldListener();
     }
-    
+  /*  
     private void activitySearchFieldListener(){
         activitySearchValue.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -13420,6 +13791,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
             }
         });
     }
+    */
     
     /**
      * @param args the command line arguments
@@ -13758,6 +14130,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel jLabel248;
     private javax.swing.JLabel jLabel249;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel250;
     private javax.swing.JLabel jLabel252;
     private javax.swing.JLabel jLabel253;
     private javax.swing.JLabel jLabel254;
@@ -13941,6 +14314,7 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JTextField networkPort;
     private javax.swing.JTextField networkServer;
     private javax.swing.JTextField networkUsername;
+    private javax.swing.JButton nextRAPage;
     private javax.swing.JTextField otherActivityEditDaysOfOperation;
     private javax.swing.JTextField otherActivityEditDescription;
     private javax.swing.JTextField otherActivityEditImplementationMode;
@@ -13987,12 +14361,14 @@ public class Main extends javax.swing.JFrame implements MainListener {
     private javax.swing.JLabel otherExpensesViewLaborCrewCost;
     private javax.swing.JLabel otherExpensesViewLaborEquipmentCost;
     private javax.swing.JLabel otherExpensesViewLightEquipments;
+    private javax.swing.JLabel pageLabel;
     private javax.swing.JPanel personnelPanel;
     private javax.swing.JLabel personnelSettingsIcon;
     private javax.swing.JTextField preparedBy1Name;
     private javax.swing.JTextField preparedBy1Position;
     private javax.swing.JTextField preparedBy2Name;
     private javax.swing.JTextField preparedBy2Position;
+    private javax.swing.JButton prevRAPage;
     private javax.swing.JComboBox<String> projectsFormEditMonth;
     private javax.swing.JTextField projectsFormEditSourceOfFund;
     private javax.swing.JComboBox<String> projectsFormEditYear;

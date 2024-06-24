@@ -204,10 +204,10 @@ public class EditOpsEquipment extends javax.swing.JFrame {
         jLabel5.setText("Fuel Consumption (L)");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel6.setText("Cost / L");
+        jLabel6.setText("Fuel Cost / L");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel7.setText("Lubricant");
+        jLabel7.setText("Lubricant Cost");
 
         save.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         save.setText("Save");

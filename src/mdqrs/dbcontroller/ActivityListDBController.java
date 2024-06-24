@@ -8,6 +8,7 @@ import classes.*;
 import dbcontroller.Driver;
 import java.util.*;
 import java.sql.*;
+import mdqrs.classes.DataValidation;
 
 /**
  *
@@ -942,6 +943,230 @@ public class ActivityListDBController {
             
         return list;
     }
+    
+    public ArrayList<RegularActivity> fetchData(int pageNumber, int pageLimit){
+        ArrayList<RegularActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT * FROM regular_activity "
+                    + "ORDER BY ralid DESC "
+                    + "LIMIT ? OFFSET ? ";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            int offset = (pageNumber - 1) * pageLimit;
+            
+            preparedStatement.setInt(1, pageLimit);
+            preparedStatement.setInt(2, offset);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                RegularActivity regularActivity = new RegularActivity();
+                
+                boolean isOtherRoadSection = Boolean.valueOf(result.getString(5));
+                
+                regularActivity.setId(result.getString(2));
+                regularActivity.setActivity(new ActivityDBController().getActivity(result.getString(3)));
+                
+                if(isOtherRoadSection){
+                    regularActivity.setOtherRoadSection(result.getString(4));
+                } else {
+                    regularActivity.setRoadSection(new RoadSectionDBController().getRoadSection(result.getString(4)));
+                }
+                
+                regularActivity.setIsOtherRoadSection(isOtherRoadSection);
+                regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
+                regularActivity.setNumberOfCD(result.getDouble(7));
+                regularActivity.setMonth(result.getString(8));
+                regularActivity.setYear(result.getInt(9));
+                regularActivity.setOpsEquipmentListID(result.getString(10));
+                regularActivity.setOpsMaintenanceCrewID(result.getString(11));
+                regularActivity.setImplementationMode(result.getString(12));
+                
+                SubActivity subActivity = result.getInt(13) != 0 ? 
+                        new SubActivityDBController().getSubActivity(result.getInt(13)) : new SubActivity();
+                regularActivity.setSubActivity(subActivity);
+                
+                list.add(regularActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
+    public ArrayList<RegularActivity> searchData(int pageNumber, int pageLimit, String value){
+        ArrayList<RegularActivity> list = new ArrayList();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT DISTINCT regular_activity.id, regular_activity.ralid, regular_activity.activity_number, regular_activity.road_section, regular_activity.is_other_road_section," +
+                    "regular_activity.location_id, regular_activity.days_of_operation, regular_activity.month, regular_activity.year, regular_activity.ops_equipment_list_id," +
+                    "regular_activity.ops_maintenance_crew_id, regular_activity.implementation_mode, regular_activity.sub_activity_id " +
+                    "FROM regular_activity " +
+                    "JOIN road_section ON regular_activity.road_section = road_section.rid " +
+                    "JOIN activity ON regular_activity.activity_number = activity.item_number " +
+                    "JOIN location ON regular_activity.location_id = location.lid " +
+                    
+                    "WHERE regular_activity.ralid LIKE ? OR regular_activity.activity_number LIKE ? " +
+                    "OR activity.description LIKE ? OR regular_activity.road_section LIKE ? " +
+                    "OR road_section.name LIKE ? OR location.location LIKE ? " +
+                    "OR regular_activity.month LIKE ? OR regular_activity.year = ? " +
+                    "ORDER BY ralid DESC LIMIT ? OFFSET ?";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, "%" + value + "%");
+            preparedStatement.setString(2, "%" + value + "%");
+            preparedStatement.setString(3, "%" + value + "%");
+            preparedStatement.setString(4, "%" + value + "%");
+            preparedStatement.setString(5, "%" + value + "%");
+            preparedStatement.setString(6, "%" + value + "%");
+            preparedStatement.setString(7, "%" + value + "%");
+            
+            String checkVal = value.isBlank() ? "a" : value;
+            int number = new DataValidation().validateInteger(checkVal) ? Integer.parseInt(checkVal) : 0;
+            
+            preparedStatement.setInt(8, number);
+            
+            int offset = (pageNumber - 1) * pageLimit;
+            
+            preparedStatement.setInt(9, pageLimit);
+            preparedStatement.setInt(10, offset);
+            
+            result = preparedStatement.executeQuery();
+            while(result.next()){
+                RegularActivity regularActivity = new RegularActivity();
+                
+                boolean isOtherRoadSection = Boolean.valueOf(result.getString(5));
+                
+                regularActivity.setId(result.getString(2));
+                regularActivity.setActivity(new ActivityDBController().getActivity(result.getString(3)));
+                
+                if(isOtherRoadSection){
+                    regularActivity.setOtherRoadSection(result.getString(4));
+                } else {
+                    regularActivity.setRoadSection(new RoadSectionDBController().getRoadSection(result.getString(4)));
+                }
+                
+                regularActivity.setIsOtherRoadSection(isOtherRoadSection);
+                regularActivity.setLocation(new LocationDBController().getLocation(result.getString(6)));
+                regularActivity.setNumberOfCD(result.getDouble(7));
+                regularActivity.setMonth(result.getString(8));
+                regularActivity.setYear(result.getInt(9));
+                regularActivity.setOpsEquipmentListID(result.getString(10));
+                regularActivity.setOpsMaintenanceCrewID(result.getString(11));
+                regularActivity.setImplementationMode(result.getString(12));
+                
+                SubActivity subActivity = result.getInt(13) != 0 ? 
+                        new SubActivityDBController().getSubActivity(result.getInt(13)) : new SubActivity();
+                regularActivity.setSubActivity(subActivity);
+                
+                list.add(regularActivity);
+            }
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        } finally {
+            if(connection != null){
+                try{connection.close();}catch(SQLException e){}
+            }
+            if(preparedStatement != null){
+                try{preparedStatement.close();}catch(SQLException e){}
+            }
+            if(result != null){
+                try{result.close();}catch(SQLException e){}
+            }
+        }
+        
+        return list;
+    }
+    
+    public int getCount(){
+        int count = 0;   
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT COUNT(*) as 'count' FROM regular_activity";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            result = preparedStatement.executeQuery();
+            
+            result.next();
+            count = result.getInt(1);
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+        return count;
+    }
+    
+    public int getSearchCount(String value){
+        int count = 0;   
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet result = null;
+        
+        try {
+            query = "SELECT DISTINCT COUNT(*) as 'count'" +
+                    "FROM regular_activity " +
+                    "JOIN road_section ON regular_activity.road_section = road_section.rid " +
+                    "JOIN activity ON regular_activity.activity_number = activity.item_number " +
+                    "JOIN location ON regular_activity.location_id = location.lid " +
+                    "WHERE regular_activity.ralid LIKE ? OR regular_activity.activity_number LIKE ? " +
+                    "OR activity.description LIKE ? OR regular_activity.road_section LIKE ? " +
+                    "OR road_section.name LIKE ? OR location.location LIKE ? " +
+                    "OR regular_activity.month LIKE ? OR regular_activity.year = ? ";
+            connection = Driver.getConnection();
+            preparedStatement = connection.prepareStatement(query);
+            
+            preparedStatement.setString(1, "%" + value + "%");
+            preparedStatement.setString(2, "%" + value + "%");
+            preparedStatement.setString(3, "%" + value + "%");
+            preparedStatement.setString(4, "%" + value + "%");
+            preparedStatement.setString(5, "%" + value + "%");
+            preparedStatement.setString(6, "%" + value + "%");
+            preparedStatement.setString(7, "%" + value + "%");
+            
+            String checkVal = value.isBlank() ? "a" : value;
+            int number = new DataValidation().validateInteger(checkVal) ? Integer.parseInt(checkVal) : 0;
+            
+            preparedStatement.setInt(8, number);
+
+            result = preparedStatement.executeQuery();
+            
+            result.next();
+            count = result.getInt(1);
+            
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        
+        return count;
+    }
+    
+    
     
     public ArrayList<RegularActivity> getList(String month, int year){
         ArrayList<RegularActivity> list = new ArrayList();
